@@ -1,0 +1,148 @@
+﻿@model FeedseaWebSite.Models.FeedbackViewModel
+@using FeedseaWebSite.App_GlobalResources;
+@using Recaptcha.Web.Mvc
+
+@{
+    ViewBag.Title = @Strings.PageTitle_Feedback;
+    ViewBag.PageName = "Feedback";
+}
+
+<div id="success-message" class="notice bg-green fg-white marker-on-bottom" style="display: none">
+    <strong>@Strings.Success_Feedback_Title</strong>
+    <br />
+    @Strings.Success_Feedback_Message
+</div>
+
+<div id="error-message" class="notice bg-red fg-white marker-on-bottom" style="display: none">
+    <strong>@Strings.Error_Title</strong>
+    <br />
+    @Strings.Error_Message
+</div>
+
+
+@using (Ajax.BeginForm("Feedback", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "feedbackForm.onSuccess", OnBegin = "feedbackForm.onBegin" }))
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset>
+        <legend>@Strings.PageTitle_Feedback</legend>
+        <div class="row">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
+
+        @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="input-control select">
+            @Html.DropDownListFor(model => model.Type, new SelectList(new List<object>() {
+                new { value = "", text = Strings.FeedbackType_SelectOne },
+                new { value = "bug", text = Strings.FeedbackType_Bug },
+                new { value = "suggestion", text = Strings.FeedbackType_Suggestion },
+                new { value = "other", text = Strings.FeedbackType_Other }
+            }, "value", "text", ""))
+        </div>
+        @Html.ValidationMessageFor(model => model.Type, "", new { @class = "fg-red" })
+
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="input-control text">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            <button class="btn-clear"></button>
+        </div>
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "fg-red" })
+
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="input-control text">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            <button class="btn-clear"></button>
+        </div>
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "fg-red" })
+
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="input-control textarea">
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @rows = 3 })
+        </div>
+        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "fg-red" })
+
+        @Html.Label("human", Strings.AreYouHuman, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="input-control">
+            @Html.Recaptcha("6LdIYfESAAAAALXD_l21CeZbeeyjorbQp-XDTyxW", Recaptcha.Web.RecaptchaTheme.Clean, (string)ViewBag.Language, 0)
+        </div>
+        <span class="fg-red field-validation-error validator" style="display: none">
+            <span>Captcha error</span>
+        </span>
+
+        <div class="input-control margin15">
+            <input type="submit" value="@Strings.Send" class="button large default" />
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        var feedbackForm = function () {
+            
+            function enableAllControls() {
+                $('input, textarea, select').removeAttr('disabled', '');
+            }
+
+            function disableAllControls() {
+                $('input, textarea, select').attr('disabled', '');
+            }
+
+            function success(e) {
+                enableAllControls();
+                if (e.success) {
+                    $('.validator').hide();
+                    $('#success-message').show();
+                    $('input[type="text"], input[type="email"], textarea').val('');
+                    $('select').val(0);
+                }
+                else if (e.isCaptchaInvalid) {
+                    var validator = $('.validator');
+                    validator.find('span').text(e.captchaMessage);
+                    validator.show();
+                }
+                else {
+                    $('#error-message').show();
+                }
+
+                Recaptcha.reload();
+            }
+
+            function begin() {
+                disableAllControls();
+                $('.validator').hide();
+                $('#success-message').hide();
+                $('#error-message').hide();
+            }
+            
+            return {
+                onSuccess: success,
+                onBegin: begin
+            };
+        }();
+
+        $(document.body).on('click', '.dropdown-menu li', function (event) {
+
+            var $target = $(event.currentTarget);
+
+            $target.closest('.btn-group')
+               .find('[data-bind="label"]').text($target.text())
+                  .end()
+               .children('.dropdown-toggle').dropdown('toggle');
+
+            $('#Type').val($target.data('type'));
+            $('#Type').valid();
+            return false;
+
+        });
+
+        $(document).ready(function () {
+            var validator = $("form").data('validator');
+            validator.settings.ignore = "";
+
+            if ($('#Type').val() != "") {
+                $('span[data-bind="label"]').text($('li[data-type="' + $('#Type').val() + '"]').text());
+            }
+        });
+    </script>
+}

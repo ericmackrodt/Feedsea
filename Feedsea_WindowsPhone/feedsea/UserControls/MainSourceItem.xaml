@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="feedsea.UserControls.MainSourceItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.ColumnSpan="2" Style="{StaticResource ContentArea}" />
+            <Image Grid.Column="0" Source="{Binding Favicon, Converter={StaticResource IsoStorageImageConverter}, ConverterParameter=../Assets/Icons/source-icon.png}" 
+                                   VerticalAlignment="Center" Height="42" Margin="5" />
+            <TextBlock Margin="5" Style="{StaticResource DefaultSourceItemTitle}" Grid.Column="1" 
+                       Text="{Binding Name}" VerticalAlignment="Center" />
+        </Grid>
+        <Border Margin="15,0,2,0" Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource DefaultBorderColor}" />
+    </Grid>
+</UserControl>

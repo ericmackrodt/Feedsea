@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AreYouHuman" xml:space="preserve">
+    <value>Você é humano?</value>
+  </data>
+  <data name="AvailableFor" xml:space="preserve">
+    <value>Disponível para</value>
+  </data>
+  <data name="CaptchaEmpty" xml:space="preserve">
+    <value>A resposta do captcha não pode estar vazia.</value>
+  </data>
+  <data name="ContactInfo" xml:space="preserve">
+    <value>Informações de Contato</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descrição</value>
+  </data>
+  <data name="DevelopedBy" xml:space="preserve">
+    <value>Desenvolvido por</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Error_Message" xml:space="preserve">
+    <value>Ocorreu um erro ao enviar sua requisição, tente novamente mais tarde.</value>
+  </data>
+  <data name="Error_Title" xml:space="preserve">
+    <value>Oops! Algo deu errado.</value>
+  </data>
+  <data name="FeaturedIn" xml:space="preserve">
+    <value>Referências</value>
+  </data>
+  <data name="Features_ChooseApp_Message" xml:space="preserve">
+    <value>Quer abrir um link? Você pode escolher seu browser favorito! Quer abrir um video do YouTube? Escolha seu cliente favorito para isso!</value>
+  </data>
+  <data name="Features_ChooseApp_Title" xml:space="preserve">
+    <value>Escolha seu app favorito para outros serviços</value>
+  </data>
+  <data name="Features_StraightToNews_Message" xml:space="preserve">
+    <value>Vá diretamente para seu feed favorito sem ter que passar por menus, opções, telas ou qualquer outra coisa.</value>
+  </data>
+  <data name="Features_StraightToNews_Title" xml:space="preserve">
+    <value>Direto para suas notícias!</value>
+  </data>
+  <data name="Features_Visual_Message" xml:space="preserve">
+    <value>Seus artigos exibidos de uma forma extremamente visual para que você consiga ver o máximo de informações possível.</value>
+  </data>
+  <data name="Features_Visual_Title" xml:space="preserve">
+    <value>Extremamente visual!</value>
+  </data>
+  <data name="FeedbackType_Bug" xml:space="preserve">
+    <value>Bug</value>
+  </data>
+  <data name="FeedbackType_Other" xml:space="preserve">
+    <value>Outro</value>
+  </data>
+  <data name="FeedbackType_SelectOne" xml:space="preserve">
+    <value>Selecione um</value>
+  </data>
+  <data name="FeedbackType_Suggestion" xml:space="preserve">
+    <value>Sugestão</value>
+  </data>
+  <data name="Header1_Message" xml:space="preserve">
+    <value>Um cliente Feedly bem direto para Windows Phone!</value>
+  </data>
+  <data name="Header1_SubMessage" xml:space="preserve">
+    <value>Feedsea é um app focado no que realmente importa. Suas notícias.</value>
+  </data>
+  <data name="Header1_Text" xml:space="preserve">
+    <value>Elas são a primeira coisa exibida quando o aplicativo é aberto, você não terá que navegar por diversos menus para chegar aonde quer!</value>
+  </data>
+  <data name="Header2_Message" xml:space="preserve">
+    <value>Você quer testar?</value>
+  </data>
+  <data name="Header2_SubMessage" xml:space="preserve">
+    <value>Junte-se ao beta fechado hoje preenchendo o formulário do programa.</value>
+  </data>
+  <data name="Header2_Text" xml:space="preserve">
+    <value>Depois disso você será adicionado ao beta e poderá tetar a aplicação e enviar seu feedback!</value>
+  </data>
+  <data name="IncorrectCaptcha" xml:space="preserve">
+    <value>A resposta do captcha está incorreta.</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Endereço de email inválido.</value>
+  </data>
+  <data name="Lang_enUS" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Lang_ptBR" xml:space="preserve">
+    <value>Português</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Rio de Janeiro - Brasil</value>
+  </data>
+  <data name="MenuItem_Feedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="MenuItem_Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="MenuItem_JoinBeta" xml:space="preserve">
+    <value>Participe do Beta</value>
+  </data>
+  <data name="MicrosoftAccount_Hint" xml:space="preserve">
+    <value>Email associado ao seu telefone</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="NeedHelpSuggestion" xml:space="preserve">
+    <value>Preciso de ajuda/Sugestão</value>
+  </data>
+  <data name="PageTitle_Feedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="PageTitle_JoinBeta" xml:space="preserve">
+    <value>Participe do Beta</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="SimpleYetPowerful" xml:space="preserve">
+    <value>Simples e poderoso.</value>
+  </data>
+  <data name="SiteName" xml:space="preserve">
+    <value>Feedsea</value>
+  </data>
+  <data name="Social_Author" xml:space="preserve">
+    <value>Eric Mackrodt</value>
+  </data>
+  <data name="Social_Copyright" xml:space="preserve">
+    <value>Copyright (C) Eric Mackrodt 2014</value>
+  </data>
+  <data name="Social_Description" xml:space="preserve">
+    <value>Um cliente Feedly simples e completo para Windows Phone!</value>
+  </data>
+  <data name="Social_Title" xml:space="preserve">
+    <value>Feedsea</value>
+  </data>
+  <data name="Straightforward" xml:space="preserve">
+    <value>Um cliente Feedly simples e completo para Windows Phone!</value>
+  </data>
+  <data name="Success_BetaSent_Message" xml:space="preserve">
+    <value>Dentro de algumas horas você será adicionado ao beta e receberá um email com o link para download do aplicativo.</value>
+  </data>
+  <data name="Success_BetaSent_Title" xml:space="preserve">
+    <value>Parabéns! Seu pedido foi enviado com sucesso.</value>
+  </data>
+  <data name="Success_Feedback_Message" xml:space="preserve">
+    <value>Seu feedback foi enviado com sucesso. Muito obrigado!</value>
+  </data>
+  <data name="Success_Feedback_Title" xml:space="preserve">
+    <value>Parabéns!</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="WhereDidYouHear" xml:space="preserve">
+    <value>Aonde você ouviu falar do Feedsea?</value>
+  </data>
+</root>

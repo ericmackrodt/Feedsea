@@ -1,0 +1,182 @@
+- Now with Dark Theme!
+- Clean and simple design.
+- Straight to your news without having to navigate through menus.
+- Share your articles on the social networks or send them to OneNote, Pocket or Instapaper.
+- Pin live tiles for your Categories and Subscriptions.
+- Automatically download the full article if the content isn't available.
+- Open your favorite feed using Cortana.
+
+Any suggestion or bug report? Go to our uservoice page: feedsea.uservoice.com
+
+* 1.4.0.24
+
+- A few interface changes.
+- New settings page, a lot more organized and easier to navigate. (Current app settings are going to be lost).
+- Other small bug fixes and improvements.
+
+* 1.3.2.23
+
+- Bug fix: Sometimes the first article is opened when trying to open any article.
+- Improvement: Swiping through articles now loads more articles when reaching the end of the article list.
+- Other small bug fixes and performance improvements.
+
+* 1.3.1.22
+
+- Bug fix: Error when exiting the article page.
+- Bug fix: Couldn't open article in the browser.
+
+* 1.3.0.21
+
+- Added: Option to load the article using Instapaper, Readability, Google Mobilizers or the article web site page itself in the Article page.
+- Added: Message for new users to add sources.
+- Added: Users can now choose if they want to use Instapaper or Readability when trying load the full article when there's no article content.
+- Added: Slide left/right in the article page to load previous or next article (Currently limited to the articles already loaded on the feed).
+- Improvement: Scrolling no longer shows connection error if there's no connection.
+- Improvement: Added "All Articles" and "Saved for Later" in the Sidebar and removed "Saved for Later" from the top bar.
+- Improvement: When adding new source, it's automatically selected when returning to feed.
+- Bug Fix: Some articles didn't show the title when sent to OneNote.
+- Other small bug fixes.
+- Several internal code and performance improvements.
+
+
+* 1.2.1.20
+
+- Bug fix: "Enable Pocket" text in pt-br (settings page)
+- Bug fix: A few youtube videos weren't loading when metrotube or other app was selected (Native WP8.1 player problem remains for now)
+- Bug fix: Dark Icons on dark background when the phone theme was set to light.
+- Other small bug fixes.
+
+* 1.2.0.19
+
+- Added: Dark Theme for the app.
+- Added: Option to disable the confirmation to mark all articles read.
+- Bug fix: Error when creating tiles for sources with only one unread article.
+- Bug diagnostics: Added more information to help diagnose when a feed fails to load.
+- Other small bug fixes.
+
+* 1.1.2.18
+
+- Bug fix: Huge memory leak caused by the ads, it made 512mb phones crash and higher memory phones run really slow.
+- Bug fix: Crash marking all articles read.
+- Change: No ads in the article list anymore, the were moved to the sidebar.
+- Other small bug fixes, crash fixes and performance improvements.
+
+
+* 1.1.1.17
+
+- Improvement: Changed the loading indicator position.
+- Possible Bug fix: Crash while trying to load the background agent.
+- Bug Fix: Crash selecting a category to load when the app starts (Settings page).
+- Possible Bug fix: Crash while trying to change the Tile type.
+- Other small bug fixes and improvements.
+
+* 1.1.0.3
+
+- App completely redesigned from the beta.
+- Improved animations and performance.
+- Added ads and in-app purchase for the user to disable them.
+- Other imporovements and bug fixes.
+
+* Beta 1.0.0.14
+
+- Added: Instapaper support.
+- Improvement: The app now has full pocket integration, you can choose if you want to use third-party apps or just login to pocket and add articles from within the app.
+- Improvement: The "Mark Read on Scroll" feature now works better when you scroll all the way down the article list.
+- Bug fix: Can't load more articles if they're all read and the option "Show read articles if there's no unread" is checked.
+- Other small bug fixes and improvements.
+
+* Beta 1.0.0.13
+
+- Bug fix: "Load read articles when there's no unread" setting wasn't working.
+- Bug fix: Sometimes youtube links didn't work when third party youtube clients were selected.
+- Improvement: Animations now run smoother.
+- Other crashes and bug fixes.
+- Other performance improvements.
+
+* Beta 1.0.0.12
+
+-Added: Voice commands for Cortana (Windows Phone 8.1 only) - Commands in the app description.
+-Added: Logoff, if you want to change the Feedly account.
+-Added: Animations when loading the article list.
+-Added: Share to Pocket via third party apps (like Poki, Squirrel and others).
+-Added: Protocol, the app can be opened via the uri scheme feedsea://
+-Improvement: Changed the way the app handles errors.
+-Improvement: Less internet usage when the "Mark read while scrolling" is activated.
+-Improvement: Added loading feeback in the login page.
+-Improvement: Several performance improvements.
+-Bug fix: App crash when using unsupported characters while searching for new feeds.
+-Possible Bug fix: Sometimes links in the article view were loaded within the app.
+-Possible Bug fix: Sometimes the app showed the "not connected" message when the user went to another app and went back to feedsea.
+-Possible Bug fix: App crashed when the user went to the phone's home screen while loading an article.
+-Other small bug fixes and improvements.
+
+* Beta 1.0.0.11
+
+-Bug fix: Tombstone crashes fixed.
+-Bug fix: Other random crashes fixed.
+-Other small improvements.
+
+* Beta 1.0.0.10
+
+-Bug fix: Source favicon wasn't being loaded in transparent tiles.
+-Bug fix: Sometimes the article page crashed if tombstoned for a while.
+-Other small improvements.
+
+* Beta 1.0.0.9
+
+-Bug fix: Error starting the app when there was no connection.
+-Bug fix: Old live tiles weren't being deleted, making the app take a lot of storage.
+-Improvement: Less bandwidth usage updating live tiles when they are set to transparent.
+-Other little internal improvements.
+
+
+* Beta 1.0.0.8
+
+-Bug fix: "You're new" message was appearing when there were no sources.
+-Improvement: Settings page now update the tiles when the type is changed.
+-Bug fix: Text corrections.
+
+* Beta 1.0.0.7
+
+-Improvement: Live tiles readability on small screens.
+-Added: OneNote support. (More coming: Buffer, Pocket, Instapaper and more)
+-Added: User can configure the articles to be marked as read while scrolling the feed.
+-Added: Subscriptions can now be edited.
+-Added: New transparent and semi-transparent live tiles for Windows Phone 8.1 users.
+-Bug fix: When clicking on any link in the article view, the user was redirected to the article page instead of the link itself.
+-Bug fix: When reopening the app, the appbar and tray bar settings were lost.
+-Bug fix: When there wasn't connection, the subscriptions weren't loaded.
+
+* Beta 1.0.0.6
+
+-Improvement: Download article images based on the screen resolution in the main feed.
+-Added: full live tile support for Subscriptions and Categories
+-Bug fix: Improved full article content download for articles that weren't being downloaded.
+
+* Beta 1.0.0.5
+
+-Added basic podcast functionality.
+-Bug fix: Infinit scrolling needs to stretch the bottom of the feed.
+
+* Beta 1.0.0.4
+
+-Added: MyTube and Toib as options to open YouTube videos.
+-Added: button to go to top on the main Feed.
+-Added: Pull to Refresh on the main feed.
+-Added: setting to show read articles if there are no unread.
+-Changed: Settings page layout.
+-Added: New Welcome Screen when the app os opened for the first time.
+
+* Beta 1.0.0.3
+
+-Bug fix: Settings page Category ListPicker goes full screen with object types when list has more than 5 items.
+-Bug fix: Crash when can't download data.
+-Changed: Error report support email.
+
+Beta 1.0.0.2
+
+-Bug fix: No sources message add button isn't working.
+-Bug fix: New Source Page save button is loading enabled.
+-Bug fix: Action buttons on the feed are too small to click.
+-Added: setting to choose what browser to use when opening articles and links (UC Browser, Nokia Xpress, Internet Explorer)
+-Added: Marketplace review button functionality in About Page

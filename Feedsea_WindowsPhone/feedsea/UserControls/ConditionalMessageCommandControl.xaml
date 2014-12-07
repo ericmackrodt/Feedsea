@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="feedsea.UserControls.ConditionalMessageCommandControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="200" d:DesignWidth="480">
+    
+    <Grid x:Name="LayoutRoot" Background="Transparent" Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="txtMessage" Grid.Column="0" TextWrapping="Wrap" Style="{StaticResource BasicThemeText}" />
+        <Button Grid.Column="1" x:Name="btnAction"
+                Margin="10,0,0,0" Style="{StaticResource ClearButton}" VerticalAlignment="Bottom">
+            <Image x:Name="imgButton" Width="76" Height="76" />
+        </Button>
+    </Grid>
+</UserControl>

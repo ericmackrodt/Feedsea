@@ -1,0 +1,149 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="feedsea.Views.AddSource"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:uc="clr-namespace:feedsea.UserControls"
+    xmlns:cc="clr-namespace:feedsea.Common.Controls"
+    xmlns:converters="clr-namespace:feedsea.Common.MVVM.Converters;assembly=feedsea.Common.MVVM"
+    xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+    Style="{StaticResource SlidePage}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    DataContext="{Binding Source={StaticResource Locator}, Path=AddSourcePage}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.Opacity="0"
+    shell:SystemTray.ForegroundColor="{StaticResource SystemBarForegroundColor}"
+    shell:SystemTray.IsVisible="{Binding Path=ApplicationFrame.ShowAppTray, Source={StaticResource Locator}}">
+    
+    <phone:PhoneApplicationPage.Resources>
+        <converters:Base64ToImageConverter x:Key="Base64ToImageConverter" />
+    </phone:PhoneApplicationPage.Resources>
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+                  Background="{StaticResource ThemeSecondaryColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Rectangle Height="25" Visibility="{Binding Path=ApplicationFrame.ShowAppTray, Source={StaticResource Locator}, Converter={StaticResource BoolToVisibility}}" />
+            <Grid Grid.Row="1" Margin="15,10" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="../Assets/Icons/addbtn.png" 
+                    VerticalAlignment="Center" Height="32" Margin="0,0,15,0" />
+                <TextBlock Style="{StaticResource PageHeaderText}" Grid.Column="1"  Text="{Binding Path=LocalizedResources.AddSource, Source={StaticResource LocalizedStrings}}"
+                       Visibility="{Binding EditMode, Converter={StaticResource NotBoolToVisibility}}"/>
+                <TextBlock Style="{StaticResource PageHeaderText}" Grid.Column="1"  Text="{Binding Path=LocalizedResources.EditSource, Source={StaticResource LocalizedStrings}}"
+                       Visibility="{Binding EditMode, Converter={StaticResource BoolToVisibility}}"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" x:Name="ContentPanel" Visibility="{Binding EditMode, Converter={StaticResource NotBoolToVisibility}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Margin="12,10,12,0" Style="{StaticResource DefaultFieldLabel}" 
+                       Text="{Binding Path=LocalizedResources.Lbl_Search, Source={StaticResource LocalizedStrings}}" />
+            <toolkit:PhoneTextBox Grid.Row="1" 
+                                      Margin="0" 
+                                      Name="txtURL" 
+                                      Hint="{Binding Path=LocalizedResources.Lbl_UrlTitleOrTopic, Source={StaticResource LocalizedStrings}}" 
+                                      InputScope="Url" 
+                                      Text="{Binding SearchQuery, Mode=TwoWay}" 
+                                      ActionIcon="../Assets/Icons/textbox.search.png" 
+                                      KeyUp="txtURL_KeyUp"
+                                      ActionIconTapped="txtURL_ActionIconTapped" />
+        </Grid>
+        <Grid Grid.Row="2" x:Name="SearchPanel"
+                  Visibility="{Binding SearchResults, Converter={StaticResource HasItemsToVisibility}}"
+                  toolkit:TiltEffect.IsTiltEnabled="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Margin="12,10,12,0" Style="{StaticResource DefaultFieldLabel}" 
+                       Text="{Binding Path=LocalizedResources.Lbl_SearchResults, Source={StaticResource LocalizedStrings}}" />
+            <phone:LongListSelector Grid.Row="1" ItemsSource="{Binding SearchResults}" 
+                                        ItemTemplate="{StaticResource SearchResultTemplate}">
+                <phone:LongListSelector.ListFooter>
+                    <Border Height="80" />
+                </phone:LongListSelector.ListFooter>
+                <i:Interaction.Behaviors>
+                    <cc:SelectedChangedCommandTrigger Command="{Binding Path=DataContext.SelectResultCommand, ElementName=LayoutRoot}" />
+                </i:Interaction.Behaviors>
+            </phone:LongListSelector>
+        </Grid>
+        <Grid Grid.Row="2" Margin="12,12,0,12" Visibility="{Binding SelectedResult, Converter={StaticResource NullToVisibility}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource DefaultFieldLabel}" 
+                       Text="{Binding Path=LocalizedResources.SourceName, Source={StaticResource LocalizedStrings}}" />
+            <Image Grid.Row="1" Source="{Binding Path=SelectedResult.Url, Converter={StaticResource UrlToFaviconConverter}}" Height="42" Width="42" />
+            <TextBox Grid.Column="1" Grid.Row="1" InputScope="Url"
+                         Text="{Binding Path=SelectedResult.Title, Mode=TwoWay}">
+                <i:Interaction.Behaviors>
+                    <cc:UpdateTextBoxBinding />
+                </i:Interaction.Behaviors>
+            </TextBox>
+            <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource DefaultFieldLabel}" 
+                       Text="{Binding Path=LocalizedResources.Lbl_Categories, Source={StaticResource LocalizedStrings}}" />
+            <Border Grid.Row="3" Grid.ColumnSpan="2" Margin="0,10,12,10" Height="200" Style="{StaticResource FieldArea}">
+                <ListBox ItemsSource="{Binding Categories}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" Content="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+
+            <TextBlock Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource DefaultFieldLabel}" 
+                       Text="{Binding Path=LocalizedResources.Lbl_CreateNewCategory, Source={StaticResource LocalizedStrings}}" />
+            <TextBox Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" 
+                         Margin="-12,0,0,0" InputScope="Url" 
+                         Text="{Binding Path=NewCategoryName, Mode=TwoWay}">
+                <i:Interaction.Behaviors>
+                    <cc:UpdateTextBoxBinding />
+                </i:Interaction.Behaviors>
+            </TextBox>
+        </Grid>
+
+        <uc:LoadingIndicatorControl Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Visibility="Collapsed" IsBusy="{Binding IsBusy}" />
+    </Grid>
+    <i:Interaction.Behaviors>
+        <cimbalino:ApplicationBarBehavior Opacity="0.8" BackgroundColor="{StaticResource ApplicationBarBackgroundColor}" ForegroundColor="{StaticResource ApplicationBarForegroundColor}">
+            <cimbalino:ApplicationBarIconButton IconUri="Assets/Icons/save.png" Command="{Binding SaveCommand}" 
+                                                Text="{Binding Path=LocalizedResources.Save, Source={StaticResource LocalizedStrings}}" />
+        </cimbalino:ApplicationBarBehavior>
+    </i:Interaction.Behaviors>
+</phone:PhoneApplicationPage>

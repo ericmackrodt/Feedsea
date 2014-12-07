@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="feedsea.UserControls.ValidationMessageControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <UserControl.Resources>
+        <Storyboard x:Name="OpeningAnimation">
+            <DoubleAnimation
+                   Duration="0:0:0.3"
+                   From="0.1"
+                   RepeatBehavior="1x"
+                   Storyboard.TargetName="LayoutRoot"
+                   Storyboard.TargetProperty="Opacity"
+                   To="1.0">
+                <DoubleAnimation.EasingFunction>
+                    <ExponentialEase  EasingMode="EaseOut"  />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="ClosingAnimation">
+            <DoubleAnimation
+                   Duration="0:0:0.3"
+                   From="1.0"
+                   RepeatBehavior="1x"
+                   Storyboard.TargetName="LayoutRoot"
+                   Storyboard.TargetProperty="Opacity"
+                   To="0.1">
+                <DoubleAnimation.EasingFunction>
+                    <ExponentialEase  EasingMode="EaseOut"  />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="ExpandingAnimation">
+            <DoubleAnimation
+                   Duration="0:0:0.2"
+                   From="0"
+                   RepeatBehavior="1x"
+                   Storyboard.TargetName="LayoutRoot"
+                   Storyboard.TargetProperty="Height"
+                   To="50">
+                <DoubleAnimation.EasingFunction>
+                    <ExponentialEase  EasingMode="EaseOut"  />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="ContractingAnimation">
+            <DoubleAnimation
+                   Duration="0:0:0.2"
+                   From="50"
+                   RepeatBehavior="1x"
+                   Storyboard.TargetName="LayoutRoot"
+                   Storyboard.TargetProperty="Height"
+                   To="0">
+                <DoubleAnimation.EasingFunction>
+                    <ExponentialEase  EasingMode="EaseOut"  />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid Opacity="0" Height="0" x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border Grid.ColumnSpan="2" Style="{StaticResource ContentArea}" />
+        <Image
+                Grid.Column="0"
+                Height="32"
+                Width="32"
+                Source="../Assets/Icons/error-icon.png"
+                Stretch="Uniform"
+                Margin="10"
+                VerticalAlignment="Top">
+        </Image>
+        <TextBlock Grid.Column="1" 
+                   x:Name="txtMessage" 
+                   Margin="0,10,10,10" 
+                   Text="{Binding Path=LocalizedResources.Loading, Source={StaticResource LocalizedStrings}}" 
+                   Style="{StaticResource DefaultValidationErrorLabel}" />
+        <!--<Grid.RenderTransform>
+            <ScaleTransform  x:Name="LoadingScaleTransform" ScaleY="0" />
+        </Grid.RenderTransform>-->
+    </Grid>
+</UserControl>

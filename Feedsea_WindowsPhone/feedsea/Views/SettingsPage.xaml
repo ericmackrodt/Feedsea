@@ -1,0 +1,72 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="feedsea.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:converters="clr-namespace:feedsea.Common.Converters"
+    Style="{StaticResource SlidePage}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource DefaultTextColor}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    DataContext="{Binding Source={StaticResource Locator}, Path=SettingsPage}"
+    mc:Ignorable="d"
+    shell:SystemTray.Opacity="0"
+    shell:SystemTray.ForegroundColor="{StaticResource SystemBarForegroundColor}"
+    shell:SystemTray.IsVisible="{Binding Path=ApplicationFrame.ShowAppTray, Source={StaticResource Locator}}">
+
+    <phone:PhoneApplicationPage.Resources>
+        <Style x:Key="SettingsHeader" BasedOn="{StaticResource DefaultSettingsHeader}" TargetType="TextBlock">
+            <Setter Property="Margin" Value="-7,0,0,-25" />
+        </Style>
+    </phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <Grid Grid.Row="0"
+                  Background="{StaticResource ThemeSecondaryColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Rectangle Height="25" Visibility="{Binding Path=ApplicationFrame.ShowAppTray, Source={StaticResource Locator}, Converter={StaticResource BoolToVisibility}}" />
+            <Grid Grid.Row="1" Margin="15,10" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="../Assets/Icons/settings.png" 
+                    VerticalAlignment="Center" Height="32" Margin="0,0,15,0" />
+                <TextBlock Style="{StaticResource PageHeaderText}" Grid.Column="1" 
+                    Text="{Binding Path=LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" />
+            </Grid>
+        </Grid>
+        
+        <ListBox x:Name="LbSettings" toolkit:TiltEffect.IsTiltEnabled="True" Grid.Row="1" Margin="0" SelectionChanged="ListBox_SelectionChanged"
+                 ItemsSource="{Binding SettingsItems}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="10,15,10,5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Style="{StaticResource SettingsItemTitle}" Text="{Binding Title}" Grid.Row="0" />
+                        <TextBlock Style="{StaticResource SettingsItemSummary}" Text="{Binding Description}" Grid.Row="1"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+
+</phone:PhoneApplicationPage>

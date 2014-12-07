@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
+  <!--<CommandSet Name="Let me" xml:lang="en-us">
+    --><!-- Command set for all US English commands--><!--
+    <CommandPrefix>Let me</CommandPrefix>
+    <Example> Let me read my news </Example>
+
+    <Command Name="openNews">
+      <Example>Let me read my news</Example>
+      <ListenFor>read [my][the] {feed}</ListenFor>
+      <Feedback>Ok, opening {feed} for you</Feedback>
+      <Navigate />
+      --><!-- Navigation defaults to Main page --><!--
+    </Command>
+
+    <Command Name="searchFeed">
+      <Example>Search for feed Windows Phone Central</Example>
+      <ListenFor>search for {searchQuery}</ListenFor>
+      <Feedback>Ok, let me search for {searchQuery} for you</Feedback>
+      <Navigate Target="Views/AddSource.xaml"/>
+    </Command>
+
+    <PhraseTopic Label="feed" Scenario="OpenFeed">
+      <Subject>Feedsea</Subject>
+    </PhraseTopic>
+    <PhraseTopic Label="searchQuery" Scenario="SearchFeed">
+      <Subject>Feedsea</Subject>
+    </PhraseTopic>
+  </CommandSet>-->
+  <CommandSet Name="Feedsea" xml:lang="en-us">
+    <!-- Command set for all US English commands-->
+    <CommandPrefix> Let me </CommandPrefix>
+    <Example> Let me read my news </Example>
+
+    <Command Name="openNews">
+      <Example>read my news</Example>
+      <ListenFor> read [my][the] {feed} </ListenFor>
+      <Feedback>Ok, opening {feed} for you</Feedback>
+      <Navigate />
+      <!-- Navigation defaults to Main page -->
+    </Command>
+
+    <Command Name="searchFeed">
+      <Example>Search for feed Windows Phone Central</Example>
+      <ListenFor> search for {searchQuery} </ListenFor>
+      <Feedback>Ok, searching for {searchQuery} for you</Feedback>
+      <Navigate />
+    </Command>
+    
+    <PhraseTopic Label="feed" Scenario="OpenFeed">
+      <Subject>Feedsea</Subject>
+    </PhraseTopic>
+    <PhraseTopic Label="searchQuery" Scenario="SearchFeed">
+      <Subject>Feedsea</Subject>
+    </PhraseTopic>
+  </CommandSet>
+  <!--<CommandSet xml:lang="pt-BR" Name="FeedseaPtbr">
+    --><!-- Command set for all Japanese commands --><!--
+    <CommandPrefix>マジック・メモ</CommandPrefix>
+    <Example>新規メモ</Example>
+
+    <Command Name="newMemo">
+      <Example>新規メモ</Example>
+      <ListenFor>新規メモ[を]</ListenFor>
+      <ListenFor>新しいメモ</ListenFor>
+      <Feedback>メモを言ってください</Feedback>
+      <Navigate/>
+    </Command>
+
+    <Command Name="showOne">
+      <Example>メモ１を表示</Example>
+      <ListenFor>メモ{num}を表示[してください] </ListenFor>
+      <Feedback>メモ{num}を表示します。 </Feedback>
+      <Navigate Target="/ViewMemos.xaml"/>
+    </Command>
+
+    <PhraseList Label="num">
+      <Item> 1 </Item>
+      <Item> 2 </Item>
+      <Item> 3 </Item>
+    </PhraseList>
+  </CommandSet>-->
+</VoiceCommands>

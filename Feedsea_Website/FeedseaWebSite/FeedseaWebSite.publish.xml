@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile
+    publishUrl="https://ericmackrodt-001-site5.smarterasp.net:8172/msdeploy.axd"
+    msdeploySite="ericmackrodt-001-site5"
+    destinationAppUrl="http://ericmackrodt-001-site5.smarterasp.net/"
+    profileName="Default Settings"
+    publishMethod="MSDeploy"
+    userName="ifc\ericmackrodt-001" />
+</publishData>

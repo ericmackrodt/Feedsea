@@ -1,0 +1,736 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ResourceFlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+    <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
+  </data>
+  <data name="ResourceLanguage" xml:space="preserve">
+    <value>pt-BR</value>
+    <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
+  </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>feedsea</value>
+  </data>
+  <data name="SampleProperty" xml:space="preserve">
+    <value>Sample Runtime Property Value</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>notícias</value>
+  </data>
+  <data name="Sources" xml:space="preserve">
+    <value>Fontes</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>Sobre</value>
+  </data>
+  <data name="AddSource" xml:space="preserve">
+    <value>Adicionar Fonte</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>atualizar</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>procurar</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Configurações</value>
+  </data>
+  <data name="AgoDays" xml:space="preserve">
+    <value>dias atrás</value>
+  </data>
+  <data name="AgoHours" xml:space="preserve">
+    <value>horas atrás</value>
+  </data>
+  <data name="AgoMinutes" xml:space="preserve">
+    <value>minutos atrás</value>
+  </data>
+  <data name="AgoSeconds" xml:space="preserve">
+    <value>segundos atrás</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Carregando</value>
+  </data>
+  <data name="AgoDay" xml:space="preserve">
+    <value>dia atrás</value>
+  </data>
+  <data name="AgoHour" xml:space="preserve">
+    <value>hora atrás</value>
+  </data>
+  <data name="AgoMinute" xml:space="preserve">
+    <value>minuto atrás</value>
+  </data>
+  <data name="AgoSecond" xml:space="preserve">
+    <value>segundo atrás</value>
+  </data>
+  <data name="EnterSourceURL" xml:space="preserve">
+    <value>Digite o endereço da fonte</value>
+  </data>
+  <data name="EnterUrlOfSource" xml:space="preserve">
+    <value>Digite o endereço da fonte</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Salvar</value>
+  </data>
+  <data name="MSG_EnterValidURL" xml:space="preserve">
+    <value>Digite uma URL válida.</value>
+  </data>
+  <data name="MSG_CouldntLoadSource" xml:space="preserve">
+    <value>Não foi possível carregar a fonte, por favor verifique a URL.</value>
+  </data>
+  <data name="LittleWatson_Message" xml:space="preserve">
+    <value>Ocorreu um erro na última vez que você usou o Feedsea, deseja reportá-lo?</value>
+  </data>
+  <data name="LittleWatson_Title" xml:space="preserve">
+    <value>Atenção</value>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Atenção</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="MSG_CannotSaveSourceWithoutTitle" xml:space="preserve">
+    <value>Não é possível salvar uma fonte sem título.</value>
+  </data>
+  <data name="MSG_HaveToEnterURLSourceBeforeLoading" xml:space="preserve">
+    <value>Você deve digitar uma URL de uma fonte antes de carregá-la.</value>
+  </data>
+  <data name="MSG_YouHaveToLoadSourceBeforeSaving" xml:space="preserve">
+    <value>Você deve carregar uma fonte antes de salvar.</value>
+  </data>
+  <data name="MSG_ThereIsSourceSameURL" xml:space="preserve">
+    <value>Já existe uma fonte com a mesma URL, por favor verifique se você não está tentando adicioná-la novamente ou tente mudar o título.</value>
+  </data>
+  <data name="ArticleNavigatePage" xml:space="preserve">
+    <value>Ir para o Artigo</value>
+  </data>
+  <data name="PinToStartScreen" xml:space="preserve">
+    <value>Fixar na tela inicial</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remover</value>
+  </data>
+  <data name="RemoveSourceConfirmation" xml:space="preserve">
+    <value>Tem certeza que deseja remover esta fonte?</value>
+  </data>
+  <data name="Lbl_ArticleListItemLayout" xml:space="preserve">
+    <value>Layout dos itens da lista de artigos</value>
+  </data>
+  <data name="Lbl_MarkArticleReadWhenOpened" xml:space="preserve">
+    <value>Marcar artigo como lido quando abrir</value>
+  </data>
+  <data name="Lbl_EnableLiveTiles" xml:space="preserve">
+    <value>Habilitar Live Tiles</value>
+  </data>
+  <data name="Lbl_SettingsPage_General" xml:space="preserve">
+    <value>Geral</value>
+  </data>
+  <data name="Lbl_LiveTiles" xml:space="preserve">
+    <value>live tiles</value>
+  </data>
+  <data name="Lbl_ShowReadArticlesOnMainScreen" xml:space="preserve">
+    <value>Exibir artigos lidos no feed</value>
+  </data>
+  <data name="Lbl_ShowOldestToNewest" xml:space="preserve">
+    <value>Exibir artigos do mais antigo para o mais novo</value>
+  </data>
+  <data name="ArticleLayoutType_Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="ArticleLayoutType_NormalNoImage" xml:space="preserve">
+    <value>Normal sem Imagem</value>
+  </data>
+  <data name="ArticleLayoutType_Small" xml:space="preserve">
+    <value>Pequeno</value>
+  </data>
+  <data name="ArticleLayoutType_SmallNoImage" xml:space="preserve">
+    <value>Pequeno sem Imagem</value>
+  </data>
+  <data name="Item_Days_1" xml:space="preserve">
+    <value>1 dia</value>
+  </data>
+  <data name="Item_Days_3" xml:space="preserve">
+    <value>3 dias (recomendado)</value>
+  </data>
+  <data name="Item_Days_5" xml:space="preserve">
+    <value>5 dias</value>
+  </data>
+  <data name="Item_Days_7" xml:space="preserve">
+    <value>7 dias</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Compartilhar</value>
+  </data>
+  <data name="Share_Email_Body" xml:space="preserve">
+    <value>{0}
+
+{1}</value>
+  </data>
+  <data name="Share_Email_Subject" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Share_Link_Message" xml:space="preserve">
+    <value>{0} (via @feedsea)</value>
+  </data>
+  <data name="AddToFavorites" xml:space="preserve">
+    <value>Adicionar aos Favoritos</value>
+  </data>
+  <data name="MarkRead" xml:space="preserve">
+    <value>Marcar como Lido</value>
+  </data>
+  <data name="OpenInBrowser" xml:space="preserve">
+    <value>Abrir no Navegador</value>
+  </data>
+  <data name="ShareVia" xml:space="preserve">
+    <value>Compartilhar via</value>
+  </data>
+  <data name="Share_Email" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="Share_NFC" xml:space="preserve">
+    <value>NFC</value>
+  </data>
+  <data name="Share_SocialNetworks" xml:space="preserve">
+    <value>Redes Sociais</value>
+  </data>
+  <data name="Share_TextMessage" xml:space="preserve">
+    <value>Mensagem de Texto</value>
+  </data>
+  <data name="MSG_NoConnection" xml:space="preserve">
+    <value>Não foi possível estabelecer uma conexão no momento. Verifique sua conexão ou tente novamente mais tarde.</value>
+  </data>
+  <data name="Share_Sms_Body" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MSG_MarkCurrentArticlesReadConfirm" xml:space="preserve">
+    <value>Tem certeza que deseja marcar todos os artigos atuais como lidos?</value>
+  </data>
+  <data name="MarkArticlesRead" xml:space="preserve">
+    <value>Marcar artigos como lidos</value>
+  </data>
+  <data name="MarkUnread" xml:space="preserve">
+    <value>Marcar não lido</value>
+  </data>
+  <data name="MarkAllRead" xml:space="preserve">
+    <value>Marcar todos lidos</value>
+  </data>
+  <data name="RemoveFromFavorites" xml:space="preserve">
+    <value>Remover dos favoritos</value>
+  </data>
+  <data name="Share_Clipboard" xml:space="preserve">
+    <value>Copiar Url</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Categoria</value>
+  </data>
+  <data name="SourceName" xml:space="preserve">
+    <value>Nome da Fonte</value>
+  </data>
+  <data name="CategoryName" xml:space="preserve">
+    <value>Nome da Categoria</value>
+  </data>
+  <data name="AddNewCategory" xml:space="preserve">
+    <value>&lt;Adicionar nova categoria&gt;</value>
+  </data>
+  <data name="Uncategorized" xml:space="preserve">
+    <value>Sem categoria</value>
+  </data>
+  <data name="MSG_RemoveCategoryConfirmation" xml:space="preserve">
+    <value>Esta ação removerá a categoria porém não removerá as fontes. Tem certeza que deseja continuar?</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Não</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Sim</value>
+  </data>
+  <data name="Lbl_Search" xml:space="preserve">
+    <value>Busca</value>
+  </data>
+  <data name="Lbl_SearchResults" xml:space="preserve">
+    <value>Resultado da Busca</value>
+  </data>
+  <data name="Lbl_UrlTitleOrTopic" xml:space="preserve">
+    <value>URL, título ou #tópico</value>
+  </data>
+  <data name="Subscribers" xml:space="preserve">
+    <value>assinantes</value>
+  </data>
+  <data name="Lbl_Categories" xml:space="preserve">
+    <value>Categorias</value>
+  </data>
+  <data name="Lbl_CreateNewCategory" xml:space="preserve">
+    <value>Criar nova categoria</value>
+  </data>
+  <data name="Lbl_NewCategoryName" xml:space="preserve">
+    <value>Nome da nova categoria</value>
+  </data>
+  <data name="SavedArticles" xml:space="preserve">
+    <value>artigos salvos</value>
+  </data>
+  <data name="MSG_RemoveFromSaved" xml:space="preserve">
+    <value>Tem certeza que deseja remover esse artigo dos artigos salvos?</value>
+  </data>
+  <data name="Lbl_HideAppBarArticlePage" xml:space="preserve">
+    <value>Esconder a AppBar na tela do Artigo</value>
+  </data>
+  <data name="Lbl_HideAppBarMainPage" xml:space="preserve">
+    <value>Esconder a AppBar no feed principal</value>
+  </data>
+  <data name="Lbl_LoadCategoryOnLoad" xml:space="preserve">
+    <value>De qual categoria os artigos devem ser carregados quando o app for iniciado?</value>
+  </data>
+  <data name="Lbl_OpenYoutubeOnMetroTube" xml:space="preserve">
+    <value>Abrir links do YouTube no MetroTube</value>
+  </data>
+  <data name="Lbl_PhoneSettings" xml:space="preserve">
+    <value>telefone</value>
+  </data>
+  <data name="Lbl_ShowPhoneTrayAtTop" xml:space="preserve">
+    <value>Exibir a barra do telefone no topo da tela</value>
+  </data>
+  <data name="Lbl_SettingsPage_ThirdParty" xml:space="preserve">
+    <value>Terceiros</value>
+  </data>
+  <data name="AllArticles" xml:space="preserve">
+    <value>Todos os Artigos</value>
+  </data>
+  <data name="Msg_CouldntLoadLoginPage" xml:space="preserve">
+    <value>Desculpe&lt;br /&gt;Não foi possível carregar a página de login, pressione voltar para tentar novamente ou tente novamente mais tarde.</value>
+  </data>
+  <data name="Msg_HaveToRestartToTakeEffect" xml:space="preserve">
+    <value>Você deve reiniciar o app para que estas configurações tenham efeito.</value>
+  </data>
+  <data name="Msg_About_DevelopedBy" xml:space="preserve">
+    <value>Feedsea é desenvolvido por</value>
+  </data>
+  <data name="Msg_About_DeveloperName" xml:space="preserve">
+    <value>Eric Mackrodt</value>
+  </data>
+  <data name="Msg_About_FollowTwitter" xml:space="preserve">
+    <value>Siga no Twitter</value>
+  </data>
+  <data name="Msg_About_RateApp" xml:space="preserve">
+    <value>Avalie o App</value>
+  </data>
+  <data name="Msg_About_SendEmail" xml:space="preserve">
+    <value>Envie um E-mail</value>
+  </data>
+  <data name="Msg_About_SendFeedbackMessage" xml:space="preserve">
+    <value>Deseja dar uma sugestão, elogio ou algo mais?</value>
+  </data>
+  <data name="Msg_About_ShareMessage" xml:space="preserve">
+    <value>Estou usando e recomendo o Feedsea como leitor de notícias para Windows Phone! (@feedsea)</value>
+  </data>
+  <data name="Msg_About_ShareWithFriends" xml:space="preserve">
+    <value>Compartilhe com Amigos</value>
+  </data>
+  <data name="Lbl_DownloadArticleIfNoContent" xml:space="preserve">
+    <value>Baixar o artigo completo caso apenas a descrição esteja disponível usando:</value>
+  </data>
+  <data name="Msg_NoArticlesAvailable" xml:space="preserve">
+    <value>Não há nada de novo no momento. Tente atualizar o feed.</value>
+  </data>
+  <data name="Msg_NoSourcesAvailable" xml:space="preserve">
+    <value>Parece que você é novo aqui, tente adicionar novas fontes.</value>
+  </data>
+  <data name="BrowserSelect_InternetExplorer" xml:space="preserve">
+    <value>Internet Explorer</value>
+  </data>
+  <data name="BrowserSelect_MaxthonBrowser" xml:space="preserve">
+    <value>Maxthon</value>
+  </data>
+  <data name="BrowserSelect_NokiaXpress" xml:space="preserve">
+    <value>Nokia Xpress</value>
+  </data>
+  <data name="BrowserSelect_UCBrowser" xml:space="preserve">
+    <value>UC Browser</value>
+  </data>
+  <data name="IntToLinkBrowserConverter" xml:space="preserve">
+    <value>Em que browser você gostaria de abrir links de artigos?</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categorias</value>
+  </data>
+  <data name="ClickToLogin" xml:space="preserve">
+    <value>Clique para Logar</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>bem-vindo</value>
+  </data>
+  <data name="Refresh_Pull" xml:space="preserve">
+    <value>Puxe para Atualizar</value>
+  </data>
+  <data name="Refresh_Release" xml:space="preserve">
+    <value>Solte para Atualizar</value>
+  </data>
+  <data name="BackToTop" xml:space="preserve">
+    <value>Voltar para o Inicio</value>
+  </data>
+  <data name="Lbl_ShowReadIfNoUnread" xml:space="preserve">
+    <value>Mostrar artigos lidos se não existirem não lidos</value>
+  </data>
+  <data name="Lbl_YoutubeClient" xml:space="preserve">
+    <value>Em que cliente você gostaria de abrir links do YouTube?</value>
+  </data>
+  <data name="YoutubeClient_Default" xml:space="preserve">
+    <value>Padrão</value>
+  </data>
+  <data name="YoutubeClient_Metrotube" xml:space="preserve">
+    <value>MetroTube</value>
+  </data>
+  <data name="YoutubeClient_MyTube" xml:space="preserve">
+    <value>MyTube</value>
+  </data>
+  <data name="YoutubeClient_Toib" xml:space="preserve">
+    <value>Toib</value>
+  </data>
+  <data name="AudioFile_Pause" xml:space="preserve">
+    <value>Pausar</value>
+  </data>
+  <data name="AudioFile_Play" xml:space="preserve">
+    <value>Tocar</value>
+  </data>
+  <data name="AudioFile_Playing" xml:space="preserve">
+    <value>Tocando</value>
+  </data>
+  <data name="Msg_AlreadyPinned" xml:space="preserve">
+    <value>Esse Live Tile já está fixado na tela inicial.</value>
+  </data>
+  <data name="Lbl_TileMode" xml:space="preserve">
+    <value>Escolha como você deseja que seus tiles sejam apresentados.</value>
+  </data>
+  <data name="TileMode_Normal" xml:space="preserve">
+    <value>Padrão</value>
+  </data>
+  <data name="TileMode_SemiTransparent" xml:space="preserve">
+    <value>Semitransparente</value>
+  </data>
+  <data name="TileMode_Transparent" xml:space="preserve">
+    <value>Transparente</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="Lbl_MarkReadOnFeedScroll" xml:space="preserve">
+    <value>Marcar artigos como lidos ao rolar o feed</value>
+  </data>
+  <data name="Lbl_MarkReadOnFeedScroll_Warning" xml:space="preserve">
+    <value>Atenção: Uso maior da conexão com a internet ao rolar o feed.</value>
+  </data>
+  <data name="EditSource" xml:space="preserve">
+    <value>Editar Fonte</value>
+  </data>
+  <data name="Lbl_Enable_OneNote" xml:space="preserve">
+    <value>Habilitar OneNote</value>
+  </data>
+  <data name="Share_Buffer" xml:space="preserve">
+    <value>Buffer</value>
+  </data>
+  <data name="Share_Evernote" xml:space="preserve">
+    <value>Evernote</value>
+  </data>
+  <data name="Share_Instapaper" xml:space="preserve">
+    <value>Instapaper</value>
+  </data>
+  <data name="Share_OneNote" xml:space="preserve">
+    <value>OneNote</value>
+  </data>
+  <data name="Share_Pocket" xml:space="preserve">
+    <value>Pocket</value>
+  </data>
+  <data name="Msg_SendingTo_OneNote" xml:space="preserve">
+    <value>Enviando o artigo para o OneNote</value>
+  </data>
+  <data name="Msg_SendingTo_OneNote_Done" xml:space="preserve">
+    <value>Artigo enviado para o OneNote com sucesso</value>
+  </data>
+  <data name="Msg_UpdatingLiveTiles" xml:space="preserve">
+    <value>Atualizando Live Tiles</value>
+  </data>
+  <data name="Lbl_Enable_Pocket" xml:space="preserve">
+    <value>Habilitar Pocket</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Deslogar</value>
+  </data>
+  <data name="Logout_Message" xml:space="preserve">
+    <value>Tem certeza que deseja deslogar da sua conta do Feedly? Todas as configurações do Feedsea serão perdidas.</value>
+  </data>
+  <data name="Msg_Enable_Pocket" xml:space="preserve">
+    <value>Como você gostaria de habilitar o Pocket?</value>
+  </data>
+  <data name="Share_Pocket_Internal" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Share_Pocket_ThirdParty" xml:space="preserve">
+    <value>Apps de terceiros</value>
+  </data>
+  <data name="Lbl_Enable_Instapaper" xml:space="preserve">
+    <value>Habilitar Instapaper</value>
+  </data>
+  <data name="Lbl_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Lbl_Password" xml:space="preserve">
+    <value>Senha</value>
+  </data>
+  <data name="Lbl_Username" xml:space="preserve">
+    <value>Usuário (ou Email)</value>
+  </data>
+  <data name="Msg_SendingTo_Instapaper" xml:space="preserve">
+    <value>Enviando o artigo para o Instapaper</value>
+  </data>
+  <data name="Msg_SendingTo_Instapaper_Done" xml:space="preserve">
+    <value>Artigo enviado para o Instapaper com sucesso</value>
+  </data>
+  <data name="Msg_SendingTo_Pocket" xml:space="preserve">
+    <value>Enviando o artigo para o Pocket</value>
+  </data>
+  <data name="Msg_SendingTo_Pocket_Done" xml:space="preserve">
+    <value>Artigo enviado para o Pocket com sucesso</value>
+  </data>
+  <data name="Msg_WrongUsernameOrPassword" xml:space="preserve">
+    <value>Usuário ou senha incorretos, por favor tente novamente.</value>
+  </data>
+  <data name="Lbl_Version" xml:space="preserve">
+    <value>Versão</value>
+  </data>
+  <data name="SavedForLater" xml:space="preserve">
+    <value>Salvos para Depois</value>
+  </data>
+  <data name="DisableAds" xml:space="preserve">
+    <value>Desabilitar Anúncios</value>
+  </data>
+  <data name="Purchase_AlreadyPurchased" xml:space="preserve">
+    <value>Você já comprou este produto.</value>
+  </data>
+  <data name="Purchase_Canceled" xml:space="preserve">
+    <value>Sua compra foi cancelada.</value>
+  </data>
+  <data name="Purchase_Success" xml:space="preserve">
+    <value>Parabéns! Você desabilitou os anúncios com sucesso, aproveite a experiência completa!</value>
+  </data>
+  <data name="Lbl_SettingsPage_Appearance" xml:space="preserve">
+    <value>Aparência</value>
+  </data>
+  <data name="Lbl_Theme" xml:space="preserve">
+    <value>Tema da Aplicação</value>
+  </data>
+  <data name="Lbl_Theme_Dark" xml:space="preserve">
+    <value>Escuro</value>
+  </data>
+  <data name="Lbl_Theme_Default" xml:space="preserve">
+    <value>Padrão</value>
+  </data>
+  <data name="Lbl_AskBeforeMarkingAllRead" xml:space="preserve">
+    <value>Perguntar antes de marcar todos os artigos como lidos</value>
+  </data>
+  <data name="Msg_YouHaveToRestartToApplyTheme" xml:space="preserve">
+    <value>Você deve reiniciar o aplicativo para aplicar o tema. Clique aqui para fechar o aplicativo.</value>
+  </data>
+  <data name="Lbl_DownloadContent_Instapaper" xml:space="preserve">
+    <value>Instapaper</value>
+  </data>
+  <data name="Lbl_DownloadContent_Readability" xml:space="preserve">
+    <value>Readability</value>
+  </data>
+  <data name="FeaturedArticles" xml:space="preserve">
+    <value>Artigos em Destaque</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Msg_Greetings_Message" xml:space="preserve">
+    <value>Parece que você é novo por aqui, adicione fontes para começar a ler suas notícias.</value>
+  </data>
+  <data name="Msg_Greetings_Title" xml:space="preserve">
+    <value>Bem-Vindo!</value>
+  </data>
+  <data name="Lbl_ChooseView" xml:space="preserve">
+    <value>Escolher visualização</value>
+  </data>
+  <data name="Lbl_ChooseView_Google" xml:space="preserve">
+    <value>Google Mobilizer</value>
+  </data>
+  <data name="Lbl_ChooseView_GoogleNoImg" xml:space="preserve">
+    <value>Google Mobilizer sem Imagens</value>
+  </data>
+  <data name="Lbl_ChooseView_Instapaper" xml:space="preserve">
+    <value>Instapaper Mobilizer</value>
+  </data>
+  <data name="Lbl_ChooseView_Readability" xml:space="preserve">
+    <value>Readability Mobilizer</value>
+  </data>
+  <data name="Lbl_ChooseView_WebPage" xml:space="preserve">
+    <value>Abrir página web</value>
+  </data>
+  <data name="Lbl_SettingsPage_About" xml:space="preserve">
+    <value>Sobre</value>
+  </data>
+  <data name="Lbl_SettingsPage_About_Description" xml:space="preserve">
+    <value>Versão {0}</value>
+  </data>
+  <data name="Lbl_SettingsPage_Appearance_Description" xml:space="preserve">
+    <value>Mudar tema do aplicativo, estilo da lista de artigos e mais.</value>
+  </data>
+  <data name="Lbl_SettingsPage_DisableAds" xml:space="preserve">
+    <value>Desabilitar Anúncios</value>
+  </data>
+  <data name="Lbl_SettingsPage_DisableAds_Description" xml:space="preserve">
+    <value>Desabilitar anúncios do aplicativo.</value>
+  </data>
+  <data name="Lbl_SettingsPage_Feedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="Lbl_SettingsPage_Feedback_Description" xml:space="preserve">
+    <value>Enviar email com feedback ou reportar bugs.</value>
+  </data>
+  <data name="Lbl_SettingsPage_General_Description" xml:space="preserve">
+    <value>Esconder artigos lidos, baixar conteúdo e outras configurações de leitura.</value>
+  </data>
+  <data name="Lbl_SettingsPage_LiveTiles" xml:space="preserve">
+    <value>Live Tiles</value>
+  </data>
+  <data name="Lbl_SettingsPage_LiveTiles_Description" xml:space="preserve">
+    <value>Habilitar/Desabilitar Live Tiles e mudar aparência.</value>
+  </data>
+  <data name="Lbl_SettingsPage_Logout" xml:space="preserve">
+    <value>Deslogar</value>
+  </data>
+  <data name="Lbl_SettingsPage_Logout_Description" xml:space="preserve">
+    <value>Deslogar do Feedly.</value>
+  </data>
+  <data name="Lbl_SettingsPage_ThirdParty_Description" xml:space="preserve">
+    <value>Instapaper, Pocket, OneNote e mais.</value>
+  </data>
+  <data name="Lbl_SettingsPage_Uservoice" xml:space="preserve">
+    <value>Uservoice</value>
+  </data>
+  <data name="Lbl_SettingsPage_Uservoice_Description" xml:space="preserve">
+    <value>Página de feedback e suporte.</value>
+  </data>
+  <data name="Subscriptions" xml:space="preserve">
+    <value>Assinaturas</value>
+  </data>
+  <data name="YoutubeClient_Other" xml:space="preserve">
+    <value>Outro cliente (TubeCast, Youtube Oficial etc...)</value>
+  </data>
+</root>

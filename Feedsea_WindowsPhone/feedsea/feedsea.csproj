@@ -1,0 +1,749 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3DDD00C7-07C8-43EF-BC68-3CA8DC671AFB}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>feedsea</RootNamespace>
+    <AssemblyName>feedsea</AssemblyName>
+    <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>pt-BR</SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>feedsea_$(Configuration)_$(Platform).xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>feedsea.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <ExpressionBlendVersion>5.0.30924.0</ExpressionBlendVersion>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <NuGetPackageImportStamp>ec1fa872</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\x86\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\x86\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|ARM' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\ARM\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|ARM' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\ARM\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AppThemes\ThemeResourceDictionary.cs" />
+    <Compile Include="Common\AssociationUriMapper.cs" />
+    <Compile Include="Common\Controls\ArticleHtmlBuilder.cs" />
+    <Compile Include="Common\Controls\IArticleHtmlBuilder.cs" />
+    <Compile Include="Common\Controls\IOAuthLogin.cs" />
+    <Compile Include="Common\Controls\IPaidFeatures.cs" />
+    <Compile Include="Common\Controls\IShareService.cs" />
+    <Compile Include="Common\Controls\IXAuthLogin.cs" />
+    <Compile Include="Common\Controls\OAuthLogin.cs" />
+    <Compile Include="Common\Controls\PaidFeatures.cs" />
+    <Compile Include="Common\Controls\ShareService.cs" />
+    <Compile Include="Common\Controls\XAuthLogin.cs" />
+    <Compile Include="Common\Converters\ServiceUserConverter.cs" />
+    <Compile Include="Common\Converters\SourceToFaviconConverter.cs" />
+    <Compile Include="Common\Converters\SourceToTitleConverter.cs" />
+    <Compile Include="Common\FeedListItemTypeSelector.cs" />
+    <Compile Include="Common\ILoadingService.cs" />
+    <Compile Include="Common\IShareProxy.cs" />
+    <Compile Include="Common\LoadingService.cs" />
+    <Compile Include="Common\MobilizerPopup.cs" />
+    <Compile Include="Common\ProviderStorage.cs" />
+    <Compile Include="Common\ShareProxy.cs" />
+    <Compile Include="Common\ToastService.cs" />
+    <Compile Include="Models\AdItemModel.cs" />
+    <Compile Include="Models\LoggedUserModel.cs" />
+    <Compile Include="Models\SettingItemModel.cs" />
+    <Compile Include="Models\ShareButtonModel.cs" />
+    <Compile Include="Services\INewsService.cs" />
+    <Compile Include="Services\NewsService.cs" />
+    <Compile Include="Settings\AppearanceSettings.cs" />
+    <Compile Include="Settings\GeneralSettings.cs" />
+    <Compile Include="Common\ApplicationBarHelper.cs" />
+    <Compile Include="Common\Clip.cs" />
+    <Compile Include="Common\ConnectionVerify.cs" />
+    <Compile Include="Common\Controls\Triggers\NavigateOnMenuClickTrigger.cs" />
+    <Compile Include="Common\Controls\Triggers\SelectedChangedCommandTrigger.cs" />
+    <Compile Include="Common\Controls\Triggers\UpdateTextBoxBinding.cs" />
+    <Compile Include="Common\Converters\ImageByResolutionConverter.cs" />
+    <Compile Include="Common\Converters\BoolToApplicationBarMode.cs" />
+    <Compile Include="Common\Converters\LimitTextLengthConverter.cs" />
+    <Compile Include="Common\Converters\UrlToFaviconConverter.cs" />
+    <Compile Include="Settings\IAppearanceSettings.cs" />
+    <Compile Include="Settings\IGeneralSettings.cs" />
+    <Compile Include="Common\ITilePin.cs" />
+    <Compile Include="Common\NewsEventArgs.cs" />
+    <Compile Include="Common\SettingsEnums.cs" />
+    <Compile Include="Common\TilePin.cs" />
+    <Compile Include="Settings\ILiveTileSettings.cs" />
+    <Compile Include="Settings\InstapaperSettings.cs" />
+    <Compile Include="Settings\ISettings.cs" />
+    <Compile Include="Settings\IThirdPartySettings.cs" />
+    <Compile Include="Settings\LiveTileSettings.cs" />
+    <Compile Include="Settings\OneNoteSettings.cs" />
+    <Compile Include="Settings\PocketSettings.cs" />
+    <Compile Include="Settings\SettingsBase.cs" />
+    <Compile Include="Settings\ThirdPartySettings.cs" />
+    <Compile Include="UserControls\AdControl.xaml.cs">
+      <DependentUpon>AdControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AudioPlaybackControl.xaml.cs">
+      <DependentUpon>AudioPlaybackControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ConditionalMessageCommandControl.xaml.cs">
+      <DependentUpon>ConditionalMessageCommandControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FullSizeLoadingPanel.xaml.cs">
+      <DependentUpon>FullSizeLoadingPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GenericLoginScreen.xaml.cs">
+      <DependentUpon>GenericLoginScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LoggedUserControl.xaml.cs">
+      <DependentUpon>LoggedUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MobilizerMenuControl.xaml.cs">
+      <DependentUpon>MobilizerMenuControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SharingControl.xaml.cs">
+      <DependentUpon>SharingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ApplicationFrameViewModel.cs" />
+    <Compile Include="ViewModels\LoggedUserViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\SelectedSourceViewModel.cs" />
+    <Compile Include="ViewModels\SettingsAppearanceViewModel.cs" />
+    <Compile Include="ViewModels\SettingsGeneralViewModel.cs" />
+    <Compile Include="ViewModels\SettingsLiveTilesViewModel.cs" />
+    <Compile Include="ViewModels\SettingsThirdPartyViewModel.cs" />
+    <Compile Include="ViewModels\ShareArticleViewModel.cs" />
+    <Compile Include="Views\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddSource.xaml.cs">
+      <DependentUpon>AddSource.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArticlePage.xaml.cs">
+      <DependentUpon>ArticlePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ArticleItemTemplateSelector.cs" />
+    <Compile Include="Common\BackgroundAgentController.cs" />
+    <Compile Include="Common\Controls\Triggers\NavigateOnTapTrigger.cs" />
+    <Compile Include="Common\Controls\Triggers\PivotSourceLoadTrigger.cs" />
+    <Compile Include="Common\Controls\Triggers\PaginationTrigger.cs" />
+    <Compile Include="Common\Converters\IsoStorageImageConverter.cs" />
+    <Compile Include="Common\Converters\TimeAgoConverter.cs" />
+    <Compile Include="Common\MessageContent.cs" />
+    <Compile Include="Common\MultiResolutionImageChooser.cs" />
+    <Compile Include="Common\ResolutionHelper.cs" />
+    <Compile Include="Common\ValidationMessage.cs" />
+    <Compile Include="Common\WebBrowserHelper.cs" />
+    <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\AppResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Files.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Files.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LoadingIndicatorControl.xaml.cs">
+      <DependentUpon>LoadingIndicatorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SelectedSourceControl.xaml.cs">
+      <DependentUpon>SelectedSourceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AddSourceViewModel.cs" />
+    <Compile Include="ViewModels\ArticleViewModel.cs" />
+    <Compile Include="ViewModels\DesignTimeViewModels\ArticleDesignViewModel.cs" />
+    <Compile Include="ViewModels\DesignTimeViewModels\MainDesignViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\SettingsAppearancePage.xaml.cs">
+      <DependentUpon>SettingsAppearancePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsGeneralPage.xaml.cs">
+      <DependentUpon>SettingsGeneralPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsLiveTilesPage.xaml.cs">
+      <DependentUpon>SettingsLiveTilesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsThirdPartyPage.xaml.cs">
+      <DependentUpon>SettingsThirdPartyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WelcomePage.xaml.cs">
+      <DependentUpon>WelcomePage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="AppThemes\ClearTheme\Image.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\DarkTheme\AppColors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\DarkTheme\AppTexts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\DarkTheme\Borders.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\DarkTheme\Buttons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\DarkTheme\CheckBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\DarkTheme\DataTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\DarkTheme\HyperLinkButtons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\DarkTheme\Image.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\DarkTheme\ListPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\DarkTheme\LongListSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\DarkTheme\PhoneApplicationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\DarkTheme\PhoneTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\DarkTheme\Telerik.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\DarkTheme\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\DarkTheme\ToggleButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\DarkTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\ClearTheme\Telerik.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\ClearTheme\LongListSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\ClearTheme\HyperLinkButtons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\AdControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AudioPlaybackControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ConditionalMessageCommandControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\FullSizeLoadingPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GenericLoginScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\LoggedUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MobilizerMenuControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SharingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddSource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppThemes\ClearTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\ClearTheme\AppColors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\ClearTheme\AppTexts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\ClearTheme\Borders.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\ClearTheme\Buttons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\ClearTheme\CheckBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\ClearTheme\ListPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\ClearTheme\ToggleButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\ClearTheme\DataTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\ClearTheme\PhoneApplicationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\ClearTheme\PhoneTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppThemes\ClearTheme\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ArticlePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\LoadingIndicatorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SelectedSourceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsAppearancePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsGeneralPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsLiveTilesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsThirdPartyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WelcomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="AppThemes\ClearTheme\Images\cancel.png" />
+    <Content Include="AppThemes\DarkTheme\Images\cancel.png" />
+    <Content Include="Assets\Background.jpg" />
+    <Content Include="Assets\Icons\about.bugreport.png" />
+    <Content Include="Assets\Icons\addbtn.png" />
+    <Content Include="Assets\Icons\all-articles-white.png" />
+    <Content Include="Assets\Icons\appbar.new.window.png" />
+    <Content Include="Assets\Icons\done.png" />
+    <Content Include="Assets\Icons\fav-folder-white.png" />
+    <Content Include="Assets\Icons\about.check.png" />
+    <Content Include="Assets\Icons\about.email.png" />
+    <Content Include="Assets\Icons\about.like.png" />
+    <Content Include="Assets\Icons\about.share.png" />
+    <Content Include="Assets\Icons\about.twitter.png" />
+    <Content Include="Assets\Icons\add.icon.png" />
+    <Content Include="Assets\Icons\appbar.arrow.up.png" />
+    <Content Include="Assets\Icons\appbar.cancel.rest.png" />
+    <Content Include="Assets\Icons\appbar.control.play.png" />
+    <Content Include="Assets\Icons\appbar.eye.png" />
+    <Content Include="Assets\Icons\appbar.ie.png" />
+    <Content Include="Assets\Icons\appbar.noteye.png" />
+    <Content Include="Assets\Icons\blue-arrow.png" />
+    <Content Include="Assets\Icons\check.png" />
+    <Content Include="Assets\Icons\download-arrow.png" />
+    <Content Include="Assets\Icons\download-disk.png" />
+    <Content Include="Assets\Icons\error-icon.png" />
+    <Content Include="Assets\Icons\eye-blue.png" />
+    <Content Include="Assets\Icons\eye-gray.png" />
+    <Content Include="Assets\Icons\fav-folder-blue.png" />
+    <Content Include="Assets\Icons\favs.addto.png" />
+    <Content Include="Assets\Icons\favs.list.addto.png" />
+    <Content Include="Assets\Icons\favs.list.removefrom.png" />
+    <Content Include="Assets\Icons\favs.removefrom.png" />
+    <Content Include="Assets\Icons\FeaturedArticles.png" />
+    <Content Include="Assets\Icons\manage.png" />
+    <Content Include="Assets\Icons\pause.png" />
+    <Content Include="Assets\Icons\pin-blue.png" />
+    <Content Include="Assets\Icons\pin-gray.png" />
+    <Content Include="Assets\Icons\play.png" />
+    <Content Include="Assets\Icons\refresh.icon.png" />
+    <Content Include="Assets\Icons\save.png" />
+    <Content Include="Assets\Icons\settings.png" />
+    <Content Include="Assets\Icons\share.appbar.png" />
+    <Content Include="Assets\Icons\share.clipboard.png" />
+    <Content Include="Assets\Icons\share.email.png" />
+    <Content Include="Assets\Icons\share.instapaper.png" />
+    <Content Include="Assets\Icons\share.onenote.png" />
+    <Content Include="Assets\Icons\share.pocket.png" />
+    <Content Include="Assets\Icons\share.sms.png" />
+    <Content Include="Assets\Icons\share.social.png" />
+    <Content Include="Assets\Icons\sidebar-menu-icon.png" />
+    <Content Include="Assets\Icons\thumb-up-white.png" />
+    <Content Include="Assets\Icons\Uncategorized.png" />
+    <Content Include="Assets\Icons\source-icon.png" />
+    <Content Include="Assets\Icons\star-blue.png" />
+    <Content Include="Assets\Icons\star-gray.png" />
+    <Content Include="Assets\Icons\sync-white.png" />
+    <Content Include="Assets\Icons\textbox.go.png" />
+    <Content Include="Assets\Icons\textbox.search.png" />
+    <Resource Include="Assets\logo.png" />
+    <Content Include="Assets\LockScreenIcon.png" />
+    <Content Include="Assets\logo-white.png" />
+    <Content Include="Assets\logo_small_white.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\MetroTubePlay.png" />
+    <Content Include="Assets\MyTubePlay.png" />
+    <Content Include="Assets\Icons\sidebar-menu-icon-white.png" />
+    <Content Include="Assets\Tiles\MainTileLarge.png" />
+    <Content Include="Assets\Tiles\MainTileMedium.png" />
+    <Content Include="Assets\Tiles\MainTileSmall.png" />
+    <Content Include="Assets\ToibPlay.png" />
+    <Content Include="Assets\welcome-bg.jpg" />
+    <Content Include="Assets\welcome-logo.png" />
+    <Content Include="Assets\YouTubePlay.png" />
+    <Content Include="defaultAdSettings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FeedseaVoiceCommands.xml" />
+    <Content Include="FodyWeavers.xml" />
+    <Content Include="Resources\Files\ArticleHtml.html" />
+    <Content Include="SplashScreenImage.screen-720p.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SplashScreenImage.screen-WVGA.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SplashScreenImage.screen-WXGA.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\add.png" />
+    <Content Include="Assets\Icons\box-black.png" />
+    <Content Include="Assets\Icons\eye.png" />
+    <Content Include="Assets\Icons\SavedForLater.png" />
+    <Content Include="Assets\Icons\fav-folder-gray.png" />
+    <Content Include="Assets\Icons\fav-folder-shadow.png" />
+    <Content Include="Assets\Icons\feature.search.png" />
+    <Content Include="Assets\Icons\feature.settings.png" />
+    <Content Include="Assets\Icons\heart.png" />
+    <Resource Include="Assets\logo_small.jpg" />
+    <Content Include="Assets\Icons\newspaper-black.png" />
+    <Content Include="Assets\Icons\pin.png" />
+    <Content Include="Assets\Icons\queue-black.png" />
+    <Content Include="Assets\Icons\queue-gray.png" />
+    <Content Include="Assets\Icons\queue-shadow.png" />
+    <Content Include="Assets\Icons\share.png" />
+    <Content Include="Assets\Icons\star.png" />
+    <Content Include="Assets\Icons\sync.png" />
+    <Content Include="Assets\Icons\thrash.png" />
+    <Content Include="Assets\testfavicon.jpg" />
+    <Content Include="Assets\testimage.jpg" />
+    <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
+    <Content Include="Assets\AlignmentGrid.png" />
+    <Content Include="Assets\ApplicationIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\AppResources.pt-BR.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Files.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Files.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="AdDuplex.WindowsPhone">
+      <HintPath>..\packages\AdDuplexWP8.2.8.0.9\lib\wp8\AdDuplex.WindowsPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.3.0\lib\portable-win+net40+sl50+wp8\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Cimbalino.Phone.Toolkit">
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.3.1\lib\wp8\Cimbalino.Phone.Toolkit.dll</HintPath>
+      <Aliases>global</Aliases>
+    </Reference>
+    <Reference Include="Cimbalino.Phone.Toolkit.Controls">
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.Controls.2.3.1\lib\wp8\Cimbalino.Phone.Toolkit.Controls.dll</HintPath>
+      <Aliases>global</Aliases>
+    </Reference>
+    <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.7.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.7\lib\windowsphone8\Coding4Fun.Toolkit.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\packages\Portable.MvvmLightLibs.4.1.27.5\lib\wp8\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras">
+      <HintPath>..\packages\Portable.MvvmLightLibs.4.1.27.5\lib\wp8\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform.WP8">
+      <HintPath>..\packages\Portable.MvvmLightLibs.4.1.27.5\lib\wp8\GalaSoft.MvvmLight.Platform.WP8.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unofficial.Blend.Interactivity.1.0.0\lib\wp8\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WPToolkit.4.2013.06.11\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\Portable.CommonServiceLocator.1.2.2\lib\portable-net4+sl4+wp7+win8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PocketWP">
+      <HintPath>..\packages\PocketWP.1.0.0.9\lib\wp80\PocketWP.dll</HintPath>
+    </Reference>
+    <Reference Include="PropertyChanged">
+      <HintPath>..\packages\PropertyChanged.Fody.1.43.0.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SlideView.Library">
+      <HintPath>..\packages\SlideView.1.3.3\lib\wp8\SlideView.Library.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unofficial.Blend.Interactivity.1.0.0\lib\wp8\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Primitives, Version=2014.2.617.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Core, Version=2014.2.617.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\feedsea.AudioPlaybackAgent\feedsea.AudioPlaybackAgent.csproj">
+      <Project>{98defcf4-29d7-4658-b019-ad036f411f13}</Project>
+      <Name>feedsea.AudioPlaybackAgent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\feedsea.BackgroundAgent.Common\feedsea.BackgroundAgent.Common.csproj">
+      <Project>{c7b0b74c-423e-48db-95e3-76f512fb1589}</Project>
+      <Name>feedsea.BackgroundAgent.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\feedsea.BackgroundAgent\feedsea.BackgroundAgent.csproj">
+      <Project>{2e2d428c-cfa6-43dd-bca8-506afbeb676b}</Project>
+      <Name>feedsea.BackgroundAgent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\feedsea.Common.MVVM.Tombstone\feedsea.Common.MVVM.Tombstone.csproj">
+      <Project>{baff8c0c-d9e9-4d0a-a35e-cc860e20d83f}</Project>
+      <Name>feedsea.Common.MVVM.Tombstone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\feedsea.Common.MVVM\feedsea.Common.MVVM.csproj">
+      <Project>{e3cd823e-49b8-4688-a73f-209056cb8ec5}</Project>
+      <Name>feedsea.Common.MVVM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\feedsea.Common.Providers.Feedly\feedsea.Common.Providers.Feedly.csproj">
+      <Project>{6af0e6e6-94d6-40e8-8b7c-a28ab2c60aef}</Project>
+      <Name>feedsea.Common.Providers.Feedly</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\feedsea.Common.Providers.Instapaper\feedsea.Common.Providers.Instapaper.csproj">
+      <Project>{b8d929b6-75c1-453a-98ce-4d56d9374480}</Project>
+      <Name>feedsea.Common.Providers.Instapaper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\feedsea.Common.Providers.MobilizerProvider\feedsea.Common.Providers.MobilizerProvider.csproj">
+      <Project>{a7293283-4c33-4e40-9cc7-dc54080cb119}</Project>
+      <Name>feedsea.Common.Providers.MobilizerProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\feedsea.Common.Providers.OneNote\feedsea.Common.Providers.OneNote.csproj">
+      <Project>{99ef8f37-6eb7-4aa7-a15c-10ea7e6886c2}</Project>
+      <Name>feedsea.Common.Providers.OneNote</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\feedsea.Common.Providers.Pocket\feedsea.Common.Providers.Pocket.csproj">
+      <Project>{deff692a-be2e-407c-93ba-fe52672d0cbb}</Project>
+      <Name>feedsea.Common.Providers.Pocket</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\feedsea.Common.Providers\feedsea.Common.Providers.csproj">
+      <Project>{6cac9647-3ef1-4661-b729-22d06e04a3cb}</Project>
+      <Name>feedsea.Common.Providers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\feedsea.Common\feedsea.Common.csproj">
+      <Project>{7e515bec-dea1-4f0f-871c-ac7ed18805bc}</Project>
+      <Name>feedsea.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+  <Import Project="..\packages\Fody.1.23.2\build\Fody.targets" Condition="Exists('..\packages\Fody.1.23.2\build\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.1.23.2\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.23.2\build\Fody.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+</Project>

@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="feedsea.Controls.LiveTiles.NewsLiveTileLarge"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="600" d:DesignWidth="800">
+
+    <Grid x:Name="LayoutRoot" Height="336" Width="691" Background="#192B38">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <!--<RowDefinition Height="2" />-->
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Row="0" Grid.Column="0" Margin="20,0,0,0" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <!--<Image Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" x:Name="imgArticle1" Height="90" Width="90" Margin="0,0,20,0" Stretch="UniformToFill" />-->
+                <TextBlock x:Name="txtTitle1" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" TextWrapping="Wrap"
+                           FontFamily="Georgia" FontSize="40" FontWeight="Normal" Height="94"
+                           Text="This is just a headline test, this is where the headline will bg described and everything, I hope it works otherwise I'll be just a fool." />
+                <Border Grid.Column="0" Background="White" Grid.Row="1" Height="30" Width="30" Margin="0,10,10,0" VerticalAlignment="Top">
+                    <Image x:Name="imgSource1" Grid.Column="0" Height="30" Width="30" VerticalAlignment="Top" />
+                </Border>
+                <TextBlock x:Name="txtSource1" FontSize="32" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Text="Gizmodo Brasil" VerticalAlignment="Top" />
+            </Grid>
+            <!--<Border Grid.Row="1" BorderBrush="White" Background="White" BorderThickness="1" />-->
+            <Grid Grid.Row="1" Grid.Column="0" Margin="20,0,0,0" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!--<Image Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" x:Name="imgArticle2" Height="90" Width="90" Margin="0,0,20,0" Stretch="UniformToFill" />-->
+
+                <TextBlock x:Name="txtTitle2" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" TextWrapping="Wrap"
+                           FontFamily="Georgia" FontSize="40" FontWeight="Normal" Height="94"
+                           Text="This is just a headline test, this is where the headline will bg described and everything, I hope it works otherwise I'll be just a fool." />
+                <Border Grid.Column="0" Background="White" Grid.Row="1" Height="30" Width="30" Margin="0,10,10,0" VerticalAlignment="Top">
+                    <Image x:Name="imgSource2" Grid.Column="0" Height="30" Width="30" VerticalAlignment="Top" />
+                </Border>
+                <TextBlock x:Name="txtSource2" FontSize="32" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Text="Gizmodo Brasil" VerticalAlignment="Top" />
+            </Grid>
+            
+            <Image Grid.Row="0" Grid.Column="1" x:Name="imgArticle1" Width="168" Height="168" Stretch="UniformToFill" />
+            <Rectangle Grid.Row="0" Grid.Column="1" x:Name="recImg1" Margin="-3,0,0,0">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
+                        <GradientStop Color="#FF192B38" Offset="0.05" />
+                        <GradientStop Color="#00192B38" Offset="0.5" />
+                        <GradientStop Color="#00192B38" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Image Grid.Row="0" Grid.Column="1" x:Name="imgArticle2" Width="168" Height="168" Stretch="UniformToFill" />
+            <Rectangle Grid.Row="0" Grid.Column="1" x:Name="recImg2" Margin="-3,0,0,0">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
+                        <GradientStop Color="#FF192B38" Offset="0.05" />
+                        <GradientStop Color="#00192B38" Offset="0.5" />
+                        <GradientStop Color="#00192B38" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+    </Grid>
+</UserControl>
