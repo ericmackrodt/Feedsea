@@ -15,6 +15,7 @@
     xmlns:dvm="clr-namespace:feedsea.ViewModels.DesignTimeViewModels"
     xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:WindowsPhone8="clr-namespace:Microsoft.AdMediator.WindowsPhone8;assembly=Microsoft.AdMediator.WindowsPhone8"
     DataContext="{Binding Source={StaticResource Locator}, Path=ArticlePage}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -72,7 +73,14 @@
                                  ArticleTitle="{Binding Path=Article.Title}"
                                  PlayCommand="{Binding PlayArticleAudioCommand}" 
                                  IsPlaying="{Binding IsPlaying}"/>
-        <uc:AdControl Grid.Row="2" IsAdsEnabled="{Binding IsAdsEnabled}" />
+
+        <WindowsPhone8:AdMediatorControl Grid.Row="2" x:Name="AdMediator_ArticlePage" 
+                                         HorizontalAlignment="Center" 
+                                         Height="80" 
+                                         IsEnabled="{Binding IsAdsEnabled}"
+                                         Visibility="{Binding IsAdsEnabled, Converter={StaticResource BoolToVisibility}}"
+                                         Id="AdMediator-Id-6B0C108C-F67F-4FBC-BD88-CD520FA51F0A" VerticalAlignment="Center" Width="480"/>
+
         <controls:SwipeContentControl Grid.Row="3" 
                                       VerticalAlignment="Stretch"
                                       HorizontalAlignment="Stretch"
@@ -98,26 +106,6 @@
                 <Rectangle Width="20" Fill="Transparent" HorizontalAlignment="Left" />
             </Grid>
         </controls:SwipeContentControl>
-        
-        <!--<telerikPrimitives:RadSlideView Grid.Row="3" ItemsSource="{Binding Articles}" SelectedItem="{Binding Article, Mode=TwoWay}" 
-                                        SelectionChanged="RadSlideView_SelectionChanged"
-                                        IsLoopingEnabled="False" ItemRealizationMode="Default">
-            <telerikPrimitives:RadSlideView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <phone:WebBrowser Margin="0" FontFamily="Georgia" 
-                                          Opacity="0"
-                                          x:Name="ArticleView" 
-                                          Background="{StaticResource DefaultPageBackgroundColor}"
-                                          common:WebBrowserHelper.Html="{Binding Content}" ScriptNotify="ArticleView_ScriptNotify" IsScriptEnabled="True" 
-                                          common:WebBrowserHelper.AnimatedOpacity="{Binding IsDataLoaded}"
-                                          common:WebBrowserHelper.Url="{Binding MobilizedUrl}"/>
-                        <Rectangle Width="20" Fill="Transparent" HorizontalAlignment="Right" />
-                        <Rectangle Width="20" Fill="Transparent" HorizontalAlignment="Left" />
-                    </Grid>
-                </DataTemplate>
-            </telerikPrimitives:RadSlideView.ItemTemplate>
-        </telerikPrimitives:RadSlideView>-->
         <uc:LoadingIndicatorControl Grid.Row="1" Grid.RowSpan="3" Visibility="Collapsed" VerticalAlignment="Top"
                                 IsBusy="{Binding IsBusy}" />
     </Grid>

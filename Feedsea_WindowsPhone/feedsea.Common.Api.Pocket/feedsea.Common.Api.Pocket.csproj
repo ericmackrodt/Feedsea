@@ -62,8 +62,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\RestBasic\trunk\HttpClientHelpers\HttpClientHelpers.csproj">
-      <Project>{6fb39d06-8720-4539-b34b-246e4ce71dca}</Project>
+    <ProjectReference Include="..\..\..\HttpClientHelpers\Src\HttpClientHelpers\HttpClientHelpers\HttpClientHelpers.csproj">
+      <Project>{9b156279-9d20-4efe-8938-636e492d8491}</Project>
       <Name>HttpClientHelpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\feedsea.Common.Api\feedsea.Common.Api.csproj">

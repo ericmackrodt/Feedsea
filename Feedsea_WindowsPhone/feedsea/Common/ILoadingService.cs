@@ -8,6 +8,7 @@ namespace feedsea.Common
 {
     public interface IFullLoadingService
     {
+        bool IsLoading { get; }
         void StartLoading();
         void StartLoading(string message);
         void EndLoading();
@@ -15,6 +16,7 @@ namespace feedsea.Common
 
     public interface ILoadingService
     {
+        bool IsLoading { get; }
         void StartLoading();
         void StartLoading(string message);
         void EndLoading();

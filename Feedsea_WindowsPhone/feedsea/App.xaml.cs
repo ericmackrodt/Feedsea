@@ -160,7 +160,42 @@ namespace feedsea
         // Code to execute on Unhandled Exceptions
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
-            //Cimbalino.Phone.Toolkit.Helpers.LittleWatson.ReportException(e.ExceptionObject, string.Concat("Unhandled Exception in ", App.RootFrame.CurrentSource, " : ", e.ExceptionObject.GetType().Name));
+            if (e != null)
+            {
+                Exception exception = e.ExceptionObject;
+                if ((exception is System.Xml.XmlException || exception is NullReferenceException) && exception.ToString().ToUpper().Contains("INNERACTIVE"))
+                {
+                    Debug.WriteLine("Handled Inneractive exception {0}", exception);
+                    e.Handled = true;
+                    return;
+                }
+                else if (exception is NullReferenceException && exception.ToString().ToUpper().Contains("SOMA"))
+                {
+                    Debug.WriteLine("Handled Smaato null reference exception {0}", exception);
+                    e.Handled = true;
+                    return;
+                }
+                else if ((exception is System.IO.IOException || exception is NullReferenceException) && exception.ToString().ToUpper().Contains("GOOGLE"))
+                {
+                    Debug.WriteLine("Handled Google exception {0}", exception);
+                    e.Handled = true;
+                    return;
+                }
+                else if (exception is ObjectDisposedException && exception.ToString().ToUpper().Contains("MOBFOX"))
+                {
+                    Debug.WriteLine("Handled Mobfox exception {0}", exception);
+                    e.Handled = true;
+                    return;
+                }
+                else if ((exception is NullReferenceException) && exception.ToString().ToUpper().Contains("MICROSOFT.ADVERTISING"))
+                {
+                    Debug.WriteLine("Handled Microsoft.Advertising exception {0}", exception);
+                    e.Handled = true;
+                    return;
+                }
+
+            }
+
             if (Debugger.IsAttached)
             {
                 // An unhandled exception has occurred; break into the debugger

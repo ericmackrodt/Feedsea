@@ -45,6 +45,7 @@ namespace feedsea.ViewModels
         private INewsService _newsService;
         private ITilePin _tilePinner;
         private IPaidFeatures _paidFeatures;
+        private IFullLoadingService _loadingService;
 
         #endregion Members
 
@@ -250,7 +251,8 @@ namespace feedsea.ViewModels
             IGeneralSettings generalSettings, 
             IAppearanceSettings appearanceSettings,
             ITilePin pinner,
-            IPaidFeatures paidFeatures)
+            IPaidFeatures paidFeatures,
+            IFullLoadingService loadingService)
             : this()
         {
             _newsService = newsService;
@@ -260,6 +262,7 @@ namespace feedsea.ViewModels
             _appearanceSettings = appearanceSettings;
             _tilePinner = pinner;
             _paidFeatures = paidFeatures;
+            _loadingService = loadingService;
 
             _newsService.PropertyChanged += NewsService_PropertyChanged;
             _newsService.LoadingChanged += NewsService_LoadingChanged;
@@ -416,6 +419,8 @@ namespace feedsea.ViewModels
 
         private async Task PinToStart(INewsSource obj)
         {
+            _loadingService.StartLoading(AppResources.Msg_PinningLiveTile);
+
             var isCategory = false;
             var title = obj.Name;
 
@@ -458,6 +463,9 @@ namespace feedsea.ViewModels
             };
 
             var result = await _tilePinner.PinTile(tileData);
+
+            _loadingService.EndLoading();
+
             if (!result)
                 _messageBox.Show(AppResources.Msg_AlreadyPinned);
         }
@@ -567,6 +575,9 @@ namespace feedsea.ViewModels
         {
             IsBusy = false;
             PaginationBusy = false;
+
+            if (_loadingService.IsLoading)
+                _loadingService.EndLoading();
         }
 
         private void NewsService_PropertyChanged(object sender, PropertyChangedEventArgs e)

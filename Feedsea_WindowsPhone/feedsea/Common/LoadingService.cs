@@ -13,6 +13,12 @@ namespace feedsea.Common
     {
         Popup popup;
         FullSizeLoadingPanel control;
+
+        public bool IsLoading
+        {
+            get { return popup != null && popup.IsOpen; }
+        }
+
         public void StartLoading()
         {
             StartLoading(null);
@@ -36,6 +42,7 @@ namespace feedsea.Common
             popup.Width = Application.Current.Host.Content.ActualWidth;
             popup.Height = Application.Current.Host.Content.ActualHeight;
             popup.IsOpen = true;
+
             control.Open();
         }
 
@@ -51,6 +58,11 @@ namespace feedsea.Common
     {
         Popup popup;
         LoadingIndicatorControl control;
+
+        public bool IsLoading
+        {
+            get { return popup != null && popup.IsOpen; }
+        }
 
         public void StartLoading()
         {

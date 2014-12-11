@@ -164,7 +164,7 @@ namespace feedsea.Common.Api
                 request.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
                 if (authentication != null)
                     request.Headers.Authorization = authentication;
-                var result = await client.SendAsync(request);
+                var result = await client.SendAsync(request, HttpCompletionOption.ResponseContentRead);
                 result.EnsureSuccessStatusCode();
                 var data = await result.Content.ReadAsStringAsync();
                 try

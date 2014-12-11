@@ -733,4 +733,7 @@
   <data name="YoutubeClient_Other" xml:space="preserve">
     <value>Other clients (TubeCast, Youtube Official etc...)</value>
   </data>
+  <data name="Msg_PinningLiveTile" xml:space="preserve">
+    <value>Pinning Live Tile</value>
+  </data>
 </root>

@@ -16,6 +16,7 @@
     xmlns:uc="clr-namespace:feedsea.UserControls"
     xmlns:commonlocal="clr-namespace:feedsea.Common"
     xmlns:mvvmlight="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform.WP8"
+    xmlns:WindowsPhone8="clr-namespace:Microsoft.AdMediator.WindowsPhone8;assembly=Microsoft.AdMediator.WindowsPhone8"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainPage}"
     xmlns:dvm="clr-namespace:feedsea.ViewModels.DesignTimeViewModels"
     d:DataContext="{d:DesignInstance Type=dvm:MainDesignViewModel, IsDesignTimeCreatable=True}"
@@ -235,17 +236,15 @@
                         <ItemsControl x:Name="sourceList" ItemsSource="{Binding Sources}" ItemTemplate="{StaticResource CategoryItemTemplate}" />
                     </StackPanel>
                 </ScrollViewer>
-                <uc:AdControl Grid.Row="2" IsAdsEnabled="{Binding IsAdsEnabled}" Width="409" Height="68" HorizontalAlignment="Center" />
-                <!--<Border Grid.Row="3" BorderThickness="0,1,0,0" BorderBrush="{StaticResource PanelSecondaryColor}">
-                    <StackPanel Orientation="Horizontal" toolkit:TiltEffect.IsTiltEnabled="True">
-                        <telerikPrimitives:RadImageButton x:Name="BtnAddSource" Margin="20,20,10,20" Style="{StaticResource HorizontalImageButton}" RestStateImageSource="/Assets/Icons/addbtn.png" Click="BtnAddSource_Click">
-                            <TextBlock Text="{Binding Path=LocalizedResources.AddSource, Source={StaticResource LocalizedStrings}}" Style="{StaticResource SourceItemName}" />
-                        </telerikPrimitives:RadImageButton>
-                        <telerikPrimitives:RadImageButton x:Name="BtnSettings" Margin="10,20,20,20" Style="{StaticResource HorizontalImageButton}" RestStateImageSource="/Assets/Icons/settings.png" Click="BtnSettings_Click">
-                            <TextBlock Text="{Binding Path=LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}" Style="{StaticResource SourceItemName}" />
-                        </telerikPrimitives:RadImageButton>
-                    </StackPanel>
-                </Border>-->
+                <WindowsPhone8:AdMediatorControl Grid.Row="2" 
+                                                 x:Name="AdMediator_MainPageSidebar" 
+                                                 HorizontalAlignment="Center"
+                                                 HorizontalContentAlignment="Center"
+                                                 VerticalContentAlignment="Center"
+                                                 IsEnabled="{Binding IsAdsEnabled}"
+                                                 Visibility="{Binding IsAdsEnabled, Converter={StaticResource BoolToVisibility}}"
+                                                 Height="80"
+                                                 Id="AdMediator-Id-B86867D7-F515-40B5-AFDA-03AB7D73CE0C" VerticalAlignment="Center" />
             </Grid>
         </controls:SlideView>
     </Grid>

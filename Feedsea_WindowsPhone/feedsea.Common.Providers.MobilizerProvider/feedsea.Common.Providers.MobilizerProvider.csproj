@@ -35,10 +35,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <ProjectReference Include="..\..\..\RestBasic\trunk\HttpClientHelpers\HttpClientHelpers.csproj">
-      <Project>{6fb39d06-8720-4539-b34b-246e4ce71dca}</Project>
-      <Name>HttpClientHelpers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\feedsea.Common.Providers\feedsea.Common.Providers.csproj">
       <Project>{c277e4dd-08e2-47f3-83ca-b9ff1c895429}</Project>
       <Name>feedsea.Common.Providers</Name>

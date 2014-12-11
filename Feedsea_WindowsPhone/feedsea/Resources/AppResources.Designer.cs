@@ -1285,6 +1285,15 @@ namespace feedsea.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pinning Live Tile.
+        /// </summary>
+        public static string Msg_PinningLiveTile {
+            get {
+                return ResourceManager.GetString("Msg_PinningLiveTile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This action will remove the category but won&apos;t remove the sources within it. Are you sure you want to proceed?.
         /// </summary>
         public static string MSG_RemoveCategoryConfirmation {
