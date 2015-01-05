@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Feedsea", "Feedsea", "{53527B87-4D0E-4B98-88BD-8C3E9383C208}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feedsea.Common.Api.Feedly", "Feedsea.Common.Api.Feedly\Feedsea.Common.Api.Feedly.csproj", "{62F33066-9AD1-4D80-B7C4-E7F6FB652AFD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feedsea.Common.Providers", "Feedsea.Common.Providers\Feedsea.Common.Providers.csproj", "{CC04FC61-59E5-4F05-8632-B40B849E45DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feedsea.Common.Providers.Feedly", "Feedsea.Common.Providers.Feedly\Feedsea.Common.Providers.Feedly.csproj", "{1588E18B-18E2-472A-9813-A7EE778E4FD8}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -124,6 +126,16 @@ Global
 		{CC04FC61-59E5-4F05-8632-B40B849E45DE}.Release|ARM.ActiveCfg = Release|Any CPU
 		{CC04FC61-59E5-4F05-8632-B40B849E45DE}.Release|x64.ActiveCfg = Release|Any CPU
 		{CC04FC61-59E5-4F05-8632-B40B849E45DE}.Release|x86.ActiveCfg = Release|Any CPU
+		{1588E18B-18E2-472A-9813-A7EE778E4FD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1588E18B-18E2-472A-9813-A7EE778E4FD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1588E18B-18E2-472A-9813-A7EE778E4FD8}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{1588E18B-18E2-472A-9813-A7EE778E4FD8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1588E18B-18E2-472A-9813-A7EE778E4FD8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1588E18B-18E2-472A-9813-A7EE778E4FD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1588E18B-18E2-472A-9813-A7EE778E4FD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1588E18B-18E2-472A-9813-A7EE778E4FD8}.Release|ARM.ActiveCfg = Release|Any CPU
+		{1588E18B-18E2-472A-9813-A7EE778E4FD8}.Release|x64.ActiveCfg = Release|Any CPU
+		{1588E18B-18E2-472A-9813-A7EE778E4FD8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -135,5 +147,6 @@ Global
 		{4C1784D5-66B3-4CA5-A010-BA0BF8D3EEAC} = {13073B38-97D2-4032-984B-117750D54E3E}
 		{62F33066-9AD1-4D80-B7C4-E7F6FB652AFD} = {4C2AC31A-D33C-46E3-88B2-9398D3B44661}
 		{CC04FC61-59E5-4F05-8632-B40B849E45DE} = {F8619AE9-EF39-4A32-A259-08E78E9B30F9}
+		{1588E18B-18E2-472A-9813-A7EE778E4FD8} = {F8619AE9-EF39-4A32-A259-08E78E9B30F9}
 	EndGlobalSection
 EndGlobal

@@ -2,19 +2,19 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CC04FC61-59E5-4F05-8632-B40B849E45DE}</ProjectGuid>
+    <ProjectGuid>{1588E18B-18E2-472A-9813-A7EE778E4FD8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Feedsea.Common.Providers</RootNamespace>
-    <AssemblyName>Feedsea.Common.Providers</AssemblyName>
+    <RootNamespace>Feedsea.Common.Providers.Feedly</RootNamespace>
+    <AssemblyName>Feedsea.Common.Providers.Feedly</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile32</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,12 +35,22 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <Folder Include="Data\" />
+    <ProjectReference Include="..\Feedsea.Common.Api.Feedly\Feedsea.Common.Api.Feedly.csproj">
+      <Project>{62f33066-9ad1-4d80-b7c4-e7f6fb652afd}</Project>
+      <Name>Feedsea.Common.Api.Feedly</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Feedsea.Common.Providers\Feedsea.Common.Providers.csproj">
+      <Project>{cc04fc61-59e5-4f05-8632-b40b849e45de}</Project>
+      <Name>Feedsea.Common.Providers</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="INewsProvider.cs" />
-    <Compile Include="INewsProviderSettings.cs" />
-    <Compile Include="IShareProvider.cs" />
+    <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
+    <TargetPlatform Include="Windows, Version=8.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IFeedlyProvider.cs" />
+    <Compile Include="IFeedlySettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

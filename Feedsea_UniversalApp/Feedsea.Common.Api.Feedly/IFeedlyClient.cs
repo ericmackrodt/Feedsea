@@ -9,8 +9,8 @@ namespace Feedsea.Common.Api.Feedly
     public interface IFeedlyClient
     {
         string GetLoginUrl(string clientId, string redirectUri, string state);
-        Task<AuthTokenResponse> RequestAccessToken(AuthTokenRequest request);
-        Task<AuthTokenResponse> RefreshToken(RefreshTokenRequest request);
+        Task RequestAccessToken(AuthTokenRequest request);
+        Task RefreshToken();
         Task<Profile> GetProfile();
         Task<FeedCategory[]> GetCategories();
         Task Subscribe(string url, string title, FeedCategory[] categories = null);

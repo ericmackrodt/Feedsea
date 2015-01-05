@@ -48,6 +48,7 @@
     <Compile Include="FeedlyWebClient.cs" />
     <Compile Include="FeedStream.cs" />
     <Compile Include="IFeedlyClient.cs" />
+    <Compile Include="IFeedlyApiSettings.cs" />
     <Compile Include="IMarkerInput.cs" />
     <Compile Include="MarkerInputCategories.cs" />
     <Compile Include="MarkerInputEntries.cs" />
@@ -67,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="HttpClientHelpers">
-      <HintPath>..\..\_GitHub\HttpClientHelpers\Src\HttpClientHelpers\HttpClientHelpers\bin\Debug\HttpClientHelpers.dll</HintPath>
+      <HintPath>..\..\..\HttpClientHelpers\Src\HttpClientHelpers\HttpClientHelpers\bin\Release\HttpClientHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\portable-net45+wp80+win8+wpa81+aspnetcore50\Newtonsoft.Json.dll</HintPath>

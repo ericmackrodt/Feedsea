@@ -18,5 +18,6 @@ namespace Feedsea.Common.Api.Feedly
         public const string GlobalTag_Regex = "user/.*/tag/global.saved";
         public const string CategoryFormat = "user/{userId}/category/{category}";
         public const string LoginDefaultRedirectUrl = "http://localhost";
+        public const string BaseServiceUrl = "https://cloud.feedly.com/v3/";
     }
 }

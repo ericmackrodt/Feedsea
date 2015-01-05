@@ -14,12 +14,15 @@ namespace Feedsea.Common.Api.Feedly
 {
     public class FeedlyWebClient : IFeedlyClient, IDisposable
     {
-        private readonly string _baseUrl = "http://cloud.feedly.com/v3/";
-        private readonly string _accessToken;
+        private readonly string _baseUrl;
+        private readonly IFeedlyApiSettings _settings;
         private readonly HttpClient _client;
 
-        public FeedlyWebClient()
+        public FeedlyWebClient(IFeedlyApiSettings settings)
         {
+            _settings = settings;
+            _baseUrl = ApiConstants.BaseServiceUrl;
+
             var handler = new HttpClientHandler();
 
             if (handler.SupportsAutomaticDecompression)
@@ -28,14 +31,8 @@ namespace Feedsea.Common.Api.Feedly
             _client = new HttpClient(handler);
             _client.BaseAddress = new Uri(_baseUrl);
             _client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
-        }
 
-        public FeedlyWebClient(string accessToken)
-            : this()
-        {
-            _accessToken = accessToken;
-            if (!string.IsNullOrWhiteSpace(accessToken))
-                _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("OAuth", accessToken);
+            UpdateClientAccessToken();
         }
 
         public string GetLoginUrl(string clientId, string redirectUri, string state)
@@ -50,16 +47,29 @@ namespace Feedsea.Common.Api.Feedly
             }.BuildQueryString());
         }
 
-        public async Task<AuthTokenResponse> RequestAccessToken(AuthTokenRequest request)
+        public async Task RequestAccessToken(AuthTokenRequest request)
         {
             request.GrantType = "authorization_code";
-            return await Post<AuthTokenResponse>("auth/token", request);
+            var response = await Post<AuthTokenResponse>("auth/token", request);
+            _settings.OAuthToken = response.AccessToken;
+            _settings.OAuthRefreshToken = response.RefreshToken;
+            _settings.OAuthTokenExpiration = DateTime.Now.AddSeconds(response.ExpiresIn - 1);
+            _settings.UserID = response.Id;
         }
 
-        public async Task<AuthTokenResponse> RefreshToken(RefreshTokenRequest request)
+        public async Task RefreshToken()
         {
-            request.GrantType = "refresh_token";
-            return await Post<AuthTokenResponse>("auth/token", request);
+            var request = new RefreshTokenRequest()
+            {
+                GrantType = "refresh_token",
+                ClientId = _settings.ClientID,
+                ClientSecret = _settings.ClientSecret,
+                RefreshToken = _settings.OAuthRefreshToken
+            };
+
+            var response = await Post<AuthTokenResponse>("auth/token", request);
+            _settings.OAuthToken = response.AccessToken;
+            _settings.OAuthTokenExpiration = DateTime.Now.AddSeconds(response.ExpiresIn - 1);
         }
 
         public async Task<Profile> GetProfile()
@@ -188,36 +198,72 @@ namespace Feedsea.Common.Api.Feedly
 
         private async Task<T> Get<T>(string path)
         {
+            await CheckTokenState();
+
             var result = await _client.GetAsync(path, HttpCompletionOption.ResponseContentRead);
             result.EnsureSuccessStatusCode();
             var data = await result.Content.ReadAsStringAsync();
             //Add Error Handling
-            return await JsonConvert.DeserializeObjectAsync<T>(data.EscapeJson());
+            return JsonConvert.DeserializeObject<T>(data.EscapeJson());
         }
 
         private async Task Post(string path, object content)
         {
+            await CheckTokenState();
 
+            var requestContent = new StringContent(JsonConvert.SerializeObject(content), new UTF8Encoding(), "application/json");
+            var result = await _client.PostAsync(path, requestContent);
+            result.EnsureSuccessStatusCode();
+            //Add Error Handling
         }
 
         private async Task<T> Post<T>(string path, object content)
         {
-            return default(T);
+            await CheckTokenState();
+
+            var requestContent = new StringContent(JsonConvert.SerializeObject(content), new UTF8Encoding(), "application/json");
+            var result = await _client.PostAsync(path, requestContent);
+            result.EnsureSuccessStatusCode();
+            var data = await result.Content.ReadAsStringAsync();
+            //Add Error Handling
+            return JsonConvert.DeserializeObject<T>(data.EscapeJson());
         }
 
         private async Task Put(string path, object content)
         {
+            await CheckTokenState();
 
+            var requestContent = new StringContent(JsonConvert.SerializeObject(content), new UTF8Encoding(), "application/json");
+            var result = await _client.PutAsync(path, requestContent);
+            result.EnsureSuccessStatusCode();
+            //Add Error Handling
         }
 
         private async Task Delete(string path)
         {
+            await CheckTokenState();
 
+            var result = await _client.DeleteAsync(path);
+            result.EnsureSuccessStatusCode();
+            //Add Error Handling
         }
 
         public void Dispose()
         {
             _client.Dispose();
+        }
+
+        private void UpdateClientAccessToken() {
+            if (!string.IsNullOrWhiteSpace(_settings.OAuthToken))
+                    _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("OAuth", _settings.OAuthToken);
+        }
+
+        private async Task CheckTokenState()
+        {
+            if (!string.IsNullOrWhiteSpace(_settings.OAuthRefreshToken) &&
+                !string.IsNullOrWhiteSpace(_settings.OAuthToken) &&
+                DateTime.Now < _settings.OAuthTokenExpiration)
+                await RefreshToken();
         }
     }
 }
