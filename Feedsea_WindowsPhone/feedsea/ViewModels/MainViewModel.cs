@@ -85,7 +85,7 @@ namespace feedsea.ViewModels
         }
 
 
-        [IgnoreDataMember]
+        [DataMember]
         public ObservableCollection<ArticleData> Articles
         {
             get
@@ -98,7 +98,7 @@ namespace feedsea.ViewModels
             }
         }
 
-        [IgnoreDataMember]
+        [DataMember]
         public ObservableCollection<CategoryData> Sources
         {
             get { return _newsService.Sources; }
@@ -108,7 +108,7 @@ namespace feedsea.ViewModels
             }
         }
 
-        [IgnoreDataMember]
+        [DataMember]
         public override bool IsDataLoaded
         {
             get

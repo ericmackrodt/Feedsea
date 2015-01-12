@@ -276,7 +276,6 @@ namespace feedsea.ViewModels
                 IsPlaying = false;
             }
         }
-            
 
         private async Task ToggleRead(object arg)
         {

@@ -124,8 +124,8 @@ namespace feedsea.Views
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            base.OnNavigatedFrom(e);
             TombstoneHelper.page_OnNavigatedFrom(this, e);
+            base.OnNavigatedFrom(e);
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)

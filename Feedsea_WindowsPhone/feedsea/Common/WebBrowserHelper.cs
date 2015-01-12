@@ -28,7 +28,7 @@ namespace feedsea.Common
         {
             var browser = d as WebBrowser;
 
-            if (browser == null)
+            if (browser == null || e.NewValue == null)
                 return;
 
             var url = e.NewValue.ToString();
@@ -81,10 +81,15 @@ namespace feedsea.Common
         {
             var browser = d as WebBrowser;
 
-            if (browser == null || !(bool)e.NewValue) return;
+            if (browser == null) return;
 
-            var sb = AnimateOpacity(browser);
-            sb.Begin();
+            if ((bool)e.NewValue)
+            {
+                var sb = AnimateOpacity(browser);
+                sb.Begin();
+            }
+            else
+                browser.Opacity = 0;
         }
 
         private static Storyboard AnimateOpacity(WebBrowser browser)

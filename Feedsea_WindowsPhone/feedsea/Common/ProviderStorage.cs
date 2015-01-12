@@ -21,7 +21,7 @@ namespace feedsea.Common
                     if (!storage.FileExists(fileName))
                         return default(T);
 
-                    using (var file = storage.OpenFile(fileName, FileMode.Open))
+                    using (var file = storage.OpenFile(fileName, FileMode.Open, FileAccess.Read))
                     {
                         using (TextReader xml = new StreamReader(file))
                         {
@@ -55,6 +55,8 @@ namespace feedsea.Common
                     {
                         var str = JsonConvert.SerializeObject(data);
                         writer.Write(str);
+                        writer.Flush();
+                        writer.Close();
                     }
                 }
             }
