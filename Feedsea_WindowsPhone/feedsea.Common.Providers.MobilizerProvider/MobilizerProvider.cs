@@ -11,16 +11,9 @@ namespace feedsea.Common.Providers.MobilizerProvider
 {
     public class MobilizerProvider : IMobilizerProvider
     {
-        public async Task<string> GetMobilized(Mobilizer mobilizer, string articleUrl)
+        public async Task<string> GetMobilized(string articleUrl)
         {
-            switch (mobilizer)
-            {
-                case Mobilizer.Instapaper:
-                    return await GetInstapaper(articleUrl);
-                case Mobilizer.Readability:
-                default:
-                    return await GetReadability(articleUrl);
-            }
+            return await GetReadability(articleUrl);
         }
 
         private async Task<string> GetReadability(string articleUrl)

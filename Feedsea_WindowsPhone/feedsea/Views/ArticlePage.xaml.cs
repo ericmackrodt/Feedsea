@@ -145,11 +145,6 @@ namespace feedsea.Views
             appBar.IsVisible = true;
         }
 
-        private async void RadSlideView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            await ViewModel.LoadArticle(e.AddedItems[0] as feedsea.Common.Providers.Data.ArticleData);
-        }
-
         private void AppBarBtnChooseView_Click(object sender, EventArgs e)
         {
             if (mobilizerPopup == null)

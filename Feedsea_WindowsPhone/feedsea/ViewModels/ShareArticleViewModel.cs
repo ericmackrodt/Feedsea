@@ -198,7 +198,7 @@ namespace feedsea.ViewModels
             {
                 if (string.IsNullOrWhiteSpace(_article.Content) && _generalSettings.DownloadArticleIfNoContentSetting)
                 {
-                    _article.Content = await _contentDownloader.GetMobilized(_generalSettings.ContentDownloaderTypeSetting, _article.URL);
+                    _article.Content = await _contentDownloader.GetMobilized(_article.URL);
                 }
 
                 _article.Content = await _articleHtml.BuildHtml(_article, _thirdPartySettings.YoutubeClientSetting);

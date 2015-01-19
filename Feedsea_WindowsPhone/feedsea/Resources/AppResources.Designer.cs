@@ -538,7 +538,7 @@ namespace feedsea.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Download full article if there&apos;s only summary using:.
+        ///   Looks up a localized string similar to Download full article if there&apos;s only summary using.
         /// </summary>
         public static string Lbl_DownloadArticleIfNoContent {
             get {

@@ -443,7 +443,7 @@
     <value>Compartilhe com Amigos</value>
   </data>
   <data name="Lbl_DownloadArticleIfNoContent" xml:space="preserve">
-    <value>Baixar o artigo completo caso apenas a descrição esteja disponível usando:</value>
+    <value>Baixar o artigo completo caso apenas a descrição esteja disponível usando</value>
   </data>
   <data name="Msg_NoArticlesAvailable" xml:space="preserve">
     <value>Não há nada de novo no momento. Tente atualizar o feed.</value>

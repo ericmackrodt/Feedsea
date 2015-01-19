@@ -8,6 +8,6 @@ namespace feedsea.Common.Providers.MobilizerProvider
 {
     public interface IMobilizerProvider
     {
-        Task<string> GetMobilized(Mobilizer mobilizer, string articleUrl);
+        Task<string> GetMobilized(string articleUrl);
     }
 }

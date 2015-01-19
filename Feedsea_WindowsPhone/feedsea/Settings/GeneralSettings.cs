@@ -40,23 +40,6 @@ namespace feedsea.Settings
             }
         }
 
-        const string ContentDownloaderTypeSettingKeyName = "ContentDownloaderTypeSettingTypeSetting";
-        const Mobilizer ContentDownloaderTypeSettingDefault = Mobilizer.Readability;
-        public Mobilizer ContentDownloaderTypeSetting
-        {
-            get
-            {
-                return GetValueOrDefault<Mobilizer>(ContentDownloaderTypeSettingKeyName, ContentDownloaderTypeSettingDefault);
-            }
-            set
-            {
-                if (AddOrUpdateValue(ContentDownloaderTypeSettingKeyName, value))
-                {
-                    Save();
-                }
-            }
-        }
-
         const string FirstLoadSettingKeyName = "FirstLoadSetting";
         const bool FirstLoadSettingDefault = true;
         public bool FirstLoadSetting

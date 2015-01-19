@@ -69,13 +69,6 @@ namespace feedsea.ViewModels
             }
         }
 
-        [IgnoreDataMember]
-        public int SelectedArticleContentProvider
-        {
-            get { return (int)_settings.ContentDownloaderTypeSetting; }
-            set { _settings.ContentDownloaderTypeSetting = (Mobilizer)value; }
-        }
-
         private ObservableCollection<INewsSource> sources;
         [DataMember]
         public ObservableCollection<INewsSource> Sources

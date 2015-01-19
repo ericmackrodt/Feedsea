@@ -70,11 +70,6 @@
                 <CheckBox x:Name="CkDownloadNoContent" IsChecked="{Binding DownloadArticleIfNoContent, Mode=TwoWay}">
                     <TextBlock Text="{Binding Path=LocalizedResources.Lbl_DownloadArticleIfNoContent, Source={StaticResource LocalizedStrings}}" TextWrapping="Wrap" />
                 </CheckBox>
-                <toolkit:ListPicker IsEnabled="{Binding Path=IsChecked, ElementName=CkDownloadNoContent}"
-                                            SelectedIndex="{Binding SelectedArticleContentProvider, Mode=TwoWay}">
-                    <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.Lbl_DownloadContent_Readability, Source={StaticResource LocalizedStrings}}" />
-                    <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.Lbl_DownloadContent_Instapaper, Source={StaticResource LocalizedStrings}}" />
-                </toolkit:ListPicker>
 
                 <CheckBox IsChecked="{Binding MarkReadOnFeedScroll, Mode=TwoWay}">
                     <TextBlock Text="{Binding Path=LocalizedResources.Lbl_MarkReadOnFeedScroll, Source={StaticResource LocalizedStrings}}" TextWrapping="Wrap" />

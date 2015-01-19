@@ -20,6 +20,5 @@ namespace feedsea.Settings
         bool FirstRefreshSetting { get; set; }
         bool IsAdsDisabledSetting { get; set; }
         bool AskConfirmationMarkReadSetting { get; set; }
-        Mobilizer ContentDownloaderTypeSetting { get; set; }
     }
 }

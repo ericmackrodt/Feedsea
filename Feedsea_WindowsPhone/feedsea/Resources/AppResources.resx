@@ -443,7 +443,7 @@
     <value>Share with your friends</value>
   </data>
   <data name="Lbl_DownloadArticleIfNoContent" xml:space="preserve">
-    <value>Download full article if there's only summary using:</value>
+    <value>Download full article if there's only summary using</value>
   </data>
   <data name="Msg_NoArticlesAvailable" xml:space="preserve">
     <value>There is nothing new right now. Try refreshing the feed.</value>

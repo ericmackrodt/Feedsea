@@ -191,7 +191,7 @@ namespace feedsea.ViewModels
                 {
                     article.Content = await ConnectionVerifyCall(async () =>
                     {
-                        return await _contentDownloader.GetMobilized(_generalSettings.ContentDownloaderTypeSetting, article.URL);
+                        return await _contentDownloader.GetMobilized(article.URL);
                     });
                 }
 
