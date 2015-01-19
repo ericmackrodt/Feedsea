@@ -26,6 +26,7 @@
     shell:SystemTray.Opacity="0"
     shell:SystemTray.ForegroundColor="{StaticResource SystemBarForegroundColor}"
     shell:SystemTray.IsVisible="{Binding Path=ApplicationFrame.ShowAppTray, Source={StaticResource Locator}}">
+    
     <phone:PhoneApplicationPage.Resources>
         <Storyboard x:Name="LoadedAnimation">
             <DoubleAnimation
@@ -98,7 +99,10 @@
                                   HorizontalAlignment="Stretch"
                                   Background="{StaticResource DefaultPageBackgroundColor}"
                                   common:WebBrowserHelper.Html="{Binding Path=Article.Content}" 
-                                  ScriptNotify="ArticleView_ScriptNotify" 
+                                  ScriptNotify="ArticleView_ScriptNotify"
+                                  Navigating="ArticleView_Navigating"
+                                  Navigated="ArticleView_Navigated"
+                                  NavigationFailed="ArticleView_NavigationFailed"
                                   IsScriptEnabled="True"
                                   common:WebBrowserHelper.AnimatedOpacity="{Binding Path=Article.IsDataLoaded}"
                                   common:WebBrowserHelper.Url="{Binding Path=Article.MobilizedUrl}"/>
@@ -106,7 +110,7 @@
                 <Rectangle Width="20" Fill="Transparent" HorizontalAlignment="Left" />
             </Grid>
         </controls:SwipeContentControl>
-        <uc:LoadingIndicatorControl Grid.Row="1" Grid.RowSpan="3" Visibility="Collapsed" VerticalAlignment="Top"
+        <uc:LoadingIndicatorControl x:Name="LoadingControl" Grid.Row="1" Grid.RowSpan="3" Visibility="Collapsed" VerticalAlignment="Top"
                                 IsBusy="{Binding IsBusy}" />
     </Grid>
     <i:Interaction.Behaviors>

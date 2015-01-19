@@ -13,6 +13,8 @@ namespace feedsea.UserControls
 {
     public partial class LoadingIndicatorControl : UserControl
     {
+        private bool _loadingState = false;
+
         public LoadingIndicatorControl()
         {
             InitializeComponent();
@@ -49,6 +51,10 @@ namespace feedsea.UserControls
 
         public void StartLoading()
         {
+            if (_loadingState) return;
+
+            _loadingState = true;
+
             Visibility = System.Windows.Visibility.Visible;
             SpinningAnimation.Begin();
             OpeningAnimation.Begin();
@@ -62,11 +68,14 @@ namespace feedsea.UserControls
 
         public void EndLoading(Action done)
         {
+            if (!_loadingState) return;
+
             ClosingAnimation.Begin();
             ClosingAnimation.Completed += (s, ev) =>
             {
                 SpinningAnimation.Stop();
                 Visibility = Visibility.Collapsed;
+                _loadingState = false;
                 if (done != null)
                     done();
             };

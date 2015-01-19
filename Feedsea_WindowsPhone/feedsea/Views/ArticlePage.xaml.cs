@@ -169,6 +169,32 @@ namespace feedsea.Views
             ViewModel.SetMobilizer(e);
         }
 
+        private void ArticleView_Navigating(object sender, NavigatingEventArgs e)
+        {
+            SetLoading(true);
+        }
+
+        private void ArticleView_Navigated(object sender, NavigationEventArgs e)
+        {
+            SetLoading(false);
+        }
+
+        private void ArticleView_NavigationFailed(object sender, NavigationFailedEventArgs e)
+        {
+            SetLoading(false);
+        }
+
+        private void SetLoading(bool isLoading)
+        {
+            if (ViewModel == null || ViewModel.Article == null || !ViewModel.Article.IsDataLoaded)
+                return;
+
+            if (isLoading)
+                LoadingControl.StartLoading();
+            else
+                LoadingControl.EndLoading(null);
+        }
+
 #if DEBUG
         ~ArticlePage()
         {
