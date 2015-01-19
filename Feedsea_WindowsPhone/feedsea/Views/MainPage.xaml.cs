@@ -78,16 +78,6 @@ namespace feedsea.Views
                     return;
                 }
 
-                foreach (var t in ShellTile.ActiveTiles)
-                {
-                    var tile = new FlipTileData()
-                    {
-                        Count = 0
-                    };
-
-                    t.Update(tile);
-                }
-
                 var bac = new BackgroundAgentController();
                 bac.StartPeriodicAgent();
 
@@ -114,11 +104,11 @@ namespace feedsea.Views
 
                     return;
                 }
-            }
 
-            if (!ViewModel.IsDataLoaded)
-            {
-                await ViewModel.LoadDataAsync();
+                if (!ViewModel.IsDataLoaded)
+                {
+                    await ViewModel.LoadDataAsync();
+                }
             }
         }
 

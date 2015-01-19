@@ -223,14 +223,9 @@ namespace feedsea.Common.Providers.Feedly
                     continuationString = null;
 
                     var client = new FeedlyWebClient(settings.OAuthTokenSetting);
-                    var countsTask = client.GetCounts();
-                    var subsTask = client.GetSubscriptions();
-                    
-                    var articlesTask = DownloadArticles(source);
-                    
-                    var counts = await countsTask;
-                    var subscriptions = await subsTask;
-                    var articles = await articlesTask;
+                    var counts = await client.GetCounts();
+                    var subscriptions = await client.GetSubscriptions();
+                    var articles = await DownloadArticles(source);
 
                     var sources = GetSources(counts, subscriptions);
                     var articlesWithSubs = GetArticlesWithSubscriptions(articles, subscriptions);
