@@ -8,7 +8,7 @@ namespace Feedsea.Common.Api.Feedly
 {
     public interface IFeedlyClient
     {
-        string GetLoginUrl(string clientId, string redirectUri, string state);
+        string GetLoginUrl();
         Task RequestAccessToken(AuthTokenRequest request);
         Task RefreshToken();
         Task<Profile> GetProfile();

@@ -702,6 +702,10 @@
       <Project>{2e2d428c-cfa6-43dd-bca8-506afbeb676b}</Project>
       <Name>feedsea.BackgroundAgent</Name>
     </ProjectReference>
+    <ProjectReference Include="..\feedsea.Common.Api\feedsea.Common.Api.csproj">
+      <Project>{65375e34-2737-49e3-915f-cdf8f9db4559}</Project>
+      <Name>feedsea.Common.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\feedsea.Common.MVVM.Tombstone\feedsea.Common.MVVM.Tombstone.csproj">
       <Project>{baff8c0c-d9e9-4d0a-a35e-cc860e20d83f}</Project>
       <Name>feedsea.Common.MVVM.Tombstone</Name>

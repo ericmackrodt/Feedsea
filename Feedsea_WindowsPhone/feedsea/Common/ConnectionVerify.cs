@@ -1,6 +1,7 @@
 ﻿using Cimbalino.Phone.Toolkit.Services;
 using Coding4Fun.Toolkit.Controls;
 using feedsea.BackgroundAgent.Common;
+using feedsea.Common.Api;
 using feedsea.Common.MVVM;
 using feedsea.Common.Providers;
 using feedsea.Resources;
@@ -71,6 +72,11 @@ namespace feedsea.Common
                 }
                 else if (ex != null && ex is TaskCanceledException)
                 {
+                    return;
+                }
+                else if (ex != null && ex is HtmlResponseException)
+                {
+                    messageBox.Show(AppResources.Msg_HtmlResponse_Message, AppResources.Msg_HtmlResponse_Title);
                     return;
                 }
                 else if (ex != null)

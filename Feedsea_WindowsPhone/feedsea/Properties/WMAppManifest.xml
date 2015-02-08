@@ -4,7 +4,7 @@
   <Languages xmlns="">
     <Language code="pt-BR" />
   </Languages>
-  <App xmlns="" ProductID="{6f90607d-7a40-4d8e-83ac-77f818359754}" Title="Feedsea" RuntimeType="Silverlight" Version="1.4.0.24" Genre="apps.normal" Author="Eric Mackrodt" Description="A very straightforward Feedly Client for Windows Phone" Publisher="Feedsea" PublisherID="{1a841862-bdbc-4fca-aac3-35d54f0c3024}">
+  <App xmlns="" ProductID="{6f90607d-7a40-4d8e-83ac-77f818359754}" Title="Feedsea" RuntimeType="Silverlight" Version="1.5.0.25" Genre="apps.normal" Author="Eric Mackrodt" Description="A very straightforward Feedly Client for Windows Phone" Publisher="Feedsea" PublisherID="{1a841862-bdbc-4fca-aac3-35d54f0c3024}">
     <IconPath IsRelative="true" IsResource="false">Assets\Tiles\MainTileSmall.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />

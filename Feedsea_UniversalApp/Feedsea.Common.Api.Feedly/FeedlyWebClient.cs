@@ -35,15 +35,15 @@ namespace Feedsea.Common.Api.Feedly
             UpdateClientAccessToken();
         }
 
-        public string GetLoginUrl(string clientId, string redirectUri, string state)
+        public string GetLoginUrl()
         {
             return QueryHelper.BuildRequestUrl(_baseUrl, "auth/auth", new 
             {
                 scope = "http://cloud.feedly.com/subscriptions",
                 response_type = "code",
-                client_id = clientId,
-                redirect_uri = redirectUri,
-                state = state
+                client_id = _settings.ClientID,
+                redirect_uri = ApiConstants.LoginDefaultRedirectUrl,
+                state = ""
             }.BuildQueryString());
         }
 

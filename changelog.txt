@@ -8,6 +8,20 @@
 
 Any suggestion or bug report? Go to our uservoice page: feedsea.uservoice.com
 
+* 1.5.0.25
+
+- Support to Tubecast or any other Youtube client that supports de default Youtube URI Scheme.
+- Better live tile engine, faster and lighter.
+- New Live Tile counter that supports up to 999 items instead of 99.
+- Pinning a new tile to the start screen now shows a loading feedback.
+- Loading mobilizers in the Article page now shows a loading feedback.
+- Bug fix: Exception when selecting a mobilizer and swiping to another article.
+- Bug fix: File deleted exception when coming back from tombstone.
+- Bug fix: Wrong loading behavior when coming back from tombstone.
+- Bug fix: Current article still appears when swiping to the next article.
+- Instapaper removed from "Download full article when there is no content" because of a limitation on the Instapaper end.
+- Other small improvements and bug fixes.
+
 * 1.4.0.24
 
 - A few interface changes.

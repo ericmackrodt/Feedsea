@@ -201,9 +201,11 @@ namespace feedsea.ViewModels
                     _article.Content = await _contentDownloader.GetMobilized(_article.URL);
                 }
 
-                _article.Content = await _articleHtml.BuildHtml(_article, _thirdPartySettings.YoutubeClientSetting);
-
-                _article.IsDataLoaded = true;
+                if (!_article.IsDataLoaded)
+                {
+                    _article.Content = await _articleHtml.BuildHtml(_article, _thirdPartySettings.YoutubeClientSetting);
+                    _article.IsDataLoaded = true;
+                }
 
                 await _oneNote.AddPage(_article.Content);
 

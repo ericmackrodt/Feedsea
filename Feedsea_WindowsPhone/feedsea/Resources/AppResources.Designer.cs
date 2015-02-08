@@ -1249,6 +1249,24 @@ namespace feedsea.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Feedsea received an unexpected response from Feedly. This might mean that Feedly is under maintenance or that you&apos;re connected to a network that needs authentication, have blocked content or uses a proxy server. If none of those are the case and this problem persists, try to logoff and login again..
+        /// </summary>
+        public static string Msg_HtmlResponse_Message {
+            get {
+                return ResourceManager.GetString("Msg_HtmlResponse_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected response from Feedly.
+        /// </summary>
+        public static string Msg_HtmlResponse_Title {
+            get {
+                return ResourceManager.GetString("Msg_HtmlResponse_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to mark all current articles read?.
         /// </summary>
         public static string MSG_MarkCurrentArticlesReadConfirm {

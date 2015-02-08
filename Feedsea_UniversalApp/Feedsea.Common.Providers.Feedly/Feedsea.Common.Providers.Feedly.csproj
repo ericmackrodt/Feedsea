@@ -49,6 +49,8 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FeedlyHelper.cs" />
+    <Compile Include="FeedlyProvider.cs" />
     <Compile Include="IFeedlyProvider.cs" />
     <Compile Include="IFeedlySettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

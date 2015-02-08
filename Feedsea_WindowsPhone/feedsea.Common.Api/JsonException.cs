@@ -9,7 +9,6 @@ namespace feedsea.Common.Api
     public class JsonException : Exception
     {
         public string Json { get; set; }
-        
 
         public JsonException(string message)
             : base(message)

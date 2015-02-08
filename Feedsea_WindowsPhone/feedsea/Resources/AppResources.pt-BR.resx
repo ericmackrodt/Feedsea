@@ -736,4 +736,10 @@
   <data name="Msg_PinningLiveTile" xml:space="preserve">
     <value>Fixando Live Tile</value>
   </data>
+  <data name="Msg_HtmlResponse_Message" xml:space="preserve">
+    <value>O Feedsea recebeu uma resposta inesperada do Feedly. Isso pode significar que você está conectado a uma rede que precisa de autenticação, tem conteúdo bloqueado ou usa um servidor proxy. Se o caso não for nenhum desses e o problema persistir, tente deslogar e logar novamente.</value>
+  </data>
+  <data name="Msg_HtmlResponse_Title" xml:space="preserve">
+    <value>Resposta inesperada do Feedly</value>
+  </data>
 </root>

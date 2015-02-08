@@ -38,6 +38,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HtmlResponseException.cs" />
     <Compile Include="JsonException.cs" />
     <Compile Include="LoginUrlAttribute.cs" />
     <Compile Include="BaseUrlAttribute.cs" />

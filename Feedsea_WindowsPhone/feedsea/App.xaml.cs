@@ -21,7 +21,7 @@ namespace feedsea
 {
     public partial class App : Application
     {
-        public const string ApplicationVersion = "1.4.0.24";
+        public const string ApplicationVersion = "1.5.0.25";
 
         public RadDiagnostics Diagnostics;
 

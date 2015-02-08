@@ -35,13 +35,27 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\ArticleData.cs" />
+    <Compile Include="Data\CategoryData.cs" />
+    <Compile Include="Data\EnclosureData.cs" />
+    <Compile Include="Data\INewsSource.cs" />
+    <Compile Include="Data\SearchResultData.cs" />
+    <Compile Include="Data\SubscriptionData.cs" />
+    <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="INewsProvider.cs" />
     <Compile Include="INewsProviderSettings.cs" />
+    <Compile Include="IOauthLoginData.cs" />
+    <Compile Include="IProvider.cs" />
+    <Compile Include="IProviderSettings.cs" />
+    <Compile Include="IProviderStorage.cs" />
+    <Compile Include="ISettings.cs" />
     <Compile Include="IShareProvider.cs" />
+    <Compile Include="LoginData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProviderException.cs" />
+    <Compile Include="RefreshResult.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

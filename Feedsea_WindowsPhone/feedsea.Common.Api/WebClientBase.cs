@@ -47,9 +47,11 @@ namespace feedsea.Common.Api
                 var result = await UploadRequest(client, HttpMethod.Post, url, htmlContent, encoding, mediaType);
                 object data = await result.Content.ReadAsStringAsync();
 
+                CheckResponse(result, (string)data);
+
                 if (typeof(TResponse) == typeof(string))
                     return (TResponse)data;
-                                
+
                 try
                 {
                     return JsonConvert.DeserializeObject<TResponse>(((string)data).EscapeJson());
@@ -68,6 +70,8 @@ namespace feedsea.Common.Api
                 var result = await UploadRequest(client, HttpMethod.Post, url, content, null);
                 var data = await result.Content.ReadAsStringAsync();
 
+                CheckResponse(result, data);
+
                 try
                 {
                     return JsonConvert.DeserializeObject<TResponse>(data.EscapeJson());
@@ -84,6 +88,8 @@ namespace feedsea.Common.Api
             {
                 var result = await UploadRequest(client, HttpMethod.Post, url, content, customHeaders);
                 var data = await result.Content.ReadAsStringAsync();
+
+                CheckResponse(result, data);
 
                 try
                 {
@@ -110,6 +116,8 @@ namespace feedsea.Common.Api
             {
                 var result = await UploadRequest(client, HttpMethod.Put, url, content, null);
                 var data = await result.Content.ReadAsStringAsync();
+
+                CheckResponse(result, data);
 
                 try
                 {
@@ -154,7 +162,7 @@ namespace feedsea.Common.Api
         protected async Task<T> GetRequest<T>(string url)
         {
             var handler = new HttpClientHandler();
-            
+
             if (handler.SupportsAutomaticDecompression)
                 handler.AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate;
 
@@ -167,6 +175,7 @@ namespace feedsea.Common.Api
                 var result = await client.SendAsync(request, HttpCompletionOption.ResponseContentRead);
                 result.EnsureSuccessStatusCode();
                 var data = await result.Content.ReadAsStringAsync();
+                CheckResponse(result, data);
                 try
                 {
                     return JsonConvert.DeserializeObject<T>(data.EscapeJson());
@@ -195,9 +204,25 @@ namespace feedsea.Common.Api
             return baseUrl.BuildUrl(path, queryStringData);
         }
 
-        protected string BuildAuthUrl(string path, params QueryStringParam[] queryStringData) 
+        protected string BuildAuthUrl(string path, params QueryStringParam[] queryStringData)
         {
             return authBasenUrl.BuildUrl(path, queryStringData);
+        }
+
+        private void CheckResponse(HttpResponseMessage response, string content)
+        {
+            try
+            {
+                if (response.Content.Headers.ContentType.MediaType.ToLower() == "text/html" || content.ToLower().StartsWith("<!doctype html>") ||
+                    content.ToLower().StartsWith("<html>"))
+                {
+                    throw new HtmlResponseException("The API response is HTML");
+                }
+            }
+            catch (NullReferenceException)
+            {
+                return;
+            }
         }
     }
 }
