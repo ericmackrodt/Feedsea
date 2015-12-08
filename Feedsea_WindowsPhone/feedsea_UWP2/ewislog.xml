@@ -1,0 +1,813 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EwiData>
+  <UpgradeLog ProjectName="feedsea.csproj">
+    <Settings />
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\AppThemes\ThemeResourceDictionary.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Windows.PresentationFrameworkCollection' library class. Its 'Clear' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Windows.PresentationFrameworkCollection' library class. Its 'Add' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\AssociationUriMapper.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.String' library class. Its 'Contains' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\Controls\ArticleHtmlBuilder.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Substring' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="20">The tool does not have information on the 'System.String' library class. Its 'Replace' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'TreatEmbededVideos' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\Controls\OAuthLogin.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="2">Microsoft.Phone.Controls.WebBrowser.IsScriptEnabled was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Windows.Controls.UIElementCollection' library class. Its 'Add' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="4">System.Windows.Application.Host was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Interop.SilverlightHost' library class. Its 'Content' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Windows.Interop.Content' library class. Its 'ActualWidth' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Windows.Interop.Content' library class. Its 'ActualHeight' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Threading.Tasks.TaskCompletionSource' library class. Its 'Task' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'Microsoft.Phone.Controls.NavigatingEventArgs' library class. Its 'Uri' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'StartsWith' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Contains' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'System.Threading.Tasks.TaskCompletionSource' library class. Its 'SetResult' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'ParseQueryString' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Navigation.NavigationFailedEventArgs' library class. Its 'Exception' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Threading.Tasks.TaskCompletionSource' library class. Its 'SetException' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Substring' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.String' library class. Its 'LastIndexOf' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.String' library class. Its 'Split' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.Generic.Dictionary' library class. Its 'Add' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\Controls\PaidFeatures.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'Windows.ApplicationModel.Store.LicenseInformation' library class. Its 'ProductLicenses' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'System.Collections.Generic.IReadOnlyDictionary' library class. Its 'TryGetValue' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="3">The tool does not have information on the 'Windows.ApplicationModel.Store.ProductLicense' library class. Its 'IsActive' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\Controls\ShareService.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="8">System.Windows.Application.Host was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Windows.Interop.SilverlightHost' library class. Its 'Content' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Interop.Content' library class. Its 'ActualWidth' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Interop.Content' library class. Its 'ActualHeight' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\Controls\XAuthLogin.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="3">The tool does not have information on the 'System.Threading.Tasks.TaskCompletionSource' library class. Its 'Task' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Threading.Tasks.TaskCompletionSource' library class. Its 'SetResult' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Cimbalino.Phone.Toolkit.Services.IMessageBoxService' library class. Its 'Show' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Windows.Controls.UIElementCollection' library class. Its 'Add' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="4">System.Windows.Application.Host was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Interop.SilverlightHost' library class. Its 'Content' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Windows.Interop.Content' library class. Its 'ActualWidth' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Windows.Interop.Content' library class. Its 'ActualHeight' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\Converters\ServiceUserConverter.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'ToLower' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\Converters\SourceToTitleConverter.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Resources.ResourceManager' library class. Its 'GetString' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\LoadingService.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="12">System.Windows.Application.Host was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'System.Windows.Interop.SilverlightHost' library class. Its 'Content' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Windows.Interop.Content' library class. Its 'ActualWidth' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Interop.Content' library class. Its 'ActualHeight' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\MobilizerPopup.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="8">System.Windows.Application.Host was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Windows.Interop.SilverlightHost' library class. Its 'Content' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Interop.Content' library class. Its 'ActualWidth' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Interop.Content' library class. Its 'ActualHeight' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\ShareProxy.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.String' library class. Its 'Length' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Substring' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\ToastService.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Coding4Fun.Toolkit.Controls.ToastPrompt' library class. Its 'Message' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Coding4Fun.Toolkit.Controls.ToastPrompt' library class. Its 'TextWrapping' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Coding4Fun.Toolkit.Controls.ToastPrompt' library class. Its 'Title' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Coding4Fun.Toolkit.Controls.ToastPrompt' library class. Its 'Show' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Services\NewsService.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="10">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'Any' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="10">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'Clear' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'Add' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'FirstOrDefault' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'SelectMany' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="8">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'FirstOrDefault' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="8">The tool does not have information on the 'System.String' library class. Its 'ToLower' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.String' library class. Its 'Contains' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'Where' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'SelectMany' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\ApplicationBarHelper.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Cimbalino.Phone.Toolkit.Behaviors.ApplicationBarIconButton' library class. Its 'IconUri' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Cimbalino.Phone.Toolkit.Behaviors.ApplicationBarIconButton' library class. Its 'Text' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\Clip.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="2">System.Windows.FrameworkElement.Clip was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="2">System.Windows.UIElement.Clip was not upgraded</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\ConnectionVerify.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'Cimbalino.Phone.Toolkit.Services.IMessageBoxService' library class. Its 'Show' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Runtime.ExceptionServices.ExceptionDispatchInfo' library class. Its 'Throw' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\Controls\Triggers\NavigateOnMenuClickTrigger.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Microsoft.Phone.Controls.MenuItem' library class. Its 'Click' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'Microsoft.Phone.Controls.MenuItem' library class. Its 'DataContext' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\Controls\Triggers\SelectedChangedCommandTrigger.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Input.ICommand' library class. Its 'CanExecute' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Input.ICommand' library class. Its 'Execute' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\Controls\Triggers\UpdateTextBoxBinding.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Data.BindingExpression' library class. Its 'UpdateSource' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\Converters\ImageByResolutionConverter.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="2">System.Windows.Application.Host was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Windows.Interop.SilverlightHost' library class. Its 'Content' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Windows.Interop.Content' library class. Its 'ActualWidth' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\Converters\LimitTextLengthConverter.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Trim' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Length' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.String' library class. Its 'Substring' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'LastIndexOf' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\TilePin.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Contains' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Collections.Generic.KeyValuePair' library class. Its 'Key' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Collections.Generic.KeyValuePair' library class. Its 'Value' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Settings\SettingsBase.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="2">System.IO.IsolatedStorage.IsolatedStorageSettings.Save was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Type' library class. Its 'Name' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\UserControls\AudioPlaybackControl.xaml.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Input.ICommand' library class. Its 'CanExecute' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Input.ICommand' library class. Its 'Execute' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\ViewModels\SettingsAppearanceViewModel.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'GalaSoft.MvvmLight.Messaging.IMessenger' library class. Its 'Send' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\ViewModels\SettingsGeneralViewModel.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'FirstOrDefault' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'Add' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\ViewModels\SettingsThirdPartyViewModel.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Cimbalino.Phone.Toolkit.Services.IMessageBoxService' library class. Its 'ShowAsync' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\ViewModels\ShareArticleViewModel.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="14">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'Add' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Views\AddSource.xaml.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Navigation.NavigationContext' library class. Its 'QueryString' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Collections.Generic.IDictionary' library class. Its 'TryGetValue' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Windows.Input.ICommand' library class. Its 'Execute' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\App.xaml.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="2">System.Windows.Application.Host was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Windows.Interop.SilverlightHost' library class. Its 'Settings' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Interop.Settings' library class. Its 'EnableFrameRateCounter' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Telerik.Windows.Controls.RadDiagnostics' library class. Its 'ExceptionOccurred' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Telerik.Windows.Controls.RadDiagnostics' library class. Its 'Init' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="3">The tool does not have information on the 'Telerik.Windows.Controls.ExceptionOccurredEventArgs' library class. Its 'Exception' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Exception' library class. Its 'GetType' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Type' library class. Its 'Name' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Telerik.Windows.Controls.ExceptionOccurredEventArgs' library class. Its 'CustomData' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Type' library class. Its 'GetProperty' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Windows.ApplicationUnhandledExceptionEventArgs' library class. Its 'ExceptionObject' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="10">The tool does not have information on the 'System.Exception' library class. Its 'ToString' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="10">The tool does not have information on the 'System.String' library class. Its 'ToUpper' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="10">The tool does not have information on the 'System.String' library class. Its 'Contains' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="10">The tool does not have information on the 'System.Windows.ApplicationUnhandledExceptionEventArgs' library class. Its 'Handled' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Views\ArticlePage.xaml.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Int64' library class. Its 'ToString' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Windows.Navigation.NavigationContext' library class. Its 'QueryString' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.Generic.IDictionary' library class. Its 'TryGetValue' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="3">The tool does not have information on the 'Microsoft.Phone.Controls.NotifyEventArgs' library class. Its 'Value' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'StartsWith' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\BackgroundAgentController.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'Microsoft.Phone.Scheduler.PeriodicTask' library class. Its 'IsEnabled' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Microsoft.Phone.Scheduler.PeriodicTask' library class. Its 'Description' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.InvalidOperationException' library class. Its 'Message' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.String' library class. Its 'Contains' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\Controls\Triggers\PivotSourceLoadTrigger.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Input.ICommand' library class. Its 'CanExecute' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Input.ICommand' library class. Its 'Execute' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\Controls\Triggers\PaginationTrigger.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'Microsoft.Phone.Controls.ItemRealizationEventArgs' library class. Its 'Container' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.IList' library class. Its 'IndexOf' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Collections.IList' library class. Its 'Count' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Input.ICommand' library class. Its 'CanExecute' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Input.ICommand' library class. Its 'Execute' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\Converters\TimeAgoConverter.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="3">The tool does not have information on the 'System.TimeSpan' library class. Its 'Days' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="3">The tool does not have information on the 'System.TimeSpan' library class. Its 'Hours' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="3">The tool does not have information on the 'System.TimeSpan' library class. Its 'Minutes' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="3">The tool does not have information on the 'System.TimeSpan' library class. Its 'Seconds' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Common\WebBrowserHelper.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Object' library class. Its 'ToString' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Media.Animation.TimelineCollection' library class. Its 'Add' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Views\MainPage.xaml.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="2">System.Windows.Navigation.NavigationService.BackStack was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'Any' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="5">The tool does not have information on the 'System.Windows.Navigation.NavigationContext' library class. Its 'QueryString' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="10">The tool does not have information on the 'System.Collections.Generic.IDictionary' library class. Its 'TryGetValue' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'Any' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'FirstOrDefault' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'Telerik.Windows.Controls.ItemStateChangedEventArgs' library class. Its 'State' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Telerik.Windows.Controls.ItemStateChangedEventArgs' library class. Its 'DataItem' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'IndexOf' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'TakeWhile' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="8">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'Where' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'System.Windows.Input.ICommand' library class. Its 'Execute' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'ToList' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="3">The tool does not have information on the 'Telerik.Windows.Controls.ScrollStateChangedEventArgs' library class. Its 'NewState' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Input.ICommand' library class. Its 'CanExecute' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\ViewModels\AddSourceViewModel.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'Where' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'ToList' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\ViewModels\ArticleViewModel.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer' library class. Its 'PlayStateChanged' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'Any' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'Last' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'First' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.String' library class. Its 'ToLower' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer' library class. Its 'Track' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Microsoft.Phone.BackgroundAudio.AudioTrack' library class. Its 'Source' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer' library class. Its 'PlayerState' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'TakeWhile' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'LastOrDefault' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'SkipWhile' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'Skip' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'FirstOrDefault' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer' library class. Its 'Close' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer' library class. Its 'Pause' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer' library class. Its 'Play' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\ViewModels\MainViewModel.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'GalaSoft.MvvmLight.Messaging.IMessenger' library class. Its 'Register' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Collections.ObjectModel.ObservableCollection' library class. Its 'Any' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="12">The tool does not have information on the 'Cimbalino.Phone.Toolkit.Services.IMessageBoxService' library class. Its 'Show' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'Cimbalino.Phone.Toolkit.Services.IMessageBoxService' library class. Its 'ShowAsync' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Resources.ResourceManager' library class. Its 'GetString' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'First' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'Last' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'Any' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'GalaSoft.MvvmLight.Messaging.GenericMessage' library class. Its 'Content' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\ViewModels\SettingsViewModel.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="8">The tool does not have information on the 'Cimbalino.Phone.Toolkit.Services.IMessageBoxService' library class. Its 'Show' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'GalaSoft.MvvmLight.Messaging.IMessenger' library class. Its 'Send' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\ViewModels\ViewModelLocator.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="80">The tool does not have information on the 'Autofac.ContainerBuilder' library class. Its 'RegisterType' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="54">The tool does not have information on the 'Autofac.Builder.IRegistrationBuilder' library class. Its 'As' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'Autofac.Builder.IRegistrationBuilder' library class. Its 'SingleInstance' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="12">The tool does not have information on the 'Autofac.Builder.IRegistrationBuilder' library class. Its 'UsingConstructor' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Autofac.ContainerBuilder' library class. Its 'Build' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="26">The tool does not have information on the 'Autofac.IContainer' library class. Its 'Resolve' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'Autofac.Core.Activators.Reflection.ConstructorParameterBinding' library class. Its 'TargetConstructor' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Views\SettingsAppearancePage.xaml.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Coding4Fun.Toolkit.Controls.ToastPrompt' library class. Its 'Message' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Coding4Fun.Toolkit.Controls.ToastPrompt' library class. Its 'TextWrapping' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'Coding4Fun.Toolkit.Controls.ToastPrompt' library class. Its 'Tap' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'Coding4Fun.Toolkit.Controls.ToastPrompt' library class. Its 'Tapped' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Coding4Fun.Toolkit.Controls.ToastPrompt' library class. Its 'Show' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Views\SettingsPage.xaml.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Windows.Input.ICommand' library class. Its 'CanExecute' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Windows.Input.ICommand' library class. Its 'Execute' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Views\WelcomePage.xaml.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="2">System.Windows.Navigation.NavigationService.BackStack was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'Any' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\AppThemes\DarkTheme\DataTemplates.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1111" Quantity="3">The tool does not have information on the 'Interaction' XAML element with namespace 'clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="2">The tool does not have information on the 'ContextMenuService' XAML element with namespace 'clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="2">The tool does not have information on the 'ContextMenu' XAML element with namespace 'clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="7">The tool does not have information on the 'MenuItem' XAML element with namespace 'clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'BoolToDefaultStringConverter' XAML element with namespace 'clr-namespace:feedsea.Common.MVVM.Converters;assembly=feedsea.Common.MVVM'</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">Grid.IsTiltEnabled was not upgraded</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\AppThemes\DarkTheme\HyperLinkButtons.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="1">TextBlock.TextDecorations was not upgraded</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\AppThemes\DarkTheme\PhoneApplicationPage.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'NavigationInTransition' XAML element with namespace 'clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="4">The tool does not have information on the 'SlideTransition' XAML element with namespace 'clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'NavigationOutTransition' XAML element with namespace 'clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit'</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\AppThemes\DarkTheme\Telerik.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1111" Quantity="3">The tool does not have information on the 'Boolean' XAML element with namespace 'clr-namespace:System;assembly=mscorlib'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'RadBusyIndicator' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'ThicknessToDoubleConverter' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls.ImageButton;assembly=Telerik.Windows.Controls.Primitives'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'ImageButtonShapeToVisibilityConverter' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls.ImageButton;assembly=Telerik.Windows.Controls.Primitives'</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\AppThemes\ClearTheme\Telerik.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1111" Quantity="3">The tool does not have information on the 'Boolean' XAML element with namespace 'clr-namespace:System;assembly=mscorlib'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'RadBusyIndicator' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'ThicknessToDoubleConverter' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls.ImageButton;assembly=Telerik.Windows.Controls.Primitives'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'ImageButtonShapeToVisibilityConverter' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls.ImageButton;assembly=Telerik.Windows.Controls.Primitives'</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\AppThemes\ClearTheme\HyperLinkButtons.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="1">TextBlock.TextDecorations was not upgraded</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\UserControls\GenericLoginScreen.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'RadTextBox' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="2">The tool does not have information on the 'Grid' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'RadPasswordBox' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives'</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\UserControls\SharingControl.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'RadDataBoundListBox' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'Grid' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'ScrollViewer' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'RadFadeAnimation' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'RadImageButton' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives'</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Views\AboutPage.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="2">PhoneApplicationPage.SupportedOrientations was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Orientation was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Opacity was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.IsVisible was not upgraded</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Views\AddSource.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="2">PhoneApplicationPage.SupportedOrientations was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Orientation was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Opacity was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.IsVisible was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="4">The tool does not have information on the 'Interaction' XAML element with namespace 'clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'Base64ToImageConverter' XAML element with namespace 'clr-namespace:feedsea.Common.MVVM.Converters;assembly=feedsea.Common.MVVM'</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneTextBox.Hint was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneTextBox.ActionIcon was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneTextBox.ActionIconTapped was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">Grid.IsTiltEnabled was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'ApplicationBarBehavior' XAML element with namespace 'clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'ApplicationBarIconButton' XAML element with namespace 'clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit'</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\AppThemes\ClearTheme\DataTemplates.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1111" Quantity="3">The tool does not have information on the 'Interaction' XAML element with namespace 'clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="2">The tool does not have information on the 'ContextMenuService' XAML element with namespace 'clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="2">The tool does not have information on the 'ContextMenu' XAML element with namespace 'clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="7">The tool does not have information on the 'MenuItem' XAML element with namespace 'clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'BoolToDefaultStringConverter' XAML element with namespace 'clr-namespace:feedsea.Common.MVVM.Converters;assembly=feedsea.Common.MVVM'</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">Grid.IsTiltEnabled was not upgraded</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\AppThemes\ClearTheme\PhoneApplicationPage.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'NavigationInTransition' XAML element with namespace 'clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="4">The tool does not have information on the 'SlideTransition' XAML element with namespace 'clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'NavigationOutTransition' XAML element with namespace 'clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit'</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Views\ArticlePage.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="2">PhoneApplicationPage.SupportedOrientations was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Orientation was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Opacity was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.IsVisible was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'Interaction' XAML element with namespace 'clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'AdMediatorControl' XAML element with namespace 'clr-namespace:Microsoft.AdMediator.WindowsPhone8;assembly=Microsoft.AdMediator.WindowsPhone8'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'Grid' XAML element with namespace 'clr-namespace:Microsoft.AdMediator.WindowsPhone8;assembly=Microsoft.AdMediator.WindowsPhone8'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'SwipeContentControl' XAML element with namespace 'clr-namespace:feedsea.Common.Controls;assembly=feedsea.Common'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'Grid' XAML element with namespace 'clr-namespace:feedsea.Common.Controls;assembly=feedsea.Common'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'ApplicationBarBehavior' XAML element with namespace 'clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="4">The tool does not have information on the 'ApplicationBarIconButton' XAML element with namespace 'clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'ApplicationBarMenuItem' XAML element with namespace 'clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit'</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Views\MainPage.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="2">PhoneApplicationPage.SupportedOrientations was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Orientation was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Opacity was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.IsVisible was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="2">The tool does not have information on the 'Interaction' XAML element with namespace 'clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'SlideView' XAML element with namespace 'clr-namespace:SlideView.Library;assembly=SlideView.Library'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'RadDataBoundListBox' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'Grid' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="2">The tool does not have information on the 'RadFadeAnimation' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'EventTrigger' XAML element with namespace 'clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'EventToCommand' XAML element with namespace 'clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform.WP8'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="2">The tool does not have information on the 'RadImageButton' XAML element with namespace 'clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives'</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="2">RadImageButton.IsTiltEnabled was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'AdMediatorControl' XAML element with namespace 'clr-namespace:Microsoft.AdMediator.WindowsPhone8;assembly=Microsoft.AdMediator.WindowsPhone8'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'Grid' XAML element with namespace 'clr-namespace:Microsoft.AdMediator.WindowsPhone8;assembly=Microsoft.AdMediator.WindowsPhone8'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="1">The tool does not have information on the 'ApplicationBarBehavior' XAML element with namespace 'clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="3">The tool does not have information on the 'ApplicationBarIconButton' XAML element with namespace 'clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit'</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="3">The tool does not have information on the 'ApplicationBarMenuItem' XAML element with namespace 'clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit'</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Views\SettingsAppearancePage.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="2">PhoneApplicationPage.SupportedOrientations was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Orientation was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Opacity was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.IsVisible was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="6">The tool does not have information on the 'ListPickerItem' XAML element with namespace 'clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit'</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Views\SettingsGeneralPage.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="2">PhoneApplicationPage.SupportedOrientations was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Orientation was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Opacity was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.IsVisible was not upgraded</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Views\SettingsLiveTilesPage.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="2">PhoneApplicationPage.SupportedOrientations was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Orientation was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Opacity was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.IsVisible was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="3">The tool does not have information on the 'ListPickerItem' XAML element with namespace 'clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit'</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Views\SettingsPage.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="2">PhoneApplicationPage.SupportedOrientations was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Orientation was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Opacity was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.IsVisible was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">ListBox.IsTiltEnabled was not upgraded</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Views\SettingsThirdPartyPage.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="2">PhoneApplicationPage.SupportedOrientations was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Orientation was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Opacity was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.IsVisible was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1111" Quantity="8">The tool does not have information on the 'ListPickerItem' XAML element with namespace 'clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit'</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Views\WelcomePage.xaml" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="2">PhoneApplicationPage.SupportedOrientations was not upgraded</Issue>
+        <Issue Type="Runtime" Number="1101" Quantity="1">PhoneApplicationPage.Orientation was not upgraded</Issue>
+      </Section>
+    </File>
+    <File OldPath="feedsea.csproj" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'AdDuplex.WindowsPhone' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Autofac' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Cimbalino.Phone.Toolkit' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Cimbalino.Phone.Toolkit.Controls' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Coding4Fun.Toolkit.Controls' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'GalaSoft.MvvmLight' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'GalaSoft.MvvmLight.Extras' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'GalaSoft.MvvmLight.Platform.WP8' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Microsoft.AdMediator.Core' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Microsoft.AdMediator.WindowsPhone8' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Microsoft.AdMediator.WindowsPhone8.AdDuplex' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Microsoft.AdMediator.WindowsPhone8.MicrosoftAdvertising' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Microsoft.Advertising.Mobile' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Microsoft.Advertising.Mobile.Common' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Microsoft.Advertising.Mobile.UI' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Microsoft.Expression.Interactions' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Microsoft.Phone.Controls.Maps' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Microsoft.Phone.Controls.Toolkit' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Microsoft.Practices.ServiceLocation' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Newtonsoft.Json' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'PocketWP' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'PropertyChanged' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'SlideView.Library' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'System.Windows.Interactivity' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Telerik.Windows.Controls.Primitives' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'Telerik.Windows.Core' because no mappings were found for it</Issue>
+      </Section>
+    </File>
+  </UpgradeLog>
+  <UpgradeLog ProjectName="feedsea.AudioPlaybackAgent.csproj">
+    <Settings />
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea.AudioPlaybackAgent\AudioPlayer.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer' library class. Its 'Play' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer' library class. Its 'PlayerState' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer' library class. Its 'Track' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer' library class. Its 'Stop' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer' library class. Its 'Pause' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer' library class. Its 'FastForward' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer' library class. Its 'Rewind' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer' library class. Its 'Position' member was referenced.</Issue>
+      </Section>
+    </File>
+  </UpgradeLog>
+  <UpgradeLog ProjectName="feedsea.BackgroundAgent.Common.csproj">
+    <Settings />
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea.BackgroundAgent.Common\BackgroundAgentManager.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.String' library class. Its 'GetFaviconUrl' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="8">The tool does not have information on the 'System.String' library class. Its 'DownloadImage' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.String' library class. Its 'GetLiveTileBackUrl' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.Generic.Dictionary' library class. Its 'Add' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Contains' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'ToString' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Split' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'StartsWith' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Replace' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.TimeSpan' library class. Its 'Seconds' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'ToLower' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Select' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Char' library class. Its 'ToString' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea.BackgroundAgent.Common\ContentBuilder\TileContentBuilderBase.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'System.Windows.Controls.ColumnDefinitionCollection' library class. Its 'Add' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Controls.UIElementCollection' library class. Its 'Contains' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Controls.UIElementCollection' library class. Its 'Add' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea.BackgroundAgent.Common\Helpers\TileHelper.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'IsMainTile' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'ToArray' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Split' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Media.Imaging.WriteableBitmap' library class. Its 'Render' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Media.Imaging.WriteableBitmap' library class. Its 'Invalidate' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Media.Imaging.WriteableBitmap' library class. Its 'WritePNG' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Exception' library class. Its 'ToString' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Net.Http.HttpClient' library class. Its 'GetByteArrayAsync' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'RemoveProtocol' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Text.RegularExpressions.Match' library class. Its 'Groups' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Text.RegularExpressions.Group' library class. Its 'Value' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea.BackgroundAgent.Common\ToolStack\ToolStackPNGWriterLib.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'System.Windows.Media.Imaging.WriteableBitmap' library class. Its 'Render' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Media.Imaging.WriteableBitmap' library class. Its 'Invalidate' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Windows.Media.Imaging.WriteableBitmap' library class. Its 'Pixels' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="3">The tool does not have information on the 'System.Windows.Media.Imaging.WriteableBitmap' library class. Its 'PixelWidth' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Windows.Media.Imaging.WriteableBitmap' library class. Its 'PixelHeight' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="feedsea.BackgroundAgent.Common.csproj" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'System.Net.Http' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'System.Net.Http.Extensions' because no mappings were found for it</Issue>
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'System.Net.Http.Primitives' because no mappings were found for it</Issue>
+      </Section>
+    </File>
+  </UpgradeLog>
+  <UpgradeLog ProjectName="feedsea.BackgroundAgent.csproj">
+    <Settings />
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea.BackgroundAgent\FeedSeaBackgroundAgent.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="1">Microsoft.Phone.Info.DeviceStatus.ApplicationPeakMemoryUsage was not upgraded</Issue>
+      </Section>
+    </File>
+  </UpgradeLog>
+  <UpgradeLog ProjectName="feedsea.Common.MVVM.Tombstone.csproj">
+    <Settings />
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea.Common.MVVM.Tombstone\ApplicationState.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'System.Object' library class. Its 'GetType' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'System.Type' library class. Its 'GetProperties' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="10">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'Any' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Type' library class. Its 'Name' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea.Common.MVVM.Tombstone\TombstoneHelper.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'Microsoft.Phone.Shell.ActivatedEventArgs' library class. Its 'IsApplicationInstancePreserved' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Type' library class. Its 'Name' member was referenced.</Issue>
+      </Section>
+    </File>
+  </UpgradeLog>
+  <UpgradeLog ProjectName="feedsea.Common.MVVM.csproj">
+    <Settings />
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea.Common.MVVM\AViewModel.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Linq.Expressions.Expression' library class. Its 'Body' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Linq.Expressions.Expression' library class. Its 'NodeType' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea.Common.MVVM\Converters\SpecificIntToVisibility.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Object' library class. Its 'ToString' member was referenced.</Issue>
+      </Section>
+    </File>
+  </UpgradeLog>
+  <UpgradeLog ProjectName="feedsea.Common.csproj">
+    <Settings />
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea.Common\Controls\Extensions.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Windows.Media.Animation.TimelineCollection' library class. Its 'Add' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea.Common\Controls\SwipeContentControl.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Windows.Input.ICommand' library class. Its 'CanExecute' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Windows.Input.ICommand' library class. Its 'Execute' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea.Common\Converters\DateConverter.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.Generic.Dictionary' library class. Its 'Add' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'LastIndexOf' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Substring' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Collections.Generic.Dictionary' library class. Its 'ContainsKey' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Replace' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea.Common\Helpers\AccelerometerHelper.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'Microsoft.Devices.Sensors.Accelerometer' library class. Its 'State' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Microsoft.Devices.Sensors.Accelerometer' library class. Its 'Dispose' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'Microsoft.Devices.Sensors.Accelerometer' library class. Its 'ReadingChanged' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Microsoft.Devices.Sensors.Accelerometer' library class. Its 'Start' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Exception' library class. Its 'Message' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'Microsoft.Devices.Sensors.Accelerometer' library class. Its 'Stop' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'Microsoft.Devices.Sensors.AccelerometerReadingEventArgs' library class. Its 'X' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'Microsoft.Devices.Sensors.AccelerometerReadingEventArgs' library class. Its 'Y' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'Microsoft.Devices.Sensors.AccelerometerReadingEventArgs' library class. Its 'Z' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'System.Double' library class. Its 'GetHashCode' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea.Common\Helpers\ApplicationSettingsHelper.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1101" Quantity="1">System.IO.IsolatedStorage.IsolatedStorageSettings.Save was not upgraded</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea.Common\Helpers\GeneralHelpers.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'HtmlAgilityPack.HtmlDocument' library class. Its 'LoadHtml' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="7">The tool does not have information on the 'HtmlAgilityPack.HtmlDocument' library class. Its 'DocumentNode' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'ToLower' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'HtmlAgilityPack.HtmlDocument' library class. Its 'ChangeYoutubeToHtml5' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'HtmlAgilityPack.HtmlDocument' library class. Its 'ChangeYoutubeToMetroTube' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'HtmlAgilityPack.HtmlDocument' library class. Its 'ChangeYoutubeToMyTube' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'HtmlAgilityPack.HtmlDocument' library class. Its 'ChangeYoutubeToToib' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'HtmlAgilityPack.HtmlDocument' library class. Its 'ChangeYoutubeToOtherClient' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'HtmlAgilityPack.HtmlNode' library class. Its 'InnerHtml' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'HtmlAgilityPack.HtmlNode' library class. Its 'Descendants' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'Where' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="11">The tool does not have information on the 'HtmlAgilityPack.HtmlNode' library class. Its 'Attributes' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'HtmlAgilityPack.HtmlAttributeCollection' library class. Its 'Any' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="3">The tool does not have information on the 'HtmlAgilityPack.HtmlAttribute' library class. Its 'Name' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="3">The tool does not have information on the 'HtmlAgilityPack.HtmlAttribute' library class. Its 'Value' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'System.String' library class. Its 'Contains' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'Count' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'ToList' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'HtmlAgilityPack.HtmlNode' library class. Its 'GetAttributeValue' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Any' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'AddHttp' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'HtmlAgilityPack.HtmlNode' library class. Its 'SetAttributeValue' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="8">The tool does not have information on the 'HtmlAgilityPack.HtmlDocument' library class. Its 'ChangeYoutubeToClient' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'HtmlAgilityPack.HtmlDocument' library class. Its 'CreateElement' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="14">The tool does not have information on the 'HtmlAgilityPack.HtmlAttributeCollection' library class. Its 'Add' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Replace' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'HtmlAgilityPack.HtmlNode' library class. Its 'AppendChild' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'HtmlAgilityPack.HtmlNode' library class. Its 'ParentNode' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'HtmlAgilityPack.HtmlNode' library class. Its 'ReplaceChild' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Split' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.String' library class. Its 'IndexOf' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'Substring' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.Text.RegularExpressions.Match' library class. Its 'Success' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Text.RegularExpressions.Match' library class. Its 'Groups' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="1">The tool does not have information on the 'System.Text.RegularExpressions.Group' library class. Its 'Value' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="6">The tool does not have information on the 'System.String' library class. Its 'StartsWith' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'System.String' library class. Its 'EndsWith' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="2">The tool does not have information on the 'HtmlAgilityPack.HtmlAttributeCollection' library class. Its 'Remove' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea.Common\LinqToVisualTree.cs" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'FirstOrDefault' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="4">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'First' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="16">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'Where' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="16">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'Cast' member was referenced.</Issue>
+        <Issue Type="Runtime" Number="1113" Quantity="24">The tool does not have information on the 'System.Collections.Generic.IEnumerable' library class. Its 'DrillDown' member was referenced.</Issue>
+      </Section>
+    </File>
+    <File OldPath="feedsea.Common.csproj" NewPath="">
+      <Section Name="Mappings">
+        <Issue Type="Runtime" Number="1221" Quantity="1">Removed reference : 'HtmlAgilityPack-PCL' because no mappings were found for it</Issue>
+      </Section>
+    </File>
+  </UpgradeLog>
+</EwiData>

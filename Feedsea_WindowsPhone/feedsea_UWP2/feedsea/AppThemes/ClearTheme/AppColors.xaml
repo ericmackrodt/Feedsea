@@ -1,0 +1,30 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <SolidColorBrush x:Key="DefaultPageBackgroundColor">#EAEAEA</SolidColorBrush>
+  <SolidColorBrush x:Key="PanelBackgroundColor">#333333</SolidColorBrush>
+  <SolidColorBrush x:Key="PanelSecondaryColor">#212121</SolidColorBrush>
+  <SolidColorBrush x:Key="ThemeMainColor">#1A74B8</SolidColorBrush>
+  <SolidColorBrush x:Key="ThemeSecondaryColor">#34495E</SolidColorBrush>
+  <SolidColorBrush x:Key="DefaultBackgroundColor">#FFFFFF</SolidColorBrush>
+  <SolidColorBrush x:Key="TransparencyBackgroundColor">#8FFFFFFF</SolidColorBrush>
+  <SolidColorBrush x:Key="TransparencySecondaryBackgroundColor">#8FF2F2F2</SolidColorBrush>
+  <SolidColorBrush x:Key="SecondaryBackgroundColor">#F2F2F2</SolidColorBrush>
+  <SolidColorBrush x:Key="DefaultTextColor">#000000</SolidColorBrush>
+  <SolidColorBrush x:Key="SecondaryTextColor">#999999</SolidColorBrush>
+  <SolidColorBrush x:Key="SidebaMenuTextColor">#CCCCCC</SolidColorBrush>
+  <SolidColorBrush x:Key="DefaultBorderColor">#34495E</SolidColorBrush>
+  <SolidColorBrush x:Key="HeaderTextColor">#1A74B8</SolidColorBrush>
+  <SolidColorBrush x:Key="HeaderBackgroundColor">#192B38</SolidColorBrush>
+  <Color x:Key="SystemBarBackgroundColor">#FFFFFF</Color>
+  <Color x:Key="SystemBarForegroundColor">#FEFFFFFF</Color>
+  <Color x:Key="ApplicationBarBackgroundColor">#DDDDDD</Color>
+  <Color x:Key="ApplicationBarForegroundColor">#34495E</Color>
+  <LinearGradientBrush x:Key="WelcomePageBackground" StartPoint="1,0" EndPoint="1,1">
+    <GradientStop Color="#EAEAEA" Offset="0.3" />
+    <GradientStop Color="Transparent" Offset="1" />
+  </LinearGradientBrush>
+  <!--<SolidColorBrush x:Key="ValidationErrorTextColor">#FF0000</SolidColorBrush>-->
+  <!--<LinearGradientBrush x:Key="BackgroundTransitionGradient" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="#FF192B38" Offset="0.0" />
+        <GradientStop Color="#00192B38" Offset="1.0" />
+    </LinearGradientBrush>-->
+</ResourceDictionary>

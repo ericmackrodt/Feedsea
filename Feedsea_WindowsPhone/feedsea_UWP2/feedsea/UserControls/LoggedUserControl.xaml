@@ -1,0 +1,22 @@
+<UserControl x:Class="feedsea.UserControls.LoggedUserControl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" DataContext="{Binding Source={StaticResource Locator}, Path=LoggedUser}">
+  <Grid x:Name="LayoutRoot" Height="60">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="5,5" Width="50" CornerRadius="4" Visibility="{Binding Path=ShowPicture, Converter={StaticResource BoolToVisibility}}">
+      <Border.Background>
+        <ImageBrush ImageSource="{Binding Path=LoggedUser.Picture}" Stretch="UniformToFill" />
+      </Border.Background>
+    </Border>
+    <Grid Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5">
+      <TextBlock VerticalAlignment="Top" Style="{StaticResource SourceHeaderUserName}" Text="{Binding Path=LoggedUser.Name}" />
+      <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+        <TextBlock VerticalAlignment="Bottom" Style="{StaticResource SourceHeaderService}" Text="{Binding Path=LoggedUser.Service}" />
+        <TextBlock VerticalAlignment="Bottom" Style="{StaticResource SourceHeaderService}" Text=" - " Visibility="{Binding Path=ShowEmail, Converter={StaticResource BoolToVisibility}}" />
+        <TextBlock VerticalAlignment="Bottom" Style="{StaticResource SourceHeaderService}" Text="{Binding Path=LoggedUser.ServiceUser}" Visibility="{Binding Path=ShowEmail, Converter={StaticResource BoolToVisibility}}" />
+      </StackPanel>
+    </Grid>
+  </Grid>
+  <!--FontSize="{StaticResource PhoneFontSizeNormal}"-->
+</UserControl>

@@ -1,0 +1,55 @@
+<Page x:Class="feedsea.Views.WelcomePage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" DataContext="{Binding Source={StaticResource Locator}, Path=LoginPage}">
+  <Page.Resources>
+    <Storyboard x:Name="Storyboard">
+      <DoubleAnimation x:Name="BackgroundAnimation" BeginTime="0:0:1.5" Duration="0:0:.5" From="0" To="1" Storyboard.TargetName="GridBackground" Storyboard.TargetProperty="(UIElement.Opacity)" EnableDependentAnimation="True">
+        <DoubleAnimation.EasingFunction>
+          <ExponentialEase EasingMode="EaseOut" />
+        </DoubleAnimation.EasingFunction>
+      </DoubleAnimation>
+      <DoubleAnimation x:Name="LogoAnimation" Duration="0:0:.5" Storyboard.TargetName="LogoMiddle" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)" EnableDependentAnimation="True">
+        <DoubleAnimation.EasingFunction>
+          <ExponentialEase EasingMode="EaseOut" />
+        </DoubleAnimation.EasingFunction>
+      </DoubleAnimation>
+      <DoubleAnimation x:Name="WelcomeAnimation" BeginTime="0:0:.5" Duration="0:0:.5" From="0" To="1" Storyboard.TargetName="TxtWelcome" Storyboard.TargetProperty="(UIElement.Opacity)" EnableDependentAnimation="True">
+        <DoubleAnimation.EasingFunction>
+          <ExponentialEase EasingMode="EaseOut" />
+        </DoubleAnimation.EasingFunction>
+      </DoubleAnimation>
+      <DoubleAnimation x:Name="ButtonAnimation" BeginTime="0:0:1" Duration="0:0:.5" From="0" To="1" Storyboard.TargetName="BtnLogin" Storyboard.TargetProperty="(UIElement.Opacity)" EnableDependentAnimation="True">
+        <DoubleAnimation.EasingFunction>
+          <ExponentialEase EasingMode="EaseOut" />
+        </DoubleAnimation.EasingFunction>
+      </DoubleAnimation>
+    </Storyboard>
+  </Page.Resources>
+  <!--LayoutRoot is the root grid where all page content is placed-->
+  <Grid x:Name="LayoutRoot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="GridBackground" Opacity="0" VerticalAlignment="Bottom" Height="400">
+      <Grid Margin="-24">
+        <Grid.RenderTransform>
+          <TranslateTransform x:Name="BackgroundTransform" />
+        </Grid.RenderTransform>
+        <Image x:Name="Background" Source="../Assets/welcome-bg.jpg" HorizontalAlignment="Center" Stretch="UniformToFill" />
+      </Grid>
+    </Grid>
+    <Border Height="460" VerticalAlignment="Bottom" Background="{StaticResource WelcomePageBackground}"></Border>
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      <Image Grid.Row="0" x:Name="LogoTop" Source="../Assets/welcome-logo.png" VerticalAlignment="Center" HorizontalAlignment="Center" Width="280" Visibility="Collapsed" />
+      <Button Grid.Row="1" Opacity="0" x:Name="BtnLogin" Style="{StaticResource ThemeButton}" Content="{Binding Path=LocalizedResources.ClickToLogin, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding LoginCommand}" />
+    </Grid>
+    <Image x:Name="LogoMiddle" Source="../Assets/welcome-logo.png" VerticalAlignment="Center" HorizontalAlignment="Center" Width="280">
+      <Image.RenderTransform>
+        <TranslateTransform />
+      </Image.RenderTransform>
+    </Image>
+    <TextBlock Opacity="0" x:Name="TxtWelcome" Style="{StaticResource BasicThemeText}" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Path=LocalizedResources.Welcome, Source={StaticResource LocalizedStrings}}" />
+  </Grid>
+  <!--FontSize="{StaticResource PhoneFontSizeNormal}"-->
+  <!--SupportedOrientations="Portrait"-->
+  <!--Orientation="Portrait"-->
+</Page>

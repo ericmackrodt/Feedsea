@@ -1,0 +1,41 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Feedsea.Resources">
+
+    <!--Welcome-->
+    <Style TargetType="TextBlock" x:Key="WelcomeText">
+        <Setter Property="TextWrapping" Value="NoWrap" />
+        <Setter Property="FontSize" Value="32" />
+        <Setter Property="LineHeight" Value="32" />
+        <Setter Property="FontFamily" Value="Segoe" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Foreground" Value="{ThemeResource WelcomeScreenTextColor}" />
+    </Style>
+    
+    <!--Article-->
+    <Style TargetType="TextBlock" x:Key="ArticleTitle">
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="LineHeight" Value="17" />
+        <Setter Property="FontFamily" Value="Segoe" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{ThemeResource CardForegroundColor}" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="ArticleDescription">
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="LineHeight" Value="16" />
+        <Setter Property="FontFamily" Value="Segoe" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Foreground" Value="{ThemeResource CardSecondaryForegroundColor}" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="ArticleSourceText">
+        <Setter Property="TextWrapping" Value="NoWrap" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="LineHeight" Value="16" />
+        <Setter Property="FontFamily" Value="Segoe" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Foreground" Value="{ThemeResource CardSecondaryForegroundColor}" />
+    </Style>
+</ResourceDictionary>

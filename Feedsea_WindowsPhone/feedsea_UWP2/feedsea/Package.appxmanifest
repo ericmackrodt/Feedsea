@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" xmlns:m1="http://schemas.microsoft.com/appx/2010/manifest" xmlns:phone="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:wincap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/windowscapabilities" xmlns:t="http://schemas.microsoft.com/appx/manifest/types" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10">
+  <Identity Name="Feedsea" Publisher="CN=Feedsea" Version="1.5.0.25" />
+  <phone:PhoneIdentity PhoneProductId="6f90607d-7a40-4d8e-83ac-77f818359754" PhonePublisherId="1a841862-bdbc-4fca-aac3-35d54f0c3024" />
+  <Properties>
+    <DisplayName>Feedsea</DisplayName>
+    <PublisherDisplayName>Feedsea</PublisherDisplayName>
+    <Logo>Assets\Tiles\MainTileSmall.png</Logo>
+  </Properties>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.10240.0" MaxVersionTested="10.0.10240.0" />
+  </Dependencies>
+  <Capabilities>
+    <Capability Name="internetClientServer" />
+    <uap:Capability Name="musicLibrary" />
+    <uap:Capability Name="picturesLibrary" />
+    <uap:Capability Name="phoneCall" />
+    <DeviceCapability Name="activity" />
+  </Capabilities>
+  <Applications>
+    <Application Id="Feedsea" Executable="$targetnametoken$.exe" EntryPoint="feedsea">
+      <uap:VisualElements DisplayName="DefaultDisplayName" Description="A very straightforward Feedly Client for Windows Phone" BackgroundColor="#464646" Square150x150Logo="Assets\Tiles\MainTileSmall.png" Square44x44Logo="Assets\Tiles\MainTileSmall.png">
+        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+      </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.protocol">
+          <uap:Protocol Name="feedsea">
+            <uap:DisplayName>My Protocol</uap:DisplayName>
+          </uap:Protocol>
+        </uap:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+</Package>

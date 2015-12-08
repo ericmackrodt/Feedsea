@@ -1,0 +1,70 @@
+﻿<Page
+    x:Class="Feedsea.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Feedsea"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:helpers="using:Feedsea.Common.Helpers"
+    helpers:TitleBar.BackgroundColor="#34495E"
+    helpers:TitleBar.ForegroundColor="#FFFFFF"
+    helpers:TitleBar.ButtonBackgroundColor="#34495E"
+    helpers:TitleBar.ButtonForegroundColor="#FFFFFF"
+    mc:Ignorable="d">
+
+    <Grid Background="Pink">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="OrientationStates">
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SplMain.IsPaneOpen" Value="False" />
+                        <Setter Target="SplMain.DisplayMode" Value="Overlay" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="MediumState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="400" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SplMain.IsPaneOpen" Value="False" />
+                        <Setter Target="SplMain.DisplayMode" Value="CompactOverlay" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="Pink">
+            <Image Source="Assets/logo.png" Height="20" Margin="10" HorizontalAlignment="Left" />
+        </Grid>
+
+        <!--Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">-->
+        <SplitView x:Name="SplMain" Grid.Row="1" IsPaneOpen="True" DisplayMode="Inline" PanePlacement="Left" PaneBackground="#333333">
+            <SplitView.Content>
+                <Frame x:Name="MainFrame" />
+            </SplitView.Content>
+            <SplitView.Pane>
+                <Grid></Grid>
+            </SplitView.Pane>
+        </SplitView>
+
+        <CommandBar Grid.Row="1" ClosedDisplayMode="Compact" VerticalAlignment="Bottom" Background="#DDDDDD" Foreground="#34495E">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="Refresh" Icon="Refresh" />
+                <AppBarButton Label="Go to the Top" Icon="Home" />
+                <AppBarButton Label="Mark all Read" Icon="SelectAll" />
+            </CommandBar.PrimaryCommands>
+
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Settings" Icon="Setting" />
+                <AppBarButton Label="About" Icon="Help" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Grid>
+</Page>

@@ -1,0 +1,36 @@
+<UserControl x:Class="feedsea.UserControls.FullSizeLoadingPanel" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+  <UserControl.Resources>
+    <Storyboard x:Name="SpinningAnimation">
+      <DoubleAnimation AutoReverse="False" Duration="0:0:1" From="0" RepeatBehavior="Forever" Storyboard.TargetName="SpinningRotateTransform" Storyboard.TargetProperty="Angle" To="360" EnableDependentAnimation="True" />
+    </Storyboard>
+    <Storyboard x:Name="OpeningAnimation">
+      <DoubleAnimation Duration="0:0:0.3" From="0.1" RepeatBehavior="1x" Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Opacity" To="1.0" EnableDependentAnimation="True">
+        <DoubleAnimation.EasingFunction>
+          <ExponentialEase EasingMode="EaseOut" />
+        </DoubleAnimation.EasingFunction>
+      </DoubleAnimation>
+    </Storyboard>
+    <Storyboard x:Name="ClosingAnimation">
+      <DoubleAnimation Duration="0:0:0.3" From="1.0" RepeatBehavior="1x" Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Opacity" To="0.1" EnableDependentAnimation="True">
+        <DoubleAnimation.EasingFunction>
+          <ExponentialEase EasingMode="EaseOut" />
+        </DoubleAnimation.EasingFunction>
+      </DoubleAnimation>
+    </Storyboard>
+  </UserControl.Resources>
+  <Grid x:Name="LayoutRoot" Opacity="0" Background="{StaticResource TransparencySecondaryBackgroundColor}">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Image Grid.Column="0" Height="50" Width="50" Style="{StaticResource LoadingImage}" Stretch="Uniform">
+        <Image.RenderTransform>
+          <RotateTransform x:Name="SpinningRotateTransform" CenterX="25" CenterY="25" />
+        </Image.RenderTransform>
+      </Image>
+      <TextBlock x:Name="txtLoading" Grid.Column="1" Margin="10" Text="{Binding Path=LocalizedResources.Loading, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DefaultFieldLabel}" />
+    </Grid>
+  </Grid>
+  <!--FontSize="{StaticResource PhoneFontSizeNormal}"-->
+</UserControl>

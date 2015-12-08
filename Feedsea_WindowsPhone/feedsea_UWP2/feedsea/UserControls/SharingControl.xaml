@@ -1,0 +1,61 @@
+<UserControl x:Class="feedsea.UserControls.SharingControl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:telerikCore="using:Telerik.Windows.Controls" xmlns:telerikPrimitives="using:Telerik.Windows.Controls" mc:Ignorable="d" Background="Transparent" DataContext="{Binding ShareArticle, Source={StaticResource Locator}}" xmlns:p1="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core" xmlns:p2="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives">
+  <UserControl.Resources>
+    <Storyboard x:Name="OpeningAnimation">
+      <DoubleAnimation Duration="0:0:0.3" From="0.1" RepeatBehavior="1x" Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Opacity" To="1.0" EnableDependentAnimation="True">
+        <DoubleAnimation.EasingFunction>
+          <ExponentialEase EasingMode="EaseOut" />
+        </DoubleAnimation.EasingFunction>
+      </DoubleAnimation>
+      <DoubleAnimation Duration="0:0:0.3" From="-480" RepeatBehavior="1x" Storyboard.TargetName="OptionsGrid" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" To="0" EnableDependentAnimation="True">
+        <DoubleAnimation.EasingFunction>
+          <ExponentialEase EasingMode="EaseOut" />
+        </DoubleAnimation.EasingFunction>
+      </DoubleAnimation>
+    </Storyboard>
+    <Storyboard x:Name="ClosingAnimation">
+      <DoubleAnimation Duration="0:0:0.3" From="1.0" RepeatBehavior="1x" Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Opacity" To="0.1" EnableDependentAnimation="True">
+        <DoubleAnimation.EasingFunction>
+          <ExponentialEase EasingMode="EaseOut" />
+        </DoubleAnimation.EasingFunction>
+      </DoubleAnimation>
+      <DoubleAnimation Duration="0:0:0.3" From="0" RepeatBehavior="1x" Storyboard.TargetName="OptionsGrid" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" To="-480" EnableDependentAnimation="True">
+        <DoubleAnimation.EasingFunction>
+          <ExponentialEase EasingMode="EaseOut" />
+        </DoubleAnimation.EasingFunction>
+      </DoubleAnimation>
+    </Storyboard>
+  </UserControl.Resources>
+  <Grid x:Name="LayoutRoot" Opacity="0" Background="{StaticResource TransparencySecondaryBackgroundColor}">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid x:Name="OptionsGrid" Width="300" Grid.Column="0" Background="{StaticResource PanelBackgroundColor}">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+      </Grid.RowDefinitions>
+      <TextBlock Grid.Row="0" Margin="10" Text="{Binding Path=LocalizedResources.ShareVia, Source={StaticResource LocalizedStrings}}" Style="{StaticResource SourceHeaderText}" />
+      <telerikPrimitives:RadDataBoundListBox x:Name="ListButtons" ItemsSource="{Binding Buttons}" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+        <p2:RadDataBoundListBox.ItemAddedAnimation>
+          <telerikPrimitives:RadFadeAnimation StartOpacity="0" EndOpacity="1" InitialDelay="0:0:0.3" Duration="0:0:0.7">
+            <p1:RadFadeAnimation.Easing>
+              <CubicEase EasingMode="EaseOut" />
+            </p1:RadFadeAnimation.Easing>
+          </telerikPrimitives:RadFadeAnimation>
+        </p2:RadDataBoundListBox.ItemAddedAnimation>
+        <p2:RadDataBoundListBox.ItemTemplate>
+          <DataTemplate>
+            <telerikPrimitives:RadImageButton Style="{StaticResource HorizontalImageButton}" Command="{Binding ShareCommand}" RestStateImageSource="{Binding Image}" PressedStateImageSource="{Binding Image}" Height="32" Margin="20,10">
+              <TextBlock Text="{Binding Title}" Style="{StaticResource SourceItemName}" />
+            </telerikPrimitives:RadImageButton>
+          </DataTemplate>
+        </p2:RadDataBoundListBox.ItemTemplate>
+      </telerikPrimitives:RadDataBoundListBox>
+      <Grid.RenderTransform>
+        <TranslateTransform X="-480" />
+      </Grid.RenderTransform>
+    </Grid>
+  </Grid>
+  <!--FontSize="{StaticResource PhoneFontSizeNormal}"-->
+</UserControl>

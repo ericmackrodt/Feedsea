@@ -1,0 +1,157 @@
+﻿<Application
+    x:Class="Feedsea.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Feedsea"
+    xmlns:converters="using:Feedsea.Common.Converters"
+    RequestedTheme="Light">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <SolidColorBrush x:Key="ThemeMainColor" Color="#1A74B8" />
+                    <SolidColorBrush x:Key="ThemeSecondaryColor" Color="#34495E" />
+
+                    <SolidColorBrush x:Key="PageBackgroundColor" Color="#EAEAEA" />
+                    <SolidColorBrush x:Key="DefaultTextColor" Color="#000000" />
+
+                    <SolidColorBrush x:Key="CardBackgroundColor" Color="#FFFFFF" />
+                    <SolidColorBrush x:Key="CardForegroundColor" Color="#000000" />
+                    <SolidColorBrush x:Key="CardSecondaryForegroundColor" Color="#A0A0A0" />
+
+                    <SolidColorBrush x:Key="PanelBackgroundColor" Color="#333333" />
+                    <SolidColorBrush x:Key="PanelSecondaryColor" Color="#212121" />
+                    <SolidColorBrush x:Key="PanelForegroundColor" Color="#CCCCCC" />
+                    <SolidColorBrush x:Key="PanelSymbolColor" Color="#FFFFFF" />
+
+                    <SolidColorBrush x:Key="CommandBarBackgroundColor" Color="#DDDDDD" />
+                    <SolidColorBrush x:Key="CommandBarForegroundColor" Color="#34495E" />
+                    
+                    <SolidColorBrush x:Key="WelcomeScreenTextColor" Color="#FFFFFF" />
+
+                    <Color x:Key="TitleBarBackground">#1A74B8</Color>
+                    <Color x:Key="TitleBarForeground">#FFFFFF</Color>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+
+            <local:ViewModelLocator x:Key="ViewModels" />
+            
+            <converters:HasStringToVisibilityConverter x:Key="HasStringToVisibility" />
+            <converters:UrlToFaviconConverter x:Key="UrlToFavicon" />
+            <converters:LimitTextLengthConverter x:Key="LimitTextLength" />
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibility" />
+            <converters:BoolToOpacityConverter x:Key="BoolToOpacity" />
+            <converters:EnumToBoolConverter x:Key="EnumToBool" />
+            <converters:TimeAgoConverter x:Key="TimeAgo" />
+            <converters:IntToCharConverter x:Key="IntToChar" />
+
+            <Style TargetType="CommandBar">
+                <Setter Property="Background" Value="{ThemeResource CommandBarBackgroundColor}" />
+                <Setter Property="Foreground" Value="{ThemeResource CommandBarForegroundColor}" />
+            </Style>
+
+            <ControlTemplate x:Key="SplitViewTogglePaneButtonTemplate" TargetType="Button">
+                <Grid x:Name="RootGrid" Background="{TemplateBinding Background}">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Target="RootGrid.Background" Value="{ThemeResource ThemeSecondaryColor}" />
+                                    <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PanelSymbolColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Target="RootGrid.Background" Value="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}" />
+                                    <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource SystemControlHighlightBaseMediumBrush}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource SystemControlForegroundBaseLowBrush}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+
+                    <ContentPresenter
+                                      x:Name="ContentPresenter"
+                                      Padding="{TemplateBinding Padding}"
+                                      BorderBrush="{TemplateBinding BorderBrush}"
+                                      BorderThickness="{TemplateBinding BorderThickness}"
+                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      AutomationProperties.AccessibilityView="Raw"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      ContentTransitions="{TemplateBinding ContentTransitions}" />
+                </Grid>
+            </ControlTemplate>
+
+            <Style x:Key="AppHeaderButton" TargetType="Button">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="{ThemeResource PanelSymbolColor}" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="UseSystemFocusVisuals" Value="True" />
+
+                <Setter Property="FontFamily" Value="{ThemeResource SymbolThemeFontFamily}" />
+                <Setter Property="Content" Value="&#xE700;" />
+                <Setter Property="Height" Value="42" />
+                <Setter Property="Width" Value="42" />
+
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Template" Value="{StaticResource SplitViewTogglePaneButtonTemplate}" />
+            </Style>
+
+            <Style x:Key="ArticleActionButton" TargetType="Button">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="{ThemeResource CardForegroundColor}" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="UseSystemFocusVisuals" Value="True" />
+                <Setter Property="Height" Value="14" />
+                <Setter Property="Width" Value="14" />
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Template" Value="{StaticResource SplitViewTogglePaneButtonTemplate}" />
+            </Style>
+
+            <Style x:Key="MainMenuItemContainerStyle" TargetType="ListViewItem">
+                <Setter Property="MinWidth" Value="42"/>
+                <Setter Property="Height" Value="42" />
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="MinHeight" Value="42" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            </Style>
+
+            <!--Kill this?-->
+            <Style x:Key="MainMenuSecondaryItemContainerStyle" TargetType="ListViewItem">
+                <Setter Property="MinWidth" Value="42"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="MinHeight" Value="0" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            </Style>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/AppTexts.xaml" />
+                <ResourceDictionary Source="/Resources/DataTemplates.xaml" />
+                <ResourceDictionary Source="/Resources/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

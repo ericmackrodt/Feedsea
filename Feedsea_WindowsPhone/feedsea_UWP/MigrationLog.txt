@@ -1,0 +1,2 @@
+Handled exception: Project C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\feedsea.csproj needs to be built before processing it. Target Path:C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\Bin\x86\Release\feedsea.dll cannot be located.. Current file 'C:\Users\ericm\Projects\_GitHub\Feedsea\Feedsea_WindowsPhone\feedsea\feedsea.csproj'.
+   at Artinsoft.CSharp.Tasks.LoadProjectsTask.ExcludeProjects(ITaskItem[] projects, ITaskItem[] projectsToExclude)

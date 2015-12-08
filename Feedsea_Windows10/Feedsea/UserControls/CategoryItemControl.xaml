@@ -1,0 +1,61 @@
+﻿<UserControl
+    x:Class="Feedsea.UserControls.CategoryItemControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Feedsea.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <Style x:Key="SourceListViewItemStyle" TargetType="ListViewItem">
+            <Setter Property="MinWidth" Value="42" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="MinHeight" Value="0" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+
+        <Storyboard x:Name="OpenStoryboard">
+            <DoubleAnimation x:Name="OpenAnim" Storyboard.TargetName="LstSubscriptions" Storyboard.TargetProperty="Height" From="0" Duration="0:0:0.2" EnableDependentAnimation="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation x:Name="FadeOpen" Storyboard.TargetName="LstSubscriptions" Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:0.2" Duration="0:0:0.2" EnableDependentAnimation="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="CloseStoryboard">
+            <DoubleAnimation x:Name="FadeClose" Storyboard.TargetName="LstSubscriptions" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.2" EnableDependentAnimation="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation x:Name="CloseAnim" Storyboard.TargetName="LstSubscriptions" Storyboard.TargetProperty="Height" To="0" BeginTime="0:0:0.2" Duration="0:0:0.2" EnableDependentAnimation="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <ListViewItem x:Name="CategoryItem" Grid.Row="0" ContentTemplate="{StaticResource CategoryTemplate}" Style="{StaticResource SourceListViewItemStyle}"
+                      Tapped="ListViewItem_Tapped"/>
+
+        <ListView Grid.Row="1" VerticalAlignment="Top" x:Name="LstSubscriptions" ItemTemplate="{StaticResource SubscriptionTemplate}" ItemsSource="{Binding Path=Category.Subscriptions}"
+                  ItemContainerStyle="{StaticResource SourceListViewItemStyle}"
+                  SelectionChanged="LstSubscriptions_SelectionChanged"
+                  ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollMode="Disabled"/>
+
+    </Grid>
+</UserControl>

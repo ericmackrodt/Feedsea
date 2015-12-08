@@ -1,0 +1,19 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="ClearTheme/AppColors.xaml" />
+    <ResourceDictionary Source="ClearTheme/AppTexts.xaml" />
+    <ResourceDictionary Source="ClearTheme/Borders.xaml" />
+    <ResourceDictionary Source="ClearTheme/Buttons.xaml" />
+    <ResourceDictionary Source="ClearTheme/CheckBox.xaml" />
+    <ResourceDictionary Source="ClearTheme/HyperLinkButtons.xaml" />
+    <ResourceDictionary Source="ClearTheme/Image.xaml" />
+    <ResourceDictionary Source="ClearTheme/ListPicker.xaml" />
+    <ResourceDictionary Source="ClearTheme/LongListSelector.xaml" />
+    <ResourceDictionary Source="ClearTheme/PhoneTextBox.xaml" />
+    <ResourceDictionary Source="ClearTheme/Telerik.xaml" />
+    <ResourceDictionary Source="ClearTheme/TextBox.xaml" />
+    <ResourceDictionary Source="ClearTheme/PhoneApplicationPage.xaml" />
+    <ResourceDictionary Source="ClearTheme/DataTemplates.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+  <ImageBrush x:Key="DefaultPageBackground" ImageSource="../Assets/Background.jpg" Stretch="UniformToFill" />
+</ResourceDictionary>

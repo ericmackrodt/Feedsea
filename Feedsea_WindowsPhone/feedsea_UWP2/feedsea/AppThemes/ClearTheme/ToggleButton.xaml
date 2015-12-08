@@ -1,0 +1,113 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="AppColors.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+  <Style x:Key="IsReadToggleSwitch" TargetType="ToggleButton">
+    <Setter Property="Width" Value="34" />
+    <Setter Property="Height" Value="34" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Background)" Storyboard.TargetName="ButtonBackground">
+                      <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                          <ImageBrush ImageSource="../Assets/Icons/eye-gray.png" AlignmentX="Center" AlignmentY="Center" />
+                        </DiscreteObjectKeyFrame.Value>
+                      </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Checked">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Background)" Storyboard.TargetName="ButtonBackground">
+                      <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                          <ImageBrush ImageSource="../Assets/Icons/eye-blue.png" AlignmentX="Center" AlignmentY="Center" />
+                        </DiscreteObjectKeyFrame.Value>
+                      </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Disabled">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Background)" Storyboard.TargetName="ButtonBackground">
+                      <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                          <ImageBrush ImageSource="../Assets/Icons/eye-gray.png" AlignmentX="Center" AlignmentY="Center" />
+                        </DiscreteObjectKeyFrame.Value>
+                      </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="ButtonBackground" Width="24" Height="24" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+              <ContentControl x:Name="ContentContainer" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="FavoriteToggleSwitch" TargetType="ToggleButton">
+    <Setter Property="Width" Value="34" />
+    <Setter Property="Height" Value="34" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Background)" Storyboard.TargetName="ButtonBackground">
+                      <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                          <ImageBrush ImageSource="../Assets/Icons/star-gray.png" AlignmentX="Center" AlignmentY="Center" />
+                        </DiscreteObjectKeyFrame.Value>
+                      </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Checked">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Background)" Storyboard.TargetName="ButtonBackground">
+                      <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                          <ImageBrush ImageSource="../Assets/Icons/star-blue.png" AlignmentX="Center" AlignmentY="Center" />
+                        </DiscreteObjectKeyFrame.Value>
+                      </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Disabled">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Background)" Storyboard.TargetName="ButtonBackground">
+                      <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                          <ImageBrush ImageSource="../Assets/Icons/star-gray.png" AlignmentX="Center" AlignmentY="Center" />
+                        </DiscreteObjectKeyFrame.Value>
+                      </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="ButtonBackground" Width="24" Height="24" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+              <ContentControl x:Name="ContentContainer" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

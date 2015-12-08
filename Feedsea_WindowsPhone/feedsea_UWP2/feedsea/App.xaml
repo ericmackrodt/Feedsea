@@ -1,0 +1,85 @@
+<Application x:Class="feedsea.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="using:System" xmlns:common="using:feedsea.Common" xmlns:converters="using:feedsea.Common.MVVM.Converters" xmlns:converterslocal="using:feedsea.Common.Converters" xmlns:local="using:feedsea" xmlns:vm="using:feedsea.ViewModels" xmlns:appThemes="using:feedsea.AppThemes" mc:Ignorable="d" xmlns:p1="clr-namespace:feedsea.AppThemes">
+  <!--Application Resources-->
+  <Application.Resources>
+    <ResourceDictionary>
+      <local:LocalizedStrings x:Key="LocalizedStrings" />
+      <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
+      <common:MultiResolutionImageChooser x:Key="MultiResImages" />
+      <converterslocal:TimeAgoConverter x:Key="TimeAgoConverter" />
+      <converters:HasStringToVisibility x:Key="HasStringToVisibility" />
+      <converters:BoolToVisibility x:Key="BoolToVisibility" />
+      <converters:NotConverter x:Key="Not" />
+      <converters:NotBoolToVisibility x:Key="NotBoolToVisibility" />
+      <converters:BoolToOpacity x:Key="BoolToOpacity" />
+      <converters:IntToVisibility x:Key="IntToVisibility" />
+      <converters:SpecificIntToVisibility x:Key="SpecificIntToVisibility" />
+      <converters:HasItemsToVisibility x:Key="HasItemsToVisibility" />
+      <converters:NullToVisibility x:Key="NullToVisibility" />
+      <converters:NotHasItemsToBool x:Key="NotHasItemsToBool" />
+      <converterslocal:IsoStorageImageConverter x:Key="IsoStorageImageConverter" />
+      <converterslocal:UrlToFaviconConverter x:Key="UrlToFaviconConverter" />
+      <converterslocal:LimitTextLengthConverter x:Key="LimitTextLength" />
+      <converterslocal:BoolToApplicationBarMode x:Key="BoolToApplicationBarMode" />
+      <!--<Style TargetType="ScrollViewer">
+                <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+                <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ScrollViewer">
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup p17:Name="ScrollStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition GeneratedDuration="00:00:00.5" />
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState p17:Name="Scrolling">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="VerticalScrollBar" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                                                <DoubleAnimation Storyboard.TargetName="HorizontalScrollBar" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState p17:Name="NotScrolling"></VisualState>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup p17:Name="VerticalCompression">
+                                        <VisualState p17:Name="NoVerticalCompression" />
+                                        <VisualState p17:Name="CompressionTop" />
+                                        <VisualState p17:Name="CompressionBottom" />
+                                    </VisualStateGroup>
+                                    <VisualStateGroup p17:Name="HorizontalCompression">
+                                        <VisualState p17:Name="NoHorizontalCompression" />
+                                        <VisualState p17:Name="CompressionLeft" />
+                                        <VisualState p17:Name="CompressionRight" />
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Grid Margin="{TemplateBinding Padding}">
+                                    <ScrollContentPresenter p17:Name="ScrollContentPresenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" xmlns:p17="http://schemas.microsoft.com/winfx/2006/xaml" />
+                                    <ScrollBar p17:Name="VerticalScrollBar" IsHitTestVisible="False" Height="Auto" Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" IsTabStop="False" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Value="{TemplateBinding VerticalOffset}" Orientation="Vertical" ViewportSize="{TemplateBinding ViewportHeight}" xmlns:p17="http://schemas.microsoft.com/winfx/2006/xaml" />
+                                    <ScrollBar p17:Name="HorizontalScrollBar" IsHitTestVisible="False" Width="Auto" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" IsTabStop="False" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Value="{TemplateBinding HorizontalOffset}" Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" xmlns:p17="http://schemas.microsoft.com/winfx/2006/xaml" />
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>-->
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="AppThemes/DarkTheme.xaml" />
+        <appThemes:ThemeResourceDictionary>
+          <p1:ThemeResourceDictionary.DefaultResources>
+            <ResourceDictionary Source="AppThemes/ClearTheme.xaml" />
+          </p1:ThemeResourceDictionary.DefaultResources>
+          <p1:ThemeResourceDictionary.DarkResources>
+            <ResourceDictionary Source="AppThemes/DarkTheme.xaml" />
+          </p1:ThemeResourceDictionary.DarkResources>
+        </appThemes:ThemeResourceDictionary>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+  <!--<Application.ApplicationLifetimeObjects xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <!- -Required object that handles lifetime events for the application- ->
+  <shell:PhoneApplicationService Launching="Application_Launching" Closing="Application_Closing" Activated="Application_Activated" Deactivated="Application_Deactivated" xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" />
+</Application.ApplicationLifetimeObjects>-->
+</Application>

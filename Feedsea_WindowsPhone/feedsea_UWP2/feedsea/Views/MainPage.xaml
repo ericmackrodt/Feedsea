@@ -1,0 +1,159 @@
+<Page x:Class="feedsea.Views.MainPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="using:System.Windows.Interactivity" xmlns:telerikCore="using:Telerik.Windows.Controls" xmlns:telerikPrimitives="using:Telerik.Windows.Controls" xmlns:controls="using:SlideView.Library" xmlns:cimbalino="using:Cimbalino.Phone.Toolkit.Behaviors" xmlns:cc="using:feedsea.Common.Controls" xmlns:uc="using:feedsea.UserControls" xmlns:commonlocal="using:feedsea.Common" xmlns:mvvmlight="using:GalaSoft.MvvmLight.Command" xmlns:WindowsPhone8="using:Microsoft.AdMediator.WindowsPhone8" DataContext="{Binding Source={StaticResource Locator}, Path=MainPage}" xmlns:dvm="using:feedsea.ViewModels.DesignTimeViewModels" d:DataContext="{d:DesignInstance Type=dvm:MainDesignViewModel, IsDesignTimeCreatable=True}" Style="{StaticResource SlidePage}" mc:Ignorable="d" p5:SystemTray.ForegroundColor="{StaticResource SystemBarForegroundColor}" xmlns:p1="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives" xmlns:p2="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core" xmlns:p3="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:p4="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit" xmlns:p5="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
+  <!--LayoutRoot is the root grid where all page content is placed-->
+  <Page.Resources>
+    <DataTemplate x:Key="ArticleItemTemplate">
+      <Grid x:Name="ArticleRoot" Margin="15,15,15,0">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource ContentArea}" />
+        <Grid Grid.Row="0" Margin="15,10,10,0">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+          </Grid.ColumnDefinitions>
+          <Image Grid.Column="0" Source="{Binding Path=Source.Link, Converter={StaticResource UrlToFaviconConverter}, ConverterParameter=../../Assets/Icons/source-icon.png}" VerticalAlignment="Center" Height="24" Margin="0,0,10,0" />
+          <TextBlock Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource ArticleItemSourceAndTime}" Text="{Binding Date, Converter={StaticResource TimeAgoConverter}}" />
+          <TextBlock Grid.Column="2" VerticalAlignment="Center" Style="{StaticResource ArticleItemSourceAndTime}" Text=" - " />
+          <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource ArticleItemSourceAndTime}" Text="{Binding Path=Source.Name}" />
+          <ToggleButton Grid.Row="0" Grid.Column="4" Margin="10,0,0,0" Style="{StaticResource IsReadToggleSwitch}" IsChecked="{Binding IsRead}" Command="{Binding Path=DataContext.ToggleArticleReadCommand, ElementName=MainView}" CommandParameter="{Binding}" />
+          <ToggleButton Grid.Row="0" Grid.Column="5" Margin="10,0,0,0" Style="{StaticResource FavoriteToggleSwitch}" IsChecked="{Binding IsFavorite}" Command="{Binding Path=DataContext.AddToFavoritesCommand, ElementName=MainView}" CommandParameter="{Binding}" />
+          <Button x:Name="BtnShareArticle" Grid.Row="0" Grid.Column="6" Margin="10,0,0,0" Width="34" Height="34" Style="{StaticResource ClearButton}" Click="BtnShareArticle_Click">
+            <Image Source="../Assets/Icons/share.png" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center" />
+          </Button>
+        </Grid>
+        <commonlocal:ArticleItemTemplateSelector Grid.Row="1" Content="{Binding}" Selector="{Binding Path=DataContext.ArticleTemplateType, ElementName=MainView}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" NormalTemplate="{StaticResource ArticleItemTemplate}" NormalTemplateNoImage="{StaticResource ArticleItemNoImageTemplate}" SmallTemplate="{StaticResource ArticleItemSmallTemplate}" SmallTemplateNoImage="{StaticResource ArticleItemSmallNoImageTemplate}" Opacity="{Binding IsRead, Converter={StaticResource BoolToOpacity}, ConverterParameter=0.5}" Tap="ArticleItemTemplateSelector_Tap" />
+      </Grid>
+    </DataTemplate>
+  </Page.Resources>
+  <Grid x:Name="LayoutRoot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <controls:SlideView x:Name="MainSlideView" SelectionChanged="LayoutRoot_SelectionChanged">
+      <!--Main View-->
+      <Grid x:Name="MainView">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--Application Header-->
+        <Grid x:Name="HeaderGrid" Grid.Row="0" Background="{StaticResource ThemeSecondaryColor}">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+          </Grid.RowDefinitions>
+          <Rectangle Height="25" Visibility="{Binding Path=ApplicationFrame.ShowAppTray, Source={StaticResource Locator}, Converter={StaticResource BoolToVisibility}}" />
+          <Grid Grid.Row="1" Margin="15,0,15,0" VerticalAlignment="Center" Height="60">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Grid.Row="1" Source="../Assets/logo-white.png" Margin="0" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <!--<Button Margin="0,0,10,0" Grid.Column="1" Grid.Row="1" x:Name="FavoritesButton" 
+                                Style="{StaticResource ClearButton}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Command="{Binding LoadSavedArticlesCommand}">
+                            <Image Source="../Assets/Icons/fav-folder-white.png" Stretch="Fill" Width="36" Height="36" />
+                        </Button>-->
+            <Button Margin="0" Grid.Column="1" Grid.Row="1" x:Name="BtnSidebar" Style="{StaticResource ClearButton}" VerticalAlignment="Center" HorizontalAlignment="Center" Click="BtnSidebar_Click">
+              <Image Source="../Assets/Icons/sidebar-menu-icon-white.png" Stretch="Fill" Width="36" Height="36" />
+            </Button>
+          </Grid>
+          <uc:SelectedSourceControl Visibility="Collapsed" Grid.Row="2" />
+        </Grid>
+        <telerikPrimitives:RadDataBoundListBox Grid.Row="1" Margin="0" UseOptimizedManipulationRouting="False" x:Name="ArticleList" ItemsSource="{Binding Articles}" IsPullToRefreshEnabled="True" DataVirtualizationMode="OnDemandAutomatic" ItemStateChanged="ArticleList_ItemStateChanged" PullToRefreshIndicatorStyle="{StaticResource PullToRefreshIndicator}" EmptyContentDisplayMode="Always" ScrollStateChanged="ArticleList_ScrollStateChanged" RefreshRequested="ArticleList_RefreshRequested" ItemTemplate="{StaticResource ArticleItemTemplate}">
+          <p1:RadDataBoundListBox.EmptyContent>
+            <!--ItemTemplate="{StaticResource ArticleItemTemplateSelector}"-->
+            <Grid Width="480" VerticalAlignment="Top" Margin="0">
+              <uc:ConditionalMessageCommandControl Message="{Binding Path=LocalizedResources.Msg_NoArticlesAvailable, Source={StaticResource LocalizedStrings}}" ImageSource="../Assets/Icons/refresh.icon.png" ButtonCommand="{Binding RefreshCommand}" DisableButton="{Binding IsBusy}" Condition="{Binding IsBusy, Converter={StaticResource Not}}" Visibility="Visible" />
+            </Grid>
+          </p1:RadDataBoundListBox.EmptyContent>
+          <p1:RadDataBoundListBox.ItemLoadingTemplate>
+            <DataTemplate>
+              <Grid Margin="15,15,15,75">
+                <ProgressBar IsIndeterminate="True" Foreground="{StaticResource ThemeMainColor}" Visibility="{Binding Path=DataContext.PaginationBusy, Converter={StaticResource BoolToVisibility}, ElementName=MainSlideView}" />
+              </Grid>
+            </DataTemplate>
+          </p1:RadDataBoundListBox.ItemLoadingTemplate>
+          <p1:RadDataBoundListBox.ItemAddedAnimation>
+            <telerikPrimitives:RadFadeAnimation StartOpacity="0" EndOpacity="1" Duration="0:0:0.7">
+              <p2:RadFadeAnimation.Easing>
+                <CubicEase EasingMode="EaseOut" />
+              </p2:RadFadeAnimation.Easing>
+            </telerikPrimitives:RadFadeAnimation>
+          </p1:RadDataBoundListBox.ItemAddedAnimation>
+          <p1:RadDataBoundListBox.ItemRemovedAnimation>
+            <telerikPrimitives:RadFadeAnimation StartOpacity="1" EndOpacity="0" Duration="0:0:0.5">
+              <p2:RadFadeAnimation.Easing>
+                <CubicEase EasingMode="EaseOut" />
+              </p2:RadFadeAnimation.Easing>
+            </telerikPrimitives:RadFadeAnimation>
+          </p1:RadDataBoundListBox.ItemRemovedAnimation>
+          <p3:Interaction.Triggers>
+            <i:EventTrigger EventName="DataRequested">
+              <mvvmlight:EventToCommand Command="{Binding LoadMoreItemsCommand}" />
+            </i:EventTrigger>
+          </p3:Interaction.Triggers>
+        </telerikPrimitives:RadDataBoundListBox>
+        <uc:LoadingIndicatorControl x:Name="LoadingControl" VerticalAlignment="Top" Grid.Row="1" Visibility="Collapsed" IsBusy="{Binding IsBusy}" />
+      </Grid>
+      <!--Sidebar View-->
+      <Grid x:Name="SideBar" Width="410" Background="{StaticResource PanelBackgroundColor}">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="*" />
+          <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+          </Grid.RowDefinitions>
+          <Rectangle Height="25" Visibility="{Binding Path=ApplicationFrame.ShowAppTray, Source={StaticResource Locator}, Converter={StaticResource BoolToVisibility}}" />
+          <Border Grid.Row="1" BorderThickness="0,0,0,1" BorderBrush="{StaticResource PanelSecondaryColor}">
+            <uc:LoggedUserControl />
+          </Border>
+        </Grid>
+        <ScrollViewer Grid.Row="1" Margin="0" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
+          <StackPanel Orientation="Vertical">
+            <telerikPrimitives:RadImageButton x:Name="BtnAllArticles" Margin="20,20,20,10" Style="{StaticResource HorizontalImageButton}" RestStateImageSource="/Assets/Icons/all-articles-white.png" Command="{Binding LoadAllArticlesCommand}">
+              <TextBlock Text="{Binding Path=LocalizedResources.AllArticles, Source={StaticResource LocalizedStrings}}" Style="{StaticResource SourceItemName}" />
+              <!--p0:TiltEffect.IsTiltEnabled="True"-->
+            </telerikPrimitives:RadImageButton>
+            <telerikPrimitives:RadImageButton x:Name="BtnSavedForLater" Margin="20,10,20,10" Style="{StaticResource HorizontalImageButton}" RestStateImageSource="/Assets/Icons/fav-folder-white.png" Command="{Binding LoadSavedArticlesCommand}">
+              <TextBlock Text="{Binding Path=LocalizedResources.SavedForLater, Source={StaticResource LocalizedStrings}}" Style="{StaticResource SourceItemName}" />
+              <!--p0:TiltEffect.IsTiltEnabled="True"-->
+            </telerikPrimitives:RadImageButton>
+            <Border Grid.Row="1" Margin="0,5,0,0" BorderThickness="0,0,0,1" BorderBrush="{StaticResource PanelSecondaryColor}">
+              <TextBlock Margin="20,10" Text="{Binding Path=LocalizedResources.Subscriptions, Source={StaticResource LocalizedStrings}}" Style="{StaticResource SourceHeaderUserName}" />
+            </Border>
+            <ItemsControl x:Name="sourceList" ItemsSource="{Binding Sources}" ItemTemplate="{StaticResource CategoryItemTemplate}" />
+          </StackPanel>
+        </ScrollViewer>
+        <WindowsPhone8:AdMediatorControl Grid.Row="2" x:Name="AdMediator_MainPageSidebar" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="{Binding IsAdsEnabled}" Visibility="{Binding IsAdsEnabled, Converter={StaticResource BoolToVisibility}}" Height="80" Id="AdMediator-Id-B86867D7-F515-40B5-AFDA-03AB7D73CE0C" VerticalAlignment="Center" />
+      </Grid>
+    </controls:SlideView>
+  </Grid>
+  <p3:Interaction.Behaviors>
+    <cimbalino:ApplicationBarBehavior x:Name="appBar" IsVisible="{Binding IsDataLoaded, Converter={StaticResource NotBoolToVisibility}}" Opacity="0.8" BackgroundColor="{StaticResource ApplicationBarBackgroundColor}" ForegroundColor="{StaticResource ApplicationBarForegroundColor}" Mode="{Binding Path=ApplicationFrame.HideAppBarOnMainPage, Source={StaticResource Locator}, Converter={StaticResource BoolToApplicationBarMode}}">
+      <cimbalino:ApplicationBarIconButton IconUri="Assets/Icons/sync.png" Command="{Binding RefreshCommand}" Text="{Binding Path=LocalizedResources.Refresh, Source={StaticResource LocalizedStrings}}" />
+      <cimbalino:ApplicationBarIconButton IconUri="Assets/Icons/manage.png" Command="{Binding MarkReadCommand}" Text="{Binding Path=LocalizedResources.MarkAllRead, Source={StaticResource LocalizedStrings}}" />
+      <cimbalino:ApplicationBarIconButton IconUri="Assets/Icons/appbar.arrow.up.png" Click="BackToTop_Click" Text="{Binding Path=LocalizedResources.BackToTop, Source={StaticResource LocalizedStrings}}" IsEnabled="{Binding IsBusy, Converter={StaticResource Not}}" />
+      <!--<cimbalino:ApplicationBarIconButton IconUri="Assets/Icons/feature.settings.png" Click="GoToSettings_Click" Text="{Binding Path=LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}" />-->
+      <p4:ApplicationBarBehavior.MenuItems>
+        <cimbalino:ApplicationBarMenuItem Text="{Binding Path=LocalizedResources.DisableAds, Source={StaticResource LocalizedStrings}}" IsVisible="{Binding IsAdsEnabled}" Command="{Binding DisableAdsCommand}" />
+        <cimbalino:ApplicationBarMenuItem x:Name="MnuAddSource" Text="{Binding Path=LocalizedResources.AddSource, Source={StaticResource LocalizedStrings}}" Click="MnuAddSource_Click" />
+        <cimbalino:ApplicationBarMenuItem x:Name="MnuSettings" Text="{Binding Path=LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}" Click="MnuSettings_Click" />
+      </p4:ApplicationBarBehavior.MenuItems>
+    </cimbalino:ApplicationBarBehavior>
+  </p3:Interaction.Behaviors>
+  <!--FontSize="{StaticResource PhoneFontSizeNormal}"-->
+  <!--SupportedOrientations="Portrait"-->
+  <!--Orientation="Portrait"-->
+  <!--shell:SystemTray.Opacity="0"-->
+  <!--shell:SystemTray.IsVisible="{Binding Path=ApplicationFrame.ShowAppTray, Source={StaticResource Locator}}"-->
+</Page>

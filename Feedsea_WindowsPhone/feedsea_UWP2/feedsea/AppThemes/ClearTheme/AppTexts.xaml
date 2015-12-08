@@ -1,0 +1,110 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <!--Clear Theme-->
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="AppColors.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+  <Style x:Key="BaseText" TargetType="TextBlock">
+    <Setter Property="Foreground" Value="{StaticResource DefaultTextColor}" />
+    <Setter Property="FontFamily" Value="Segoe WP" />
+    <Setter Property="FontSize" Value="32" />
+    <Setter Property="FontWeight" Value="Normal" />
+  </Style>
+  <Style x:Key="BasicThemeText" TargetType="TextBlock" BasedOn="{StaticResource BaseText}">
+    <Setter Property="Foreground" Value="{StaticResource ThemeMainColor}" />
+  </Style>
+  <Style x:Key="BaseArticleTitle" TargetType="TextBlock">
+    <Setter Property="Foreground" Value="{StaticResource DefaultTextColor}" />
+    <Setter Property="FontFamily" Value="Cambria" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+    <Setter Property="FontWeight" Value="Bold" />
+    <Setter Property="FontSize" Value="24" />
+  </Style>
+  <Style x:Key="BaseArticleText" TargetType="TextBlock">
+    <Setter Property="Foreground" Value="{StaticResource DefaultTextColor}" />
+    <Setter Property="FontFamily" Value="Segoe WP" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+    <Setter Property="FontWeight" Value="Normal" />
+    <Setter Property="FontSize" Value="24" />
+  </Style>
+  <Style x:Key="PageHeaderText" TargetType="TextBlock" BasedOn="{StaticResource BaseText}">
+    <Setter Property="Foreground" Value="{StaticResource DefaultBackgroundColor}" />
+    <Setter Property="FontSize" Value="20" />
+  </Style>
+  <Style x:Key="ArticleItemDescription" TargetType="TextBlock" BasedOn="{StaticResource BaseArticleText}">
+    <Setter Property="FontSize" Value="20" />
+    <Setter Property="MaxHeight" Value="105" />
+  </Style>
+  <Style x:Key="SmallArticleItemTitle" TargetType="TextBlock" BasedOn="{StaticResource BaseArticleTitle}">
+    <Setter Property="FontSize" Value="20" />
+    <Setter Property="FontWeight" Value="Bold" />
+  </Style>
+  <Style x:Key="ThemeColorLabel" TargetType="TextBlock" BasedOn="{StaticResource BasicThemeText}">
+    <Setter Property="Foreground" Value="{StaticResource ThemeMainColor}" />
+    <Setter Property="FontSize" Value="20" />
+  </Style>
+  <Style x:Key="BaseSourceText" TargetType="TextBlock" BasedOn="{StaticResource BaseText}">
+    <Setter Property="Foreground" Value="{StaticResource SidebaMenuTextColor}" />
+    <Setter Property="FontSize" Value="22" />
+  </Style>
+  <Style x:Key="ArticleItemSourceAndTime" TargetType="TextBlock" BasedOn="{StaticResource BaseSourceText}">
+    <Setter Property="Foreground" Value="{StaticResource SecondaryTextColor}" />
+    <Setter Property="FontSize" Value="18" />
+  </Style>
+  <Style x:Key="SourceHeaderUserName" TargetType="TextBlock" BasedOn="{StaticResource BaseSourceText}">
+    <Setter Property="FontWeight" Value="Bold" />
+    <Setter Property="FontSize" Value="22" />
+  </Style>
+  <Style x:Key="SourceHeaderService" TargetType="TextBlock" BasedOn="{StaticResource BaseSourceText}">
+    <Setter Property="FontWeight" Value="Normal" />
+    <Setter Property="FontSize" Value="16" />
+  </Style>
+  <Style x:Key="SidebarSubscriptionsTitle" TargetType="TextBlock" BasedOn="{StaticResource BaseSourceText}">
+    <Setter Property="FontWeight" Value="Bold" />
+    <Setter Property="FontSize" Value="22" />
+  </Style>
+  <Style x:Key="SourceHeaderText" TargetType="TextBlock" BasedOn="{StaticResource BaseSourceText}">
+    <Setter Property="FontSize" Value="26" />
+  </Style>
+  <Style x:Key="CategoryItemTitle" TargetType="TextBlock" BasedOn="{StaticResource BaseSourceText}">
+    <Setter Property="FontWeight" Value="Bold" />
+    <Setter Property="FontSize" Value="22" />
+  </Style>
+  <Style x:Key="SourceItemName" TargetType="TextBlock" BasedOn="{StaticResource BaseSourceText}"></Style>
+  <Style x:Key="SelectedSourceName" TargetType="TextBlock" BasedOn="{StaticResource BaseSourceText}">
+    <Setter Property="Foreground" Value="{StaticResource DefaultTextColor}" />
+    <Setter Property="FontSize" Value="18" />
+  </Style>
+  <Style x:Key="UnreadNumber" TargetType="TextBlock" BasedOn="{StaticResource BaseText}">
+    <Setter Property="Foreground" Value="{StaticResource DefaultBackgroundColor}" />
+    <Setter Property="FontWeight" Value="Normal" />
+    <Setter Property="FontSize" Value="20" />
+  </Style>
+  <!--Forms-->
+  <Style x:Key="DefaultFieldLabel" TargetType="TextBlock" BasedOn="{StaticResource BaseText}">
+    <Setter Property="FontSize" Value="20" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+  </Style>
+  <Style x:Key="LoadingLabel" TargetType="TextBlock" BasedOn="{StaticResource DefaultFieldLabel}">
+    <Setter Property="Foreground" Value="{StaticResource DefaultBackgroundColor}" />
+  </Style>
+  <Style x:Key="DefaultSettingsHeader" TargetType="TextBlock" BasedOn="{StaticResource BaseText}">
+    <Setter Property="FontSize" Value="36" />
+    <Setter Property="Foreground" Value="{StaticResource ThemeMainColor}" />
+  </Style>
+  <Style x:Key="SourceItemTags" TargetType="TextBlock" BasedOn="{StaticResource BaseText}">
+    <Setter Property="Foreground" Value="{StaticResource ThemeMainColor}" />
+    <Setter Property="FontSize" Value="18" />
+  </Style>
+  <Style x:Key="ListPickerItem" TargetType="TextBlock" BasedOn="{StaticResource BaseText}">
+    <Setter Property="Foreground" Value="{StaticResource DefaultBackgroundColor}" />
+    <Setter Property="FontSize" Value="26" />
+  </Style>
+  <!-- Settings -->
+  <Style x:Key="SettingsItemTitle" TargetType="TextBlock" BasedOn="{StaticResource BaseText}">
+    <Setter Property="Foreground" Value="{StaticResource ThemeMainColor}" />
+  </Style>
+  <Style x:Key="SettingsItemSummary" TargetType="TextBlock" BasedOn="{StaticResource BaseText}">
+    <Setter Property="FontSize" Value="20" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+  </Style>
+</ResourceDictionary>

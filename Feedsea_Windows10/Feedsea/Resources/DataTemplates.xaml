@@ -1,0 +1,84 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:provider="using:Feedsea.Common.Providers.Data"
+    xmlns:local="using:Feedsea.Resources"
+    xmlns:helpers="using:Feedsea.Common.Helpers">
+
+    <Style x:Key="MenuItemText" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{ThemeResource PanelForegroundColor}" />
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+    <Style x:Key="MenuItemSubscriptionText" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{ThemeResource PanelForegroundColor}" />
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+
+    <DataTemplate x:Key="MenuItemTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="42" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <FontIcon x:Name="Glyph" FontSize="16" Glyph="{Binding SymbolAsChar}" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding Name}"
+                                              Foreground="{ThemeResource PanelSymbolColor}" />
+            <TextBlock x:Name="Text" Grid.Column="1" Text="{Binding Name}" Style="{StaticResource MenuItemText}"/>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="SubscriptionTemplate">
+        <Grid HorizontalAlignment="Stretch" Height="32" Margin="32,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="32" />
+            </Grid.ColumnDefinitions>
+            <Image Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,15,0"
+                       Source="{Binding Path=Link, Converter={StaticResource UrlToFavicon}}" />
+            <TextBlock x:Name="Text" Grid.Column="1" Text="{Binding Name}" Style="{StaticResource MenuItemSubscriptionText}" VerticalAlignment="Center" />
+            <TextBlock x:Name="UnreadCount" Grid.Column="2" Text="{Binding UnreadNumber}" VerticalAlignment="Center" HorizontalAlignment="Right"
+                       Style="{StaticResource MenuItemSubscriptionText}" />
+            <FlyoutBase.AttachedFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Text="Potato1" />
+                    <MenuFlyoutItem Text="Potato2" />
+                </MenuFlyout>
+            </FlyoutBase.AttachedFlyout>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="SubscriptionRootTemplate">
+        <Grid HorizontalAlignment="Stretch" Height="42">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="42" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="32" />
+            </Grid.ColumnDefinitions>
+            <Image Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,15,0"
+                       Source="{Binding Path=Link, Converter={StaticResource UrlToFavicon}}" />
+            <TextBlock x:Name="Text" Grid.Column="1" Text="{Binding Name}" Style="{StaticResource MenuItemSubscriptionText}" VerticalAlignment="Center" />
+            <TextBlock x:Name="UnreadCount" Grid.Column="2" Text="{Binding UnreadNumber}" VerticalAlignment="Center" HorizontalAlignment="Right"
+                       Style="{StaticResource MenuItemSubscriptionText}" />
+            <FlyoutBase.AttachedFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Text="Potato1" />
+                    <MenuFlyoutItem Text="Potato2" />
+                </MenuFlyout>
+            </FlyoutBase.AttachedFlyout>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="CategoryTemplate">
+        <Grid Height="42">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="42" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <ToggleButton Style="{StaticResource CategoryExpandToggleButton}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                          IsChecked="{Binding IsExpanded, Mode=TwoWay}" helpers:EmptyTapped.Attach="True" />
+            <!--<FontIcon x:Name="Glyph" FontSize="16" Glyph="" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding Name}"
+                                              Foreground="{ThemeResource PanelSymbolColor}"/>-->
+            <TextBlock x:Name="Text" Grid.Column="1" Text="{Binding Name}" Style="{StaticResource MenuItemText}" VerticalAlignment="Center" />
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

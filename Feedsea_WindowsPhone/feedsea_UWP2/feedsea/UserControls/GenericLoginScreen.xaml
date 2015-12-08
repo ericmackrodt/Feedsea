@@ -1,0 +1,16 @@
+<UserControl x:Class="feedsea.UserControls.GenericLoginScreen" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:telerikPrimitives="using:Telerik.Windows.Controls" xmlns:telerikTextBox="using:Telerik.Windows.Controls.PhoneTextBox" mc:Ignorable="d" d:DesignHeight="480" d:DesignWidth="480">
+  <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultPageBackgroundColor}">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <TextBlock x:Name="TxtTitle" Margin="10" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource BasicThemeText}" />
+    <telerikPrimitives:RadTextBox Grid.Row="1" Header="{Binding Path=LocalizedResources.Lbl_Username, Source={StaticResource LocalizedStrings}}" x:Name="TxtUsername" HeaderStyle="{StaticResource TextBoxHeaderStyle}" ClearButtonVisibility="Visible" />
+    <telerikPrimitives:RadPasswordBox Grid.Row="2" Header="{Binding Path=LocalizedResources.Lbl_Password, Source={StaticResource LocalizedStrings}}" x:Name="TxtPassword" HeaderStyle="{StaticResource TextBoxHeaderStyle}" ClearButtonVisibility="Visible" />
+    <Button x:Name="BtnLogin" Grid.Row="3" HorizontalAlignment="Center" Width="200" Style="{StaticResource ThemeButton}" Content="{Binding Path=LocalizedResources.Lbl_Login, Source={StaticResource LocalizedStrings}}" Click="BtnLogin_Click" />
+  </Grid>
+  <!--FontSize="{StaticResource PhoneFontSizeNormal}"-->
+</UserControl>

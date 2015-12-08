@@ -1,0 +1,52 @@
+<UserControl x:Class="feedsea.UserControls.MobilizerMenuControl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480">
+  <UserControl.Resources>
+    <Storyboard x:Name="OpeningAnimation">
+      <DoubleAnimation Duration="0:0:0.3" From="0.1" RepeatBehavior="1x" Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Opacity" To="1.0" EnableDependentAnimation="True">
+        <DoubleAnimation.EasingFunction>
+          <ExponentialEase EasingMode="EaseOut" />
+        </DoubleAnimation.EasingFunction>
+      </DoubleAnimation>
+      <DoubleAnimation Duration="0:0:0.3" From="0" RepeatBehavior="1x" Storyboard.TargetName="OptionsGrid" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" To="1" EnableDependentAnimation="True">
+        <DoubleAnimation.EasingFunction>
+          <ExponentialEase EasingMode="EaseOut" />
+        </DoubleAnimation.EasingFunction>
+      </DoubleAnimation>
+    </Storyboard>
+    <Storyboard x:Name="ClosingAnimation">
+      <DoubleAnimation Duration="0:0:0.3" From="1.0" RepeatBehavior="1x" Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Opacity" To="0.1" EnableDependentAnimation="True">
+        <DoubleAnimation.EasingFunction>
+          <ExponentialEase EasingMode="EaseOut" />
+        </DoubleAnimation.EasingFunction>
+      </DoubleAnimation>
+      <DoubleAnimation Duration="0:0:0.3" From="1" RepeatBehavior="1x" Storyboard.TargetName="OptionsGrid" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" To="0" EnableDependentAnimation="True">
+        <DoubleAnimation.EasingFunction>
+          <ExponentialEase EasingMode="EaseOut" />
+        </DoubleAnimation.EasingFunction>
+      </DoubleAnimation>
+    </Storyboard>
+  </UserControl.Resources>
+  <Grid x:Name="LayoutRoot" Opacity="0" Background="{StaticResource TransparencySecondaryBackgroundColor}">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+    <Grid x:Name="OptionsGrid" Grid.Row="1" Background="{StaticResource PanelBackgroundColor}">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+      </Grid.RowDefinitions>
+      <TextBlock Grid.Row="0" Margin="10" Text="{Binding Path=LocalizedResources.Lbl_ChooseView, Source={StaticResource LocalizedStrings}}" Style="{StaticResource SourceHeaderText}" />
+      <ListBox Grid.Row="1" x:Name="MobilizersList" Margin="10" FontSize="22" Foreground="{StaticResource SidebaMenuTextColor}" SelectionChanged="ListBox_SelectionChanged">
+        <ListBoxItem Content="{Binding Path=LocalizedResources.Lbl_ChooseView_WebPage, Source={StaticResource LocalizedStrings}}" Margin="0,0,0,10" />
+        <ListBoxItem Content="{Binding Path=LocalizedResources.Lbl_ChooseView_Instapaper, Source={StaticResource LocalizedStrings}}" Margin="0,0,0,10" />
+        <ListBoxItem Content="{Binding Path=LocalizedResources.Lbl_ChooseView_Readability, Source={StaticResource LocalizedStrings}}" Margin="0,0,0,10" />
+        <ListBoxItem Content="{Binding Path=LocalizedResources.Lbl_ChooseView_Google, Source={StaticResource LocalizedStrings}}" Margin="0,0,0,10" />
+        <ListBoxItem Content="{Binding Path=LocalizedResources.Lbl_ChooseView_GoogleNoImg, Source={StaticResource LocalizedStrings}}" Margin="0,0,0,10" />
+      </ListBox>
+      <Grid.RenderTransform>
+        <ScaleTransform ScaleY="0" />
+      </Grid.RenderTransform>
+    </Grid>
+  </Grid>
+  <!--FontSize="{StaticResource PhoneFontSizeNormal}"-->
+</UserControl>

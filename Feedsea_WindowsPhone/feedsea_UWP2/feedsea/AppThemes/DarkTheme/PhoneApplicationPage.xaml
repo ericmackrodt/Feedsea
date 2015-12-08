@@ -1,0 +1,28 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:p1="using:Microsoft.Phone.Controls" xmlns:p2="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
+  <Style x:Key="SlidePage" TargetType="phone:PhoneApplicationPage">
+    <Setter Property="toolkit:TransitionService.NavigationInTransition">
+      <Setter.Value>
+        <p1:NavigationInTransition>
+          <p2:NavigationInTransition.Backward>
+            <p1:SlideTransition Mode="SlideRightFadeIn" />
+          </p2:NavigationInTransition.Backward>
+          <p2:NavigationInTransition.Forward>
+            <p1:SlideTransition Mode="SlideLeftFadeIn" />
+          </p2:NavigationInTransition.Forward>
+        </p1:NavigationInTransition>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="toolkit:TransitionService.NavigationOutTransition">
+      <Setter.Value>
+        <p1:NavigationOutTransition>
+          <p2:NavigationOutTransition.Backward>
+            <p1:SlideTransition Mode="SlideRightFadeOut" />
+          </p2:NavigationOutTransition.Backward>
+          <p2:NavigationOutTransition.Forward>
+            <p1:SlideTransition Mode="SlideLeftFadeOut" />
+          </p2:NavigationOutTransition.Forward>
+        </p1:NavigationOutTransition>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

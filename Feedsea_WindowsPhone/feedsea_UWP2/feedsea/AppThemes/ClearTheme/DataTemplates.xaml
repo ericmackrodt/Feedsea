@@ -1,0 +1,214 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:i="using:System.Windows.Interactivity" xmlns:cc="using:feedsea.Common.Controls" xmlns:uc="using:feedsea.UserControls" xmlns:commonlocal="using:feedsea.Common" xmlns:converters="using:feedsea.Common.MVVM.Converters" xmlns:converterslocal="using:feedsea.Common.Converters" xmlns:controls="using:feedsea.Common.Controls" xmlns:p1="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:p2="using:Microsoft.Phone.Controls" xmlns:p3="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="AppColors.xaml" />
+    <ResourceDictionary Source="Borders.xaml" />
+    <ResourceDictionary Source="Buttons.xaml" />
+    <ResourceDictionary Source="ToggleButton.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+  <!--Template Small With Image-->
+  <DataTemplate x:Key="ArticleItemSmallTemplate">
+    <Grid Margin="20,10,20,20">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Image Grid.Column="0" x:Name="ArticleImage" Source="{Binding MainImageUrl}" VerticalAlignment="Top" HorizontalAlignment="Left" Stretch="UniformToFill" Margin="0,0,10,0" Visibility="{Binding MainImageUrl, Converter={StaticResource HasStringToVisibility}}" Width="120" Height="120" />
+      <TextBlock Grid.Column="1" x:Name="txtTitle" Style="{StaticResource BaseArticleTitle}" Text="{Binding Title}" VerticalAlignment="Top" HorizontalAlignment="Left" />
+    </Grid>
+  </DataTemplate>
+  <!--Template Small Without Image-->
+  <DataTemplate x:Key="ArticleItemSmallNoImageTemplate">
+    <TextBlock x:Name="txtTitle" Margin="20,10,20,20" Style="{StaticResource BaseArticleTitle}" Text="{Binding Title}" HorizontalAlignment="Left" />
+  </DataTemplate>
+  <!--Template Normal No Image-->
+  <DataTemplate x:Key="ArticleItemNoImageTemplate">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+      </Grid.RowDefinitions>
+      <TextBlock x:Name="txtTitle" Margin="20,10,20,0" Style="{StaticResource BaseArticleTitle}" Text="{Binding Title}">
+        <p1:Interaction.Behaviors>
+          <controls:NavigateOnTapTrigger NavigateTo="/Views/ArticlePage.xaml?Id={0}" NavigationParameter="{Binding UniqueID}" />
+        </p1:Interaction.Behaviors>
+      </TextBlock>
+      <TextBlock Grid.Row="1" Margin="20,10,20,20" HorizontalAlignment="Left" Style="{StaticResource ArticleItemDescription}" Text="{Binding Summary, Converter={StaticResource LimitTextLength}}" />
+    </Grid>
+  </DataTemplate>
+  <!--Template Normal With Image-->
+  <DataTemplate x:Key="ArticleItemTemplate">
+    <Grid>
+      <Grid.Resources>
+        <converterslocal:ImageByResolutionConverter x:Key="ImageByResolution" />
+      </Grid.Resources>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+      </Grid.RowDefinitions>
+      <Image Grid.Row="0" Height="250" Margin="0,10,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Top" Visibility="{Binding MainImageUrl, Converter={StaticResource HasStringToVisibility}}" Source="{Binding MainImageUrl, Converter={StaticResource ImageByResolution}}" Stretch="UniformToFill" />
+      <TextBlock Grid.Row="1" x:Name="txtTitle" Margin="15,10,15,0" Style="{StaticResource BaseArticleTitle}" Text="{Binding Title}" />
+      <TextBlock Grid.Row="2" Margin="15,10,15,15" HorizontalAlignment="Left" Style="{StaticResource ArticleItemDescription}" Text="{Binding Summary, Converter={StaticResource LimitTextLength}}" />
+    </Grid>
+  </DataTemplate>
+  <!--DataItemTemplateSelector-->
+  <!--<DataTemplate x:Key="ArticleItemTemplateSelector">
+        <Grid x:Name="ArticleRoot" Margin="15,15,15,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource ContentArea}" />
+            <Grid Grid.Row="0" Margin="15,10,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{Binding Path=Source.Link, Converter={StaticResource UrlToFaviconConverter}, ConverterParameter=../../Assets/Icons/source-icon.png}" 
+                                   VerticalAlignment="Center" Height="24" Margin="0,0,10,0" />
+                <TextBlock Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource ArticleItemSourceAndTime}" 
+                           Text="{Binding Date, Converter={StaticResource TimeAgoConverter}}" />
+                <TextBlock Grid.Column="2" VerticalAlignment="Center" Style="{StaticResource ArticleItemSourceAndTime}" 
+                           Text=" - " />
+                <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                           Style="{StaticResource ArticleItemSourceAndTime}" 
+                           Text="{Binding Path=Source.Name}" />
+                <ToggleButton Grid.Row="0" 
+                                  Grid.Column="4" 
+                                  Margin="10,0,0,0"
+                                  Style="{StaticResource IsReadToggleSwitch}" 
+                                  IsChecked="{Binding IsRead, Mode=TwoWay}" 
+                                  Command="{Binding Path=DataContext.ToggleArticleReadCommand, ElementName=MainView}" 
+                                  CommandParameter="{Binding}" />
+                <ToggleButton Grid.Row="0" 
+                                  Grid.Column="5" 
+                                  Margin="10,0,0,0"
+                                  Style="{StaticResource FavoriteToggleSwitch}" 
+                                  IsChecked="{Binding IsFavorite, Mode=TwoWay}" 
+                                  Command="{Binding Path=DataContext.AddToFavoritesCommand, ElementName=MainView}" 
+                                  CommandParameter="{Binding}" />
+                <Button Grid.Row="0"
+                        Grid.Column="6"
+                        Margin="10,0,0,0"
+                        Width="34"
+                        Height="34"
+                        Style="{StaticResource ClearButton}"
+                        Command="{Binding Path=DataContext.ShareArticleCommand, ElementName=MainView}"
+                        CommandParameter="{Binding}">
+                    <Image Source="../Assets/Icons/share.png" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </Button>
+            </Grid>
+            <commonlocal:ArticleItemTemplateSelector Grid.Row="1" Content="{Binding}" 
+                                                     Selector="{Binding Path=DataContext.ArticleTemplateType, ElementName=MainView}" 
+                                                     HorizontalAlignment="Stretch"
+                                                     HorizontalContentAlignment="Stretch"
+                                                     NormalTemplate="{StaticResource ArticleItemTemplate}"
+                                                     NormalTemplateNoImage="{StaticResource ArticleItemNoImageTemplate}"
+                                                     SmallTemplate="{StaticResource ArticleItemSmallTemplate}"
+                                                     SmallTemplateNoImage="{StaticResource ArticleItemSmallNoImageTemplate}" 
+                                                     Opacity="{Binding IsRead, Converter={StaticResource BoolToOpacity}, ConverterParameter=0.5}">
+                <i:Interaction.Behaviors>
+                    <cc:NavigateOnTapTrigger NavigateTo="/Views/ArticlePage.xaml" AssociateToDataContext="True" />
+                </i:Interaction.Behaviors>
+            </commonlocal:ArticleItemTemplateSelector>
+        </Grid>
+    </DataTemplate>-->
+  <!--SourceItemTemplate-->
+  <DataTemplate x:Key="SourceItemTemplate">
+    <Grid x:Name="SourceRoot" Margin="0">
+      <!--<Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>-->
+      <!--<Border Grid.Row="0" BorderBrush="{StaticResource PanelSecondaryColor}" BorderThickness="1" />-->
+      <!--292929-->
+      <Grid Margin="20,10,20,10">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="auto" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0" Source="{Binding Link, Converter={StaticResource UrlToFaviconConverter}, ConverterParameter=../../Assets/Icons/source-icon.png}" VerticalAlignment="Center" Height="32" Margin="0,0,15,0" />
+        <TextBlock Margin="0" Style="{StaticResource SourceItemName}" Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center" />
+        <Border Grid.Column="2" Style="{StaticResource UnreadBorder}" Margin="15,0,0,0" MinWidth="40" Visibility="{Binding UnreadNumber, Converter={StaticResource IntToVisibility}}">
+          <TextBlock Text="{Binding UnreadNumber}" Style="{StaticResource UnreadNumber}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Border>
+      </Grid>
+      <p3:ContextMenuService.ContextMenu>
+        <p2:ContextMenu IsZoomEnabled="False">
+          <p2:MenuItem Header="{Binding Path=LocalizedResources.MarkArticlesRead, Source={StaticResource LocalizedStrings}}" Command="{Binding Path=DataContext.MarkReadCommand, ElementName=sourceList}" CommandParameter="{Binding}" />
+          <p2:MenuItem Header="{Binding Path=LocalizedResources.Edit, Source={StaticResource LocalizedStrings}}" Command="{Binding Path=DataContext.EditSourceCommand, ElementName=sourceList}" CommandParameter="{Binding}">
+            <p1:Interaction.Behaviors>
+              <controls:NavigateOnMenuClickTrigger NavigateTo="/Views/AddSource.xaml?sourceId={0}" NavigationParameter="{Binding UrlID}" />
+            </p1:Interaction.Behaviors>
+          </p2:MenuItem>
+          <p2:MenuItem Header="{Binding Path=LocalizedResources.Remove, Source={StaticResource LocalizedStrings}}" Command="{Binding Path=DataContext.RemoveSourceCommand, ElementName=sourceList}" CommandParameter="{Binding}" />
+          <p2:MenuItem Header="{Binding Path=LocalizedResources.PinToStartScreen, Source={StaticResource LocalizedStrings}}" Command="{Binding Path=DataContext.PinToStartCommand, ElementName=sourceList}" CommandParameter="{Binding}" />
+        </p2:ContextMenu>
+      </p3:ContextMenuService.ContextMenu>
+    </Grid>
+  </DataTemplate>
+  <DataTemplate x:Key="CategoryItemHeader">
+    <Grid HorizontalAlignment="Stretch" Margin="0">
+      <Grid.Resources>
+        <converters:BoolToDefaultStringConverter x:Key="DefaultStringConverter" UseDefaultValue="{Binding Own}" DefaultString="{Binding Path=LocalizedResources.Uncategorized, Source={StaticResource LocalizedStrings}}" />
+      </Grid.Resources>
+      <Border Grid.Row="0" Background="{StaticResource PanelBackgroundColor}">
+        <Button Margin="20,10,20,10" Grid.Row="0" Style="{StaticResource ClearButton}" Command="{Binding Path=DataContext.SelectSourceCommand, ElementName=MainView}" CommandParameter="{Binding}" HorizontalContentAlignment="Stretch">
+          <TextBlock Margin="0" Style="{StaticResource CategoryItemTitle}" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Name, Converter={StaticResource DefaultStringConverter}}"></TextBlock>
+        </Button>
+      </Border>
+      <p3:ContextMenuService.ContextMenu>
+        <p2:ContextMenu IsZoomEnabled="False">
+          <p2:MenuItem Header="{Binding Path=LocalizedResources.MarkArticlesRead, Source={StaticResource LocalizedStrings}}" Command="{Binding Path=DataContext.MarkReadCommand, ElementName=sourceList}" CommandParameter="{Binding}" />
+          <p2:MenuItem Header="{Binding Path=LocalizedResources.Remove, Source={StaticResource LocalizedStrings}}" Command="{Binding Path=DataContext.RemoveCategoryCommand, ElementName=sourceList}" Visibility="{Binding Own, Converter={StaticResource NotBoolToVisibility}}" CommandParameter="{Binding}" />
+          <p2:MenuItem Header="{Binding Path=LocalizedResources.PinToStartScreen, Source={StaticResource LocalizedStrings}}" Command="{Binding Path=DataContext.PinToStartCommand, ElementName=sourceList}" CommandParameter="{Binding}" />
+        </p2:ContextMenu>
+      </p3:ContextMenuService.ContextMenu>
+    </Grid>
+  </DataTemplate>
+  <DataTemplate x:Key="CategoryItemTemplate">
+    <Grid Margin="0,5,0,10">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+      </Grid.RowDefinitions>
+      <ContentPresenter Grid.Row="0" Content="{Binding}" ContentTemplate="{StaticResource CategoryItemHeader}" />
+      <GridView Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemsSource="{Binding Subscriptions}" ItemTemplate="{StaticResource SourceItemTemplate}">
+        <p1:Interaction.Behaviors>
+          <controls:SelectedChangedCommandTrigger Command="{Binding Path=DataContext.SelectSourceCommand, ElementName=MainView}" />
+        </p1:Interaction.Behaviors>
+      </GridView>
+      <!--p0:TiltEffect.IsTiltEnabled="True"-->
+    </Grid>
+  </DataTemplate>
+  <DataTemplate x:Key="SearchResultTemplate">
+    <Grid Margin="12,12,12,0" Background="{StaticResource DefaultPageBackgroundColor}">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+      </Grid.RowDefinitions>
+      <Image Grid.Row="0" Grid.Column="0" Margin="0,0,10,0" Source="{Binding Url, Converter={StaticResource UrlToFaviconConverter}}" Width="32" Height="32" />
+      <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Title}" Style="{StaticResource DefaultFieldLabel}" />
+      <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Description}" Style="{StaticResource ArticleItemSourceAndTime}" />
+      <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+        <TextBlock Text="{Binding Subscribers}" Style="{StaticResource ArticleItemSourceAndTime}" />
+        <TextBlock Text="{Binding Path=LocalizedResources.Subscribers, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ArticleItemSourceAndTime}" />
+      </StackPanel>
+      <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Url}" Style="{StaticResource ArticleItemSourceAndTime}" />
+      <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Tags}" Style="{StaticResource SourceItemTags}" TextWrapping="Wrap" />
+    </Grid>
+  </DataTemplate>
+</ResourceDictionary>

@@ -1,0 +1,57 @@
+<Page x:Class="feedsea.Views.SettingsAppearancePage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Style="{StaticResource SlidePage}" mc:Ignorable="d" p2:SystemTray.ForegroundColor="{StaticResource SystemBarForegroundColor}" DataContext="{Binding Source={StaticResource Locator}, Path=SettingsAppearancePage}" xmlns:p1="using:Microsoft.Phone.Controls" xmlns:p2="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
+  <Page.Resources>
+    <Style x:Key="SettingsHeader" BasedOn="{StaticResource DefaultSettingsHeader}" TargetType="TextBlock">
+      <Setter Property="Margin" Value="-7,0,0,-25" />
+    </Style>
+  </Page.Resources>
+  <Grid x:Name="LayoutRoot" Margin="0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <!--TitlePanel contains the name of the application and page title-->
+    <Grid Grid.Row="0" Background="{StaticResource ThemeSecondaryColor}">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+      </Grid.RowDefinitions>
+      <Rectangle Height="25" Visibility="{Binding Path=ApplicationFrame.ShowAppTray, Source={StaticResource Locator}, Converter={StaticResource BoolToVisibility}}" />
+      <Grid Grid.Row="1" Margin="15,10" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="auto" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0" Source="../Assets/Icons/settings.png" VerticalAlignment="Center" Height="32" Margin="0,0,15,0" />
+        <TextBlock Style="{StaticResource PageHeaderText}" Grid.Column="1" Text="{Binding Path=LocalizedResources.Lbl_SettingsPage_Appearance, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" />
+      </Grid>
+    </Grid>
+    <StackPanel Orientation="Vertical" Grid.Row="1" Margin="12,10">
+      <TextBlock Text="{Binding Path=LocalizedResources.Lbl_ArticleListItemLayout, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DefaultFieldLabel}" />
+      <ComboBox SelectedIndex="{Binding ArticleListTemplate, Mode=TwoWay}">
+        <p1:ListPickerItem Content="{Binding Path=LocalizedResources.ArticleLayoutType_Normal, Source={StaticResource LocalizedStrings}}" />
+        <p1:ListPickerItem Content="{Binding Path=LocalizedResources.ArticleLayoutType_NormalNoImage, Source={StaticResource LocalizedStrings}}" />
+        <p1:ListPickerItem Content="{Binding Path=LocalizedResources.ArticleLayoutType_Small, Source={StaticResource LocalizedStrings}}" />
+        <p1:ListPickerItem Content="{Binding Path=LocalizedResources.ArticleLayoutType_SmallNoImage, Source={StaticResource LocalizedStrings}}" />
+      </ComboBox>
+      <TextBlock Text="{Binding Path=LocalizedResources.Lbl_Theme, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DefaultFieldLabel}" />
+      <ComboBox SelectedIndex="{Binding CurrentAppTheme, Mode=TwoWay}">
+        <p1:ListPickerItem Content="{Binding Path=LocalizedResources.Lbl_Theme_Default, Source={StaticResource LocalizedStrings}}" />
+        <p1:ListPickerItem Content="{Binding Path=LocalizedResources.Lbl_Theme_Dark, Source={StaticResource LocalizedStrings}}" />
+      </ComboBox>
+      <CheckBox IsChecked="{Binding HideAppBarMainPage, Mode=TwoWay}">
+        <TextBlock Text="{Binding Path=LocalizedResources.Lbl_HideAppBarMainPage, Source={StaticResource LocalizedStrings}}" TextWrapping="Wrap" />
+      </CheckBox>
+      <CheckBox IsChecked="{Binding HideAppBarArticlePage, Mode=TwoWay}">
+        <TextBlock Text="{Binding Path=LocalizedResources.Lbl_HideAppBarArticlePage, Source={StaticResource LocalizedStrings}}" TextWrapping="Wrap" />
+      </CheckBox>
+      <CheckBox IsChecked="{Binding ShowTrayBar, Mode=TwoWay}">
+        <TextBlock Text="{Binding Path=LocalizedResources.Lbl_ShowPhoneTrayAtTop, Source={StaticResource LocalizedStrings}}" TextWrapping="Wrap" />
+      </CheckBox>
+    </StackPanel>
+  </Grid>
+  <!--FontSize="{StaticResource PhoneFontSizeNormal}"-->
+  <!--SupportedOrientations="Portrait"-->
+  <!--Orientation="Portrait"-->
+  <!--shell:SystemTray.Opacity="0"-->
+  <!--shell:SystemTray.IsVisible="{Binding Path=ApplicationFrame.ShowAppTray, Source={StaticResource Locator}}"-->
+</Page>

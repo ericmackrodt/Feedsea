@@ -4,4 +4,39 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Feedsea">
 
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <!--Theme Main Colors -->
+                    <Color x:Key="ThemeDefaultColor">#FF428F9C</Color>
+                    <Color x:Key="ThemeSecondaryColor">#FF103038</Color>
+
+                    <!--Theme Background Colors-->
+                    <Color x:Key="DefaultBackgroundColor">#FFF3F3F3</Color>
+                    <Color x:Key="PopupsAndBarsBackgroundColor">#FF323232</Color>
+                    <Color x:Key="ContentAreaBackgroundColor">#FFFFFFFF</Color>
+                    <Color x:Key="ContentAreaBackgroundNoHighlightColor">#CCFFFFFF</Color>
+                    <Color x:Key="DisabledBackgroundColor">#FFCCCCCC</Color>
+
+                    <!--Theme Text Colors-->
+                    <Color x:Key="ContentAreaTextColor">#FF000000</Color>
+                    <Color x:Key="PopupsAndBarsTextColor">#FFFFFFFF</Color>
+                    <Color x:Key="PlaceholderTextColor">#FFCCCCCC</Color>
+
+                    <!--Theme Border Colors-->
+                    <Color x:Key="ContentAreaBorderColor">#FFF3EFF0</Color>
+
+                    <SolidColorBrush x:Key="PopupsAndBarsTextBrush" Color="{ThemeResource PopupsAndBarsTextColor}" />
+
+                    <SolidColorBrush x:Key="MainPageBudgetListBackground" Color="{ThemeResource ThemeDefaultColor}" />
+                    <SolidColorBrush x:Key="MainPageBudgetListForeground" Color="{ThemeResource PopupsAndBarsTextColor}" />
+                    <SolidColorBrush x:Key="PageHeaderBackgroundBrush" Color="{ThemeResource ThemeDefaultColor}" />
+
+                    <SolidColorBrush x:Key="AppDrawerBackgroundBrush" Color="{ThemeResource ContentAreaBackgroundColor}"/>
+
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>

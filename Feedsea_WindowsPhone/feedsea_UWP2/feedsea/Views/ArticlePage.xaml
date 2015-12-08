@@ -1,0 +1,61 @@
+<Page x:Class="feedsea.Views.ArticlePage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:common="using:feedsea.Common" xmlns:i="using:System.Windows.Interactivity" xmlns:cimbalino="using:Cimbalino.Phone.Toolkit.Behaviors" xmlns:uc="using:feedsea.UserControls" xmlns:converters="using:feedsea.Common.Converters" xmlns:controls="using:feedsea.Common.Controls" xmlns:dvm="using:feedsea.ViewModels.DesignTimeViewModels" xmlns:telerikCore="using:Telerik.Windows.Controls" xmlns:telerikPrimitives="using:Telerik.Windows.Controls" xmlns:WindowsPhone8="using:Microsoft.AdMediator.WindowsPhone8" DataContext="{Binding Source={StaticResource Locator}, Path=ArticlePage}" Style="{StaticResource SlidePage}" mc:Ignorable="d" p4:SystemTray.ForegroundColor="{StaticResource SystemBarForegroundColor}" xmlns:p1="clr-namespace:feedsea.Common" xmlns:p2="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit" xmlns:p3="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:p4="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
+  <Page.Resources>
+    <Storyboard x:Name="LoadedAnimation">
+      <DoubleAnimation Duration="0:0:0.5" From="0" RepeatBehavior="1x" Storyboard.TargetName="ArticleView" Storyboard.TargetProperty="Opacity" To="1.0" EnableDependentAnimation="True">
+        <DoubleAnimation.EasingFunction>
+          <ExponentialEase EasingMode="EaseOut" />
+        </DoubleAnimation.EasingFunction>
+      </DoubleAnimation>
+    </Storyboard>
+  </Page.Resources>
+  <!--LayoutRoot is the root grid where all page content is placed-->
+  <Grid x:Name="LayoutRoot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid Grid.Row="0" Background="{StaticResource ThemeSecondaryColor}">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+      </Grid.RowDefinitions>
+      <Rectangle Height="25" Visibility="{Binding Path=ApplicationFrame.ShowAppTray, Source={StaticResource Locator}, Converter={StaticResource BoolToVisibility}}" />
+      <Grid Grid.Row="1" Margin="15,10" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="auto" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0" Source="{Binding Path=Article.Source.Link, Converter={StaticResource UrlToFaviconConverter}, ConverterParameter=../Assets/Icons/source-icon.png}" VerticalAlignment="Center" Height="32" Margin="0,0,15,0" />
+        <TextBlock Style="{StaticResource PageHeaderText}" Grid.Column="1" Text="{Binding Path=Article.Source.Name}" VerticalAlignment="Center" />
+      </Grid>
+    </Grid>
+    <uc:AudioPlaybackControl Grid.Row="1" Visibility="Collapsed" AudioFile="{Binding AudioFile}" ArticleTitle="{Binding Path=Article.Title}" PlayCommand="{Binding PlayArticleAudioCommand}" IsPlaying="{Binding IsPlaying}" />
+    <WindowsPhone8:AdMediatorControl Grid.Row="2" x:Name="AdMediator_ArticlePage" HorizontalAlignment="Center" Height="80" IsEnabled="{Binding IsAdsEnabled}" Visibility="{Binding IsAdsEnabled, Converter={StaticResource BoolToVisibility}}" Id="AdMediator-Id-6B0C108C-F67F-4FBC-BD88-CD520FA51F0A" VerticalAlignment="Center" Width="480" />
+    <controls:SwipeContentControl Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" CanSwipeLeft="{Binding CanLoadNext}" CanSwipeRight="{Binding CanLoadPrevious}" SwipeLeftCommand="{Binding LoadNextArticleCommand}" SwipeRightCommand="{Binding LoadPreviousArticleCommand}">
+      <Grid>
+        <WebView Margin="0" FontFamily="Georgia" Opacity="0" x:Name="ArticleView" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{StaticResource DefaultPageBackgroundColor}" p1:WebBrowserHelper.Html="{Binding Path=Article.Content}" ScriptNotify="ArticleView_ScriptNotify" NavigationStarting="ArticleView_Navigating" NavigationCompleted="ArticleView_Navigated" NavigationFailed="ArticleView_NavigationFailed" IsScriptEnabled="True" p1:WebBrowserHelper.AnimatedOpacity="{Binding Path=Article.IsDataLoaded}" p1:WebBrowserHelper.Url="{Binding Path=Article.MobilizedUrl}" />
+        <Rectangle Width="20" Fill="Transparent" HorizontalAlignment="Right" />
+        <Rectangle Width="20" Fill="Transparent" HorizontalAlignment="Left" />
+      </Grid>
+    </controls:SwipeContentControl>
+    <uc:LoadingIndicatorControl x:Name="LoadingControl" Grid.Row="1" Grid.RowSpan="3" Visibility="Collapsed" VerticalAlignment="Top" IsBusy="{Binding IsBusy}" />
+  </Grid>
+  <p3:Interaction.Behaviors>
+    <cimbalino:ApplicationBarBehavior x:Name="appBar" Opacity="0.8" IsVisible="{Binding IsBusy, Converter={StaticResource Not}}" BackgroundColor="{StaticResource ApplicationBarBackgroundColor}" ForegroundColor="{StaticResource ApplicationBarForegroundColor}" Mode="{Binding Path=ApplicationFrame.HideAppBarOnArticlePage, Source={StaticResource Locator}, Converter={StaticResource BoolToApplicationBarMode}}">
+      <cimbalino:ApplicationBarIconButton x:Name="AppBarBtnChooseView" IconUri="Assets/Icons/appbar.new.window.png" Click="AppBarBtnChooseView_Click" Text="{Binding Path=LocalizedResources.Lbl_ChooseView, Source={StaticResource LocalizedStrings}}" />
+      <cimbalino:ApplicationBarIconButton Command="{Binding ToggleReadCommand}" p1:ApplicationBarHelper.Condition="{Binding Path=Article.IsRead}" p1:ApplicationBarHelper.IconTrue="Assets/Icons/appbar.noteye.png" p1:ApplicationBarHelper.TextTrue="{Binding Path=LocalizedResources.MarkUnread, Source={StaticResource LocalizedStrings}}" p1:ApplicationBarHelper.IconFalse="Assets/Icons/appbar.eye.png" p1:ApplicationBarHelper.TextFalse="{Binding Path=LocalizedResources.MarkRead, Source={StaticResource LocalizedStrings}}" />
+      <cimbalino:ApplicationBarIconButton Command="{Binding ToggleFavoriteCommand}" p1:ApplicationBarHelper.Condition="{Binding Path=Article.IsFavorite}" p1:ApplicationBarHelper.IconTrue="Assets/Icons/favs.removefrom.png" p1:ApplicationBarHelper.TextTrue="{Binding Path=LocalizedResources.RemoveFromFavorites, Source={StaticResource LocalizedStrings}}" p1:ApplicationBarHelper.IconFalse="Assets/Icons/favs.addto.png" p1:ApplicationBarHelper.TextFalse="{Binding Path=LocalizedResources.AddToFavorites, Source={StaticResource LocalizedStrings}}" />
+      <cimbalino:ApplicationBarIconButton x:Name="AppBarBtnShare" IconUri="Assets/Icons/share.appbar.png" Click="AppBarBtnShare_Click" Text="{Binding Path=LocalizedResources.Share, Source={StaticResource LocalizedStrings}}" />
+      <p2:ApplicationBarBehavior.MenuItems>
+        <cimbalino:ApplicationBarMenuItem Click="MniOpenInIE_Click" Text="{Binding Path=LocalizedResources.OpenInBrowser, Source={StaticResource LocalizedStrings}}" />
+      </p2:ApplicationBarBehavior.MenuItems>
+    </cimbalino:ApplicationBarBehavior>
+  </p3:Interaction.Behaviors>
+  <!--FontSize="{StaticResource PhoneFontSizeNormal}"-->
+  <!--SupportedOrientations="Portrait"-->
+  <!--Orientation="Portrait"-->
+  <!--shell:SystemTray.Opacity="0"-->
+  <!--shell:SystemTray.IsVisible="{Binding Path=ApplicationFrame.ShowAppTray, Source={StaticResource Locator}}"-->
+</Page>

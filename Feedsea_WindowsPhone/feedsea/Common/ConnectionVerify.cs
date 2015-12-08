@@ -48,38 +48,38 @@ namespace feedsea.Common
         {
             Dispatcher.BeginInvoke(() =>
             {
-                if (ex != null && ex is ProviderException)
-                {
-                    var pex = ex as ProviderException;
+                //if (ex != null && ex is ProviderException)
+                //{
+                //    var pex = ex as ProviderException;
 
-                    if (pex.Reason == ExceptionReason.NoInternetConnection)
-                    {
-                        ShowNoConnectionMessage();
-                        //return false;
-                    }
+                //    if (pex.Reason == ExceptionReason.NoInternetConnection)
+                //    {
+                //        ShowNoConnectionMessage();
+                //        //return false;
+                //    }
 
-                    //return true;
-                }
-                else if (ex != null && ex is TileCreationException)
-                {
-                    var pex = ex as TileCreationException;
+                //    //return true;
+                //}
+                //else if (ex != null && ex is TileCreationException)
+                //{
+                //    var pex = ex as TileCreationException;
 
-                    if (pex.Type == ExceptionType.NoNetworkAccess)
-                    {
-                        ShowNoConnectionMessage();
-                        //return false;
-                    }
-                }
-                else if (ex != null && ex is TaskCanceledException)
-                {
-                    return;
-                }
-                else if (ex != null && ex is HtmlResponseException)
-                {
-                    messageBox.Show(AppResources.Msg_HtmlResponse_Message, AppResources.Msg_HtmlResponse_Title);
-                    return;
-                }
-                else if (ex != null)
+                //    if (pex.Type == ExceptionType.NoNetworkAccess)
+                //    {
+                //        ShowNoConnectionMessage();
+                //        //return false;
+                //    }
+                //}
+                //else if (ex != null && ex is TaskCanceledException)
+                //{
+                //    return;
+                //}
+                //else if (ex != null && ex is HtmlResponseException)
+                //{
+                //    messageBox.Show(AppResources.Msg_HtmlResponse_Message, AppResources.Msg_HtmlResponse_Title);
+                //    return;
+                //}
+                //else if (ex != null)
                     ExceptionDispatchInfo.Capture(ex).Throw();
             });
 
