@@ -1,0 +1,120 @@
+﻿@model FeedseaWebSite.Models.JoinBetaViewModel
+@using FeedseaWebSite.App_GlobalResources;
+@using Recaptcha.Web.Mvc
+
+@{
+    ViewBag.Title = Strings.PageTitle_JoinBeta;
+    ViewBag.PageName = "JoinBeta";
+}
+
+<h2>@Strings.PageTitle_JoinBeta</h2>
+
+<div id="success-message" class="notice bg-green fg-white marker-on-bottom" style="display: none">
+    <strong>@Strings.Success_BetaSent_Title</strong>
+    <br />
+    @Strings.Success_BetaSent_Message
+</div>
+
+<div id="error-message" class="notice bg-red fg-white marker-on-bottom" style="display: none">
+    <strong>@Strings.Error_Title</strong>
+    <br />
+    @Strings.Error_Message
+</div>
+
+
+@using (Ajax.BeginForm("JoinBeta", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "feedbackForm.onSuccess", OnBegin = "feedbackForm.onBegin" }))
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset>
+        <legend>@Strings.PageTitle_Feedback</legend>
+        <div class="row">
+            @Html.ValidationSummary(true, "", new { @class = "fg-red" })
+        </div>
+
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="input-control text">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            <button class="btn-clear"></button>
+        </div>
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "fg-red" })
+
+
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-12" })
+        <small>@Strings.MicrosoftAccount_Hint</small>
+        <div class="input-control text">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            <button class="btn-clear"></button>
+        </div>
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "fg-red" })
+
+        @Html.LabelFor(model => model.WhereDidYouHear, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="input-control text">
+            @Html.EditorFor(model => model.WhereDidYouHear, new { htmlAttributes = new { @class = "form-control" } })
+            <button class="btn-clear"></button>
+        </div>
+        @Html.ValidationMessageFor(model => model.WhereDidYouHear, "", new { @class = "fg-red" })
+
+        @Html.Label("human", Strings.AreYouHuman, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="input-control">
+            @Html.Recaptcha("6LdIYfESAAAAALXD_l21CeZbeeyjorbQp-XDTyxW", Recaptcha.Web.RecaptchaTheme.Clean, (string)ViewBag.Language, 0)
+        </div>
+        <span class="fg-red field-validation-error validator" style="display: none">
+            <span>Captcha error</span>
+        </span>
+
+        <div class="input-control margin15">
+            <input type="submit" value="@Strings.Send" class="button large default" />
+        </div>
+    </fieldset>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        var feedbackForm = function () {
+
+            function enableAllControls() {
+                $('input, textarea, select').removeAttr('disabled', '');
+            }
+
+            function disableAllControls() {
+                $('input, textarea, select').attr('disabled', '');
+            }
+
+            function success(e) {
+                enableAllControls();
+                if (e.success) {
+                    $('.validator').hide();
+                    $('#success-message').show();
+                    $('input[type="text"], input[type="email"], textarea').val('');
+                    $('select').val(0);
+                }
+                else if (e.isCaptchaInvalid) {
+                    var validator = $('.validator');
+                    validator.find('span').text(e.captchaMessage);
+                    validator.show();
+                }
+                else {
+                    $('#error-message').show();
+                }
+
+                Recaptcha.reload();
+            }
+
+            function begin() {
+                disableAllControls();
+                $('.validator').hide();
+                $('#success-message').hide();
+                $('#error-message').hide();
+            }
+
+            return {
+                onSuccess: success,
+                onBegin: begin
+            };
+        }();
+    </script>
+}

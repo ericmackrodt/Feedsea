@@ -172,7 +172,7 @@
                 </Grid>
             </SplitView.Content>
             <SplitView.Pane>
-                <uc:SidePanelControl x:Name="Sidebar" IsBarExpanded="{Binding IsPaneOpen, ElementName=SplMain}" SidebarClicked="SideBarControl_SidebarClicked" ItemSelectedCommand="{Binding SelectSourceCommand}" />
+                <uc:SidePanelControl x:Name="Sidebar" IsBarExpanded="{Binding IsPaneOpen, ElementName=SplMain}" ItemSelectedCommand="{Binding SelectSourceCommand}" />
                 <!--<uc:SideBarControl x:Name="Sidebar" ItemSelectedCommand="{Binding SelectSourceCommand}" IsExpanded="{Binding IsPaneOpen, ElementName=SplMain}" SidebarClicked="SideBarControl_SidebarClicked" />-->
             </SplitView.Pane>
         </SplitView>

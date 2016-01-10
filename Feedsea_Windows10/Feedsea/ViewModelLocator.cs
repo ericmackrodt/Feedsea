@@ -16,8 +16,8 @@ namespace Feedsea
 {
     public class ViewModelLocator
     {
-        IContainer _container;
-        
+        public static IContainer Container;
+
         public ViewModelLocator()
         {
             var builder = new ContainerBuilder();
@@ -37,23 +37,29 @@ namespace Feedsea
             builder.RegisterType<WelcomeViewModel>();
             builder.RegisterType<MainViewModel>().SingleInstance();
             builder.RegisterType<MenusViewModel>();
+            builder.RegisterType<ArticleListViewModel>();
 
-            _container = builder.Build();
+            Container = builder.Build();
         }
 
         public WelcomeViewModel Welcome
         {
-            get { return _container.Resolve<WelcomeViewModel>(); }
+            get { return Container.Resolve<WelcomeViewModel>(); }
         }
 
         public MainViewModel Main
         {
-            get { return _container.Resolve<MainViewModel>(); }
+            get { return Container.Resolve<MainViewModel>(); }
         }
 
         public MenusViewModel Menus
         {
-            get { return _container.Resolve<MenusViewModel>(); }
+            get { return Container.Resolve<MenusViewModel>(); }
+        }
+
+        public ArticleListViewModel ArticleList
+        {
+            get { return Container.Resolve<ArticleListViewModel>(); }
         }
     }
 }

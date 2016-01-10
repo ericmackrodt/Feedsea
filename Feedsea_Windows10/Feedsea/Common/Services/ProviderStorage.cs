@@ -20,51 +20,153 @@ using Feedsea.Common.Api.Feedly;
 
 namespace Feedsea.Common.Components
 {
-    internal class DbSubscriptionData
+    //internal class DbNewsSource
+    //{
+    //    [PrimaryKey]
+    //    public string UrlID { get; set; }
+    //    public string Name { get; set; }
+    //    public string Link { get; set; }
+    //    public int UnreadNumber { get; set; }
+    //    public bool IsRoot { get; set; }
+    //    public bool IsCategory { get; set; }
+
+    //    [ManyToMany(typeof(DbNewsSourceLink), CascadeOperations = CascadeOperation.CascadeRead | CascadeOperation.CascadeInsert)]
+    //    public List<DbNewsSource> Children { get; set; }
+
+    //    public DbNewsSource()
+    //    {
+
+    //    }
+
+    //    public DbNewsSource(INewsSource source, bool isRoot = false)
+    //    {
+    //        if (source is CategoryData)
+    //        {
+    //            FromCategory(source);
+    //            IsRoot = true;
+    //            IsCategory = true;
+    //        }
+    //        else
+    //        {
+    //            FromSubscription(source);
+    //            IsRoot = isRoot;
+    //            IsCategory = false;
+    //        }
+    //    }
+
+    //    public INewsSource ToNewsSource()
+    //    {
+    //        if (IsCategory)
+    //            return ToCategory();
+    //        else
+    //            return ToSubscription();
+    //    }
+
+    //    private SubscriptionData ToSubscription()
+    //    {
+    //        var sub = new SubscriptionData()
+    //        {
+    //            UrlID = UrlID,
+    //            Link = Link,
+    //            Name = Name,
+    //            UnreadNumber = UnreadNumber
+    //        };
+
+    //        if (Children != null)
+    //            sub.Categories = Children.Select(o => o.ToNewsSource()).Cast<CategoryData>().ToArray();
+
+    //        return sub;
+    //    }
+
+    //    private CategoryData ToCategory()
+    //    {
+    //        var cat = new CategoryData()
+    //        {
+    //            UrlID = UrlID,
+    //            Name = Name,
+    //            URL = Link,
+    //            UnreadNumber = UnreadNumber
+    //        };
+
+    //        if (Children != null)
+    //            cat.Subscriptions = Children.Select(o => o.ToNewsSource()).Cast<SubscriptionData>().ToList();
+
+    //        return cat;
+    //    }
+
+    //    private void FromSubscription(INewsSource data)
+    //    {
+    //        var sub = data as SubscriptionData;
+    //        UrlID = sub.UrlID;
+    //        Name = sub.Name;
+    //        Link = sub.Link;
+    //        UnreadNumber = sub.UnreadNumber;
+
+    //        if (sub.Categories == null) return;
+
+    //        Children = sub.Categories.Select(o => new DbNewsSource(o)).ToList();
+    //    }
+
+    //    private void FromCategory(INewsSource data)
+    //    {
+    //        var cat = data as CategoryData;
+    //        UrlID = cat.UrlID;
+    //        Name = cat.Name;
+    //        Link = cat.URL;
+    //        UnreadNumber = cat.UnreadNumber;
+
+    //        if (cat.Subscriptions != null)
+    //            Children = cat.Subscriptions.Select(o => new DbNewsSource(o)).ToList();
+    //    }
+    //}
+
+    //internal class DbNewsSourceLink
+    //{
+    //    [ForeignKey(typeof(DbNewsSource))]
+    //    public string ParentID { get; set; }
+
+    //    [ForeignKey(typeof(DbNewsSource))]
+    //    public string ChildID { get; set; }
+    //}
+
+    internal class DbSubscription
     {
         [PrimaryKey]
-        public string Id { get; set; }
-        public string Title { get; set; }
-        public long Updated { get; set; }
-        public string Website { get; set; }
+        public string UrlID { get; set; }
+        public string Name { get; set; }
+        public string Link { get; set; }
         public string Image { get; set; }
+        public int UnreadNumber { get; set; }
+
+        [OneToMany(CascadeOperations = CascadeOperation.All)]      // One to many relationship with Valuation
+        public List<DbArticle> Articles { get; set; }
 
         [ManyToMany(typeof(DbCategorySubscription), CascadeOperations = CascadeOperation.CascadeRead | CascadeOperation.CascadeInsert)]
-        public List<DbCategoryData> Categories { get; set; }
+        public List<DbCategory> Categories { get; set; }
 
-        public static implicit operator Subscription(DbSubscriptionData subscription)
+        public DbSubscription() { }
+        public DbSubscription(SubscriptionData sub)
         {
-            if (subscription == null) throw new ArgumentNullException();
-            return subscription.ToSubscriptionData();
-        }
-
-        public static implicit operator DbSubscriptionData(Subscription subscription)
-        {
-            if (subscription == null) throw new ArgumentNullException();
-            return new DbSubscriptionData(subscription);
-        }
-
-        public DbSubscriptionData() { }
-        public DbSubscriptionData(Subscription sub)
-        {
-            Id = sub.Id;
-            Title = sub.Title;
-            Website = sub.Website;
-            Updated = sub.Updated;
+            UrlID = sub.UrlID;
+            Name = sub.Name;
+            Link = sub.Link;
+            Image = sub.Image;
+            UnreadNumber = sub.UnreadNumber;
 
             if (sub.Categories == null) return;
 
-            Categories = sub.Categories.Select(o => new DbCategoryData(o)).ToList();
+            Categories = sub.Categories.Select(o => new DbCategory(o)).ToList();
         }
 
-        public Subscription ToSubscriptionData()
+        public SubscriptionData ToSubscriptionData()
         {
-            var sub = new Subscription()
+            var sub = new SubscriptionData()
             {
-                Id = Id,
-                Website = Website,
-                Title = Title,
-                Updated = Updated
+                UrlID = UrlID,
+                Link = Link,
+                Name = Name,
+                Image = Image,
+                UnreadNumber = UnreadNumber
             };
 
             if (Categories != null)
@@ -72,56 +174,135 @@ namespace Feedsea.Common.Components
 
             return sub;
         }
+
+        public INewsSource ToNewsSource()
+        {
+            return ToSubscriptionData();
+        }
     }
 
-    internal class DbCategoryData
+    internal class DbCategory
     {
         [PrimaryKey]
-        public string Id { get; set; }
-        public string Label { get; set; }
+        public string UrlID { get; set; }
+        public string Name { get; set; }
         public string URL { get; set; }
+        public int UnreadNumber { get; set; }
 
         [ManyToMany(typeof(DbCategorySubscription), CascadeOperations = CascadeOperation.CascadeRead | CascadeOperation.CascadeInsert)]
-        public List<DbSubscriptionData> Subscriptions { get; set; }
+        public List<DbSubscription> Subscriptions { get; set; }
 
-        public static implicit operator FeedCategory(DbCategoryData category)
+        public DbCategory() { }
+        public DbCategory(CategoryData cat)
         {
-            if (category == null) throw new ArgumentNullException();
-            return category.ToCategoryData();
+            UrlID = cat.UrlID;
+            Name = cat.Name;
+            URL = cat.URL;
+            UnreadNumber = cat.UnreadNumber;
+
+            if (cat.Subscriptions != null)
+                Subscriptions = cat.Subscriptions.Select(o => new DbSubscription(o)).ToList();
         }
 
-        public static implicit operator DbCategoryData(FeedCategory category)
+        public CategoryData ToCategoryData()
         {
-            if (category == null) throw new ArgumentNullException();
-            return new DbCategoryData(category);
-        }
-
-        public DbCategoryData() { }
-        public DbCategoryData(FeedCategory cat)
-        {
-            Id = cat.Id;
-            Label = cat.Label;
-        }
-
-        public FeedCategory ToCategoryData()
-        {
-            var cat = new FeedCategory()
+            var cat = new CategoryData()
             {
-                Id = Id,
-                Label = Label
+                UrlID = UrlID,
+                Name = Name,
+                URL = URL,
+                UnreadNumber = UnreadNumber
             };
+
+            if (Subscriptions != null)
+                cat.Subscriptions = Subscriptions.Select(o => o.ToSubscriptionData()).ToList();
+
             return cat;
+        }
+
+        public INewsSource ToNewsSource()
+        {
+            return ToCategoryData();
         }
     }
 
     public class DbCategorySubscription
     {
-        [ForeignKey(typeof(DbCategoryData))]
+        [ForeignKey(typeof(DbCategory))]
         public string CategoryID { get; set; }
 
-        [ForeignKey(typeof(DbSubscriptionData))]
+        [ForeignKey(typeof(DbSubscription))]
         public string SubscriptionID { get; set; }
     }
+
+    internal class DbArticle
+    {
+        [PrimaryKey]
+        public string UniqueID { get; set; }
+        public string Title { get; set; }
+        public string Summary { get; set; }
+        public string Content { get; set; }
+        public string Author { get; set; }
+        public bool IsRead { get; set; }
+        public bool IsFavorite { get; set; }
+        public string MainImageUrl { get; set; }
+        public string URL { get; set; }
+        public DateTime Date { get; set; }
+
+        [ForeignKey(typeof(DbSubscription))]     // Specify the foreign key
+        public string SubscriptionID { get; set; }
+
+        [ManyToOne]      // Many to one relationship with Stock
+        public DbSubscription Subscription { get; set; }
+
+        //internal EnclosureData[] Enclosure { get; set; }
+        public string MobilizedUrl { get; set; }
+
+        public DbArticle() { }
+
+        public DbArticle(ArticleData data)
+        {
+            UniqueID = data.UniqueID;
+            Title = data.Title;
+            Summary = data.Summary;
+            Content = data.Content;
+            Author = data.Author;
+            IsRead = data.IsRead;
+            IsFavorite = data.IsFavorite;
+            MainImageUrl = data.MainImageUrl;
+            URL = data.URL;
+            Date = data.Date;
+            MobilizedUrl = data.MobilizedUrl;
+
+            if (data.Source != null)
+                Subscription = new DbSubscription(data.Source);
+        }
+
+        public ArticleData ToArticleData()
+        {
+            var data = new ArticleData()
+            {
+                UniqueID = UniqueID,
+                Title = Title,
+                Summary = Summary,
+                Content = Content,
+                Author = Author,
+                IsRead = IsRead,
+                IsFavorite = IsFavorite,
+                MainImageUrl = MainImageUrl,
+                URL = URL,
+                Date = Date,
+                MobilizedUrl = MobilizedUrl
+            };
+
+            if (Subscription != null)
+                data.Source = Subscription.ToSubscriptionData();
+
+            return data;
+        }
+    }
+
+
 
     public class ProviderStorage : IProviderStorage
     {
@@ -140,9 +321,10 @@ namespace Feedsea.Common.Components
         public async Task Initialize()
         {
             var con = DbConnection;
-            //await con.CreateTableAsync<DbSubscriptionData>();
-            //await con.CreateTableAsync<DbCategoryData>();
-            //await con.CreateTableAsync<DbCategorySubscription>();
+            await con.CreateTableAsync<DbSubscription>();
+            await con.CreateTableAsync<DbCategory>();
+            await con.CreateTableAsync<DbCategorySubscription>();
+            await con.CreateTableAsync<DbArticle>();
         }
 
         public async Task SaveSubscriptions(IEnumerable<SubscriptionData> subscriptions)
@@ -161,23 +343,29 @@ namespace Feedsea.Common.Components
             //await db.InsertOrReplaceAllWithChildrenAsync(cats);
         }
 
-        public async Task SaveArticles(IEnumerable<ArticleData> articles)
+        public async Task<IEnumerable<INewsSource>> LoadNewsSources()
         {
-            
+            var db = DbConnection;
+            var sources = await db.GetAllWithChildrenAsync<DbCategory>();
+            var query = "SELECT * FROM {0} WHERE NOT EXISTS (SELECT * FROM {1} WHERE {0}.UrlID = {1}.SubscriptionID);";
+            var subscriptions = await db.QueryAsync<DbSubscription>(string.Format(query, typeof(DbSubscription).Name, typeof(DbCategorySubscription).Name));
+            var result = sources.Select(o => o.ToNewsSource()).Union(subscriptions.Select(o => o.ToNewsSource()));
+            //var result = await db.GetAllWithChildrenAsync<DbNewsSource>(o => o.IsRoot == true);
+            return result.OrderBy(o => o.Name).ThenByDescending(o => o.GetType().Name);
         }
 
         public async Task<IEnumerable<SubscriptionData>> LoadSubscriptions()
         {
             var db = DbConnection;
-            var subs = await db.GetAllWithChildrenAsync<DbSubscriptionData>();
+            var subs = await db.GetAllWithChildrenAsync<DbSubscription>();
             return null; //subs.Cast<Subscription>();
         }
 
         public async Task<IEnumerable<CategoryData>> LoadCategories()
         {
             var db = DbConnection;
-            var cats = await db.GetAllWithChildrenAsync<DbCategoryData>();
-            return null; // cats.Select(o => o.ToCategoryData());
+            var cats = await db.GetAllWithChildrenAsync<DbCategory>();
+            return cats.Select(o => o.ToCategoryData());
         }
 
         public async Task<IEnumerable<ArticleData>> LoadArticles()
@@ -188,7 +376,7 @@ namespace Feedsea.Common.Components
         public async Task<SubscriptionData> GetSubscription(string id)
         {
             var db = DbConnection;
-            var subscription = await db.GetWithChildrenAsync<DbSubscriptionData>(id);
+            var subscription = await db.GetWithChildrenAsync<DbSubscription>(id);
             return null;// subscription.ToSubscriptionData();
         }
 
@@ -200,10 +388,57 @@ namespace Feedsea.Common.Components
 
         public async Task SaveSources(IEnumerable<INewsSource> sources)
         {
-            var subs = sources.Where(o => o is SubscriptionData).Cast<SubscriptionData>();
-            var cats = sources.Where(o => o is CategoryData).Cast<CategoryData>();
-            await SaveCategories(cats);
-            await SaveSubscriptions(subs);
+            var db = DbConnection;
+            var categories = sources.Where(o => o is CategoryData);
+            var subscriptions = sources.Where(o => o is SubscriptionData);
+            await db.InsertOrReplaceAllWithChildrenAsync(categories.Select(o => new DbCategory(o as CategoryData)));
+            await db.InsertOrReplaceAllWithChildrenAsync(subscriptions.Select(o => new DbSubscription(o as SubscriptionData)));
+        }
+
+        public async Task UpdateSources(IEnumerable<INewsSource> sources)
+        {
+            var db = DbConnection;
+            var roots = sources.Select(o => o is CategoryData ? new DbCategory(o as CategoryData) : new DbSubscription(o as SubscriptionData) as object);
+            await db.UpdateAllAsync(roots);
+            var subscriptions = sources.Where(o => o is CategoryData).SelectMany(o => (o as CategoryData).Subscriptions.Select(x => new DbSubscription(x)));
+            await db.UpdateAllAsync(subscriptions);
+        }
+
+        public async Task ClearNewsSources()
+        {
+            var db = DbConnection;
+            //await db.DeleteAllAsync<DbNewsSource>();
+            //await db.DeleteAllAsync<DbNewsSourceLink>();
+            await db.DeleteAllAsync<DbCategorySubscription>();
+            await db.DeleteAllAsync<DbCategory>();
+            await db.DeleteAllAsync<DbSubscription>();
+        }
+
+        public async Task<IEnumerable<ArticleData>> LoadArticles(INewsSource source)
+        {
+            var db = DbConnection;
+            IEnumerable<DbArticle> articles = null;
+            if (source is CategoryData)
+            {
+                var cat = new DbCategory(source as CategoryData);
+                var query =
+                    "SELECT * FROM DbArticle WHERE EXISTS " +
+                    "(SELECT * FROM DbSubscription WHERE DbArticle.SubscriptionID = DbSubscription.UrlID AND EXISTS " +
+                    "(SELECT * FROM DbCategorySubscription WHERE DbSubscription.UrlID = DbCategorySubscription.SubscriptionID AND DbCategorySubscription.CategoryID = '{0}'))";
+
+                articles = await db.QueryAsync<DbArticle>(string.Format(query, source.UrlID));
+            }
+            else
+                articles = await db.GetAllWithChildrenAsync<DbArticle>(o => o.SubscriptionID == source.UrlID);
+
+            return articles.Select(o => o.ToArticleData()).OrderByDescending(o => o.Date);
+        }
+
+        public async Task SaveArticles(IEnumerable<ArticleData> articles)
+        {
+            var db = DbConnection;
+            var dbArticles = articles.Select(o => new DbArticle(o));
+            await db.InsertOrReplaceAllWithChildrenAsync(dbArticles);
         }
     }
 

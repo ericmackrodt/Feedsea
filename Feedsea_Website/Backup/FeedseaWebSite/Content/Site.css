@@ -1,0 +1,134 @@
+﻿html, body {
+    height: 100%;
+}
+
+#top-bar {
+    border-bottom: 1px solid #eaeaea;
+}
+
+#top-bar .lang {
+    padding: 5px;
+    margin-bottom: 4px;
+    display: inline-block;
+    color: #000;
+}
+
+#top-bar .lang:hover {
+    border-bottom: 4px solid #EAEAEA;
+    margin-bottom: 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: #1A74B8;
+}
+
+#top-bar .lang.selected {
+    border-bottom: 4px solid #1A74B8;
+    color: #1A74B8;
+    margin-bottom: 0;
+}
+
+header {
+    border-bottom: 1px solid #eaeaea;
+}
+
+header img.logoImage {
+    height: 30px;
+    margin: 0
+}
+
+header .row {
+    display: table-row;
+}
+
+header .row .menu {
+    float: none;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+header .row .menu ul {
+    float: right;
+
+}
+
+section#preContent {
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+section#preContent .header-background {
+    height: 350px;
+    background: url(../Content/Images/headerback.jpg) no-repeat bottom center #000; 
+}
+
+section#preContent .row {
+    margin: 0 !important;
+}
+
+section#preContent .row .imageWrap {
+    position: relative;
+}
+
+section#preContent .row .imageWrap img {
+    position: absolute;
+    height: 420px;
+    top: -70px;
+}
+
+section#main {
+    min-height: 100%;
+    margin-top: -117px;
+    padding-top: 116px;
+    margin-bottom: -300px;
+    padding-bottom: 300px;
+}
+
+section#main .container.body-content {
+    
+}
+
+section#main .container .phone-logo-available img {
+    height: 80px;
+}
+
+section#main .container.body-content .index-content .row {
+    margin-top: 0;
+}
+
+section#main .container.body-content .twitter-area {
+    padding: 0;
+}
+
+section#main .container.body-content div#links {
+    /*margin: 10px auto 0 auto;;*/
+    /*float: none;*/
+    margin: 13px
+}
+
+section#main .container.body-content div.gallery img {
+    margin: 2px;
+    height: 190px;
+}
+
+section#main .container.body-content .content-box {
+    margin: 15px;
+}
+
+footer {
+    background: #34495E;
+    color: #fff;
+    padding: 15px;
+    height: 300px;
+}
+
+/*footer p, footer h3, footer h4 {
+    color: #fff !important;
+}
+
+footer a {
+    color: #ffffff !important;
+}*/
+
+footer img {
+    margin-right: 10px;
+    max-width: 260px;
+}

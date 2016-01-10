@@ -1,0 +1,184 @@
+﻿@using FeedseaWebSite.App_GlobalResources;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <!-- for Google -->
+    <meta name="description" content="@Strings.Social_Description" />
+    <meta name="keywords" content="news, reader, windows, phone, windows phone" />
+
+    <meta name="author" content="@Strings.Social_Author" />
+    <meta name="copyright" content="@Strings.Social_Copyright" />
+    <meta name="application-name" content="@Strings.Social_Title" />
+
+    <!-- for Facebook -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="@Url.Content("~/Content/socialimage.jpg")">
+    <meta property="og:title" content="@Strings.Social_Title">
+    <meta property="og:url" content="http://www.feedsea.com">
+    <meta property="og:site_name" content="@Strings.SiteName">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="@Strings.Social_Description">
+
+    <!-- for Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@Strings.Social_Author">
+    <meta name="twitter:site" content="@Strings.SiteName">
+    <meta name="twitter:title" content="@Strings.Social_Title">
+    <meta name="twitter:description" content="@Strings.Social_Description">
+    <meta name="twitter:image" content="@Url.Content("~/Content/socialimage.jpg")">
+
+    <title>@ViewBag.Title - @Strings.SiteName</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/slimbox2.css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="metro">
+    <section id="top-bar">
+        <div class="container">
+            <div>
+                <a class="lang @(ViewBag.Language == "en-us" ? "selected" : "")" href="@Url.Content("~/en-us/Home/" + ViewBag.PageName)">@Strings.Lang_enUS</a>
+                <a class="lang @(ViewBag.Language == "pt-br" ? "selected" : "")" href="@Url.Content("~/pt-br/Home/" + ViewBag.PageName)">@Strings.Lang_ptBR</a>
+            </div>
+        </div>
+    </section>
+    <header id="header" class="container fg-white">
+        <div class="grid fluid">
+            <div class="row">
+                <div class="span6">
+                    <a href="@Url.Content("~/")">
+                        <img src="@Url.Content("~/Content/Images/logo-site.png")" alt="Feedsea" class="logoImage" />
+                    </a>
+                </div>
+                @*<div class="span6 menu">
+                        <ul class="horizontal-menu">
+                            <li class="@(ViewBag.PageName == "Index" ? "active" : "") fg-hover-darkCyan">@Html.ActionLink(Strings.MenuItem_Home, "Index")</li>
+                            <li class="@(ViewBag.PageName == "Feedback" ? "active" : "") fg-hover-darkCyan">@Html.ActionLink(Strings.MenuItem_Feedback, "Feedback")</li>
+                            <li class="@(ViewBag.PageName == "JoinBeta" ? "active" : "") fg-hover-darkCyan">@Html.ActionLink(Strings.MenuItem_JoinBeta, "JoinBeta")</li>
+                        </ul>
+                    </div>*@
+            </div>
+        </div>
+    </header>
+
+    @RenderSection("preBodyContent", required: false)
+
+    <section id="main">
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="grid fluid">
+                <div class="row">
+                    <div class="span3">
+                        <h3>
+                            <img src="@Url.Content("~/Content/Images/logo-white.png")" alt="Feedsea" />
+                        </h3>
+                        <p class="fg-white">
+                            @Strings.Straightforward
+                        </p>
+                        <h3 class="fg-white">
+                            <a href="http://www.windowsphone.com/en-us/store/app/feedsea/6f90607d-7a40-4d8e-83ac-77f818359754" target="_blank">
+                                <img class="store-logo" src="@Url.Content("~/Content/Images/phonestore-logo.png")" alt="Feedsea" />
+                            </a>
+                        </h3>
+                    </div>
+                    <div class="span3">
+                        <h3 class="fg-white">@Strings.ContactInfo</h3>
+                        <p class="fg-white"><img src="@Url.Content("~/Content/Images/help-white.png")" alt="Support" /><a class="fg-white fg-hover-darkCyan" href="http://feedsea.uservoice.com" target="_blank">@Strings.NeedHelpSuggestion</a></p>
+                        <p class="fg-white"><img src="@Url.Content("~/Content/Images/email-white.png")" alt="Email" /><a class="fg-white fg-hover-darkCyan" href="mailto:support@feedsea.com">support@feedsea.com</a></p>
+                        <p class="fg-white"><img src="@Url.Content("~/Content/Images/twitter-white.png")" alt="Twitter" /><a class="fg-white fg-hover-darkCyan" href="http://www.twitter.com/feedsea" target="_blank">@@feedsea</a></p>
+                        <p class="fg-white"><img src="@Url.Content("~/Content/Images/location-white.png")" alt="Twitter" />Rio de Janeiro - Brazil</p>
+                    </div>
+                    <div class="span3">
+                        <h3 class="fg-white">@Strings.DevelopedBy</h3>
+                        <h4 class="fg-white">Eric Mackrodt</h4>
+                        <p class="fg-white"><img src="@Url.Content("~/Content/Images/email-white.png")" alt="Email" /><a class="fg-white fg-hover-darkCyan" href="mailto:eric@feedsea.com">eric@feedsea.com</a></p>
+                        <p class="fg-white"><img src="@Url.Content("~/Content/Images/twitter-white.png")" alt="Twitter" /><a class="fg-white fg-hover-darkCyan" href="http://www.twitter.com/ericmackrodt" target="_blank">@@ericmackrodt</a></p>
+                        <p class="fg-white"><img src="@Url.Content("~/Content/Images/website-white.png")" alt="Website" /><a class="fg-white fg-hover-darkCyan" href="http://www.byteswithfries.com" target="_blank">www.byteswithfries.com</a></p>
+                    </div>
+                    <div class="span3">
+                        <div class="fb-like-box" data-href="https://www.facebook.com/feedsea" data-height="200px" data-colorscheme="dark" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+                        <div id="fb-root"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/Scripts/metro.min.js")
+    @Scripts.Render("~/Scripts/slimbox2.js")
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        // Include the UserVoice JavaScript SDK (only needed once on a page)
+        UserVoice = window.UserVoice || []; (function () { var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true; uv.src = '//widget.uservoice.com/5sWkFiprCOYfLDCstLR15A.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s) })();
+
+        //
+        // UserVoice Javascript SDK developer documentation:
+        // https://www.uservoice.com/o/javascript-sdk
+        //
+
+        // Set colors
+        UserVoice.push(['set', {
+            accent_color: '#448dd6',
+            trigger_color: 'white',
+            trigger_background_color: '#448dd6'
+        }]);
+
+        // Identify the user and pass traits
+        // To enable, replace sample data with actual user traits and uncomment the line
+        UserVoice.push(['identify', {
+            //email:      'john.doe@example.com', // User’s email address
+            //name:       'John Doe', // User’s real name
+            //created_at: 1364406966, // Unix timestamp for the date the user signed up
+            //id:         123, // Optional: Unique id of the user (if set, this should not change)
+            //type:       'Owner', // Optional: segment your users by type
+            //account: {
+            //  id:           123, // Optional: associate multiple users with a single account
+            //  name:         'Acme, Co.', // Account name
+            //  created_at:   1364406966, // Unix timestamp for the date the account was created
+            //  monthly_rate: 9.99, // Decimal; monthly rate of the account
+            //  ltv:          1495.00, // Decimal; lifetime value of the account
+            //  plan:         'Enhanced' // Plan name for the account
+            //}
+        }]);
+
+        // Add default trigger to the bottom-right corner of the window:
+        UserVoice.push(['addTrigger', { mode: 'contact', trigger_position: 'bottom-left' }]);
+
+        // Or, use your own custom trigger:
+        //UserVoice.push(['addTrigger', '#id', { mode: 'contact' }]);
+
+        // Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
+        UserVoice.push(['autoprompt', {}]);
+    </script>
+
+
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-49713259-1', 'feedsea.com');
+        ga('send', 'pageview');
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=282646095177354&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+</body>
+</html>

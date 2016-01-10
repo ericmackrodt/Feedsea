@@ -68,18 +68,7 @@ namespace Feedsea.Models
             get { return _toggleExpandCommand; }
         }
 
-        public int UnreadNumber
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public int UnreadNumber { get; set; }
 
         //public static implicit operator ExpandableCategory(CategoryData category)
         //{

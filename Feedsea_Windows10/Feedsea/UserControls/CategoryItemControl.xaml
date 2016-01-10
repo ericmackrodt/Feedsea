@@ -5,6 +5,7 @@
     xmlns:local="using:Feedsea.UserControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:helpers="using:Feedsea.Common.Helpers"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -16,6 +17,20 @@
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         </Style>
+
+        <DataTemplate x:Key="CategoryTemplate">
+            <Grid Height="42">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="42" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <ToggleButton x:Name="ToggleExpand" Style="{StaticResource CategoryExpandToggleButton}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                          Checked="ToggleButton_Checked" Unchecked="ToggleExpand_Unchecked" helpers:EmptyTapped.Attach="True" />
+                <!--<FontIcon x:Name="Glyph" FontSize="16" Glyph="" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding Name}"
+                                              Foreground="{ThemeResource PanelSymbolColor}"/>-->
+                <TextBlock x:Name="Text" Grid.Column="1" Text="{Binding Name}" Style="{StaticResource MenuItemText}" VerticalAlignment="Center" />
+            </Grid>
+        </DataTemplate>
 
         <Storyboard x:Name="OpenStoryboard">
             <DoubleAnimation x:Name="OpenAnim" Storyboard.TargetName="LstSubscriptions" Storyboard.TargetProperty="Height" From="0" Duration="0:0:0.2" EnableDependentAnimation="True">
@@ -52,7 +67,8 @@
         <ListViewItem x:Name="CategoryItem" Grid.Row="0" ContentTemplate="{StaticResource CategoryTemplate}" Style="{StaticResource SourceListViewItemStyle}"
                       Tapped="ListViewItem_Tapped"/>
 
-        <ListView Grid.Row="1" VerticalAlignment="Top" x:Name="LstSubscriptions" ItemTemplate="{StaticResource SubscriptionTemplate}" ItemsSource="{Binding Path=Category.Subscriptions}"
+        <ListView Grid.Row="1" VerticalAlignment="Top" Opacity="0" Height="0" x:Name="LstSubscriptions" ItemTemplate="{StaticResource SubscriptionTemplate}" 
+                  ItemsSource="{Binding Path=Subscriptions}"
                   ItemContainerStyle="{StaticResource SourceListViewItemStyle}"
                   SelectionChanged="LstSubscriptions_SelectionChanged"
                   ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollMode="Disabled"/>

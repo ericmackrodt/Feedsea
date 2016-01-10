@@ -1,0 +1,136 @@
+﻿@using FeedseaWebSite.App_GlobalResources;
+
+@{
+    ViewBag.Title = @Strings.MenuItem_Home;
+    ViewBag.PageName = "Index";
+}
+
+@section preBodyContent {
+    <section id="preContent">
+        <div class="header-background">
+            <div class="container">
+                <div class="grid fluid">
+                    <div class="row">
+                        <div class="span9 text">
+                            <h1 class="fg-white">@Strings.Header1_Message</h1>
+                            <h1 class="subheader fg-white">@Strings.Header1_SubMessage</h1>
+                            <div class="fg-white">@Strings.Header1_Text</div>
+                            @*<p class="fg-white">
+        <a href="http://www.windowsphone.com/en-us/store/app/feedsea/6f90607d-7a40-4d8e-83ac-77f818359754" target="_blank">
+            <img class="store-logo" src="@Url.Content("~/Content/Images/phonestore-logo.png")" alt="Feedsea" />
+        </a>
+    </p>*@
+
+                        </div>
+                        <div class="span3 imageWrap">
+                            <img src="@Url.Content("~/Content/Images/phone-main.png")" alt="Phone">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            @*<div class="container">
+                    <div class="grid fluid">
+                        <div class="row">
+                            <div class="offset9 span3 fill imageWrap" style="">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+        </div>
+
+    </section>
+}
+<div class="grid fluid">
+    <div class="row">
+        <div class="span6 text-right">
+            <h1>@Strings.AvailableFor</h1>
+        </div>
+        <div class="span6 text-left phone-logo-available">
+            <a href="http://www.windowsphone.com/en-us/store/app/feedsea/6f90607d-7a40-4d8e-83ac-77f818359754" target="_blank">
+                <img src="@Url.Content("~/Content/Images/phonestore-logo.png")" alt="Store Logo">
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span8 index-content">
+            <div class="row">
+                <div class="span12">
+                    <img src="@Url.Content("~/Content/Images/blurphones.jpg")" alt="Phones" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12 text-center">
+                    <h2>@Strings.SimpleYetPowerful</h2>
+                </div>
+            </div>
+            @*<div class="row">
+                <div class="span12">
+                    <dl class="content-box">
+                        <dt>@Strings.Features_StraightToNews_Title</dt>
+                        <dd>@Strings.Features_StraightToNews_Message</dd>
+                        <dt>@Strings.Features_Visual_Title</dt>
+                        <dd>@Strings.Features_Visual_Message</dd>
+                        <dt>@Strings.Features_ChooseApp_Title</dt>
+                        <dd>@Strings.Features_ChooseApp_Message</dd>
+                    </dl>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="offset1 span11">
+                    <div class="gallery content-box">
+                        <a href="@Url.Content("~/Content/Images/Screenshots/SS1.png")"><img src="@Url.Content("~/Content/Images/Screenshots/wxga1-thumb.png")" class="screenshot img-rounded" alt="Main Screen" /></a>
+                        <a href="@Url.Content("~/Content/Images/Screenshots/SS2.png")"><img src="@Url.Content("~/Content/Images/Screenshots/wxga2-thumb.png")" class="screenshot img-rounded" alt="Sources" /></a>
+                        <a href="@Url.Content("~/Content/Images/Screenshots/SS3.png")"><img src="@Url.Content("~/Content/Images/Screenshots/wxga3-thumb.png")" class="screenshot img-rounded" alt="Selected Source" /></a>
+                        <a href="@Url.Content("~/Content/Images/Screenshots/SS4.png")"><img src="@Url.Content("~/Content/Images/Screenshots/wxga4-thumb.png")" class="screenshot img-rounded" alt="Article Page" /></a>
+                        <a href="@Url.Content("~/Content/Images/Screenshots/SS5.png")"><img src="@Url.Content("~/Content/Images/Screenshots/wxga5-thumb.png")" class="screenshot img-rounded" alt="Add Source" /></a>
+                    </div>
+                </div>
+            </div>*@
+
+            <div class="row">
+                <div class="span12">
+                    <div class="content-box">
+                        <h3>@Strings.FeaturedIn</h3>
+                        <a href="http://windowsphonebrasil.com.br/conheca-o-feedsea-um-excelente-cliente-feedly-feito-por-brasileiros/" target="_blank">
+                            <img src="@Url.Content("~/Content/Images/Featured/wpbrasillogo.png")" alt="Windows Phone Brasil" class="img-rounded" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="span4 twitter-area">
+            <!--Put this in a handler or a partial view or something else-->
+            <a class="twitter-timeline" href="https://twitter.com/feedsea" data-widget-id="449094824625328128">Tweets by @@feedsea</a>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+
+    <script type="text/javascript">
+        $('.carousel').carousel({
+            auto: true,
+            height: '400px',
+            effect: 'fade',
+            period: 7000,
+            markers: {
+                type: "square",
+                show: false
+            }
+        });
+
+        $(function () {
+            $('.gallery a').slimbox({
+                loop: true,
+            });
+        });
+
+        !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");
+    </script>
+}

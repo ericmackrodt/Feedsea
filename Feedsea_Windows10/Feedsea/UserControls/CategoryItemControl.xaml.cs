@@ -98,5 +98,25 @@ namespace Feedsea.UserControls
 
             SetSelectedItem(CategoryItem.DataContext as INewsSource);
         }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            var lvi = LstSubscriptions.ContainerFromIndex(0) as ListViewItem;
+
+            if (lvi == null) return;
+
+            var height = lvi.ActualHeight * LstSubscriptions.Items.Count;
+            OpenAnim.To = height;
+
+            LstSubscriptions.Visibility = Visibility.Visible;
+            OpenStoryboard.Begin();
+        }
+
+        private void ToggleExpand_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CloseAnim.From = LstSubscriptions.ActualHeight;
+            CloseStoryboard.Completed += (s, arg) => { LstSubscriptions.Visibility = Visibility.Collapsed; };
+            CloseStoryboard.Begin();
+        }
     }
 }

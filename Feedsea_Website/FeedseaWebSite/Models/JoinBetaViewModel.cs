@@ -12,7 +12,6 @@ namespace FeedseaWebSite.Models
     {
         [Display(ResourceType=typeof(Strings), Name="Name")]
         [Required]
-        [MaxLength(150)]
         public string Name { get; set; }
 
         [Display(ResourceType = typeof(Strings), Name = "Email")]

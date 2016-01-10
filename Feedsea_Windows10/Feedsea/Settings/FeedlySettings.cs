@@ -84,7 +84,7 @@ namespace Feedsea.Settings
 
         public bool IsLoggedIn
         {
-            get { return !string.IsNullOrWhiteSpace(OAuthToken) && !string.IsNullOrWhiteSpace(OAuthRefreshToken) && OAuthTokenExpiration > DateTime.Now; }
+            get { return !string.IsNullOrWhiteSpace(OAuthToken) && !string.IsNullOrWhiteSpace(OAuthRefreshToken) && OAuthTokenExpiration < DateTime.Now; }
         }
 
     }

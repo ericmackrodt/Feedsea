@@ -19,9 +19,11 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Feedsea.UserControls
 {
+    public delegate void SidebarClickEventHandler(INewsSource selectedSource);
+
     public sealed partial class SidePanelControl : UserControl
     {
-        public event EventHandler SidebarClicked;
+        public event SidebarClickEventHandler SidebarClicked;
 
 
 
@@ -127,7 +129,7 @@ namespace Feedsea.UserControls
         private void SetSelectedItem(INewsSource source)
         {
             if (SidebarClicked != null)
-                SidebarClicked(this, new EventArgs());
+                SidebarClicked(source);
 
             if (ItemSelectedCommand != null && ItemSelectedCommand.CanExecute(source))
                 ItemSelectedCommand.Execute(source);

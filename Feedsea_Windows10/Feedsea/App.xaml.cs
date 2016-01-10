@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Feedsea.Views;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -50,6 +51,39 @@ namespace Feedsea
             }
 #endif
 
+            //AppShell shell = Window.Current.Content as AppShell;
+
+            //// Do not repeat app initialization when the Window already has content,
+            //// just ensure that the window is active
+            //if (shell == null)
+            //{
+            //    // Create a AppShell to act as the navigation context and navigate to the first page
+            //    shell = new AppShell();
+
+            //    // Set the default language
+            //    shell.Language = Windows.Globalization.ApplicationLanguages.Languages[0];
+
+            //    shell.AppFrame.NavigationFailed += OnNavigationFailed;
+
+            //    if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+            //    {
+            //        //TODO: Load state from previously suspended application
+            //    }
+            //}
+
+            //// Place our app shell in the current Window
+            //Window.Current.Content = shell;
+
+            //if (shell.AppFrame.Content == null)
+            //{
+            //    // When the navigation stack isn't restored, navigate to the first page
+            //    // suppressing the initial entrance animation.
+            //    shell.AppFrame.Navigate(typeof(NewsViewPage), e.Arguments, new Windows.UI.Xaml.Media.Animation.SuppressNavigationTransitionInfo());
+            //}
+
+            //// Ensure the current window is active
+            //Window.Current.Activate();
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -80,7 +114,8 @@ namespace Feedsea
                 if (!settings.IsLoggedIn)
                     rootFrame.Navigate(typeof(Views.WelcomePage), e.Arguments);
                 else
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(AppShell), e.Arguments);
+                //rootFrame.Navigate(typeof(AppShell), e.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();

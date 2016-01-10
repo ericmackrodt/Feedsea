@@ -10,12 +10,16 @@ namespace Feedsea.Common.Providers
     public interface IProviderStorage
     {
         Task SaveSources(IEnumerable<INewsSource> sources);
+        Task UpdateSources(IEnumerable<INewsSource> sources);
         Task SaveSubscriptions(IEnumerable<SubscriptionData> subscriptions);
         Task SaveCategories(IEnumerable<CategoryData> categories);
         Task SaveArticles(IEnumerable<ArticleData> articles);
+        Task<IEnumerable<ArticleData>> LoadArticles(INewsSource source);
+
+        Task<IEnumerable<INewsSource>> LoadNewsSources();
         Task<IEnumerable<SubscriptionData>> LoadSubscriptions();
         Task<IEnumerable<CategoryData>> LoadCategories();
-        Task<IEnumerable<ArticleData>> LoadArticles();
+        Task ClearNewsSources();
         Task<SubscriptionData> GetSubscription(string id);
         Task UpdateSubscription(SubscriptionData subscription);
         Task Initialize();

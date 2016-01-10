@@ -108,14 +108,9 @@ namespace Feedsea.Common.Providers.Feedly
             }
         }
 
-        public async Task<ObservableCollection<ArticleData>> LoadArticles(INewsSource source = null)
-        {
-            return await LoadArticles(() => DownloadStreamArticles(source));
-        }
-
         public async Task<ObservableCollection<ArticleData>> LoadMostEngagingArticles(INewsSource source = null)
         {
-            return await LoadArticles(() => DownloadMixesArticles(source));
+            return null; // await LoadArticles(() => DownloadMixesArticles(source));
         }
 
         public async Task<IEnumerable<ArticleData>> LoadMoreArticles(INewsSource source = null)
@@ -197,7 +192,7 @@ namespace Feedsea.Common.Providers.Feedly
                 return new RefreshResult()
                 {
                     Sources = sources,
-                    Articles = articles.ToArticleCollection()
+                    //Articles = articles.ToArticleCollection()
                 };
             }
             catch (HttpRequestException ex)
@@ -558,6 +553,7 @@ namespace Feedsea.Common.Providers.Feedly
 
         #region Private_Methods
 
+        [Obsolete("I hate this method")]
         private async Task GetUserData()
         {
             var user = await _client.GetProfile();
@@ -653,7 +649,7 @@ namespace Feedsea.Common.Providers.Feedly
             return stream.Items;
         }
 
-        private async Task<ObservableCollection<ArticleData>> LoadArticles(Func<Task<IEnumerable<Entry>>> downloadArticlesFunction)
+        private async Task<IEnumerable<ArticleData>> LoadArticles(Func<Task<IEnumerable<Entry>>> downloadArticlesFunction)
         {
             try
             {
@@ -666,7 +662,7 @@ namespace Feedsea.Common.Providers.Feedly
                     subscriptions = new SubscriptionData[0];
 
                 var articles = items.ToArticleCollection();
-                return new ObservableCollection<ArticleData>(articles);
+                return articles;
             }
             catch (HttpRequestException ex)
             {
@@ -828,6 +824,177 @@ namespace Feedsea.Common.Providers.Feedly
         public Task<LoginStatus> Login(string username, string password)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<INewsSource>> LoadNewsSources()
+        {
+            return await _storage.LoadNewsSources();
+        }
+
+        private static bool ScrambledEquals<T>(IEnumerable<T> list1, IEnumerable<T> list2, IEqualityComparer<T> comparer)
+        {
+            var cnt = new Dictionary<T, int>(comparer);
+            foreach (T s in list1)
+            {
+                if (cnt.ContainsKey(s))
+                {
+                    cnt[s]++;
+                }
+                else {
+                    cnt.Add(s, 1);
+                }
+            }
+            foreach (T s in list2)
+            {
+                if (cnt.ContainsKey(s))
+                {
+                    cnt[s]--;
+                }
+                else {
+                    return false;
+                }
+            }
+            return cnt.Values.All(c => c == 0);
+        }
+
+        private bool IsSourceTreeEqual(IEnumerable<INewsSource> currentCollection, IEnumerable<INewsSource> sources)
+        {
+            var comparer = new NewsSourceEqualityComparer();
+            var rootEquals = ScrambledEquals<INewsSource>(currentCollection, sources, comparer);
+
+            if (!rootEquals)
+                return false;
+
+            foreach (var item in currentCollection)
+            {
+                var cat = item as CategoryData;
+                if (cat == null)
+                    continue;
+                
+                var toCompare = sources.FirstOrDefault(o => o.UrlID == item.UrlID) as CategoryData;
+
+                var isEqual = ScrambledEquals<INewsSource>(cat.Subscriptions, toCompare.Subscriptions, comparer);
+
+                if (!isEqual)
+                    return false;
+            }
+
+            return true;
+        }
+
+        public async Task<IEnumerable<INewsSource>> DownloadNewsSources()
+        {
+            continuationString = null;
+
+            var counts = await _client.GetCounts();
+            var subscriptions = await _client.GetSubscriptions();
+
+            var sources = GetSourceTree(counts, subscriptions);
+
+            return sources;
+        }
+
+        public async Task<KeyValuePair<bool, IEnumerable<INewsSource>>> DownloadNewsSources(IEnumerable<INewsSource> currentCollection)
+        {
+            var sources = await DownloadNewsSources();
+            var equals = IsSourceTreeEqual(currentCollection, sources);
+
+            if (!equals)
+            {
+                await _storage.ClearNewsSources();
+                await _storage.SaveSources(sources);
+            }
+            else
+            {
+                await _storage.UpdateSources(sources);
+                SetCounts(sources, currentCollection);
+            }
+
+            return new KeyValuePair<bool, IEnumerable<INewsSource>>(equals, sources);
+        }
+
+        private void SetCounts(IEnumerable<INewsSource> sources, IEnumerable<INewsSource> currentCollection)
+        {
+            foreach (var root in sources)
+            {
+                var destRoot = currentCollection.FirstOrDefault(o => o.UrlID == root.UrlID);
+                destRoot.UnreadNumber = root.UnreadNumber;
+
+                var cat = root as CategoryData;
+
+                if (cat == null)
+                    continue;
+
+                var destCat = destRoot as CategoryData;
+
+                if (cat.Subscriptions == null || !cat.Subscriptions.Any()) continue;
+
+                foreach (var child in cat.Subscriptions)
+                {
+                    var destChild = destCat.Subscriptions.FirstOrDefault(o => o.UrlID == child.UrlID);
+                    destChild.UnreadNumber = child.UnreadNumber;
+                }   
+            } 
+        }
+
+        public Task<IEnumerable<ArticleData>> LoadArticles(INewsSource source)
+        {
+            return _storage.LoadArticles(source);  
+        }
+
+        public Task<IEnumerable<ArticleData>> DownloadArticles(ArticleData lastArticle)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<ArticleData>> DownloadArticles(INewsSource source)
+        {
+            return LoadArticles(() => DownloadStreamArticles(source));
+        }
+
+        public async Task<IEnumerable<ArticleData>> DownloadArticles(ArticleData lastArticle, INewsSource source)
+        {
+            //GET ONLY THE ID OF THE LATEST ARTICLE TO CHECK IF IT WAS DOWNLOADED.
+            var articles = await DownloadArticles(source);
+
+            await _storage.SaveArticles(articles);
+
+            if (lastArticle == null)
+                return articles;
+
+            //NOT IMPLEMENTED FOR OLDEST TO NEWEST
+            var latest = articles.FirstOrDefault();
+
+            if (latest != null && latest.UniqueID == lastArticle.UniqueID)
+                return new List<ArticleData>();
+
+            return articles;
+        }
+    }
+
+    public class NewsSourceEqualityComparer : IEqualityComparer<INewsSource>
+    {
+        public bool Equals(INewsSource x, INewsSource y)
+        {
+            return x.UrlID == y.UrlID;
+        }
+
+        public int GetHashCode(INewsSource obj)
+        {
+            return obj.UrlID.GetHashCode();
+        }
+    }
+
+    public class ArticleEqualityComparer : IEqualityComparer<ArticleData>
+    {
+        public bool Equals(ArticleData x, ArticleData y)
+        {
+            return x.UniqueID == y.UniqueID;
+        }
+
+        public int GetHashCode(ArticleData obj)
+        {
+            return obj.UniqueID.GetHashCode();
         }
     }
 }

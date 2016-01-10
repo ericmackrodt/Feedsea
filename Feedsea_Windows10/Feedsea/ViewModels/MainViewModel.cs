@@ -152,7 +152,7 @@ namespace Feedsea.ViewModels
 
             await _provider.MarkAllArticlesRead(SelectedSource);
 
-            Articles = await _provider.LoadArticles(SelectedSource);
+            // Articles = await _provider.LoadArticles(SelectedSource);
             throw new Exception("FIX THIS");
             //var newsSources = await _provider.LoadAllNewsSources();
             //Sources = new ObservableCollection<INewsSource>(newsSources);
@@ -225,10 +225,10 @@ namespace Feedsea.ViewModels
                 Articles.Clear();
 
             var menuItem = source as MenuItem;
-            if (menuItem != null && menuItem.IsMostEngaging)
-                Articles = await _provider.LoadMostEngagingArticles(source);
-            else
-                Articles = await _provider.LoadArticles(source);
+            //if (menuItem != null && menuItem.IsMostEngaging)
+            //    Articles = await _provider.LoadMostEngagingArticles(source);
+            //else
+            //    Articles = await _provider.LoadArticles(source);
 
             SelectedSource = source;
 
@@ -246,29 +246,24 @@ namespace Feedsea.ViewModels
             //if (string.IsNullOrWhiteSpace(open))
             //    open = _generalSettings.CategoryToLoadSetting;
 
-            if (Articles != null && Articles.Any())
-                Articles.Clear();
+            var sources = await _provider.LoadNewsSources(); ;
+            Sources = new ObservableCollection<INewsSource>(sources);
 
-            var sources = await _provider.LoadCategories();
-            Sources = new ObservableCollection<INewsSource>(sources.Select(o => new ExpandableCategory(o)));
+            //SelectedSource = null;
 
-            SelectedSource = null;
+            //INewsSource source = null;
 
-            INewsSource source = null;
+            //if (byId)
+            //    source = GetSourceById((string)arg);
+            //else
+            //    source = GetSourceByName((string)arg);
 
-            if (byId)
-                source = GetSourceById((string)arg);
-            else
-                source = GetSourceByName((string)arg);
+            //var result = await _provider.Refresh(source);
 
-            var result = await _provider.Refresh(source);
+            var result = await _provider.DownloadNewsSources(Sources);
 
-            if (result != null)
-            {
-                Sources = new ObservableCollection<INewsSource>(result.Sources.Select(o => o is SubscriptionData ? o : new ExpandableCategory(o)));
-                Articles = new ObservableCollection<ArticleData>(result.Articles);
-                SelectedSource = source;
-            }
+            if (!result.Key)
+                Sources = new ObservableCollection<INewsSource>(result.Value);
 
             await CheckFirstLoad();
 

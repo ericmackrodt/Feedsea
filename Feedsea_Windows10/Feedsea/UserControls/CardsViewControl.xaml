@@ -15,8 +15,7 @@
         </ItemsPanelTemplate>
         <ItemsPanelTemplate x:Key="ItemsPanelNormal">
             <ItemsWrapGrid MaximumRowsOrColumns="4"
-                           ItemWidth="400"
-                           HorizontalAlignment="Center" 
+                           HorizontalAlignment="Stretch" 
                            Orientation="Horizontal" 
                            SizeChanged="ItemsWrapGrid_SizeChanged" />
         </ItemsPanelTemplate>
@@ -117,13 +116,14 @@
         <GridView x:Name="LstArticles" HorizontalAlignment="Stretch"
                   Margin="20,0,0,0"
                   ItemTemplate="{StaticResource CardTemplate}"
+                  ItemContainerStyle="{StaticResource ArticlePresenterListViewItem}"
                   ItemsSource="{Binding Articles}"
                   ItemsPanel="{StaticResource ItemsPanelNormal}">
-            <GridView.ItemContainerTransitions>
+            <!--<GridView.ItemContainerTransitions>
                 <TransitionCollection>
                     <RepositionThemeTransition />
                 </TransitionCollection>
-            </GridView.ItemContainerTransitions>
+            </GridView.ItemContainerTransitions>-->
         </GridView>
 
         <!--<ListView x:Name="LstArticles" HorizontalContentAlignment="Stretch"
