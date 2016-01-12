@@ -14,14 +14,14 @@
     </Style>
 
     <DataTemplate x:Key="MenuItemTemplate">
-        <Grid>
+        <Grid Height="48">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="42" />
+                <ColumnDefinition Width="48" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <FontIcon x:Name="Glyph" FontSize="16" Glyph="{Binding SymbolAsChar}" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding Name}"
                                               Foreground="{ThemeResource PanelSymbolColor}" />
-            <TextBlock x:Name="Text" Grid.Column="1" Text="{Binding Name}" Style="{StaticResource MenuItemText}"/>
+            <TextBlock x:Name="Text" Grid.Column="1" Text="{Binding Name}" Style="{StaticResource MenuItemText}" VerticalAlignment="Center"/>
         </Grid>
     </DataTemplate>
 

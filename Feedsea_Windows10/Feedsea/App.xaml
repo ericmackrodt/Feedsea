@@ -25,6 +25,11 @@
                     <SolidColorBrush x:Key="PanelForegroundColor" Color="#CCCCCC" />
                     <SolidColorBrush x:Key="PanelSymbolColor" Color="#FFFFFF" />
 
+                    <SolidColorBrush x:Key="HighlightListSelected" Color="#32043F6B" />
+                    <SolidColorBrush x:Key="HighlightListSelectedHover" Color="#66043F6B" />
+                    <SolidColorBrush x:Key="HighlightListHover" Color="#32000000" />
+                    <SolidColorBrush x:Key="HighlightListPressed" Color="#66000000" />
+
                     <SolidColorBrush x:Key="CommandBarBackgroundColor" Color="#DDDDDD" />
                     <SolidColorBrush x:Key="CommandBarForegroundColor" Color="#34495E" />
                     
@@ -56,8 +61,8 @@
                 <Setter Property="Foreground" Value="{ThemeResource PanelSymbolColor}" />
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontFamily" Value="{ThemeResource SymbolThemeFontFamily}" />
-                <Setter Property="MinHeight" Value="42" />
-                <Setter Property="MinWidth" Value="42" />
+                <Setter Property="MinHeight" Value="48" />
+                <Setter Property="MinWidth" Value="48" />
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="HorizontalAlignment" Value="Left" />
@@ -162,7 +167,7 @@
 
                 <Setter Property="FontWeight" Value="Normal" />
                 <Setter Property="FontSize" Value="20" />
-                <Setter Property="Template" Value="{StaticResource SplitViewTogglePaneButtonTemplate}" />
+                <!--<Setter Property="Template" Value="{StaticResource SplitViewTogglePaneButtonTemplate}" />-->
             </Style>
 
             <Style x:Key="ArticleActionButton" TargetType="Button">
@@ -184,21 +189,49 @@
             </Style>
 
             <Style x:Key="MainMenuItemContainerStyle" TargetType="ListViewItem">
-                <Setter Property="MinWidth" Value="42"/>
-                <Setter Property="Height" Value="42" />
-                <Setter Property="Padding" Value="0"/>
-                <Setter Property="MinHeight" Value="42" />
+                <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+                <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                <Setter Property="TabNavigation" Value="Local"/>
+                <Setter Property="IsHoldingEnabled" Value="True"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="MinWidth" Value="{ThemeResource ListViewItemMinWidth}"/>
+                <Setter Property="MinHeight" Value="0"/>
+                <Setter Property="Padding" Value="0" />
                 <Setter Property="HorizontalAlignment" Value="Stretch" />
                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-            </Style>
-
-            <!--Kill this?-->
-            <Style x:Key="MainMenuSecondaryItemContainerStyle" TargetType="ListViewItem">
-                <Setter Property="MinWidth" Value="42"/>
-                <Setter Property="Padding" Value="0"/>
-                <Setter Property="MinHeight" Value="0" />
-                <Setter Property="HorizontalAlignment" Value="Stretch" />
-                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListViewItem">
+                            <ListViewItemPresenter
+                                ContentTransitions="{TemplateBinding ContentTransitions}"
+                                SelectionCheckMarkVisualEnabled="True"
+                                CheckBrush="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+                                CheckBoxBrush="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+                                DragBackground="{ThemeResource ListViewItemDragBackgroundThemeBrush}"
+                                DragForeground="{ThemeResource ListViewItemDragForegroundThemeBrush}"
+                                FocusBorderBrush="{ThemeResource SystemControlForegroundAltHighBrush}"
+                                FocusSecondaryBorderBrush="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                                PlaceholderBackground="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}"
+                                PointerOverBackground="{ThemeResource HighlightListHover}"
+                                PointerOverForeground="{ThemeResource SystemControlHighlightAltBaseHighBrush}"
+                                SelectedBackground="{ThemeResource HighlightListSelected}"
+                                SelectedForeground="{ThemeResource SystemControlHighlightAltBaseHighBrush}"
+                                SelectedPointerOverBackground="{ThemeResource HighlightListSelectedHover}"
+                                PressedBackground="{ThemeResource HighlightListPressed}"
+                                SelectedPressedBackground="{ThemeResource ThemeSecondaryColor}"
+                                DisabledOpacity="{ThemeResource ListViewItemDisabledThemeOpacity}"
+                                DragOpacity="{ThemeResource ListViewItemDragThemeOpacity}"
+                                ReorderHintOffset="{ThemeResource ListViewItemReorderHintThemeOffset}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                ContentMargin="{TemplateBinding Padding}"
+                                CheckMode="Inline"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
 
             <ResourceDictionary.MergedDictionaries>

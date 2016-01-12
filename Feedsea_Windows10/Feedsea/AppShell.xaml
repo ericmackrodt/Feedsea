@@ -112,7 +112,7 @@
                    Grid.Row="1"
                    DisplayMode="Inline"
                    OpenPaneLength="280"
-                   CompactPaneLength="42"
+                   CompactPaneLength="48"
                    IsTabStop="False"
                    PaneBackground="{ThemeResource PanelBackgroundColor}">
             <SplitView.Pane>

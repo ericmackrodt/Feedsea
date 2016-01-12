@@ -10,24 +10,14 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
     <UserControl.Resources>
-        <Style x:Key="SourceListViewItemStyle" TargetType="ListViewItem">
-            <Setter Property="MinWidth" Value="42" />
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="MinHeight" Value="0" />
-            <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-        </Style>
-
         <DataTemplate x:Key="CategoryTemplate">
-            <Grid Height="42">
+            <Grid Height="48">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="42" />
+                    <ColumnDefinition Width="48" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <ToggleButton x:Name="ToggleExpand" Style="{StaticResource CategoryExpandToggleButton}" VerticalAlignment="Center" HorizontalAlignment="Center"
                           Checked="ToggleButton_Checked" Unchecked="ToggleExpand_Unchecked" helpers:EmptyTapped.Attach="True" />
-                <!--<FontIcon x:Name="Glyph" FontSize="16" Glyph="" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding Name}"
-                                              Foreground="{ThemeResource PanelSymbolColor}"/>-->
                 <TextBlock x:Name="Text" Grid.Column="1" Text="{Binding Name}" Style="{StaticResource MenuItemText}" VerticalAlignment="Center" />
             </Grid>
         </DataTemplate>
@@ -63,13 +53,13 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
-        <ListViewItem x:Name="CategoryItem" Grid.Row="0" ContentTemplate="{StaticResource CategoryTemplate}" Style="{StaticResource SourceListViewItemStyle}"
+
+        <ListViewItem x:Name="CategoryItem" Grid.Row="0" ContentTemplate="{StaticResource CategoryTemplate}" Style="{StaticResource MainMenuItemContainerStyle}"
                       Tapped="ListViewItem_Tapped"/>
 
         <ListView Grid.Row="1" VerticalAlignment="Top" Opacity="0" Height="0" x:Name="LstSubscriptions" ItemTemplate="{StaticResource SubscriptionTemplate}" 
                   ItemsSource="{Binding Path=Subscriptions}"
-                  ItemContainerStyle="{StaticResource SourceListViewItemStyle}"
+                  ItemContainerStyle="{StaticResource MainMenuItemContainerStyle}"
                   SelectionChanged="LstSubscriptions_SelectionChanged"
                   ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollMode="Disabled"/>
 

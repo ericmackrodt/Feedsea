@@ -351,7 +351,7 @@ namespace Feedsea.Common.Components
             var subscriptions = await db.QueryAsync<DbSubscription>(string.Format(query, typeof(DbSubscription).Name, typeof(DbCategorySubscription).Name));
             var result = sources.Select(o => o.ToNewsSource()).Union(subscriptions.Select(o => o.ToNewsSource()));
             //var result = await db.GetAllWithChildrenAsync<DbNewsSource>(o => o.IsRoot == true);
-            return result.OrderBy(o => o.Name).ThenByDescending(o => o.GetType().Name);
+            return result.OrderBy(o => o.GetType().Name).ThenBy(o => o.Name);
         }
 
         public async Task<IEnumerable<SubscriptionData>> LoadSubscriptions()
