@@ -86,14 +86,24 @@ namespace Feedsea.UserControls
             foreach (var itm in LstSources.Items)
             {
                 var container = LstSources.ContainerFromItem(itm);
+                
                 var categoryItemControl = FindVisualChild<CategoryItemControl>(container);
 
-                if (categoryItemControl == null) continue;//temporarily
+                if (categoryItemControl != null)
+                {
+                    if (exception != null && categoryItemControl == exception)
+                        continue;
 
-                if (exception != null && categoryItemControl == exception)
+                    categoryItemControl.Unselect();
+
+                    continue;
+                }
+
+                var subscriptionItemControl = FindVisualChild<ListViewItem>(container);
+                if (exception != null && exception == subscriptionItemControl)
                     continue;
 
-                categoryItemControl.Unselect();
+                subscriptionItemControl.IsSelected = false;
             }
         }
 
@@ -133,6 +143,21 @@ namespace Feedsea.UserControls
 
             if (ItemSelectedCommand != null && ItemSelectedCommand.CanExecute(source))
                 ItemSelectedCommand.Execute(source);
+        }
+
+        private void SubscriptionItem_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var item = sender as ListViewItem;
+
+            if (item == null)
+                return;
+
+            item.IsSelected = true;
+            var source = item.DataContext as INewsSource;
+
+            UnmarkAll(sender);
+
+            SetSelectedItem(source);
         }
     }
 }

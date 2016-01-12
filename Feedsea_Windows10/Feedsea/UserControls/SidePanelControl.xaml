@@ -15,8 +15,15 @@
             <uc:CategoryItemControl IsExpanded="{Binding IsExpanded}" OnSelectedChanged="CategoryItemControl_OnSelectedChanged" />
         </DataTemplate>
 
-        <controls:SourceListTemplateSelector x:Key="SourceListTemplateSelector" SubscriptionTemplate="{StaticResource SubscriptionRootTemplate}" 
-                                         CategoryTemplate="{StaticResource CategoryItemTemplate}" />
+        <DataTemplate x:Key="SubscriptionItemTemplate">
+            <ListViewItem x:Name="SubscriptionItem" Grid.Row="0" ContentTemplate="{StaticResource SubscriptionRootTemplate}" 
+                          Style="{StaticResource MainMenuItemContainerStyle}"
+                          Tapped="SubscriptionItem_Tapped"/>
+        </DataTemplate>
+
+        <controls:SourceListTemplateSelector x:Key="SourceListTemplateSelector" 
+                                             SubscriptionTemplate="{StaticResource SubscriptionItemTemplate}" 
+                                             CategoryTemplate="{StaticResource CategoryItemTemplate}" />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
