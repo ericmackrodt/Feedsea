@@ -110,6 +110,7 @@
     <Compile Include="Common\Converters\IntToCharConverter.cs" />
     <Compile Include="Common\Converters\TimeAgoConverter.cs" />
     <Compile Include="Common\Enums.cs" />
+    <Compile Include="Common\Events\ArticleViewTemplateChangedEvent.cs" />
     <Compile Include="Common\Helpers\ConnectionVerifier.cs" />
     <Compile Include="Common\Helpers\EmptyTapped.cs" />
     <Compile Include="Common\Services\IMessageBoxService.cs" />

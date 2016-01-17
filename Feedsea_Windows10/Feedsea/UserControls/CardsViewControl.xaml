@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="using:WinRTXamlToolkit.Controls"
+    SizeChanged="UserControl_SizeChanged"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -15,99 +16,46 @@
         </ItemsPanelTemplate>
         <ItemsPanelTemplate x:Key="ItemsPanelNormal">
             <ItemsWrapGrid MaximumRowsOrColumns="4"
-                           HorizontalAlignment="Stretch" 
+                           HorizontalAlignment="Stretch"
                            Orientation="Horizontal" 
                            SizeChanged="ItemsWrapGrid_SizeChanged" />
         </ItemsPanelTemplate>
-        <!--<ItemsPanelTemplate x:Key="ItemsPanelNarrow">
-            <toolkit:UniformGrid x:Name="ArticlesGrid" Columns="2" />
-        </ItemsPanelTemplate>
-        <ItemsPanelTemplate x:Key="ItemsPanelMedium">
-            <toolkit:UniformGrid x:Name="ArticlesGrid" Columns="3" />
-        </ItemsPanelTemplate>
-        <ItemsPanelTemplate x:Key="ItemsPanelWide">
-            <toolkit:UniformGrid x:Name="ArticlesGrid" Columns="4" />
-        </ItemsPanelTemplate>
-        <ItemsPanelTemplate x:Key="ItemsPanelUltraWide">
-            <toolkit:UniformGrid x:Name="ArticlesGrid" Columns="4" />
-        </ItemsPanelTemplate>-->
-
         <DataTemplate x:Key="CardTemplate">
             <local:ArticleCardViewItem />
         </DataTemplate>
+        <DataTemplate x:Key="ListingTemplate">
+            <local:ArticleListViewItem />
+        </DataTemplate>
     </UserControl.Resources>
-    <Grid>
+    <Grid x:Name="LayoutRoot">
         <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="OrientationStates">
+            <VisualStateGroup x:Name="ArticleLayoutMode">
+                <VisualState x:Name="ListViewState">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{Binding  ArticleViewTemplate, Converter={StaticResource EnumToBool}, ConverterParameter=Listing}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LstArticles.ItemTemplate" Value="{StaticResource ListingTemplate}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="CardViewState">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{Binding  ArticleViewTemplate, Converter={StaticResource EnumToBool}, ConverterParameter=Cards}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LstArticles.ItemTemplate" Value="{StaticResource CardTemplate}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="WidthStates">
                 <VisualState x:Name="MobileState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="LstArticles.Margin" Value="12,0,0,0" />
                         <Setter Target="LstArticles.ItemsPanel" Value="{StaticResource ItemsPanelNarrow}" />
                     </VisualState.Setters>
                 </VisualState>
-                <VisualState x:Name="Mobile6InchState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="400" />
-                    </VisualState.StateTriggers>
+                <VisualState x:Name="NormalState">
                     <VisualState.Setters>
-                        <Setter Target="LstArticles.Margin" Value="12,0,0,0" />
-                        <Setter Target="LstArticles.ItemsPanel" Value="{StaticResource ItemsPanelNarrow}" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="NarrowState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="600" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="LstArticles.Margin" Value="20,0,0,0" />
-                        <Setter Target="LstArticles.ItemsPanel" Value="{StaticResource ItemsPanelNarrow}" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="NarrowToMediumState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="LstArticles.Margin" Value="20,0,0,0" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="MediumState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="900" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="LstArticles.Margin" Value="20,0,0,0" />
-                        <!--<Setter Target="LstArticles.ItemsPanel" Value="{StaticResource ItemsPanelNarrow}" />-->
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="SemiWideState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1200" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="LstArticles.Margin" Value="20,0,0,0" />
-                        <!--<Setter Target="LstArticles.ItemsPanel" Value="{StaticResource ItemsPanelMedium}" />-->
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="WideState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1600" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="LstArticles.Margin" Value="20,0,0,0" />
-                        <!--<Setter Target="LstArticles.ItemsPanel" Value="{StaticResource ItemsPanelWide}" />-->
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="UltraWideState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1920" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="LstArticles.Margin" Value="20,0,0,0" />
-                        <!--<Setter Target="LstArticles.ItemsPanel" Value="{StaticResource ItemsPanelUltraWide}" />-->
+                        <Setter Target="LstArticles.ItemsPanel" Value="{StaticResource ItemsPanelNormal}" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -119,18 +67,6 @@
                   ItemContainerStyle="{StaticResource ArticlePresenterListViewItem}"
                   ItemsSource="{Binding Articles}"
                   ItemsPanel="{StaticResource ItemsPanelNormal}">
-            <!--<GridView.ItemContainerTransitions>
-                <TransitionCollection>
-                    <RepositionThemeTransition />
-                </TransitionCollection>
-            </GridView.ItemContainerTransitions>-->
         </GridView>
-
-        <!--<ListView x:Name="LstArticles" HorizontalContentAlignment="Stretch"
-                Margin="20,0,0,0"
-                ItemsSource="{Binding Articles}"
-                ItemTemplate="{StaticResource CardTemplate}"
-                ItemContainerStyle="{StaticResource ArticlePresenterListViewItem}" 
-                ItemsPanel="{StaticResource ItemsPanelNarrow}" />-->
     </Grid>
 </UserControl>

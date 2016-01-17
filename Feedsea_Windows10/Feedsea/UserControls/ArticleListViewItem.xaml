@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid x:Name="LayoutBase" Background="{ThemeResource CardBackgroundColor}" Margin="12,12,12,0" MaxWidth="700" MinHeight="100" HorizontalAlignment="Stretch" VerticalAlignment="Top" CornerRadius="3">
+    <Grid x:Name="LayoutBase" Background="{ThemeResource CardBackgroundColor}" Margin="0,12,12,0" MaxWidth="700" MinHeight="100" HorizontalAlignment="Stretch" VerticalAlignment="Top" CornerRadius="3">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="ReadStates">
                 <VisualState x:Name="ReadState">

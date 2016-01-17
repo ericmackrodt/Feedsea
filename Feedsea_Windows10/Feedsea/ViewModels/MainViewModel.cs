@@ -1,4 +1,6 @@
-﻿using Feedsea.Common;
+﻿using Broadcaster;
+using Feedsea.Common;
+using Feedsea.Common.Events;
 using Feedsea.Common.Helpers;
 using Feedsea.Common.Providers;
 using Feedsea.Common.Providers.Data;
@@ -20,137 +22,140 @@ namespace Feedsea.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private INewsProvider _provider;
-        private IShareService _share;
-        private IGeneralSettings _generalSettings;
-        private IMessageBoxService _messageBox;
+        private INewsProvider provider;
+        private IShareService share;
+        private IGeneralSettings generalSettings;
+        private IMessageBoxService messageBox;
+        private IBroadcaster broadcaster;
 
         public ArticleViewTemplateEnum ArticleViewTemplate
         {
-            get { return _generalSettings.ArticleListTemplate; }
+            get { return generalSettings.ArticleListTemplate; }
             set
             {
-                if (_generalSettings.ArticleListTemplate != value)
+                if (generalSettings.ArticleListTemplate != value)
                 {
-                    _generalSettings.ArticleListTemplate = value;
+                    generalSettings.ArticleListTemplate = value;
                     NotifyChanged();
                 }
             }
         }
 
-        private INewsSource _selectedSource;
+        private INewsSource selectedSource;
         public INewsSource SelectedSource
         {
-            get { return _selectedSource; }
+            get { return selectedSource; }
             set
             {
-                if (_selectedSource != value)
+                if (selectedSource != value)
                 {
-                    _selectedSource = value;
+                    selectedSource = value;
                     NotifyChanged();
                 }
             }
         }
         
-        private ObservableCollection<INewsSource> _sources;
+        private ObservableCollection<INewsSource> sources;
         public ObservableCollection<INewsSource> Sources
         {
-            get { return _sources; }
+            get { return sources; }
             set
             {
-                if (_sources != value)
+                if (sources != value)
                 {
-                    _sources = value;
+                    sources = value;
                     NotifyChanged();
                 }
             }
         }
         
-        private ObservableCollection<ArticleData> _articles;
+        private ObservableCollection<ArticleData> articles;
         public ObservableCollection<ArticleData> Articles
         {
-            get { return _articles; }
+            get { return articles; }
             set
             {
-                if (_articles != value)
+                if (articles != value)
                 {
-                    _articles = value;
+                    articles = value;
                     NotifyChanged();
                 }
             }
         }
 
-        private ICommand _selectSourceCommand;
+        private ICommand selectSourceCommand;
         public ICommand SelectSourceCommand
         {
-            get { return _selectSourceCommand; }
+            get { return selectSourceCommand; }
         }
 
-        private ICommand _shareArticleCommand;
+        private ICommand shareArticleCommand;
         public ICommand ShareArticleCommand
         {
-            get { return _shareArticleCommand; }
+            get { return shareArticleCommand; }
         }
 
-        private ICommand _toggleArticleReadCommand;
+        private ICommand toggleArticleReadCommand;
         public ICommand ToggleArticleReadCommand
         {
-            get { return _toggleArticleReadCommand; }
+            get { return toggleArticleReadCommand; }
         }
 
-        private ICommand _toggleArticleSavedCommand;
+        private ICommand toggleArticleSavedCommand;
         public ICommand ToggleArticleSavedCommand
         {
-            get { return _toggleArticleSavedCommand; }
+            get { return toggleArticleSavedCommand; }
         }
 
-        private ICommand _changeArticleViewTemplateCommand;
+        private ICommand changeArticleViewTemplateCommand;
         public ICommand ChangeArticleViewTemplateCommand
         {
-            get { return _changeArticleViewTemplateCommand; }
+            get { return changeArticleViewTemplateCommand; }
         }
 
-        private ICommand _refreshNewsCommand;
+        private ICommand refreshNewsCommand;
         public ICommand RefreshNewsCommand
         {
-            get { return _refreshNewsCommand; }
+            get { return refreshNewsCommand; }
         }
 
-        private ICommand _markAllReadCommand;
+        private ICommand markAllReadCommand;
         public ICommand MarkAllReadCommand
         {
-            get { return _markAllReadCommand; }
+            get { return markAllReadCommand; }
         }
         
         public MainViewModel(
             INewsProvider provider, 
             IShareService share, 
             IGeneralSettings generalSettings,
-            IMessageBoxService messageBox)
+            IMessageBoxService messageBox,
+            IBroadcaster broadcaster)
         {
-            _provider = provider;
-            _share = share;
-            _generalSettings = generalSettings;
-            _messageBox = messageBox;
+            this.provider = provider;
+            this.share = share;
+            this.generalSettings = generalSettings;
+            this.messageBox = messageBox;
+            this.broadcaster = broadcaster;
 
-            _selectSourceCommand = new RelayCommandAsync<INewsSource>(o => ConnectionVerifier.Verify(SelectSource, o, OnCommandFail));
-            _shareArticleCommand = new RelayCommandAsync<ArticleData>(o => ConnectionVerifier.Verify(ShareArticle, o, OnCommandFail));
-            _toggleArticleReadCommand = new RelayCommandAsync<ArticleData>(o => ConnectionVerifier.Verify(ToggleArticleRead, o, OnCommandFail));
-            _toggleArticleSavedCommand = new RelayCommandAsync<ArticleData>(o => ConnectionVerifier.Verify(ToggleArticleSaved, o, OnCommandFail));
-            _changeArticleViewTemplateCommand = new RelayCommand(ChangeArticleViewTemplate);
-            _refreshNewsCommand = new RelayCommandAsync(o => ConnectionVerifier.Verify(RefreshNews, o, OnCommandFail));
-            _markAllReadCommand = new RelayCommandAsync(o => ConnectionVerifier.Verify(MarkAllRead, o, OnCommandFail));
+            selectSourceCommand = new RelayCommandAsync<INewsSource>(o => ConnectionVerifier.Verify(SelectSource, o, OnCommandFail));
+            shareArticleCommand = new RelayCommandAsync<ArticleData>(o => ConnectionVerifier.Verify(ShareArticle, o, OnCommandFail));
+            toggleArticleReadCommand = new RelayCommandAsync<ArticleData>(o => ConnectionVerifier.Verify(ToggleArticleRead, o, OnCommandFail));
+            toggleArticleSavedCommand = new RelayCommandAsync<ArticleData>(o => ConnectionVerifier.Verify(ToggleArticleSaved, o, OnCommandFail));
+            changeArticleViewTemplateCommand = new RelayCommand(ChangeArticleViewTemplate);
+            refreshNewsCommand = new RelayCommandAsync(o => ConnectionVerifier.Verify(RefreshNews, o, OnCommandFail));
+            markAllReadCommand = new RelayCommandAsync(o => ConnectionVerifier.Verify(MarkAllRead, o, OnCommandFail));
         }
 
         private async Task MarkAllRead(object arg)
         {
-            var markRead = await _messageBox.ConfirmationBox("MainPage_MarkAllReadConfirmation/Text");
+            var markRead = await messageBox.ConfirmationBox("MainPage_MarkAllReadConfirmation/Text");
 
             if (!markRead) return;
 
             IsBusy = true;
 
-            await _provider.MarkAllArticlesRead(SelectedSource);
+            await provider.MarkAllArticlesRead(SelectedSource);
 
             // Articles = await _provider.LoadArticles(SelectedSource);
             throw new Exception("FIX THIS");
@@ -172,7 +177,7 @@ namespace Feedsea.ViewModels
             if (Articles != null && Articles.Any())
                 Articles.Clear();
 
-            var result = await _provider.Refresh(SelectedSource);
+            var result = await provider.Refresh(SelectedSource);
 
             throw new Exception("FIX THIS");
             //if (result != null)
@@ -190,22 +195,24 @@ namespace Feedsea.ViewModels
                 ArticleViewTemplate = ArticleViewTemplateEnum.Listing;
             else if (ArticleViewTemplate == ArticleViewTemplateEnum.Listing)
                 ArticleViewTemplate = ArticleViewTemplateEnum.Cards;
+
+            broadcaster.Event<ArticleViewTemplateChangedEvent>().Broadcast(ArticleViewTemplate);
         }
 
         private async Task ToggleArticleSaved(ArticleData article)
         {
             if (article.IsFavorite)
-                await _provider.RemoveFromSaved(article);
+                await provider.RemoveFromSaved(article);
             else
-                await _provider.SaveArticleForLater(article);
+                await provider.SaveArticleForLater(article);
         }
 
         private async Task ToggleArticleRead(ArticleData article)
         {
             if (article.IsRead)
-                await _provider.UnmarkArticleRead(article);
+                await provider.UnmarkArticleRead(article);
             else
-                await _provider.MarkArticleRead(article);
+                await provider.MarkArticleRead(article);
 
             if (article.Source != null)
                 ChangeUnreadNumber(article.IsRead, article.Source.UrlID);
@@ -214,7 +221,7 @@ namespace Feedsea.ViewModels
         private Task ShareArticle(ArticleData arg)
         {
             throw new NotImplementedException();
-            _share.Share(arg);
+            share.Share(arg);
         }
 
         private async Task SelectSource(INewsSource source)
@@ -239,14 +246,14 @@ namespace Feedsea.ViewModels
         {
             IsBusy = true;
 
-            await _provider.Initialization();
+            await provider.Initialization();
 
             var byId = true;
 
             //if (string.IsNullOrWhiteSpace(open))
             //    open = _generalSettings.CategoryToLoadSetting;
 
-            var sources = await _provider.LoadNewsSources(); ;
+            var sources = await provider.LoadNewsSources(); ;
             Sources = new ObservableCollection<INewsSource>(sources);
 
             //SelectedSource = null;
@@ -260,7 +267,7 @@ namespace Feedsea.ViewModels
 
             //var result = await _provider.Refresh(source);
 
-            var result = await _provider.DownloadNewsSources(Sources);
+            var result = await provider.DownloadNewsSources(Sources);
 
             if (!result.Key)
                 Sources = new ObservableCollection<INewsSource>(result.Value);

@@ -1,5 +1,9 @@
-﻿using Feedsea.Common.Providers;
+﻿using Broadcaster;
+using Feedsea.Common;
+using Feedsea.Common.Events;
+using Feedsea.Common.Providers;
 using Feedsea.Common.Providers.Data;
+using Feedsea.Settings;
 using MVVMBasic;
 using System;
 using System.Collections.Generic;
@@ -12,36 +16,60 @@ namespace Feedsea.ViewModels
 {
     public class ArticleListViewModel : BaseViewModel
     {
-        private INewsProvider _provider;
+        private INewsProvider provider;
+        private IGeneralSettings generalSettings;
+        private IBroadcaster broadcaster;
 
-        private INewsSource _selectedSource;
-        public INewsSource SelectedSource
+        public ArticleViewTemplateEnum ArticleViewTemplate
         {
-            get { return _selectedSource; }
+            get { return generalSettings.ArticleListTemplate; }
             set
             {
-                _selectedSource = value;
+                //if (generalSettings.ArticleListTemplate != value)
+                //{
+                    generalSettings.ArticleListTemplate = value;
+                    NotifyChanged();
+                //}
+            }
+        }
+
+        private INewsSource selectedSource;
+        public INewsSource SelectedSource
+        {
+            get { return selectedSource; }
+            set
+            {
+                selectedSource = value;
                 NotifyChanged();
             }
         }
 
-        private ObservableCollection<ArticleData> _articles;
+        private ObservableCollection<ArticleData> articles;
         public ObservableCollection<ArticleData> Articles
         {
-            get { return _articles; }
+            get { return articles; }
             set
             {
-                if (_articles != value)
+                if (articles != value)
                 {
-                    _articles = value;
+                    articles = value;
                     NotifyChanged();
                 }
             }
         }
 
-        public ArticleListViewModel(INewsProvider provider)
+        public ArticleListViewModel(INewsProvider provider, IGeneralSettings generalSettings, IBroadcaster broadcaster)
         {
-            _provider = provider;
+            this.provider = provider;
+            this.generalSettings = generalSettings;
+            this.broadcaster = broadcaster;
+
+            this.broadcaster.Event<ArticleViewTemplateChangedEvent>().Subscribe(OnArticleViewTemplateChanged);
+        }
+
+        private void OnArticleViewTemplateChanged(ArticleViewTemplateEnum obj)
+        {
+            ArticleViewTemplate = obj;
         }
 
         public override async Task LoadData(object arg)
@@ -50,7 +78,7 @@ namespace Feedsea.ViewModels
 
             SelectedSource = (INewsSource)arg;
 
-            var articles = await _provider.LoadArticles(SelectedSource);
+            var articles = await provider.LoadArticles(SelectedSource);
             Articles = new ObservableCollection<ArticleData>(articles);
 
             IsBusy = false;
@@ -62,7 +90,7 @@ namespace Feedsea.ViewModels
 
             var source = (INewsSource)arg;
 
-            var result = await _provider.DownloadArticles(Articles.FirstOrDefault(), source);
+            var result = await provider.DownloadArticles(Articles.FirstOrDefault(), source);
 
             if (result != null && result.Count() > 0)
             {

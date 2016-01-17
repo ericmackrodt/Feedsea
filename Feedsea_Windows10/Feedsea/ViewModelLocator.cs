@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Broadcaster;
 
 namespace Feedsea
 {
@@ -33,6 +34,7 @@ namespace Feedsea
             builder.RegisterType<MenuService>().As<IMenuService>();
             builder.RegisterType<ShareService>().As<IShareService>();
             builder.RegisterType<MessageBoxService>().As<IMessageBoxService>();
+            builder.RegisterType<BroadcastContainer>().As<IBroadcaster>().SingleInstance();
 
             builder.RegisterType<WelcomeViewModel>();
             builder.RegisterType<MainViewModel>().SingleInstance();
