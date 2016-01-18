@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ArticleListPage_ChangeArticleView.Label" xml:space="preserve">
+    <value>Change View</value>
+  </data>
+  <data name="ArticleListPage_GoToTop.Label" xml:space="preserve">
+    <value>Go to the top</value>
+  </data>
+  <data name="ArticleListPage_MarkAllRead.Label" xml:space="preserve">
+    <value>Marl all Read</value>
+  </data>
+  <data name="ArticleListPage_Refresh.Label" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="ArticleListPage_Settings.Label" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="ArticleTemplate_AgoDay.Text" xml:space="preserve">
     <value>day ago</value>
   </data>
@@ -159,20 +174,8 @@
   <data name="MainMenu_Today.Text" xml:space="preserve">
     <value>Today</value>
   </data>
-  <data name="MainPage_GoToTop.Label" xml:space="preserve">
-    <value>Go to the top</value>
-  </data>
-  <data name="MainPage_MarkAllRead.Label" xml:space="preserve">
-    <value>Marl all Read</value>
-  </data>
   <data name="MainPage_MarkAllReadConfirmation.Text" xml:space="preserve">
     <value>Are you sure you want to mark all articles read?</value>
-  </data>
-  <data name="MainPage_Refresh.Label" xml:space="preserve">
-    <value>Refresh</value>
-  </data>
-  <data name="MainPage_Settings.Label" xml:space="preserve">
-    <value>Settings</value>
   </data>
   <data name="MessageDialogs_CancelButton.Text" xml:space="preserve">
     <value>Cancel</value>

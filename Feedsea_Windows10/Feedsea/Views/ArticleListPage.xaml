@@ -77,9 +77,12 @@
     <Page.BottomAppBar>
         <CommandBar ClosedDisplayMode="Compact" VerticalAlignment="Bottom">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Uid="MainPage_Refresh" Label="[Refresh]" Icon="Refresh" Command="{Binding RefreshNewsCommand}" />
-                <AppBarButton x:Name="BtnGoToTop" x:Uid="MainPage_GoToTop" Label="[GoToTop]" Icon="Up" Click="BtnGoToTop_Click" />
-                <AppBarButton x:Uid="MainPage_MarkAllRead" Label="[MarkAllRead]" Icon="Accept" Command="{Binding MarkAllReadCommand}" />
+                <AppBarButton x:Uid="ArticleListpage_Refresh" Label="[Refresh]" Icon="Refresh" Command="{Binding RefreshNewsCommand}" />
+                <AppBarButton x:Name="BtnGoToTop" x:Uid="ArticleListPage_GoToTop" Label="[GoToTop]" Icon="Up" Click="BtnGoToTop_Click" />
+                <AppBarButton x:Uid="ArticleListPage_MarkAllRead" Label="[MarkAllRead]" Icon="Accept" Command="{Binding MarkAllReadCommand}" />
+                <AppBarButton x:Uid="ArticleListPage_ChangeArticleView" Label="[ChangeArticleView]" Command="{Binding ChangeArticleViewTemplateCommand}">
+                    <FontIcon Glyph="{Binding ArticleViewTemplate, Converter={StaticResource IntToChar}}" />
+                </AppBarButton>
             </CommandBar.PrimaryCommands>
 
             <CommandBar.SecondaryCommands>

@@ -115,9 +115,6 @@
             <!--<Button x:Name="BtnSplitView" Grid.Column="0" Style="{StaticResource AppHeaderButton}"
                 Click="BtnSplitView_Click"/>-->
             <Image x:Name="ImgLogo" Grid.Column="1" Source="Assets/logo.png" Height="20" Margin="10" HorizontalAlignment="Left" />
-
-            <Button Grid.Column="1" x:Name="BtnTemplateType" Style="{StaticResource AppHeaderButton}" HorizontalAlignment="Right"
-                    Command="{Binding ChangeArticleViewTemplateCommand}" Content="{Binding ArticleViewTemplate, Converter={StaticResource IntToChar}}"/>
         </Grid>
 
         <!-- Top-level navigation menu + app content -->

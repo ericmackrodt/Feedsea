@@ -28,19 +28,6 @@ namespace Feedsea.ViewModels
         private IMessageBoxService messageBox;
         private IBroadcaster broadcaster;
 
-        public ArticleViewTemplateEnum ArticleViewTemplate
-        {
-            get { return generalSettings.ArticleListTemplate; }
-            set
-            {
-                if (generalSettings.ArticleListTemplate != value)
-                {
-                    generalSettings.ArticleListTemplate = value;
-                    NotifyChanged();
-                }
-            }
-        }
-
         private INewsSource selectedSource;
         public INewsSource SelectedSource
         {
@@ -107,12 +94,6 @@ namespace Feedsea.ViewModels
             get { return toggleArticleSavedCommand; }
         }
 
-        private ICommand changeArticleViewTemplateCommand;
-        public ICommand ChangeArticleViewTemplateCommand
-        {
-            get { return changeArticleViewTemplateCommand; }
-        }
-
         private ICommand refreshNewsCommand;
         public ICommand RefreshNewsCommand
         {
@@ -142,7 +123,6 @@ namespace Feedsea.ViewModels
             shareArticleCommand = new RelayCommandAsync<ArticleData>(o => ConnectionVerifier.Verify(ShareArticle, o, OnCommandFail));
             toggleArticleReadCommand = new RelayCommandAsync<ArticleData>(o => ConnectionVerifier.Verify(ToggleArticleRead, o, OnCommandFail));
             toggleArticleSavedCommand = new RelayCommandAsync<ArticleData>(o => ConnectionVerifier.Verify(ToggleArticleSaved, o, OnCommandFail));
-            changeArticleViewTemplateCommand = new RelayCommand(ChangeArticleViewTemplate);
             refreshNewsCommand = new RelayCommandAsync(o => ConnectionVerifier.Verify(RefreshNews, o, OnCommandFail));
             markAllReadCommand = new RelayCommandAsync(o => ConnectionVerifier.Verify(MarkAllRead, o, OnCommandFail));
         }
@@ -189,15 +169,7 @@ namespace Feedsea.ViewModels
             IsBusy = false;
         }
 
-        private void ChangeArticleViewTemplate(object obj)
-        {
-            if (ArticleViewTemplate == ArticleViewTemplateEnum.Cards)
-                ArticleViewTemplate = ArticleViewTemplateEnum.Listing;
-            else if (ArticleViewTemplate == ArticleViewTemplateEnum.Listing)
-                ArticleViewTemplate = ArticleViewTemplateEnum.Cards;
-
-            broadcaster.Event<ArticleViewTemplateChangedEvent>().Broadcast(ArticleViewTemplate);
-        }
+        
 
         private async Task ToggleArticleSaved(ArticleData article)
         {

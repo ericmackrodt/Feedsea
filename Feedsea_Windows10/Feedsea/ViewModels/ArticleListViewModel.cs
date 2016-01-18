@@ -5,12 +5,14 @@ using Feedsea.Common.Providers;
 using Feedsea.Common.Providers.Data;
 using Feedsea.Settings;
 using MVVMBasic;
+using MVVMBasic.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Feedsea.ViewModels
 {
@@ -25,11 +27,11 @@ namespace Feedsea.ViewModels
             get { return generalSettings.ArticleListTemplate; }
             set
             {
-                //if (generalSettings.ArticleListTemplate != value)
-                //{
+                if (generalSettings.ArticleListTemplate != value)
+                {
                     generalSettings.ArticleListTemplate = value;
                     NotifyChanged();
-                //}
+                }
             }
         }
 
@@ -58,18 +60,27 @@ namespace Feedsea.ViewModels
             }
         }
 
+        private ICommand changeArticleViewTemplateCommand;
+        public ICommand ChangeArticleViewTemplateCommand
+        {
+            get { return changeArticleViewTemplateCommand; }
+        }
+
         public ArticleListViewModel(INewsProvider provider, IGeneralSettings generalSettings, IBroadcaster broadcaster)
         {
             this.provider = provider;
             this.generalSettings = generalSettings;
             this.broadcaster = broadcaster;
 
-            this.broadcaster.Event<ArticleViewTemplateChangedEvent>().Subscribe(OnArticleViewTemplateChanged);
+            changeArticleViewTemplateCommand = new RelayCommand(ChangeArticleViewTemplate);
         }
 
-        private void OnArticleViewTemplateChanged(ArticleViewTemplateEnum obj)
+        private void ChangeArticleViewTemplate(object obj)
         {
-            ArticleViewTemplate = obj;
+            if (ArticleViewTemplate == ArticleViewTemplateEnum.Cards)
+                ArticleViewTemplate = ArticleViewTemplateEnum.Listing;
+            else if (ArticleViewTemplate == ArticleViewTemplateEnum.Listing)
+                ArticleViewTemplate = ArticleViewTemplateEnum.Cards;
         }
 
         public override async Task LoadData(object arg)
