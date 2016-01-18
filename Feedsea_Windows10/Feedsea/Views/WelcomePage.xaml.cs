@@ -42,7 +42,7 @@ namespace Feedsea.Views
 
         private void ViewModel_OnAuthenticated(object sender, EventArgs e)
         {
-            Frame.Navigate(typeof(MainPage));
+            Frame.Navigate(typeof(AppShell));
         }
     }
 }

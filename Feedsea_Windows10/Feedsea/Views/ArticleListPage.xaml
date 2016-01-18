@@ -3,14 +3,88 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Feedsea.Views"
+    xmlns:uc="using:Feedsea.UserControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:uc="using:Feedsea.UserControls"
     DataContext="{Binding Source={StaticResource ViewModels}, Path=ArticleList}"
+    SizeChanged="Page_SizeChanged"
+    Loaded="Page_Loaded"
+    Unloaded="Page_Unloaded"
     mc:Ignorable="d">
 
-    <Grid Background="Transparent">
+    <UserControl.Resources>
+        <ItemsPanelTemplate x:Key="ItemsPanelNarrow">
+            <ItemsStackPanel Orientation="Vertical" />
+        </ItemsPanelTemplate>
+        <ItemsPanelTemplate x:Key="ItemsPanelNormal">
+            <ItemsWrapGrid MaximumRowsOrColumns="4"
+                           HorizontalAlignment="Stretch"
+                           Orientation="Horizontal" 
+                           SizeChanged="ItemsWrapGrid_SizeChanged" />
+        </ItemsPanelTemplate>
+        <DataTemplate x:Key="CardTemplate">
+            <uc:ArticleCardViewItem />
+        </DataTemplate>
+        <DataTemplate x:Key="ListingTemplate">
+            <uc:ArticleListViewItem />
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="ArticleLayoutMode">
+                <VisualState x:Name="ListViewState">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{Binding  ArticleViewTemplate, Converter={StaticResource EnumToBool}, ConverterParameter=Listing}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LstArticles.ItemTemplate" Value="{StaticResource ListingTemplate}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="CardViewState">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{Binding  ArticleViewTemplate, Converter={StaticResource EnumToBool}, ConverterParameter=Cards}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LstArticles.ItemTemplate" Value="{StaticResource CardTemplate}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="WidthStates">
+                <VisualState x:Name="MobileState">
+                    <VisualState.Setters>
+                        <Setter Target="LstArticles.ItemsPanel" Value="{StaticResource ItemsPanelNarrow}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NormalState">
+                    <VisualState.Setters>
+                        <Setter Target="LstArticles.ItemsPanel" Value="{StaticResource ItemsPanelNormal}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <ProgressRing Grid.Row="0" IsActive="{Binding IsBusy}" Width="100" Height="100" />
-        <uc:CardsViewControl />
+
+        <GridView x:Name="LstArticles" HorizontalAlignment="Stretch"
+                  Margin="20,0,0,0"
+                  ItemTemplate="{StaticResource CardTemplate}"
+                  ItemContainerStyle="{StaticResource ArticlePresenterListViewItem}"
+                  ItemsSource="{Binding Articles}"
+                  ItemsPanel="{StaticResource ItemsPanelNormal}">
+        </GridView>
     </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Compact" VerticalAlignment="Bottom">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Uid="MainPage_Refresh" Label="[Refresh]" Icon="Refresh" Command="{Binding RefreshNewsCommand}" />
+                <AppBarButton x:Name="BtnGoToTop" x:Uid="MainPage_GoToTop" Label="[GoToTop]" Icon="Up" Click="BtnGoToTop_Click" />
+                <AppBarButton x:Uid="MainPage_MarkAllRead" Label="[MarkAllRead]" Icon="Accept" Command="{Binding MarkAllReadCommand}" />
+            </CommandBar.PrimaryCommands>
+
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Uid="MainPage_Settings" Label="[Settings]" Icon="Setting" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

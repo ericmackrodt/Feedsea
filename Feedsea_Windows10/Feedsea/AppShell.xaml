@@ -60,22 +60,35 @@
     <Grid Background="{StaticResource PageBackgroundColor}">
         <!-- Adaptive triggers -->
         <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState>
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="RootSplitView.DisplayMode" Value="CompactInline"/>
-                        <Setter Target="RootSplitView.IsPaneOpen" Value="True"/>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState>
+            <VisualStateGroup x:Name="OrientationStates">
+                <VisualState x:Name="MobileState">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="RootSplitView.DisplayMode" Value="Overlay"/>
+                        <Setter Target="RootSplitView.IsPaneOpen" Value="False" />
+                        <Setter Target="RootSplitView.DisplayMode" Value="Overlay" />
+                        <Setter Target="TogglePaneButton.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="500" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RootSplitView.IsPaneOpen" Value="False" />
+                        <Setter Target="RootSplitView.DisplayMode" Value="CompactOverlay" />
+                        <Setter Target="TogglePaneButton.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NarrowToMediumState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="900" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RootSplitView.IsPaneOpen" Value="True" />
+                        <Setter Target="RootSplitView.DisplayMode" Value="Inline" />
+                        <Setter Target="TogglePaneButton.Visibility" Value="Collapsed" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -124,7 +137,7 @@
                                           ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
                                           ItemTemplate="{StaticResource NavMenuItemTemplate}"
                                           ItemInvoked="NavMenuList_ItemInvoked" />-->
-                <uc:SidePanelControl x:Name="Sidebar" IsBarExpanded="{Binding IsPaneOpen, ElementName=SplMain}" SidebarClicked="Sidebar_SidebarClicked" ItemSelectedCommand="{Binding SelectSourceCommand}" />
+                <uc:SidePanelControl x:Name="Sidebar" IsBarExpanded="{Binding IsPaneOpen, ElementName=RootSplitView}" SidebarClicked="Sidebar_SidebarClicked" ItemSelectedCommand="{Binding SelectSourceCommand}" />
             </SplitView.Pane>
 
             <!-- OnNavigatingToPage we synchronize the selected item in the nav menu with the current page.

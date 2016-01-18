@@ -16,7 +16,7 @@
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <ToggleButton x:Name="ToggleExpand" Style="{StaticResource CategoryExpandToggleButton}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                <ToggleButton x:Name="ToggleExpand" Style="{StaticResource CategoryExpandToggleButton}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                           Checked="ToggleButton_Checked" Unchecked="ToggleExpand_Unchecked" helpers:EmptyTapped.Attach="True" />
                 <TextBlock x:Name="Text" Grid.Column="1" Text="{Binding Name}" Style="{StaticResource MenuItemText}" VerticalAlignment="Center" />
             </Grid>

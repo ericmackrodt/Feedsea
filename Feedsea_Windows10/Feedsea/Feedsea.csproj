@@ -127,9 +127,6 @@
     <Compile Include="Common\Helpers\TitleBar.cs" />
     <Compile Include="Common\Services\ShareService.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Models\DatabaseModels\DbCategory.cs" />
     <Compile Include="Models\DatabaseModels\DbSubscription.cs" />
     <Compile Include="Models\ExpandableCategory.cs" />
@@ -145,15 +142,8 @@
     <Compile Include="UserControls\ArticleListViewItem.xaml.cs">
       <DependentUpon>ArticleListViewItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\CardsViewControl.xaml.cs">
-      <DependentUpon>CardsViewControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\CategoryItemControl.xaml.cs">
       <DependentUpon>CategoryItemControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\IArticleViewControl.cs" />
-    <Compile Include="UserControls\ListingViewControl.xaml.cs">
-      <DependentUpon>ListingViewControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\SidePanelControl.xaml.cs">
       <DependentUpon>SidePanelControl.xaml</DependentUpon>
@@ -207,10 +197,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Resources\AppTexts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -234,15 +220,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\CardsViewControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UserControls\CategoryItemControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\ListingViewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

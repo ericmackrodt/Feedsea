@@ -26,7 +26,7 @@ namespace Feedsea.Views
     /// </summary>
     public sealed partial class ArticleListPage : Page
     {
-        public ArticleListViewModel ViewModel { get { return DataContext as ArticleListViewModel; } }
+        public ArticleListViewModel ViewModel { get { return (ArticleListViewModel)DataContext; } }
 
         public string ThisProp { get; set; }
 
@@ -67,6 +67,75 @@ namespace Feedsea.Views
             base.OnNavigatedFrom(e);
             var state = SuspensionManager.SessionStateForFrame(this.Frame);
             state[ViewModel.SelectedSource.UrlID] = DataContext;
+        }
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (e.NewSize.Width > 600 && ViewModel.ArticleViewTemplate == Common.ArticleViewTemplateEnum.Cards)
+                VisualStateManager.GoToState(this, "NormalState", false);
+            else
+                VisualStateManager.GoToState(this, "MobileState", false);
+        }
+
+        [Obsolete("Not a permanent solution!")]
+        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != "ArticleViewTemplate") return;
+
+            if (Width > 600 && ViewModel.ArticleViewTemplate == Common.ArticleViewTemplateEnum.Cards)
+                VisualStateManager.GoToState(this, "NormalState", false);
+            else
+                VisualStateManager.GoToState(this, "MobileState", false);
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.PropertyChanged -= ViewModel_PropertyChanged;
+        }
+
+        private void ItemsWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var itemsPanel = (ItemsWrapGrid)sender;//LstArticles.ItemsPanelRoot;
+            var maxWidth = 450;
+            var minWidth = 270;
+
+            var byOne = e.NewSize.Width;
+            var byTwo = e.NewSize.Width / 2;
+            var byThree = e.NewSize.Width / 3;
+            var byFour = e.NewSize.Width / 4;
+
+            if (byOne <= 540 && byOne >= minWidth)
+            {
+                itemsPanel.ItemWidth = byOne;
+                return;
+            }
+
+            if (byTwo <= maxWidth && byTwo >= minWidth)
+            {
+                itemsPanel.ItemWidth = byTwo;
+                return;
+            }
+
+            if (byThree <= maxWidth && byThree >= minWidth)
+            {
+                itemsPanel.ItemWidth = byThree;
+                return;
+            }
+
+            if (byFour <= maxWidth && byFour >= minWidth)
+            {
+                itemsPanel.ItemWidth = byFour;
+            }
+        }
+
+        private void BtnGoToTop_Click(object sender, RoutedEventArgs e)
+        {
+            LstArticles.ScrollIntoView(ViewModel.Articles.FirstOrDefault());
         }
     }
 }
