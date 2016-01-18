@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid x:Name="LayoutBase" Background="{ThemeResource CardBackgroundColor}" Margin="0,12,12,0" MaxWidth="700" MinHeight="100" HorizontalAlignment="Stretch" VerticalAlignment="Top" CornerRadius="3">
+    <Grid x:Name="LayoutBase" Background="{ThemeResource CardBackgroundColor}" Margin="0,20,20,0" MaxWidth="700" MinHeight="100" HorizontalAlignment="Stretch" VerticalAlignment="Top" CornerRadius="3">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="ReadStates">
                 <VisualState x:Name="ReadState">
@@ -26,14 +26,25 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="RctImage.Width" Value="150" />
+                        <Setter Target="LayoutBase.Margin" Value="0,12,12,0" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="MediumState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RctImage.Width" Value="150" />
+                        <Setter Target="LayoutBase.Margin" Value="0,20,20,0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="LargeState">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="720" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="RctImage.Width" Value="200" />
+                        <Setter Target="LayoutBase.Margin" Value="0,20,20,0" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
