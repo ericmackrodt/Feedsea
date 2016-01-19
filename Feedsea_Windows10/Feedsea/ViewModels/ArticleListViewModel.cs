@@ -18,6 +18,8 @@ namespace Feedsea.ViewModels
 {
     public class ArticleListViewModel : BaseViewModel
     {
+        public event EventHandler ArticleLayoutChanged;
+
         private INewsProvider provider;
         private IGeneralSettings generalSettings;
         private IBroadcaster broadcaster;
@@ -81,6 +83,9 @@ namespace Feedsea.ViewModels
                 ArticleViewTemplate = ArticleViewTemplateEnum.Listing;
             else if (ArticleViewTemplate == ArticleViewTemplateEnum.Listing)
                 ArticleViewTemplate = ArticleViewTemplateEnum.Cards;
+
+            if (ArticleLayoutChanged != null)
+                ArticleLayoutChanged(this, new EventArgs());
         }
 
         public override async Task LoadData(object arg)

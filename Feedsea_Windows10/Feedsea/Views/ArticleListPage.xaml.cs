@@ -69,45 +69,48 @@ namespace Feedsea.Views
             state[ViewModel.SelectedSource.UrlID] = DataContext;
         }
 
-        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void SetViewVisualState(double width)
         {
-            if (e.NewSize.Width > 600 && ViewModel.ArticleViewTemplate == Common.ArticleViewTemplateEnum.Cards)
+            if (width > 600 && ViewModel.ArticleViewTemplate == Common.ArticleViewTemplateEnum.Cards)
                 VisualStateManager.GoToState(this, "NormalState", false);
             else
                 VisualStateManager.GoToState(this, "MobileState", false);
         }
 
-        [Obsolete("Not a permanent solution!")]
-        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (e.PropertyName != "ArticleViewTemplate") return;
-
-            if (Width > 600 && ViewModel.ArticleViewTemplate == Common.ArticleViewTemplateEnum.Cards)
-                VisualStateManager.GoToState(this, "NormalState", false);
-            else
-                VisualStateManager.GoToState(this, "MobileState", false);
+            SetViewVisualState(e.NewSize.Width);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+            ViewModel.ArticleLayoutChanged += ViewModel_ArticleLayoutChanged;
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            ViewModel.PropertyChanged -= ViewModel_PropertyChanged;
+            ViewModel.ArticleLayoutChanged -= ViewModel_ArticleLayoutChanged;
+        }
+
+        private void ViewModel_ArticleLayoutChanged(object sender, EventArgs e)
+        {
+            SetViewVisualState(ActualWidth);
         }
 
         private void ItemsWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            var itemsPanel = (ItemsWrapGrid)sender;//LstArticles.ItemsPanelRoot;
+            SetItemsWidth(sender as ItemsWrapGrid, e.NewSize.Width);
+        }
+
+        private static void SetItemsWidth(ItemsWrapGrid itemsPanel, double newWidth)
+        {
             var maxWidth = 450;
             var minWidth = 270;
 
-            var byOne = e.NewSize.Width;
-            var byTwo = e.NewSize.Width / 2;
-            var byThree = e.NewSize.Width / 3;
-            var byFour = e.NewSize.Width / 4;
+            var byOne = newWidth;
+            var byTwo = newWidth / 2;
+            var byThree = newWidth / 3;
+            var byFour = newWidth / 4;
 
             if (byOne <= 540 && byOne >= minWidth)
             {
