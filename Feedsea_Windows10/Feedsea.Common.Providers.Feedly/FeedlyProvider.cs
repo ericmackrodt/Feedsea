@@ -32,7 +32,7 @@ namespace Feedsea.Common.Providers.Feedly
             {
                 return new LoginData()
                 {
-                    LoginUrl = _client.GetLoginUrl(),
+                    LoginUrl = _client.Authentication.GetLoginUrl(),
                     RedirectUrl = ApiConstants.LoginDefaultRedirectUrl
                 };
             }
@@ -62,7 +62,7 @@ namespace Feedsea.Common.Providers.Feedly
                 if (string.IsNullOrWhiteSpace(_settings.OAuthRefreshToken))
                     return LoginStatus.Pending;
 
-                await _client.RefreshToken();
+                await _client.Authentication.RefreshToken();
 
                 await GetUserData();
 
@@ -91,7 +91,7 @@ namespace Feedsea.Common.Providers.Feedly
                     Code = code,
                     RedirectUri = ApiConstants.LoginDefaultRedirectUrl
                 };
-                await _client.RequestAccessToken(tokenRequest);
+                await _client.Authentication.RequestAccessToken(tokenRequest);
 
                 await GetUserData();
 
@@ -152,7 +152,7 @@ namespace Feedsea.Common.Providers.Feedly
                     continuationString = null;
                     var ident = GetStreamID(source);
 
-                    var stream = await _client.GetStream(ident.Replace(ApiConstants.FormatKey_UserId, _settings.UserID), count: 2);
+                    var stream = await _client.Streams.GetContent(ident.Replace(ApiConstants.FormatKey_UserId, _settings.UserID), count: 2);
 
                     var subscriptions = await _storage.LoadSubscriptions();
 
@@ -181,8 +181,8 @@ namespace Feedsea.Common.Providers.Feedly
             {
                 continuationString = null;
 
-                var counts = await _client.GetCounts();
-                var subscriptions = await _client.GetSubscriptions();
+                var counts = await _client.Markers.GetCounts();
+                var subscriptions = await _client.Subscriptions.Get();
                 var articles = await DownloadArticles(source);
 
                 var sources = GetSourceTree(counts, subscriptions);
@@ -225,7 +225,7 @@ namespace Feedsea.Common.Providers.Feedly
         {
             try
             {
-                var results = await _client.SearchFeeds(query);
+                var results = await _client.Search.Feeds(query);
                 return results.Results.Select(o => o.ToSearchResult());
             }
             catch (HttpRequestException ex)
@@ -263,7 +263,7 @@ namespace Feedsea.Common.Providers.Feedly
                         cats.Add(cat);
                     }
 
-                    await _client.Subscribe(result.Id, result.Title, cats.ToArray());
+                    await _client.Subscriptions.Subscribe(result.Id, result.Title, cats.ToArray());
 
                     return result.ToSubscription();
                 }
@@ -303,7 +303,7 @@ namespace Feedsea.Common.Providers.Feedly
                         cats.Add(cat);
                     }
 
-                    await _client.Subscribe(result.Id, result.Title, cats.ToArray());
+                    await _client.Subscriptions.Subscribe(result.Id, result.Title, cats.ToArray());
 
                     return result.ToSubscription();
                 }
@@ -325,7 +325,7 @@ namespace Feedsea.Common.Providers.Feedly
             {
                 if (articles.Any())
                 {
-                    await _client.MarkRead(new MarkerInputEntries(articles.Select(o => o.UniqueID).ToArray()));
+                    await _client.Markers.MarkRead(new MarkerInputEntries(articles.Select(o => o.UniqueID).ToArray()));
                     foreach (var art in articles)
                         art.IsRead = true;
 
@@ -365,7 +365,7 @@ namespace Feedsea.Common.Providers.Feedly
                     else
                         input = new MarkerInputCategories(toMarkAsRead);
 
-                    await _client.MarkRead(input);
+                    await _client.Markers.MarkRead(input);
                 }
 
                 catch (HttpRequestException ex)
@@ -385,7 +385,7 @@ namespace Feedsea.Common.Providers.Feedly
             try
             {
                 var id = Uri.EscapeDataString(source.UrlID.Replace(ApiConstants.FormatKey_UserId, _settings.UserID));
-                await _client.DeleteSubscription(id);
+                await _client.Subscriptions.Delete(id);
                 return await Refresh();
             }
             catch (HttpRequestException ex)
@@ -404,7 +404,7 @@ namespace Feedsea.Common.Providers.Feedly
             try
             {
                 var id = Uri.EscapeDataString(category.UrlID.Replace(ApiConstants.FormatKey_UserId, _settings.UserID));
-                await _client.DeleteCategory(id);
+                await _client.Categories.Delete(id);
                 return await Refresh();
             }
             catch (HttpRequestException ex)
@@ -422,7 +422,7 @@ namespace Feedsea.Common.Providers.Feedly
         {
             try
             {
-                var content = await _client.GetEntryContent(article.UniqueID);
+                var content = await _client.Entries.GetContent(article.UniqueID);
                 return content.ToArticle();
             }
             catch (HttpRequestException ex)
@@ -440,7 +440,7 @@ namespace Feedsea.Common.Providers.Feedly
         {
             try
             {
-                await _client.SaveEntry(new TagEntryInput()
+                await _client.Markers.SaveEntry(new TagEntryInput()
                 {
                     EntryId = article.UniqueID,
                     UserId = _settings.UserID
@@ -462,7 +462,7 @@ namespace Feedsea.Common.Providers.Feedly
         {
             try
             {
-                await _client.RemoveFromSaved(new TagEntryInput()
+                await _client.Markers.UnsaveEntry(new TagEntryInput()
                 {
                     EntryId = article.UniqueID,
                     UserId = _settings.UserID
@@ -484,7 +484,7 @@ namespace Feedsea.Common.Providers.Feedly
         {
             try
             {
-                await _client.MarkRead(new MarkerInputEntries(new string[] { article.UniqueID }));
+                await _client.Markers.MarkRead(new MarkerInputEntries(new string[] { article.UniqueID }));
                 article.IsRead = true;
             }
             catch (HttpRequestException ex)
@@ -502,7 +502,7 @@ namespace Feedsea.Common.Providers.Feedly
         {
             try
             {
-                await _client.KeepUnread(new MarkerInputEntries(new string[] { article.UniqueID }));
+                await _client.Markers.KeepUnread(new MarkerInputEntries(new string[] { article.UniqueID }));
                 article.IsRead = false;
             }
             catch (HttpRequestException ex)
@@ -556,7 +556,7 @@ namespace Feedsea.Common.Providers.Feedly
         [Obsolete("I hate this method")]
         private async Task GetUserData()
         {
-            var user = await _client.GetProfile();
+            var user = await _client.Profile.Get();
             _settings.ProfilePicture = user.Picture;
 
             if (user.TwitterConnected)
@@ -601,9 +601,9 @@ namespace Feedsea.Common.Providers.Feedly
         {
             return await DownloadArticles(source, continuation, async (ident, ranked, unreadOnly) =>
             {
-                var stream = await _client.GetStream(ident.Replace(ApiConstants.FormatKey_UserId, _settings.UserID), continuation, ranked: ranked, unreadOnly: unreadOnly);
+                var stream = await _client.Streams.GetContent(ident.Replace(ApiConstants.FormatKey_UserId, _settings.UserID), continuation, ranked: ranked, unreadOnly: unreadOnly);
                 if (!stream.Items.Any() && _settings.ShowReadIfNoUnread)
-                    stream = await _client.GetStream(ident, continuation, unreadOnly: false, ranked: ranked);
+                    stream = await _client.Streams.GetContent(ident, continuation, unreadOnly: false, ranked: ranked);
                 return stream;
             });
         }
@@ -612,9 +612,9 @@ namespace Feedsea.Common.Providers.Feedly
         {
             return await DownloadArticles(source, continuation, async (ident, ranked, unreadOnly) =>
             {
-                var stream = await _client.GetMixes(ident.Replace(ApiConstants.FormatKey_UserId, _settings.UserID), continuation, unreadOnly: unreadOnly, count: 20);
+                var stream = await _client.Mixes.Get(ident.Replace(ApiConstants.FormatKey_UserId, _settings.UserID), continuation, unreadOnly: unreadOnly, count: 20);
                 if (!stream.Items.Any() && _settings.ShowReadIfNoUnread)
-                    stream = await _client.GetStream(ident, continuation, unreadOnly: false, ranked: ranked, count: 20);
+                    stream = await _client.Mixes.Get(ident, continuation, unreadOnly: false, count: 20);
                 return stream;
             });
         }
@@ -640,9 +640,9 @@ namespace Feedsea.Common.Providers.Feedly
             var ranked = _settings.ArticlesFromOldestToNewest ? Ranked.Oldest : Ranked.Newest;
             var unreadOnly = !_settings.ShowRead;
 
-            var stream = await _client.GetStream(ident.Replace(ApiConstants.FormatKey_UserId, _settings.UserID), continuation, ranked: ranked, unreadOnly: unreadOnly);
+            var stream = await _client.Streams.GetContent(ident.Replace(ApiConstants.FormatKey_UserId, _settings.UserID), continuation, ranked: ranked, unreadOnly: unreadOnly);
             if (!stream.Items.Any() && _settings.ShowReadIfNoUnread)
-                stream = await _client.GetStream(ident, continuation, unreadOnly: false, ranked: ranked);
+                stream = await _client.Streams.GetContent(ident, continuation, unreadOnly: false, ranked: ranked);
 
             continuationString = stream.Continuation;
 
@@ -886,8 +886,8 @@ namespace Feedsea.Common.Providers.Feedly
         {
             continuationString = null;
 
-            var counts = await _client.GetCounts();
-            var subscriptions = await _client.GetSubscriptions();
+            var counts = await _client.Markers.GetCounts();
+            var subscriptions = await _client.Subscriptions.Get();
 
             var sources = GetSourceTree(counts, subscriptions);
 

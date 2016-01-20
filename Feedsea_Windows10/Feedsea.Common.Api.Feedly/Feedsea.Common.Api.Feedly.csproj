@@ -37,6 +37,32 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ApiConstants.cs" />
+    <Compile Include="APIs\AuthenticationAPI.cs" />
+    <Compile Include="APIs\CategoriesAPI.cs" />
+    <Compile Include="APIs\EntriesAPI.cs" />
+    <Compile Include="APIs\FeedsAPI.cs" />
+    <Compile Include="APIs\IAuthenticationAPI.cs" />
+    <Compile Include="APIs\ICategoriesAPI.cs" />
+    <Compile Include="APIs\IEntriesAPI.cs" />
+    <Compile Include="APIs\IFeedsAPI.cs" />
+    <Compile Include="APIs\IMarkersAPI.cs" />
+    <Compile Include="APIs\IMixesAPI.cs" />
+    <Compile Include="APIs\IPreferencesAPI.cs" />
+    <Compile Include="APIs\IProfileAPI.cs" />
+    <Compile Include="APIs\ISearchAPI.cs" />
+    <Compile Include="APIs\IShortUrlAPI.cs" />
+    <Compile Include="APIs\IStreamsAPI.cs" />
+    <Compile Include="APIs\ISubscriptionsAPI.cs" />
+    <Compile Include="APIs\ITagsAPI.cs" />
+    <Compile Include="APIs\MarkersAPI.cs" />
+    <Compile Include="APIs\MixesAPI.cs" />
+    <Compile Include="APIs\PreferencesAPI.cs" />
+    <Compile Include="APIs\ProfileAPI.cs" />
+    <Compile Include="APIs\SearchAPI.cs" />
+    <Compile Include="APIs\ShortUrlAPI.cs" />
+    <Compile Include="APIs\StreamsAPI.cs" />
+    <Compile Include="APIs\SubscriptionsAPI.cs" />
+    <Compile Include="APIs\TagsAPI.cs" />
     <Compile Include="AuthTokenRequest.cs" />
     <Compile Include="AuthTokenResponse.cs" />
     <Compile Include="CountsResponse.cs" />

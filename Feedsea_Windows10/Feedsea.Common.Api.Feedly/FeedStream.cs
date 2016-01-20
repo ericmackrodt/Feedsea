@@ -8,6 +8,15 @@ using System.Threading.Tasks;
 namespace Feedsea.Common.Api.Feedly
 {
     [DataContract]
+    public class FeedStreamIDs
+    {
+        [DataMember(Name = "continuation")]
+        public string Continuation { get; set; }
+        [DataMember(Name = "ids")]
+        public string[] Ids { get; set; }
+    }
+
+    [DataContract]
     public class FeedStream
     {
         [DataMember(Name = "direction")]
