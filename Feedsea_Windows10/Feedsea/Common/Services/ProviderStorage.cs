@@ -434,6 +434,13 @@ namespace Feedsea.Common.Components
             return articles.Select(o => o.ToArticleData()).OrderByDescending(o => o.Date);
         }
 
+        public async Task<IEnumerable<ArticleData>> LoadArticles(string[] articleIds)
+        {
+            var db = DbConnection;
+            var articles = await db.GetAllWithChildrenAsync<DbArticle>(o => articleIds.Contains(o.UniqueID));
+            return articles.Select(o => o.ToArticleData()).OrderByDescending(o => o.Date);
+        }
+
         public async Task SaveArticles(IEnumerable<ArticleData> articles)
         {
             var db = DbConnection;

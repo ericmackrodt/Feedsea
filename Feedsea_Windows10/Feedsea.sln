@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feedsea", "Feedsea\Feedsea.csproj", "{4E36EBB8-0964-4B13-A940-6C245F5DAAD4}"
 EndProject
@@ -22,6 +22,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feedsea.Common.Providers.Feedly", "Feedsea.Common.Providers.Feedly\Feedsea.Common.Providers.Feedly.csproj", "{3F424CCA-AE24-49CF-84F2-AF11F627D5B3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feedsea.Common.Api.Feedly", "Feedsea.Common.Api.Feedly\Feedsea.Common.Api.Feedly.csproj", "{3F26A450-1695-4B42-874D-D82C9A0233A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7899929B-FFD6-4D4D-81E4-9D8A30A96BD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Providers", "Providers", "{E328C4D3-7EC8-4893-B154-60DC5AD785DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feedsea.Common.Providers.Tests", "Feedsea.Common.Providers.Tests\Feedsea.Common.Providers.Tests.csproj", "{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -169,6 +175,22 @@ Global
 		{3F26A450-1695-4B42-874D-D82C9A0233A1}.Release|x64.Build.0 = Release|Any CPU
 		{3F26A450-1695-4B42-874D-D82C9A0233A1}.Release|x86.ActiveCfg = Release|Any CPU
 		{3F26A450-1695-4B42-874D-D82C9A0233A1}.Release|x86.Build.0 = Release|Any CPU
+		{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA}.Debug|ARM.Build.0 = Debug|Any CPU
+		{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA}.Debug|x64.Build.0 = Debug|Any CPU
+		{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA}.Debug|x86.Build.0 = Debug|Any CPU
+		{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA}.Release|ARM.ActiveCfg = Release|Any CPU
+		{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA}.Release|ARM.Build.0 = Release|Any CPU
+		{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA}.Release|x64.ActiveCfg = Release|Any CPU
+		{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA}.Release|x64.Build.0 = Release|Any CPU
+		{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA}.Release|x86.ActiveCfg = Release|Any CPU
+		{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -181,5 +203,7 @@ Global
 		{4A164A03-842F-4992-BEB9-04C557691BD6} = {541D2DDC-37C6-491E-AA9A-5AD7106ADB40}
 		{3F424CCA-AE24-49CF-84F2-AF11F627D5B3} = {4012FBCD-6BFC-49E0-B21C-18F4AB71868B}
 		{3F26A450-1695-4B42-874D-D82C9A0233A1} = {541D2DDC-37C6-491E-AA9A-5AD7106ADB40}
+		{E328C4D3-7EC8-4893-B154-60DC5AD785DC} = {7899929B-FFD6-4D4D-81E4-9D8A30A96BD7}
+		{5BCDFDD2-857C-4AAB-8F89-E5F788CA21DA} = {E328C4D3-7EC8-4893-B154-60DC5AD785DC}
 	EndGlobalSection
 EndGlobal

@@ -29,9 +29,27 @@ namespace Feedsea.Common.Api.Feedly.APIs
             }.BuildQueryString()));
         }
 
+        public Task<FeedStreamIDs> GetIDs(string id, Ranked ranked, bool unreadOnly)
+        {
+            return GetIDs(id, null, null, null, ranked, unreadOnly);
+        }
+
+        public Task<FeedStreamIDs> GetIDs(string id, string continuation, Ranked ranked, bool unreadOnly)
+        {
+            return GetIDs(id, continuation, null, null, ranked, unreadOnly);
+        }
+
         public Task<FeedStreamIDs> GetIDs(string id, string continuation = null, int? count = default(int?), long? newerThan = default(long?), Ranked? ranked = default(Ranked?), bool? unreadOnly = default(bool?))
         {
-            throw new NotImplementedException();
+            return client.Get<FeedStreamIDs>(QueryHelper.BuildRequestUrl("streams/ids", new
+            {
+                streamId = id,
+                count = count,
+                continuation = continuation,
+                ranked = ranked != null ? ranked.ToString().ToLower() : null,
+                unreadOnly = unreadOnly,
+                newerThan = newerThan
+            }.BuildQueryString()));
         }
     }
 }
