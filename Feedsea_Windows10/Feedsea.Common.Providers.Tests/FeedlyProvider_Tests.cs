@@ -49,13 +49,15 @@ namespace Feedsea.Common.Providers.Tests
         {
             var getIdsResult = new FeedStreamIDs() { Ids = new string[] { "id1", "id2", "id3", "id4", "id5" } };
             var contentIds = getIdsResult.Ids.Take(2).ToArray();
+            var resultArray = contentIds.Select(id => new Entry() { Id = id }).ToArray();
             var client = Mock.Of<IFeedlyClient>(o => 
                 o.Streams.GetIDs("123", Ranked.Oldest, false) == Task.FromResult(getIdsResult) &&
-                o.Entries.GetMultipleContent(contentIds) == Task.FromResult(contentIds.Select(id => new Entry() { Id = id }).ToArray()));
+                o.Entries.GetMultipleContent(contentIds) == Task.FromResult(resultArray));
             var storage = Mock.Of<IProviderStorage>(o => o.LoadArticles(getIdsResult.Ids) == Task.FromResult(getIdsResult.Ids.Skip(2).Take(3).Select(id => new ArticleData() { UniqueID = id })));
             var sut = new FeedlyProvider(client, settings, storage);
             var value = await sut.DownloadArticles(new ArticleData(), new SubscriptionData() { UrlID = "{userId}" });
 
+            Assert.AreEqual(resultArray, value, "Result should be the same");
         }
     }
 }

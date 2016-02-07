@@ -873,10 +873,10 @@ namespace Feedsea.Common.Providers.Feedly
             //Try and get articles from database.
             var storedArticles = await storage.LoadArticles(stream.Ids);
 
-            //var articles = Get the ids of the articles that aren't in the storedArticles variable
-            var downloadedArticles = await client.Streams.GetContent(ident);
-
-            await storage.SaveArticles(downloadedArticles.Items.ToArticleCollection());
+            var newIds = stream.Ids.Where(id => !storedArticles.Any(a => a.UniqueID == id));
+            var newArticles = await client.Entries.GetMultipleContent(newIds.ToArray());
+            
+            await storage.SaveArticles(newArticles.ToArticleCollection());
 
             if (lastArticle == null)
                 return storedArticles;
@@ -887,7 +887,7 @@ namespace Feedsea.Common.Providers.Feedly
             if (latest != null && latest.UniqueID == lastArticle.UniqueID)
                 return new List<ArticleData>();
 
-            return downloadedArticles.Items.ToArticleCollection();
+            return newArticles.ToArticleCollection();
         }
     }
 
