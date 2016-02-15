@@ -67,7 +67,7 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="LstArticles.Margin" Value="12,0,0,0" />
+                        <Setter Target="LstArticles.Margin" Value="10,0,0,0" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NarrowState">
@@ -89,6 +89,12 @@
                   ItemContainerStyle="{StaticResource ArticlePresenterListViewItem}"
                   ItemsSource="{Binding Articles}"
                   ItemsPanel="{StaticResource ItemsPanelNormal}">
+            <GridView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition />
+                    <ContentThemeTransition />
+                </TransitionCollection>
+            </GridView.ItemContainerTransitions>
         </GridView>
     </Grid>
 

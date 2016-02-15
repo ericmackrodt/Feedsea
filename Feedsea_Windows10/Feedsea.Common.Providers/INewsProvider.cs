@@ -8,17 +8,8 @@ using System.Threading.Tasks;
 
 namespace Feedsea.Common.Providers
 {
-    public interface INewsProvider : IProvider 
+    public interface INewsProvider
     {
-        Task<IEnumerable<INewsSource>> LoadNewsSources();
-        Task<IEnumerable<INewsSource>> DownloadNewsSources();
-        Task<KeyValuePair<bool, IEnumerable<INewsSource>>> DownloadNewsSources(IEnumerable<INewsSource> currentCollection);
-        Task<IEnumerable<ArticleData>> LoadArticles(INewsSource source = null);
-        Task<IEnumerable<ArticleData>> DownloadArticles(ArticleData lastArticle);
-        Task<IEnumerable<ArticleData>> DownloadArticles(INewsSource source);
-        Task<IEnumerable<ArticleData>> DownloadArticles(ArticleData lastArticle, INewsSource source);
-
-
         [Obsolete("Don't know if i'm going to keep this thing")]
         Task<ObservableCollection<ArticleData>> LoadMostEngagingArticles(INewsSource source = null);
 

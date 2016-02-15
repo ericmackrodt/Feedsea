@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Feedsea.Common.Providers
 {
-    public interface IProvider
+    public interface IAuthenticationProvider
     {
         string ServiceName { get; }
         IOauthLoginData LoginData { get; }

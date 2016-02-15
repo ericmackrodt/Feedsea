@@ -29,7 +29,10 @@ namespace Feedsea
 
             builder.RegisterType<OAuthLogin>().As<IOAuthLogin>();
             builder.RegisterType<FeedlyWebClient>().As<IFeedlyClient>();
-            builder.RegisterType<FeedlyProvider>().As<INewsProvider>();
+            //builder.RegisterType<FeedlyProvider>().As<INewsProvider>();
+            builder.RegisterType<FeedlyNewsSourceProvider>().As<INewsSourceProvider>();
+            builder.RegisterType<FeedlyArticleProvider>().As<IArticleProvider>();
+            builder.RegisterType<FeedlyAuthenticationProvider>().As<IAuthenticationProvider>();
             builder.RegisterType<ProviderStorage>().As<IProviderStorage>();
             builder.RegisterType<MenuService>().As<IMenuService>();
             builder.RegisterType<ShareService>().As<IShareService>();

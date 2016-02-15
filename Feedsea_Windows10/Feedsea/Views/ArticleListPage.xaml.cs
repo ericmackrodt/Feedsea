@@ -28,8 +28,6 @@ namespace Feedsea.Views
     {
         public ArticleListViewModel ViewModel { get { return (ArticleListViewModel)DataContext; } }
 
-        public string ThisProp { get; set; }
-
         public ArticleListPage()
         {
             this.InitializeComponent();
@@ -58,7 +56,6 @@ namespace Feedsea.Views
             if (e.NavigationMode != NavigationMode.Back)
             {
                 await ViewModel.LoadData(e.Parameter);
-                await ViewModel.Refresh(e.Parameter);
             }
         }
 

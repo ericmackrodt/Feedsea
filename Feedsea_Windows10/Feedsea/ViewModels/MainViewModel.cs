@@ -22,7 +22,8 @@ namespace Feedsea.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private INewsProvider provider;
+        private IAuthenticationProvider authProvider;
+        private INewsSourceProvider sourceProvider;
         private IShareService share;
         private IGeneralSettings generalSettings;
         private IMessageBoxService messageBox;
@@ -107,13 +108,15 @@ namespace Feedsea.ViewModels
         }
         
         public MainViewModel(
-            INewsProvider provider, 
+            IAuthenticationProvider authProvider, 
+            INewsSourceProvider sourceProvider,
             IShareService share, 
             IGeneralSettings generalSettings,
             IMessageBoxService messageBox,
             IBroadcaster broadcaster)
         {
-            this.provider = provider;
+            this.authProvider = authProvider;
+            this.sourceProvider = sourceProvider;
             this.share = share;
             this.generalSettings = generalSettings;
             this.messageBox = messageBox;
@@ -135,7 +138,7 @@ namespace Feedsea.ViewModels
 
             IsBusy = true;
 
-            await provider.MarkAllArticlesRead(SelectedSource);
+            //await authProvider.MarkAllArticlesRead(SelectedSource);
 
             // Articles = await _provider.LoadArticles(SelectedSource);
             throw new Exception("FIX THIS");
@@ -157,7 +160,7 @@ namespace Feedsea.ViewModels
             if (Articles != null && Articles.Any())
                 Articles.Clear();
 
-            var result = await provider.Refresh(SelectedSource);
+            //var result = await authProvider.Refresh(SelectedSource);
 
             throw new Exception("FIX THIS");
             //if (result != null)
@@ -173,27 +176,27 @@ namespace Feedsea.ViewModels
 
         private async Task ToggleArticleSaved(ArticleData article)
         {
-            if (article.IsFavorite)
-                await provider.RemoveFromSaved(article);
-            else
-                await provider.SaveArticleForLater(article);
+            //if (article.IsFavorite)
+            //    await authProvider.RemoveFromSaved(article);
+            //else
+            //    await authProvider.SaveArticleForLater(article);
         }
 
         private async Task ToggleArticleRead(ArticleData article)
         {
-            if (article.IsRead)
-                await provider.UnmarkArticleRead(article);
-            else
-                await provider.MarkArticleRead(article);
+            //if (article.IsRead)
+            //    await authProvider.UnmarkArticleRead(article);
+            //else
+            //    await authProvider.MarkArticleRead(article);
 
-            if (article.Source != null)
-                ChangeUnreadNumber(article.IsRead, article.Source.UrlID);
+            //if (article.Source != null)
+            //    ChangeUnreadNumber(article.IsRead, article.Source.UrlID);
         }
 
-        private Task ShareArticle(ArticleData arg)
+        private async Task ShareArticle(ArticleData arg)
         {
-            throw new NotImplementedException();
-            share.Share(arg);
+            //throw new NotImplementedException();
+            //share.Share(arg);
         }
 
         private async Task SelectSource(INewsSource source)
@@ -218,14 +221,14 @@ namespace Feedsea.ViewModels
         {
             IsBusy = true;
 
-            await provider.Initialization();
+            await authProvider.Initialization();
 
             var byId = true;
 
             //if (string.IsNullOrWhiteSpace(open))
             //    open = _generalSettings.CategoryToLoadSetting;
 
-            var sources = await provider.LoadNewsSources(); ;
+            var sources = await sourceProvider.LoadNewsSources();
             Sources = new ObservableCollection<INewsSource>(sources);
 
             //SelectedSource = null;
@@ -239,7 +242,7 @@ namespace Feedsea.ViewModels
 
             //var result = await _provider.Refresh(source);
 
-            var result = await provider.DownloadNewsSources(Sources);
+            var result = await sourceProvider.DownloadNewsSources(Sources);
 
             if (!result.Key)
                 Sources = new ObservableCollection<INewsSource>(result.Value);

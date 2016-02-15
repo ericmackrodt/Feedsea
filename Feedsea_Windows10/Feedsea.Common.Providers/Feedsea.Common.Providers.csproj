@@ -45,10 +45,12 @@
     <Compile Include="Data\SearchResultData.cs" />
     <Compile Include="Data\SubscriptionData.cs" />
     <Compile Include="Helpers\UrlHelper.cs" />
+    <Compile Include="IArticleProvider.cs" />
     <Compile Include="INewsProvider.cs" />
     <Compile Include="INewsProviderSettings.cs" />
+    <Compile Include="INewsSourceProvider.cs" />
     <Compile Include="IOauthLoginData.cs" />
-    <Compile Include="IProvider.cs" />
+    <Compile Include="IAuthenticationProvider.cs" />
     <Compile Include="IProviderSettings.cs" />
     <Compile Include="IProviderStorage.cs" />
     <Compile Include="IShareProvider.cs" />

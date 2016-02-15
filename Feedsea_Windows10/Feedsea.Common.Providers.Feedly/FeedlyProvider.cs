@@ -14,29 +14,13 @@ using Feedsea.Common.Providers.Data;
 
 namespace Feedsea.Common.Providers.Feedly
 {
-    public class FeedlyProvider : INewsProvider
+    public partial class FeedlyProvider : INewsProvider
     {
+        private string continuationString = null;
+        
         private readonly IFeedlySettings settings;
         private readonly IProviderStorage storage;
         private readonly IFeedlyClient client;
-        private string continuationString;
-
-        public string ServiceName
-        {
-            get { return "Feedly"; }
-        }
-
-        public IOauthLoginData LoginData
-        {
-            get
-            {
-                return new LoginData()
-                {
-                    LoginUrl = client.Authentication.GetLoginUrl(),
-                    RedirectUrl = ApiConstants.LoginDefaultRedirectUrl
-                };
-            }
-        }
 
         public FeedlyProvider(IFeedlyClient feedlyClient, IFeedlySettings providerSettings, IProviderStorage providerStorage)
         {
@@ -45,67 +29,55 @@ namespace Feedsea.Common.Providers.Feedly
             storage = providerStorage;
         }
 
-        public async Task Initialization()
+        private string GetStreamID(INewsSource source)
         {
-            await storage.Initialize();
+            var ident = ApiConstants.GlobalCategory_All;
+            if (source != null)
+                ident = source.UrlID;
+
+            return ident;
         }
 
-        public async Task<LoginStatus> Login()
+        private IEnumerable<INewsSource> GetSourceTree(CountsResponse counts, Subscription[] subscriptions)
         {
-            if (string.IsNullOrWhiteSpace(settings.OAuthRefreshToken) && string.IsNullOrWhiteSpace(settings.OAuthToken))
-                return LoginStatus.Pending;
+            if (subscriptions == null || subscriptions.Length == 0)
+                return new CategoryData[0];
 
-            if (DateTime.Now < settings.OAuthTokenExpiration)
-                return LoginStatus.Ok;
-            try
+            var sources = new List<INewsSource>();
+
+            foreach (var sub in subscriptions)
             {
-                if (string.IsNullOrWhiteSpace(settings.OAuthRefreshToken))
-                    return LoginStatus.Pending;
+                UnreadCount count = null;
+                if (counts != null && counts.UnreadCounts != null)
+                    count = counts.UnreadCounts.FirstOrDefault(o => o.Id == sub.Id);
+                var subscription = sub.ToSubscription(count, false);
 
-                await client.Authentication.RefreshToken();
-
-                await GetUserData();
-
-                return LoginStatus.Ok;
-            }
-            catch (HttpRequestException ex)
-            {
-                if (ex.InnerException != null && ex.InnerException is WebException && (ex.InnerException as WebException).Status == WebExceptionStatus.RequestCanceled)
+                if (sub.Categories == null || !sub.Categories.Any())
                 {
-                    return LoginStatus.Pending;
+                    sources.Add(subscription);
+                    continue;
                 }
-                else
-                    throw new ProviderException(ExceptionReason.NoInternetConnection);
-            }
-        }
 
-        public async Task<LoginStatus> Login(object loginData)
-        {
-            try
-            {
-                var code = ((string)loginData);
-                var tokenRequest = new AuthTokenRequest()
+                foreach (var cat in sub.Categories)
                 {
-                    ClientId = settings.OAuthClientID,
-                    ClientSecret = settings.OAuthClientSecret,
-                    Code = code,
-                    RedirectUri = ApiConstants.LoginDefaultRedirectUrl
-                };
-                await client.Authentication.RequestAccessToken(tokenRequest);
+                    var category = sources.FirstOrDefault(o => o.UrlID == cat.Id) as CategoryData;
 
-                await GetUserData();
+                    if (category == null)
+                    {
+                        if (counts != null && counts.UnreadCounts != null)
+                            count = counts.UnreadCounts.FirstOrDefault(o => o.Id == cat.Id);
+                        category = cat.ToCategory(count);
+                        sources.Add(category);
+                    }
 
-                return LoginStatus.Ok;
-            }
-            catch (HttpRequestException ex)
-            {
-                if (ex.InnerException != null && ex.InnerException is WebException && (ex.InnerException as WebException).Status == WebExceptionStatus.RequestCanceled)
-                {
-                    return LoginStatus.Pending;
+                    if (category.Subscriptions == null)
+                        category.Subscriptions = new List<SubscriptionData>();
+
+                    category.Subscriptions.Add(subscription);
                 }
-                else
-                    throw new ProviderException(ExceptionReason.NoInternetConnection);
             }
+
+            return sources.OrderBy(o => o.GetType().Name).ThenBy(o => o.Name);
         }
 
         public async Task<ObservableCollection<ArticleData>> LoadMostEngagingArticles(INewsSource source = null)
@@ -553,49 +525,7 @@ namespace Feedsea.Common.Providers.Feedly
 
         #region Private_Methods
 
-        [Obsolete("I hate this method")]
-        private async Task GetUserData()
-        {
-            var user = await client.Profile.Get();
-            settings.ProfilePicture = user.Picture;
-
-            if (user.TwitterConnected)
-            {
-                settings.LoginEmail = user.Twitter;
-                settings.LoggedInService = "Twitter";
-            }
-            else if (user.FacebookConnected)
-            {
-                settings.LoginEmail = user.Email;
-                settings.LoggedInService = "Facebook";
-            }
-            else if (user.WindowsLiveConnected)
-            {
-                settings.LoginEmail = user.Email;
-                settings.LoggedInService = "Microsoft";
-            }
-            else if (user.EvernoteConnected)
-            {
-                settings.LoginEmail = user.Email;
-                settings.LoggedInService = "Evernote";
-            }
-            else
-            {
-                settings.LoginEmail = user.Email;
-                settings.LoggedInService = "Google";
-            }
-
-            settings.UserName = user.FullName;
-        }
-
-        private string GetStreamID(INewsSource source)
-        {
-            var ident = ApiConstants.GlobalCategory_All;
-            if (source != null)
-                ident = source.UrlID;
-
-            return ident;
-        }
+        
 
         private async Task<IEnumerable<Entry>> DownloadStreamArticles(INewsSource source, string continuation = null)
         {
@@ -675,245 +605,6 @@ namespace Feedsea.Common.Providers.Feedly
             }
         }
 
-        private IEnumerable<INewsSource> GetSourceTree(CountsResponse counts, Subscription[] subscriptions)
-        {
-            if (subscriptions == null || subscriptions.Length == 0)
-                return new CategoryData[0];
-
-            var sources = new List<INewsSource>();
-
-            foreach (var sub in subscriptions)
-            {
-                UnreadCount count = null;
-                if (counts != null && counts.UnreadCounts != null)
-                    count = counts.UnreadCounts.FirstOrDefault(o => o.Id == sub.Id);
-                var subscription = sub.ToSubscription(count, false);
-
-                if (sub.Categories == null || !sub.Categories.Any())
-                {
-                    sources.Add(subscription);
-                    continue;
-                }
-
-                foreach (var cat in sub.Categories)
-                {
-                    var category = sources.FirstOrDefault(o => o.UrlID == cat.Id) as CategoryData;
-                    
-                    if (category == null)
-                    {
-                        if (counts != null && counts.UnreadCounts != null)
-                            count = counts.UnreadCounts.FirstOrDefault(o => o.Id == cat.Id);
-                        category = cat.ToCategory(count);
-                        sources.Add(category);
-                    }
-
-                    if (category.Subscriptions == null)
-                        category.Subscriptions = new List<SubscriptionData>();
-
-                    category.Subscriptions.Add(subscription);
-                }
-            }
-
-            return sources.OrderBy(o => o.GetType().Name).ThenBy(o => o.Name);
-        }
-
         #endregion Private_Methods
-
-        public Task<LoginStatus> Login(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IEnumerable<INewsSource>> LoadNewsSources()
-        {
-            return await storage.LoadNewsSources();
-        }
-
-        private static bool ScrambledEquals<T>(IEnumerable<T> list1, IEnumerable<T> list2, IEqualityComparer<T> comparer)
-        {
-            var cnt = new Dictionary<T, int>(comparer);
-            foreach (T s in list1)
-            {
-                if (cnt.ContainsKey(s))
-                {
-                    cnt[s]++;
-                }
-                else {
-                    cnt.Add(s, 1);
-                }
-            }
-            foreach (T s in list2)
-            {
-                if (cnt.ContainsKey(s))
-                {
-                    cnt[s]--;
-                }
-                else {
-                    return false;
-                }
-            }
-            return cnt.Values.All(c => c == 0);
-        }
-
-        private bool IsSourceTreeEqual(IEnumerable<INewsSource> currentCollection, IEnumerable<INewsSource> sources)
-        {
-            var comparer = new NewsSourceEqualityComparer();
-            var rootEquals = ScrambledEquals<INewsSource>(currentCollection, sources, comparer);
-
-            if (!rootEquals)
-                return false;
-
-            foreach (var item in currentCollection)
-            {
-                var cat = item as CategoryData;
-                if (cat == null)
-                    continue;
-                
-                var toCompare = sources.FirstOrDefault(o => o.UrlID == item.UrlID) as CategoryData;
-
-                var isEqual = ScrambledEquals<INewsSource>(cat.Subscriptions, toCompare.Subscriptions, comparer);
-
-                if (!isEqual)
-                    return false;
-            }
-
-            return true;
-        }
-
-        public async Task<IEnumerable<INewsSource>> DownloadNewsSources()
-        {
-            continuationString = null;
-
-            var counts = await client.Markers.GetCounts();
-            var subscriptions = await client.Subscriptions.Get();
-
-            var sources = GetSourceTree(counts, subscriptions);
-
-            return sources;
-        }
-
-        public async Task<KeyValuePair<bool, IEnumerable<INewsSource>>> DownloadNewsSources(IEnumerable<INewsSource> currentCollection)
-        {
-            var sources = await DownloadNewsSources();
-            var equals = IsSourceTreeEqual(currentCollection, sources);
-
-            if (!equals)
-            {
-                await storage.ClearNewsSources();
-                await storage.SaveSources(sources);
-            }
-            else
-            {
-                await storage.UpdateSources(sources);
-                SetCounts(sources, currentCollection);
-            }
-
-            return new KeyValuePair<bool, IEnumerable<INewsSource>>(equals, sources);
-        }
-
-        private void SetCounts(IEnumerable<INewsSource> sources, IEnumerable<INewsSource> currentCollection)
-        {
-            foreach (var root in sources)
-            {
-                var destRoot = currentCollection.FirstOrDefault(o => o.UrlID == root.UrlID);
-                destRoot.UnreadNumber = root.UnreadNumber;
-
-                var cat = root as CategoryData;
-
-                if (cat == null)
-                    continue;
-
-                var destCat = destRoot as CategoryData;
-
-                if (cat.Subscriptions == null || !cat.Subscriptions.Any()) continue;
-
-                foreach (var child in cat.Subscriptions)
-                {
-                    var destChild = destCat.Subscriptions.FirstOrDefault(o => o.UrlID == child.UrlID);
-                    destChild.UnreadNumber = child.UnreadNumber;
-                }   
-            } 
-        }
-
-        public Task<IEnumerable<ArticleData>> LoadArticles(INewsSource source)
-        {
-            return storage.LoadArticles(source);  
-        }
-
-        public Task<IEnumerable<ArticleData>> DownloadArticles(ArticleData lastArticle)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<ArticleData>> DownloadArticles(INewsSource source)
-        {
-            return LoadArticles(() => DownloadStreamArticles(source));
-        }
-
-        public async Task<IEnumerable<ArticleData>> DownloadArticles(ArticleData lastArticle, INewsSource source)
-        {
-            //So, get the articles ids
-            continuationString = null;
-
-            var ident = GetStreamID(source);
-
-            var ranked = settings.ArticlesFromOldestToNewest ? Ranked.Oldest : Ranked.Newest;
-            var unreadOnly = !settings.ShowRead;
-
-            var stream = await client.Streams.GetIDs(ident.Replace(ApiConstants.FormatKey_UserId, settings.UserID), ranked, unreadOnly);
-
-            continuationString = stream.Continuation;
-
-            //See if I can get the sources for articles here.
-            //var subscriptions = await storage.LoadSubscriptions();
-
-            //if (subscriptions == null)
-            //    subscriptions = new SubscriptionData[0];
-
-            //Try and get articles from database.
-            var storedArticles = await storage.LoadArticles(stream.Ids);
-
-            var newIds = stream.Ids.Where(id => !storedArticles.Any(a => a.UniqueID == id));
-            var newArticles = await client.Entries.GetMultipleContent(newIds.ToArray());
-            
-            await storage.SaveArticles(newArticles.ToArticleCollection());
-
-            if (lastArticle == null)
-                return storedArticles;
-
-            //NOT IMPLEMENTED FOR OLDEST TO NEWEST
-            var latest = storedArticles.FirstOrDefault();
-
-            if (latest != null && latest.UniqueID == lastArticle.UniqueID)
-                return new List<ArticleData>();
-
-            return newArticles.ToArticleCollection();
-        }
-    }
-
-    public class NewsSourceEqualityComparer : IEqualityComparer<INewsSource>
-    {
-        public bool Equals(INewsSource x, INewsSource y)
-        {
-            return x.UrlID == y.UrlID;
-        }
-
-        public int GetHashCode(INewsSource obj)
-        {
-            return obj.UrlID.GetHashCode();
-        }
-    }
-
-    public class ArticleEqualityComparer : IEqualityComparer<ArticleData>
-    {
-        public bool Equals(ArticleData x, ArticleData y)
-        {
-            return x.UniqueID == y.UniqueID;
-        }
-
-        public int GetHashCode(ArticleData obj)
-        {
-            return obj.UniqueID.GetHashCode();
-        }
     }
 }

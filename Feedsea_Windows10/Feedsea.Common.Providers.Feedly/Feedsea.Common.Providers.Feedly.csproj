@@ -38,7 +38,10 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FeedlyArticleProvider.cs" />
+    <Compile Include="FeedlyAuthenticationProvider.cs" />
     <Compile Include="FeedlyHelper.cs" />
+    <Compile Include="FeedlyNewsSourceProvider.cs" />
     <Compile Include="FeedlyProvider.cs" />
     <Compile Include="IFeedlySettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

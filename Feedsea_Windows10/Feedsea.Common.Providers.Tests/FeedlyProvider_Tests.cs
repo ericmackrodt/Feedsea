@@ -43,21 +43,93 @@ namespace Feedsea.Common.Providers.Tests
             settings = MockSettings();
         }
 
-
         [TestMethod]
-        public async Task TestMethod1()
+        public async Task DownloadArticles_ShouldOnlyLoadArticlesThatWerentDownloadedYet()
         {
             var getIdsResult = new FeedStreamIDs() { Ids = new string[] { "id1", "id2", "id3", "id4", "id5" } };
-            var contentIds = getIdsResult.Ids.Take(2).ToArray();
-            var resultArray = contentIds.Select(id => new Entry() { Id = id }).ToArray();
+            var idsToGetContent = getIdsResult.Ids.Take(2).ToArray();
+            var resultArray = idsToGetContent.Select(id => new Entry() { Id = id }).ToArray();
             var client = Mock.Of<IFeedlyClient>(o => 
                 o.Streams.GetIDs("123", Ranked.Oldest, false) == Task.FromResult(getIdsResult) &&
-                o.Entries.GetMultipleContent(contentIds) == Task.FromResult(resultArray));
-            var storage = Mock.Of<IProviderStorage>(o => o.LoadArticles(getIdsResult.Ids) == Task.FromResult(getIdsResult.Ids.Skip(2).Take(3).Select(id => new ArticleData() { UniqueID = id })));
-            var sut = new FeedlyProvider(client, settings, storage);
-            var value = await sut.DownloadArticles(new ArticleData(), new SubscriptionData() { UrlID = "{userId}" });
+                o.Entries.GetMultipleContent(idsToGetContent) == Task.FromResult(resultArray));
 
-            Assert.AreEqual(resultArray, value, "Result should be the same");
+            var storage = new Mock<IProviderStorage>();
+            storage.Setup(o => o.SaveArticles(It.IsAny<IEnumerable<ArticleData>>())).Returns(Task.FromResult(false));
+            storage.Setup(o => o.LoadArticles(getIdsResult.Ids) == Task.FromResult(getIdsResult.Ids.Skip(2).Take(3).Select(id => new ArticleData() { UniqueID = id })));
+            var sut = new FeedlyProvider(client, settings, storage.Object);
+            var value = await sut.DownloadArticles(new SubscriptionData() { UrlID = "{userId}" });
+
+            storage.Verify(o => o.SaveArticles(It.IsAny<IEnumerable<ArticleData>>()));
+            CollectionAssert.AreEqual(resultArray.ToArticleCollection().ToList(), value.ToList(), "Result should be the same");
+        }
+
+        [TestMethod]
+        public async Task DownloadArticles_ShouldOnlyDownloadNonExistingArticlesWhenPassingAList()
+        {
+            var getIdsResult = new FeedStreamIDs() { Ids = new string[] { "id1", "id2", "id3", "id4", "id5" } };
+            var idsToGetContent = getIdsResult.Ids.Take(2).ToArray();
+            var contentsFromIds = idsToGetContent.Select(id => new Entry() { Id = id }).ToArray();
+            var articlesAlreadyDownloaded = getIdsResult.Ids.Skip(2).Take(3).Select(id => new ArticleData() { UniqueID = id });
+
+            var client = Mock.Of<IFeedlyClient>(o =>
+                o.Streams.GetIDs("123", Ranked.Oldest, false) == Task.FromResult(getIdsResult) &&
+                o.Entries.GetMultipleContent(idsToGetContent) == Task.FromResult(contentsFromIds));
+            var storage = new Mock<IProviderStorage>();
+            storage.Setup(o => o.SaveArticles(It.IsAny<IEnumerable<ArticleData>>())).Returns(Task.FromResult(false));
+            var sut = new FeedlyProvider(client, settings, storage.Object);
+            var value = await sut.DownloadArticles(articlesAlreadyDownloaded, new SubscriptionData() { UrlID = "{userId}" });
+
+            storage.Verify(o => o.SaveArticles(It.IsAny<IEnumerable<ArticleData>>()));
+            CollectionAssert.AreEqual(getIdsResult.Ids, value.ArticlesOrder);
+            CollectionAssert.AreEqual(contentsFromIds.ToArticleCollection().ToList(), value.DownloadedArticles.ToList(), "Result should be the same");
+        }
+
+        [TestMethod]
+        public async Task DownloadArticles_ShouldDownloadAllArticlesIfNoneStored()
+        {
+            var getIdsResult = new FeedStreamIDs() { Ids = new string[] { "id1", "id2", "id3", "id4", "id5" } };
+            var idsToGetContent = getIdsResult.Ids.ToArray();
+            var contentsFromIds = idsToGetContent.Select(id => new Entry() { Id = id }).ToArray();
+
+            var client = Mock.Of<IFeedlyClient>(o =>
+                o.Streams.GetIDs("123", Ranked.Oldest, false) == Task.FromResult(getIdsResult) &&
+                o.Entries.GetMultipleContent(idsToGetContent) == Task.FromResult(contentsFromIds));
+
+            var storage = new Mock<IProviderStorage>();
+            storage.Setup(o => o.SaveArticles(It.IsAny<IEnumerable<ArticleData>>()))
+                .Returns(Task.FromResult(false));
+            storage.Setup(o => o.LoadArticles(getIdsResult.Ids))
+                .Returns(Task.FromResult((IEnumerable<ArticleData>)new List<ArticleData>()));
+
+            var sut = new FeedlyProvider(client, settings, storage.Object);
+            var value = await sut.DownloadArticles(new SubscriptionData() { UrlID = "{userId}" });
+
+            storage.Verify(o => o.SaveArticles(It.IsAny<IEnumerable<ArticleData>>()));
+            CollectionAssert.AreEqual(contentsFromIds.ToArticleCollection().ToList(), value.ToList(), "Result should be the same");
+        }
+
+        [TestMethod]
+        public async Task DownloadArticles_ShouldDownloadAllArticlesIfNonePassed()
+        {
+            var getIdsResult = new FeedStreamIDs() { Ids = new string[] { "id1", "id2", "id3", "id4", "id5" } };
+            var idsToGetContent = getIdsResult.Ids.ToArray();
+            var contentsFromIds = idsToGetContent.Select(id => new Entry() { Id = id }).ToArray();
+            var articlesAlreadyDownloaded = new List<ArticleData>();
+
+            var client = Mock.Of<IFeedlyClient>(o =>
+                o.Streams.GetIDs("123", Ranked.Oldest, false) == Task.FromResult(getIdsResult) &&
+                o.Entries.GetMultipleContent(idsToGetContent) == Task.FromResult(contentsFromIds));
+
+            var storage = new Mock<IProviderStorage>();
+            storage.Setup(o => o.SaveArticles(It.IsAny<IEnumerable<ArticleData>>()))
+                .Returns(Task.FromResult(false));
+
+            var sut = new FeedlyProvider(client, settings, storage.Object);
+            var value = await sut.DownloadArticles(articlesAlreadyDownloaded, new SubscriptionData() { UrlID = "{userId}" });
+
+            storage.Verify(o => o.SaveArticles(It.IsAny<IEnumerable<ArticleData>>()));
+            CollectionAssert.AreEqual(getIdsResult.Ids, value.ArticlesOrder);
+            CollectionAssert.AreEqual(contentsFromIds.ToArticleCollection().ToList(), value.DownloadedArticles.ToList(), "Result should be the same");
         }
     }
 }

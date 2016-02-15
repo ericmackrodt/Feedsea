@@ -62,6 +62,5 @@
                   ItemContainerStyle="{StaticResource MainMenuItemContainerStyle}"
                   SelectionChanged="LstSubscriptions_SelectionChanged"
                   ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollMode="Disabled"/>
-
     </Grid>
 </UserControl>

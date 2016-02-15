@@ -20,9 +20,10 @@ namespace Feedsea.ViewModels
     {
         public event EventHandler ArticleLayoutChanged;
 
-        private INewsProvider provider;
+        private IArticleProvider provider;
         private IGeneralSettings generalSettings;
         private IBroadcaster broadcaster;
+        private DateTime lastLoad = DateTime.MinValue;
 
         public ArticleViewTemplateEnum ArticleViewTemplate
         {
@@ -68,7 +69,7 @@ namespace Feedsea.ViewModels
             get { return changeArticleViewTemplateCommand; }
         }
 
-        public ArticleListViewModel(INewsProvider provider, IGeneralSettings generalSettings, IBroadcaster broadcaster)
+        public ArticleListViewModel(IArticleProvider provider, IGeneralSettings generalSettings, IBroadcaster broadcaster)
         {
             this.provider = provider;
             this.generalSettings = generalSettings;
@@ -90,6 +91,9 @@ namespace Feedsea.ViewModels
 
         public override async Task LoadData(object arg)
         {
+            if ((DateTime.Now - lastLoad).Minutes < 2)
+                return;
+
             IsBusy = true;
 
             SelectedSource = (INewsSource)arg;
@@ -97,21 +101,12 @@ namespace Feedsea.ViewModels
             var articles = await provider.LoadArticles(SelectedSource);
             Articles = new ObservableCollection<ArticleData>(articles);
 
-            IsBusy = false;
-        }
-
-        public async Task Refresh(object arg)
-        {
-            IsBusy = true;
-
             var source = (INewsSource)arg;
 
-            var result = await provider.DownloadArticles(Articles.FirstOrDefault(), source);
+            var result = await provider.DownloadArticles(Articles, source);
 
-            if (result != null && result.Count() > 0)
-            {
+            if (!result.All(o => Articles.Any(x => x.UniqueID == o.UniqueID)))
                 Articles = new ObservableCollection<ArticleData>(result);
-            }
 
             IsBusy = false;
         }

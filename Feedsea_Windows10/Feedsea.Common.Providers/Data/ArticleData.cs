@@ -178,5 +178,10 @@ namespace Feedsea.Common.Providers.Data
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
+
+        public override bool Equals(object obj)
+        {
+            return this.UniqueID == (obj as ArticleData).UniqueID;
+        }
     }
 }

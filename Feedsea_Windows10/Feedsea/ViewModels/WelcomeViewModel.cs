@@ -20,14 +20,14 @@ namespace Feedsea.ViewModels
         private IFeedlySettings _settings;
         private ICommand _loginCommand;
         private IOAuthLogin _oauth;
-        private INewsProvider _provider;
+        private IAuthenticationProvider _provider;
 
         public ICommand LoginCommand
         {
             get { return _loginCommand; }
         }
 
-        public WelcomeViewModel(IFeedlySettings settings, IOAuthLogin oauth, INewsProvider provider)
+        public WelcomeViewModel(IFeedlySettings settings, IOAuthLogin oauth, IAuthenticationProvider provider)
         {
             _settings = settings;
             _oauth = oauth;
