@@ -407,8 +407,6 @@ namespace Feedsea.Common.Components
         public async Task ClearNewsSources()
         {
             var db = DbConnection;
-            //await db.DeleteAllAsync<DbNewsSource>();
-            //await db.DeleteAllAsync<DbNewsSourceLink>();
             await db.DeleteAllAsync<DbCategorySubscription>();
             await db.DeleteAllAsync<DbCategory>();
             await db.DeleteAllAsync<DbSubscription>();
@@ -418,6 +416,7 @@ namespace Feedsea.Common.Components
         {
             var db = DbConnection;
             IEnumerable<DbArticle> articles = null;
+            //NOT HAPPY WITH THIS IMPLEMENTATION...
             if (source is CategoryData)
             {
                 var cat = new DbCategory(source as CategoryData);
@@ -427,6 +426,17 @@ namespace Feedsea.Common.Components
                     "(SELECT * FROM DbCategorySubscription WHERE DbSubscription.UrlID = DbCategorySubscription.SubscriptionID AND DbCategorySubscription.CategoryID = '{0}'))";
 
                 articles = await db.QueryAsync<DbArticle>(string.Format(query, source.UrlID));
+
+                if (articles.Any())
+                {
+                    var subIds = articles.Select(o => o.SubscriptionID).Distinct();
+                    
+                    var subs = await db.GetAllWithChildrenAsync<DbSubscription>(o => subIds.Contains(o.UrlID));
+                    foreach(var article in articles)
+                    {
+                        article.Subscription = subs.FirstOrDefault(o => o.UrlID == article.SubscriptionID);
+                    }
+                }
             }
             else
                 articles = await db.GetAllWithChildrenAsync<DbArticle>(o => o.SubscriptionID == source.UrlID);
@@ -438,6 +448,7 @@ namespace Feedsea.Common.Components
         {
             var db = DbConnection;
             var articles = await db.GetAllWithChildrenAsync<DbArticle>(o => articleIds.Contains(o.UniqueID));
+
             return articles.Select(o => o.ToArticleData()).OrderByDescending(o => o.Date);
         }
 

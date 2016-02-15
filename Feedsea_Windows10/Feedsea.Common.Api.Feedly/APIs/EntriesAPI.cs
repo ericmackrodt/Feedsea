@@ -22,7 +22,7 @@ namespace Feedsea.Common.Api.Feedly.APIs
 
         public Task<Entry[]> GetMultipleContent(string[] ids)
         {
-            throw new NotImplementedException();
+            return client.Post<Entry[]>("entries/.mget", ids);
         }
     }
 }

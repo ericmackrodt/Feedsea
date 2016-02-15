@@ -29,7 +29,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="RctImage.Height" Value="200" />
-                        <Setter Target="LayoutBase.Margin" Value="0,12,12,0" />
+                        <Setter Target="LayoutBase.Margin" Value="0,10,10,0" />
                         <Setter Target="LayoutBase.Height" Value="auto" />
                         <Setter Target="TxtDescription.MaxHeight" Value="50" />
                     </VisualState.Setters>

@@ -24,7 +24,7 @@ namespace Feedsea.Common.Converters
         {
             var resourceLoader = new ResourceLoader();
 
-            var span = (DateTime.Now - date);
+            var span = (DateTime.Now - date.ToLocalTime());
 
             if (span.Days > 0)
                 return string.Concat(span.Days, " ", span.Days > 1 ? resourceLoader.GetString("ArticleTemplate_AgoDays/Text") : resourceLoader.GetString("ArticleTemplate_AgoDay/Text"));
