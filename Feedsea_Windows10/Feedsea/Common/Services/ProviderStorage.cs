@@ -20,115 +20,6 @@ using Feedsea.Common.Api.Feedly;
 
 namespace Feedsea.Common.Components
 {
-    //internal class DbNewsSource
-    //{
-    //    [PrimaryKey]
-    //    public string UrlID { get; set; }
-    //    public string Name { get; set; }
-    //    public string Link { get; set; }
-    //    public int UnreadNumber { get; set; }
-    //    public bool IsRoot { get; set; }
-    //    public bool IsCategory { get; set; }
-
-    //    [ManyToMany(typeof(DbNewsSourceLink), CascadeOperations = CascadeOperation.CascadeRead | CascadeOperation.CascadeInsert)]
-    //    public List<DbNewsSource> Children { get; set; }
-
-    //    public DbNewsSource()
-    //    {
-
-    //    }
-
-    //    public DbNewsSource(INewsSource source, bool isRoot = false)
-    //    {
-    //        if (source is CategoryData)
-    //        {
-    //            FromCategory(source);
-    //            IsRoot = true;
-    //            IsCategory = true;
-    //        }
-    //        else
-    //        {
-    //            FromSubscription(source);
-    //            IsRoot = isRoot;
-    //            IsCategory = false;
-    //        }
-    //    }
-
-    //    public INewsSource ToNewsSource()
-    //    {
-    //        if (IsCategory)
-    //            return ToCategory();
-    //        else
-    //            return ToSubscription();
-    //    }
-
-    //    private SubscriptionData ToSubscription()
-    //    {
-    //        var sub = new SubscriptionData()
-    //        {
-    //            UrlID = UrlID,
-    //            Link = Link,
-    //            Name = Name,
-    //            UnreadNumber = UnreadNumber
-    //        };
-
-    //        if (Children != null)
-    //            sub.Categories = Children.Select(o => o.ToNewsSource()).Cast<CategoryData>().ToArray();
-
-    //        return sub;
-    //    }
-
-    //    private CategoryData ToCategory()
-    //    {
-    //        var cat = new CategoryData()
-    //        {
-    //            UrlID = UrlID,
-    //            Name = Name,
-    //            URL = Link,
-    //            UnreadNumber = UnreadNumber
-    //        };
-
-    //        if (Children != null)
-    //            cat.Subscriptions = Children.Select(o => o.ToNewsSource()).Cast<SubscriptionData>().ToList();
-
-    //        return cat;
-    //    }
-
-    //    private void FromSubscription(INewsSource data)
-    //    {
-    //        var sub = data as SubscriptionData;
-    //        UrlID = sub.UrlID;
-    //        Name = sub.Name;
-    //        Link = sub.Link;
-    //        UnreadNumber = sub.UnreadNumber;
-
-    //        if (sub.Categories == null) return;
-
-    //        Children = sub.Categories.Select(o => new DbNewsSource(o)).ToList();
-    //    }
-
-    //    private void FromCategory(INewsSource data)
-    //    {
-    //        var cat = data as CategoryData;
-    //        UrlID = cat.UrlID;
-    //        Name = cat.Name;
-    //        Link = cat.URL;
-    //        UnreadNumber = cat.UnreadNumber;
-
-    //        if (cat.Subscriptions != null)
-    //            Children = cat.Subscriptions.Select(o => new DbNewsSource(o)).ToList();
-    //    }
-    //}
-
-    //internal class DbNewsSourceLink
-    //{
-    //    [ForeignKey(typeof(DbNewsSource))]
-    //    public string ParentID { get; set; }
-
-    //    [ForeignKey(typeof(DbNewsSource))]
-    //    public string ChildID { get; set; }
-    //}
-
     internal class DbSubscription
     {
         [PrimaryKey]
@@ -248,6 +139,8 @@ namespace Feedsea.Common.Components
         public string MainImageUrl { get; set; }
         public string URL { get; set; }
         public DateTime Date { get; set; }
+        [Indexed]
+        public long Ordering { get; set; }
 
         [ForeignKey(typeof(DbSubscription))]     // Specify the foreign key
         public string SubscriptionID { get; set; }
@@ -414,32 +307,34 @@ namespace Feedsea.Common.Components
 
         public async Task<IEnumerable<ArticleData>> LoadArticles(INewsSource source)
         {
+            var limit = 20;
+
             var db = DbConnection;
-            IEnumerable<DbArticle> articles = null;
-            //NOT HAPPY WITH THIS IMPLEMENTATION...
+
+            var where = "SubscriptionID = '{0}' ";
+
             if (source is CategoryData)
+                where =
+                    "EXISTS (SELECT * FROM DbSubscription WHERE DbArticle.SubscriptionID = DbSubscription.UrlID AND EXISTS " +
+                    "(SELECT * FROM DbCategorySubscription WHERE DbSubscription.UrlID = DbCategorySubscription.SubscriptionID AND DbCategorySubscription.CategoryID = '{0}')) ";
+
+
+            var query =
+                    "SELECT * FROM DbArticle WHERE " + where +
+                    "ORDER BY Ordering DESC LIMIT {1}";
+
+            var articles = await db.QueryAsync<DbArticle>(string.Format(query, source.UrlID, limit));
+
+            if (articles.Any())
             {
-                var cat = new DbCategory(source as CategoryData);
-                var query =
-                    "SELECT * FROM DbArticle WHERE EXISTS " +
-                    "(SELECT * FROM DbSubscription WHERE DbArticle.SubscriptionID = DbSubscription.UrlID AND EXISTS " +
-                    "(SELECT * FROM DbCategorySubscription WHERE DbSubscription.UrlID = DbCategorySubscription.SubscriptionID AND DbCategorySubscription.CategoryID = '{0}'))";
+                var subIds = articles.Select(o => o.SubscriptionID).Distinct();
 
-                articles = await db.QueryAsync<DbArticle>(string.Format(query, source.UrlID));
-
-                if (articles.Any())
+                var subs = await db.GetAllWithChildrenAsync<DbSubscription>(o => subIds.Contains(o.UrlID));
+                foreach (var article in articles)
                 {
-                    var subIds = articles.Select(o => o.SubscriptionID).Distinct();
-                    
-                    var subs = await db.GetAllWithChildrenAsync<DbSubscription>(o => subIds.Contains(o.UrlID));
-                    foreach(var article in articles)
-                    {
-                        article.Subscription = subs.FirstOrDefault(o => o.UrlID == article.SubscriptionID);
-                    }
+                    article.Subscription = subs.FirstOrDefault(o => o.UrlID == article.SubscriptionID);
                 }
             }
-            else
-                articles = await db.GetAllWithChildrenAsync<DbArticle>(o => o.SubscriptionID == source.UrlID);
 
             return articles.Select(o => o.ToArticleData()).OrderByDescending(o => o.Date);
         }
@@ -452,10 +347,48 @@ namespace Feedsea.Common.Components
             return articles.Select(o => o.ToArticleData()).OrderByDescending(o => o.Date);
         }
 
+        public async Task<IEnumerable<ArticleData>> LoadMoreArticles(INewsSource source, ArticleData previousArticle)
+        {
+            var limit = 20;
+
+            var db = DbConnection;
+            var lastCount = await db.ExecuteScalarAsync<int>("SELECT MAX(Ordering) FROM DbArticle WHERE UniqueID = ?", previousArticle.UniqueID);
+
+            var where = "SubscriptionID = {0} ";
+
+            if (source is CategoryData)
+                where =
+                    "EXISTS (SELECT * FROM DbSubscription WHERE DbArticle.SubscriptionID = DbSubscription.UrlID AND EXISTS " +
+                    "(SELECT * FROM DbCategorySubscription WHERE DbSubscription.UrlID = DbCategorySubscription.SubscriptionID AND DbCategorySubscription.CategoryID = '{0}')) ";
+
+
+            var query =
+                    "SELECT * FROM DbArticle WHERE " + where +
+                    "AND Ordering < {1} ORDER BY Ordering DESC LIMIT {2}";
+
+            var articles = await db.QueryAsync<DbArticle>(string.Format(query, source.UrlID, lastCount, limit));
+
+            if (articles.Any())
+            {
+                var subIds = articles.Select(o => o.SubscriptionID).Distinct();
+
+                var subs = await db.GetAllWithChildrenAsync<DbSubscription>(o => subIds.Contains(o.UrlID));
+                foreach (var article in articles)
+                {
+                    article.Subscription = subs.FirstOrDefault(o => o.UrlID == article.SubscriptionID);
+                }
+            }
+
+            return articles.Select(o => o.ToArticleData()).OrderByDescending(o => o.Date);
+        }
+
         public async Task SaveArticles(IEnumerable<ArticleData> articles)
         {
             var db = DbConnection;
-            var dbArticles = articles.Select(o => new DbArticle(o));
+            var lastCount = await db.ExecuteScalarAsync<int>("SELECT MAX(Ordering) FROM DbArticle");
+            var dbArticles = articles.OrderBy(o => o.Date).Select(o => new DbArticle(o) {
+                Ordering = ++lastCount
+            }).ToList();
             await db.InsertOrReplaceAllWithChildrenAsync(dbArticles);
         }
     }

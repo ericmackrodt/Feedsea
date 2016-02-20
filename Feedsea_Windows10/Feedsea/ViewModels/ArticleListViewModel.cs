@@ -1,5 +1,6 @@
 ﻿using Broadcaster;
 using Feedsea.Common;
+using Feedsea.Common.Controls;
 using Feedsea.Common.Events;
 using Feedsea.Common.Providers;
 using Feedsea.Common.Providers.Data;
@@ -24,6 +25,7 @@ namespace Feedsea.ViewModels
         private IGeneralSettings generalSettings;
         private IBroadcaster broadcaster;
         private DateTime lastLoad = DateTime.MinValue;
+        private string continuationString;
 
         public ArticleViewTemplateEnum ArticleViewTemplate
         {
@@ -49,8 +51,8 @@ namespace Feedsea.ViewModels
             }
         }
 
-        private ObservableCollection<ArticleData> articles;
-        public ObservableCollection<ArticleData> Articles
+        private PaginatedArticlesCollection articles;
+        public PaginatedArticlesCollection Articles
         {
             get { return articles; }
             set
@@ -68,7 +70,7 @@ namespace Feedsea.ViewModels
         {
             get { return changeArticleViewTemplateCommand; }
         }
-
+        
         public ArticleListViewModel(IArticleProvider provider, IGeneralSettings generalSettings, IBroadcaster broadcaster)
         {
             this.provider = provider;
@@ -99,16 +101,28 @@ namespace Feedsea.ViewModels
             SelectedSource = (INewsSource)arg;
 
             var articles = await provider.LoadArticles(SelectedSource);
-            Articles = new ObservableCollection<ArticleData>(articles);
+            Articles = new PaginatedArticlesCollection(articles, LoadMoreArticles);
 
             var source = (INewsSource)arg;
 
             var result = await provider.DownloadArticles(Articles, source);
 
-            if (!result.All(o => Articles.Any(x => x.UniqueID == o.UniqueID)))
-                Articles = new ObservableCollection<ArticleData>(result);
+            if (!result.Articles.All(o => Articles.Any(x => x.UniqueID == o.UniqueID)))
+                Articles = new PaginatedArticlesCollection(result.Articles, LoadMoreArticles);
+
+            if (!string.IsNullOrWhiteSpace(result.Continuation))
+                continuationString = result.Continuation;
 
             IsBusy = false;
+        }
+
+        private async Task<IEnumerable<ArticleData>> LoadMoreArticles()
+        {
+            IsBusy = true;
+            var result = await provider.DownloadMoreArticles(continuationString, Articles, SelectedSource);
+            IsBusy = false;
+            continuationString = result.Continuation;
+            return result.Articles;
         }
     }
 }

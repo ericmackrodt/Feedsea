@@ -38,6 +38,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\ContinuedArticles.cs" />
     <Compile Include="Data\ArticleData.cs" />
     <Compile Include="Data\CategoryData.cs" />
     <Compile Include="Data\EnclosureData.cs" />

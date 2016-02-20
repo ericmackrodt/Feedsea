@@ -88,7 +88,7 @@
                   ItemTemplate="{StaticResource CardTemplate}"
                   ItemContainerStyle="{StaticResource ArticlePresenterListViewItem}"
                   ItemsSource="{Binding Articles}"
-                  ItemsPanel="{StaticResource ItemsPanelNormal}">
+                  ItemsPanel="{StaticResource ItemsPanelNormal}" IncrementalLoadingTrigger="Edge">
             <GridView.ItemContainerTransitions>
                 <TransitionCollection>
                     <AddDeleteThemeTransition />

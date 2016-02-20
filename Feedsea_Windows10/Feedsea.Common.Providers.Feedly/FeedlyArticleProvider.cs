@@ -32,7 +32,7 @@ namespace Feedsea.Common.Providers.Feedly
             return ident;
         }
 
-        private Task<FeedStreamIDs> GetIds(INewsSource source)
+        private Task<FeedStreamIDs> GetIds(INewsSource source, string continuation = null)
         {
             //So, get the articles ids
             continuationString = null;
@@ -42,10 +42,10 @@ namespace Feedsea.Common.Providers.Feedly
             var ranked = settings.ArticlesFromOldestToNewest ? Ranked.Oldest : Ranked.Newest;
             var unreadOnly = !settings.ShowRead;
 
-            return client.Streams.GetIDs(ident.Replace(ApiConstants.FormatKey_UserId, settings.UserID), ranked, unreadOnly);
+            return client.Streams.GetIDs(ident.Replace(ApiConstants.FormatKey_UserId, settings.UserID), continuation, ranked, unreadOnly);
         }
 
-        private async Task<IEnumerable<ArticleData>> GetNonStoredArticles(string[] ids, FeedStreamIDs stream, IEnumerable<ArticleData> storedArticles)
+        private async Task<IEnumerable<ArticleData>> GetNonStoredArticles(FeedStreamIDs stream, IEnumerable<ArticleData> storedArticles)
         {
             var newIds = stream.Ids.Where(id => !storedArticles.Any(a => a.UniqueID == id));
             var contents = await client.Entries.GetMultipleContent(newIds.ToArray());
@@ -54,9 +54,9 @@ namespace Feedsea.Common.Providers.Feedly
 
             await storage.SaveArticles(articles);
 
-            return ids.Select(id =>
+            return stream.Ids.Select(id =>
                 storedArticles.FirstOrDefault(a => a.UniqueID == id) ??
-                contents.FirstOrDefault(c => c.Id == id).ToArticle());
+                contents.FirstOrDefault(c => c.Id == id).ToArticle()).OrderByDescending(o => o.Date);
         }
 
         public Task<IEnumerable<ArticleData>> LoadArticles(INewsSource source)
@@ -64,24 +64,64 @@ namespace Feedsea.Common.Providers.Feedly
             return storage.LoadArticles(source);
         }
 
-        public async Task<IEnumerable<ArticleData>> DownloadArticles(INewsSource source)
+        public async Task<ContinuedArticles> DownloadArticles(INewsSource source)
         {
             var stream = await GetIds(source);
-
-            continuationString = stream.Continuation;
 
             var storedArticles = await storage.LoadArticles(stream.Ids);
 
-            return await GetNonStoredArticles(stream.Ids, stream, storedArticles);
+            var nonStored = await GetNonStoredArticles(stream, storedArticles);
+            return new ContinuedArticles(nonStored, stream.Continuation);
         }
 
-        public async Task<IEnumerable<ArticleData>> DownloadArticles(IEnumerable<ArticleData> currentArticles, INewsSource source)
+        public async Task<ContinuedArticles> DownloadArticles(IEnumerable<ArticleData> currentArticles, INewsSource source)
         {
             var stream = await GetIds(source);
+            var nonStored = await GetNonStoredArticles(stream, currentArticles);
+            return new ContinuedArticles(nonStored, stream.Continuation);
+        }
+
+        public Task<IEnumerable<ArticleData>> LoadMoreArticles(ArticleData lastArticle, INewsSource source = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ContinuedArticles> DownloadMoreArticles(string continuation)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ContinuedArticles> DownloadMoreArticles(string continuation, ArticleData lastArticle)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ContinuedArticles> DownloadMoreArticles(string continuation, IEnumerable<ArticleData> currentArticles)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ContinuedArticles> DownloadMoreArticles(string continuation, INewsSource source)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ContinuedArticles> DownloadMoreArticles(string continuation, IEnumerable<ArticleData> currentArticles, INewsSource source)
+        {
+            var lastArticle = currentArticles.LastOrDefault();
+            return DownloadMoreArticles(continuation, lastArticle, source);
+        }
+
+        public async Task<ContinuedArticles> DownloadMoreArticles(string continuation, ArticleData lastArticle, INewsSource source)
+        {
+            var savedArticles = await storage.LoadMoreArticles(source, lastArticle);
+
+            var stream = await GetIds(source, continuation);
 
             continuationString = stream.Continuation;
 
-            return await GetNonStoredArticles(stream.Ids, stream, currentArticles);
+            var nonStored = await GetNonStoredArticles(stream, savedArticles);
+            return new ContinuedArticles(nonStored, stream.Continuation);
         }
     }
 }

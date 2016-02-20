@@ -103,6 +103,7 @@
     <Compile Include="AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\Controls\PaginatedArticlesCollection.cs" />
     <Compile Include="Common\Controls\SourceListTemplateSelector.cs" />
     <Compile Include="Common\Converters\BoolToOpacityConverter.cs" />
     <Compile Include="Common\Converters\BoolToVisibilityConverter.cs" />
