@@ -20,7 +20,7 @@ namespace Feedsea.Common.Controls
         public PaginatedArticlesCollection(IEnumerable<ArticleData> articles, Func<Task<IEnumerable<ArticleData>>> loadMore)
             : base(articles)
         {
-            HasMoreItems = true;
+            HasMoreItems = articles.Any();
             this.loadMore = loadMore;
         }
 

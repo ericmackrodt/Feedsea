@@ -354,7 +354,7 @@ namespace Feedsea.Common.Components
             var db = DbConnection;
             var lastCount = await db.ExecuteScalarAsync<int>("SELECT MAX(Ordering) FROM DbArticle WHERE UniqueID = ?", previousArticle.UniqueID);
 
-            var where = "SubscriptionID = {0} ";
+            var where = "SubscriptionID = '{0}' ";
 
             if (source is CategoryData)
                 where =
@@ -380,6 +380,24 @@ namespace Feedsea.Common.Components
             }
 
             return articles.Select(o => o.ToArticleData()).OrderByDescending(o => o.Date);
+        }
+
+        public Task<int> MarkAllRead(INewsSource source)
+        {
+            var db = DbConnection;
+
+            var where = "SubscriptionID = '{0}' ";
+
+            if (source is CategoryData)
+                where =
+                    "EXISTS (SELECT * FROM DbSubscription WHERE DbArticle.SubscriptionID = DbSubscription.UrlID AND EXISTS " +
+                    "(SELECT * FROM DbCategorySubscription WHERE DbSubscription.UrlID = DbCategorySubscription.SubscriptionID AND DbCategorySubscription.CategoryID = '{0}'))";
+
+
+            var query =
+                    "UPDATE DbArticle SET IsRead = 1 WHERE " + where;
+
+            return db.ExecuteAsync(string.Format(query, source.UrlID));
         }
 
         public async Task SaveArticles(IEnumerable<ArticleData> articles)

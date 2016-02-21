@@ -123,5 +123,25 @@ namespace Feedsea.Common.Providers.Feedly
             var nonStored = await GetNonStoredArticles(stream, savedArticles);
             return new ContinuedArticles(nonStored, stream.Continuation);
         }
+
+        public async Task MarkAllArticlesRead(INewsSource source = null)
+        {
+            var i = await storage.MarkAllRead(source);
+
+            var url = ApiConstants.GlobalCategory_All;
+
+            if (source != null)
+                url = source.UrlID;
+
+            var toMarkAsRead = new string[] { url.Replace(ApiConstants.FormatKey_UserId, settings.UserID) };
+            IMarkerInput input = null;
+
+            if (source is SubscriptionData)
+                input = new MarkerInputFeed(toMarkAsRead);
+            else
+                input = new MarkerInputCategories(toMarkAsRead);
+
+            await client.Markers.MarkRead(input);
+        }
     }
 }

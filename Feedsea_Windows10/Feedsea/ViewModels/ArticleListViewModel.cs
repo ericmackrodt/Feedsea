@@ -2,8 +2,10 @@
 using Feedsea.Common;
 using Feedsea.Common.Controls;
 using Feedsea.Common.Events;
+using Feedsea.Common.Helpers;
 using Feedsea.Common.Providers;
 using Feedsea.Common.Providers.Data;
+using Feedsea.Common.Services;
 using Feedsea.Settings;
 using MVVMBasic;
 using MVVMBasic.Commands;
@@ -20,7 +22,8 @@ namespace Feedsea.ViewModels
     public class ArticleListViewModel : BaseViewModel
     {
         public event EventHandler ArticleLayoutChanged;
-
+        
+        private IMessageBoxService messageBox;
         private IArticleProvider provider;
         private IGeneralSettings generalSettings;
         private IBroadcaster broadcaster;
@@ -70,14 +73,38 @@ namespace Feedsea.ViewModels
         {
             get { return changeArticleViewTemplateCommand; }
         }
-        
-        public ArticleListViewModel(IArticleProvider provider, IGeneralSettings generalSettings, IBroadcaster broadcaster)
+
+        private ICommand refreshArticlesCommand;
+        public ICommand RefreshArticlesCommand
+        {
+            get { return refreshArticlesCommand; }
+        }
+
+        private ICommand markAllReadCommand;
+        public ICommand MarkAllReadCommand
+        {
+            get { return markAllReadCommand; }
+        }
+
+        public ArticleListViewModel(
+            IArticleProvider provider, 
+            IGeneralSettings generalSettings, 
+            IBroadcaster broadcaster,
+            IMessageBoxService messageBox)
         {
             this.provider = provider;
             this.generalSettings = generalSettings;
             this.broadcaster = broadcaster;
+            this.messageBox = messageBox;
 
             changeArticleViewTemplateCommand = new RelayCommand(ChangeArticleViewTemplate);
+            refreshArticlesCommand = new RelayCommandAsync(RefreshArticles);
+            markAllReadCommand = new RelayCommandAsync(o => ConnectionVerifier.Verify(MarkAllRead, o, OnCommandFail));
+        }
+
+        private void OnCommandFail()
+        {
+            IsBusy = false;
         }
 
         private void ChangeArticleViewTemplate(object obj)
@@ -91,11 +118,33 @@ namespace Feedsea.ViewModels
                 ArticleLayoutChanged(this, new EventArgs());
         }
 
-        public override async Task LoadData(object arg)
+        private async Task LoadArticles()
         {
-            if ((DateTime.Now - lastLoad).Minutes < 2)
+            var result = await provider.DownloadArticles(Articles, SelectedSource);
+
+            if (!result.Articles.All(o => Articles.Any(x => x.UniqueID == o.UniqueID)))
+                Articles = new PaginatedArticlesCollection(result.Articles, LoadMoreArticles);
+
+            if (!string.IsNullOrWhiteSpace(result.Continuation))
+                continuationString = result.Continuation;
+
+            lastLoad = DateTime.Now;
+        }
+
+        private async Task RefreshArticles(object obj)
+        {
+            if (Articles.Any() && (DateTime.Now - lastLoad).Minutes < 2)
                 return;
 
+            IsBusy = true;
+
+            await LoadArticles();
+
+            IsBusy = false;
+        }
+
+        public override async Task LoadData(object arg)
+        {
             IsBusy = true;
 
             SelectedSource = (INewsSource)arg;
@@ -103,15 +152,7 @@ namespace Feedsea.ViewModels
             var articles = await provider.LoadArticles(SelectedSource);
             Articles = new PaginatedArticlesCollection(articles, LoadMoreArticles);
 
-            var source = (INewsSource)arg;
-
-            var result = await provider.DownloadArticles(Articles, source);
-
-            if (!result.Articles.All(o => Articles.Any(x => x.UniqueID == o.UniqueID)))
-                Articles = new PaginatedArticlesCollection(result.Articles, LoadMoreArticles);
-
-            if (!string.IsNullOrWhiteSpace(result.Continuation))
-                continuationString = result.Continuation;
+            await LoadArticles();
 
             IsBusy = false;
         }
@@ -123,6 +164,24 @@ namespace Feedsea.ViewModels
             IsBusy = false;
             continuationString = result.Continuation;
             return result.Articles;
+        }
+
+        private async Task MarkAllRead(object arg)
+        {
+            var markRead = await messageBox.ConfirmationBox("ArticleListPage_MarkAllReadConfirmation/Text");
+
+            if (!markRead) return;
+
+            IsBusy = true;
+
+            await provider.MarkAllArticlesRead(SelectedSource);
+
+            foreach (var art in Articles)
+            {
+                art.IsRead = true;
+            }
+
+            IsBusy = false;
         }
     }
 }

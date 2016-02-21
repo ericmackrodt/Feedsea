@@ -126,6 +126,9 @@
   <data name="ArticleListPage_MarkAllRead.Label" xml:space="preserve">
     <value>Marl all Read</value>
   </data>
+  <data name="ArticleListPage_MarkAllReadConfirmation.Text" xml:space="preserve">
+    <value>Are you sure you want to mark all articles read?</value>
+  </data>
   <data name="ArticleListPage_Refresh.Label" xml:space="preserve">
     <value>Refresh</value>
   </data>
@@ -173,9 +176,6 @@
   </data>
   <data name="MainMenu_Today.Text" xml:space="preserve">
     <value>Today</value>
-  </data>
-  <data name="MainPage_MarkAllReadConfirmation.Text" xml:space="preserve">
-    <value>Are you sure you want to mark all articles read?</value>
   </data>
   <data name="MessageDialogs_CancelButton.Text" xml:space="preserve">
     <value>Cancel</value>

@@ -26,7 +26,6 @@ namespace Feedsea.ViewModels
         private INewsSourceProvider sourceProvider;
         private IShareService share;
         private IGeneralSettings generalSettings;
-        private IMessageBoxService messageBox;
         private IBroadcaster broadcaster;
 
         private INewsSource selectedSource;
@@ -100,26 +99,18 @@ namespace Feedsea.ViewModels
         {
             get { return refreshNewsCommand; }
         }
-
-        private ICommand markAllReadCommand;
-        public ICommand MarkAllReadCommand
-        {
-            get { return markAllReadCommand; }
-        }
         
         public MainViewModel(
             IAuthenticationProvider authProvider, 
             INewsSourceProvider sourceProvider,
             IShareService share, 
             IGeneralSettings generalSettings,
-            IMessageBoxService messageBox,
             IBroadcaster broadcaster)
         {
             this.authProvider = authProvider;
             this.sourceProvider = sourceProvider;
             this.share = share;
             this.generalSettings = generalSettings;
-            this.messageBox = messageBox;
             this.broadcaster = broadcaster;
 
             selectSourceCommand = new RelayCommandAsync<INewsSource>(o => ConnectionVerifier.Verify(SelectSource, o, OnCommandFail));
@@ -127,25 +118,6 @@ namespace Feedsea.ViewModels
             toggleArticleReadCommand = new RelayCommandAsync<ArticleData>(o => ConnectionVerifier.Verify(ToggleArticleRead, o, OnCommandFail));
             toggleArticleSavedCommand = new RelayCommandAsync<ArticleData>(o => ConnectionVerifier.Verify(ToggleArticleSaved, o, OnCommandFail));
             refreshNewsCommand = new RelayCommandAsync(o => ConnectionVerifier.Verify(RefreshNews, o, OnCommandFail));
-            markAllReadCommand = new RelayCommandAsync(o => ConnectionVerifier.Verify(MarkAllRead, o, OnCommandFail));
-        }
-
-        private async Task MarkAllRead(object arg)
-        {
-            var markRead = await messageBox.ConfirmationBox("MainPage_MarkAllReadConfirmation/Text");
-
-            if (!markRead) return;
-
-            IsBusy = true;
-
-            //await authProvider.MarkAllArticlesRead(SelectedSource);
-
-            // Articles = await _provider.LoadArticles(SelectedSource);
-            throw new Exception("FIX THIS");
-            //var newsSources = await _provider.LoadAllNewsSources();
-            //Sources = new ObservableCollection<INewsSource>(newsSources);
-
-            IsBusy = false;
         }
 
         private void OnCommandFail()

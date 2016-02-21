@@ -17,6 +17,7 @@ namespace Feedsea.Common.Providers
         Task<IEnumerable<ArticleData>> LoadArticles(INewsSource source);
         Task<IEnumerable<ArticleData>> LoadArticles(string[] articleIds);
         Task<IEnumerable<ArticleData>> LoadMoreArticles(INewsSource source, ArticleData previousArticle);
+        Task<int> MarkAllRead(INewsSource source);
 
         Task<IEnumerable<INewsSource>> LoadNewsSources();
         Task<IEnumerable<SubscriptionData>> LoadSubscriptions();
