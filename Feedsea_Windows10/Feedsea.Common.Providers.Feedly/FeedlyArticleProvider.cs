@@ -143,5 +143,19 @@ namespace Feedsea.Common.Providers.Feedly
 
             await client.Markers.MarkRead(input);
         }
+
+        public async Task MarkArticleRead(ArticleData article)
+        {
+            await client.Markers.MarkRead(new MarkerInputEntries(new string[] { article.UniqueID }));
+            article.IsRead = true;
+            await storage.UpdateArticle(article);
+        }
+
+        public async Task UnmarkArticleRead(ArticleData article)
+        {
+            await client.Markers.KeepUnread(new MarkerInputEntries(new string[] { article.UniqueID }));
+            article.IsRead = false;
+            await storage.UpdateArticle(article);
+        }
     }
 }

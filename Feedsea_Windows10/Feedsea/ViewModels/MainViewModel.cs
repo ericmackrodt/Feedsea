@@ -55,49 +55,11 @@ namespace Feedsea.ViewModels
                 }
             }
         }
-        
-        private ObservableCollection<ArticleData> articles;
-        public ObservableCollection<ArticleData> Articles
-        {
-            get { return articles; }
-            set
-            {
-                if (articles != value)
-                {
-                    articles = value;
-                    NotifyChanged();
-                }
-            }
-        }
 
         private ICommand selectSourceCommand;
         public ICommand SelectSourceCommand
         {
             get { return selectSourceCommand; }
-        }
-
-        private ICommand shareArticleCommand;
-        public ICommand ShareArticleCommand
-        {
-            get { return shareArticleCommand; }
-        }
-
-        private ICommand toggleArticleReadCommand;
-        public ICommand ToggleArticleReadCommand
-        {
-            get { return toggleArticleReadCommand; }
-        }
-
-        private ICommand toggleArticleSavedCommand;
-        public ICommand ToggleArticleSavedCommand
-        {
-            get { return toggleArticleSavedCommand; }
-        }
-
-        private ICommand refreshNewsCommand;
-        public ICommand RefreshNewsCommand
-        {
-            get { return refreshNewsCommand; }
         }
         
         public MainViewModel(
@@ -114,10 +76,7 @@ namespace Feedsea.ViewModels
             this.broadcaster = broadcaster;
 
             selectSourceCommand = new RelayCommandAsync<INewsSource>(o => ConnectionVerifier.Verify(SelectSource, o, OnCommandFail));
-            shareArticleCommand = new RelayCommandAsync<ArticleData>(o => ConnectionVerifier.Verify(ShareArticle, o, OnCommandFail));
-            toggleArticleReadCommand = new RelayCommandAsync<ArticleData>(o => ConnectionVerifier.Verify(ToggleArticleRead, o, OnCommandFail));
-            toggleArticleSavedCommand = new RelayCommandAsync<ArticleData>(o => ConnectionVerifier.Verify(ToggleArticleSaved, o, OnCommandFail));
-            refreshNewsCommand = new RelayCommandAsync(o => ConnectionVerifier.Verify(RefreshNews, o, OnCommandFail));
+            this.broadcaster.Event<UpdateUnreadCountEvent>().Subscribe(UpdateUnreadCount);
         }
 
         private void OnCommandFail()
@@ -125,58 +84,33 @@ namespace Feedsea.ViewModels
             IsBusy = false;
         }
 
-        private async Task RefreshNews(object arg)
+        private void UpdateUnreadCount(KeyValuePair<string, bool> obj)
         {
-            IsBusy = true;
+            var sources = Sources
+                .Where(o => o is CategoryData)
+                .Cast<CategoryData>()
+                .SelectMany(o => o.Subscriptions)
+                .Union(Sources.Where(o => o is SubscriptionData))
+                .Where(o => o.UrlID == obj.Key);
 
-            if (Articles != null && Articles.Any())
-                Articles.Clear();
+            foreach (var source in sources)
+            {
+                if (obj.Value)
+                    source.UnreadNumber--;
+                else
+                    source.UnreadNumber++;
+            }
 
-            //var result = await authProvider.Refresh(SelectedSource);
-
-            throw new Exception("FIX THIS");
-            //if (result != null)
-            //{
-            //    Sources = result.Sources;
-            //    Articles = result.Articles;
-            //}
-
-            IsBusy = false;
+            //Needs async event execution
+            //Needs to update the source in the database.
         }
-
         
-
-        private async Task ToggleArticleSaved(ArticleData article)
-        {
-            //if (article.IsFavorite)
-            //    await authProvider.RemoveFromSaved(article);
-            //else
-            //    await authProvider.SaveArticleForLater(article);
-        }
-
-        private async Task ToggleArticleRead(ArticleData article)
-        {
-            //if (article.IsRead)
-            //    await authProvider.UnmarkArticleRead(article);
-            //else
-            //    await authProvider.MarkArticleRead(article);
-
-            //if (article.Source != null)
-            //    ChangeUnreadNumber(article.IsRead, article.Source.UrlID);
-        }
-
-        private async Task ShareArticle(ArticleData arg)
-        {
-            //throw new NotImplementedException();
-            //share.Share(arg);
-        }
-
         private async Task SelectSource(INewsSource source)
         {
             IsBusy = true;
 
-            if (Articles != null && Articles.Any())
-                Articles.Clear();
+            //if (Articles != null && Articles.Any())
+            //    Articles.Clear();
 
             var menuItem = source as MenuItem;
             //if (menuItem != null && menuItem.IsMostEngaging)

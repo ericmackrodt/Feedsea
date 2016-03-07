@@ -409,6 +409,12 @@ namespace Feedsea.Common.Components
             }).ToList();
             await db.InsertOrReplaceAllWithChildrenAsync(dbArticles);
         }
+
+        public async Task UpdateArticle(ArticleData article)
+        {
+            var db = DbConnection;
+            await db.UpdateAsync(new DbArticle(article));
+        }
     }
 
     public class DebugTraceListener : ITraceListener

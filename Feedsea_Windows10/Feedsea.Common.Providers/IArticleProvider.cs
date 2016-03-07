@@ -20,5 +20,7 @@ namespace Feedsea.Common.Providers
         Task<ContinuedArticles> DownloadMoreArticles(string continuation, ArticleData lastArticle, INewsSource source);
         Task<ContinuedArticles> DownloadMoreArticles(string continuation, IEnumerable<ArticleData> currentArticles, INewsSource source);
         Task MarkAllArticlesRead(INewsSource source = null);
+        Task MarkArticleRead(ArticleData article);
+        Task UnmarkArticleRead(ArticleData article);
     }
 }

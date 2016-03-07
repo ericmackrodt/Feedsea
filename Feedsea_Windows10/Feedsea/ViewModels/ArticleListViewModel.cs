@@ -86,6 +86,24 @@ namespace Feedsea.ViewModels
             get { return markAllReadCommand; }
         }
 
+        private ICommand shareArticleCommand;
+        public ICommand ShareArticleCommand
+        {
+            get { return shareArticleCommand; }
+        }
+
+        private ICommand toggleArticleReadCommand;
+        public ICommand ToggleArticleReadCommand
+        {
+            get { return toggleArticleReadCommand; }
+        }
+
+        private ICommand toggleArticleSavedCommand;
+        public ICommand ToggleArticleSavedCommand
+        {
+            get { return toggleArticleSavedCommand; }
+        }
+
         public ArticleListViewModel(
             IArticleProvider provider, 
             IGeneralSettings generalSettings, 
@@ -100,6 +118,9 @@ namespace Feedsea.ViewModels
             changeArticleViewTemplateCommand = new RelayCommand(ChangeArticleViewTemplate);
             refreshArticlesCommand = new RelayCommandAsync(RefreshArticles);
             markAllReadCommand = new RelayCommandAsync(o => ConnectionVerifier.Verify(MarkAllRead, o, OnCommandFail));
+            shareArticleCommand = new RelayCommandAsync<ArticleData>(o => ConnectionVerifier.Verify(ShareArticle, o, OnCommandFail));
+            toggleArticleReadCommand = new RelayCommandAsync<ArticleData>(o => ConnectionVerifier.Verify(ToggleArticleRead, o, OnCommandFail));
+            toggleArticleSavedCommand = new RelayCommandAsync<ArticleData>(o => ConnectionVerifier.Verify(ToggleArticleSaved, o, OnCommandFail));
         }
 
         private void OnCommandFail()
@@ -182,6 +203,30 @@ namespace Feedsea.ViewModels
             }
 
             IsBusy = false;
+        }
+
+        private async Task ToggleArticleSaved(ArticleData article)
+        {
+            //if (article.IsFavorite)
+            //    await authProvider.RemoveFromSaved(article);
+            //else
+            //    await authProvider.SaveArticleForLater(article);
+        }
+
+        private async Task ToggleArticleRead(ArticleData article)
+        {
+            if (article.IsRead)
+                await provider.UnmarkArticleRead(article);
+            else
+                await provider.MarkArticleRead(article);
+
+            broadcaster.Event<UpdateUnreadCountEvent>().Broadcast(new KeyValuePair<string, bool>(article.Source.UrlID, article.IsRead));
+        }
+
+        private async Task ShareArticle(ArticleData arg)
+        {
+            //throw new NotImplementedException();
+            //share.Share(arg);
         }
     }
 }

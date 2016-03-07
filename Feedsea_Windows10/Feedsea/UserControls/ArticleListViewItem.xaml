@@ -5,6 +5,7 @@
     xmlns:local="using:Feedsea.UserControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="ArticleItemControl"
     mc:Ignorable="d">
 
     <Grid x:Name="LayoutBase" Background="{ThemeResource CardBackgroundColor}" Margin="0,20,20,0" MaxWidth="700" MinHeight="100" HorizontalAlignment="Stretch" VerticalAlignment="Top" CornerRadius="3">
@@ -118,7 +119,7 @@
 
             <ToggleButton Grid.Column="3" Grid.Row="2" Style="{StaticResource CardToggleButton}" VerticalAlignment="Center" Width="16" Height="16" Margin="10,0,0,5"
                           IsChecked="{Binding IsRead}"
-                          Command="{Binding Path=Main.ToggleArticleReadCommand, Source={StaticResource ViewModels}}" CommandParameter="{Binding}">
+                          Command="{Binding Path=ToggleReadCommand, ElementName=ArticleItemControl}" CommandParameter="{Binding}">
                 <Viewbox Height="16" Width="16">
                     <SymbolIcon Symbol="Accept" />
                 </Viewbox>
@@ -126,14 +127,14 @@
 
             <ToggleButton Grid.Column="4" Grid.Row="2" Style="{StaticResource CardToggleButton}" VerticalAlignment="Center" Width="16" Height="16" Margin="10,0,0,5" 
                           IsChecked="{Binding IsFavorite}"
-                          Command="{Binding Path=Main.ToggleArticleSavedCommand, Source={StaticResource ViewModels}}" CommandParameter="{Binding}">
+                          Command="{Binding Path=ToggleSavedForLaterCommand, ElementName=ArticleItemControl}" CommandParameter="{Binding}">
                 <Viewbox Height="16" Width="16">
                     <SymbolIcon Symbol="OutlineStar" />
                 </Viewbox>
             </ToggleButton>
 
             <Button Grid.Column="5" Grid.Row="2" Style="{StaticResource CardButton}" VerticalAlignment="Center" Width="16" Height="16" Margin="10,0,5,5"
-                    Command="{Binding Path=Main.ShareArticleCommand, Source={StaticResource ViewModels}}" CommandParameter="{Binding}">
+                    Command="{Binding Path=ShareCommand, ElementName=ArticleItemControl}" CommandParameter="{Binding}">
                 <Viewbox Height="16" Width="16">
                     <TextBlock FontFamily="{ThemeResource SymbolThemeFontFamily}" Text="&#xE72D;" />
                 </Viewbox>

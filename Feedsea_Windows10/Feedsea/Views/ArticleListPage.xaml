@@ -23,10 +23,14 @@
                            SizeChanged="ItemsWrapGrid_SizeChanged" />
         </ItemsPanelTemplate>
         <DataTemplate x:Key="CardTemplate">
-            <uc:ArticleCardViewItem />
+            <uc:ArticleCardViewItem ShareCommand="{Binding Path=DataContext.ShareArticleCommand, ElementName=LayoutRoot}"
+                                    ToggleReadCommand="{Binding Path=DataContext.ToggleArticleReadCommand, ElementName=LayoutRoot}"
+                                    ToggleSavedForLaterCommand="{Binding Path=DataContext.ToggleArticleSavedCommand, ElementName=LayoutRoot}"/>
         </DataTemplate>
         <DataTemplate x:Key="ListingTemplate">
-            <uc:ArticleListViewItem />
+            <uc:ArticleListViewItem ShareCommand="{Binding Path=DataContext.ShareArticleCommand, ElementName=LayoutRoot}"
+                                    ToggleReadCommand="{Binding Path=DataContext.ToggleArticleReadCommand, ElementName=LayoutRoot}"
+                                    ToggleSavedForLaterCommand="{Binding Path=DataContext.ToggleArticleSavedCommand, ElementName=LayoutRoot}"/>
         </DataTemplate>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot">

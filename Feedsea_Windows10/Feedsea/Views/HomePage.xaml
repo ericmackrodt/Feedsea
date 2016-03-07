@@ -8,6 +8,11 @@
     mc:Ignorable="d">
 
     <Grid Background="Transparent">
-        
+        <ListView>
+            <ListViewHeaderItem>
+                <TextBlock Text="SomeHeader" />
+                
+            </ListViewHeaderItem>
+        </ListView>
     </Grid>
 </Page>

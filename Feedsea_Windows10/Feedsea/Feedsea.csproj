@@ -112,6 +112,7 @@
     <Compile Include="Common\Converters\TimeAgoConverter.cs" />
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\Events\ArticleViewTemplateChangedEvent.cs" />
+    <Compile Include="Common\Events\UpdateUnreadCountEvent.cs" />
     <Compile Include="Common\Helpers\ConnectionVerifier.cs" />
     <Compile Include="Common\Helpers\EmptyTapped.cs" />
     <Compile Include="Common\Services\IMessageBoxService.cs" />
@@ -156,6 +157,9 @@
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
     <Compile Include="Views\ArticleListPage.xaml.cs">
       <DependentUpon>ArticleListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
@@ -230,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ArticleListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
