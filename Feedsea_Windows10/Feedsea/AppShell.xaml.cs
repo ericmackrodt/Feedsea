@@ -66,6 +66,10 @@ namespace Feedsea
             if (e.NavigationMode == NavigationMode.New)
                 Frame.BackStack.Clear();
 
+            //TODO: THIS WILL BE REMOVED!
+            var menuService = new Common.Services.MenuService().MainMenuItems();
+            this.AppFrame.Navigate(typeof(ArticleListPage), menuService.First());
+
             await ViewModel.LoadData(null);
         }
 
@@ -283,6 +287,11 @@ namespace Feedsea
         private void Sidebar_SidebarClicked(INewsSource source)
         {
             this.AppFrame.Navigate(typeof(ArticleListPage), source);
+
+            if (RootSplitView.DisplayMode != SplitViewDisplayMode.Inline)
+            {
+                RootSplitView.IsPaneOpen = false;
+            };
 
             //if (item != null)
             //{

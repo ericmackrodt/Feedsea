@@ -141,15 +141,15 @@ namespace Feedsea.ViewModels
 
         private async Task LoadArticles()
         {
-            var result = await provider.DownloadArticles(Articles, SelectedSource);
+            //var result = await provider.DownloadArticles(Articles, SelectedSource);
 
-            if (!result.Articles.All(o => Articles.Any(x => x.UniqueID == o.UniqueID)))
-                Articles = new PaginatedArticlesCollection(result.Articles, LoadMoreArticles);
+            //if (!result.Articles.All(o => Articles.Any(x => x.UniqueID == o.UniqueID)))
+            //    Articles = new PaginatedArticlesCollection(result.Articles, LoadMoreArticles);
 
-            if (!string.IsNullOrWhiteSpace(result.Continuation))
-                continuationString = result.Continuation;
+            //if (!string.IsNullOrWhiteSpace(result.Continuation))
+            //    continuationString = result.Continuation;
 
-            lastLoad = DateTime.Now;
+            //lastLoad = DateTime.Now;
         }
 
         private async Task RefreshArticles(object obj)
@@ -170,10 +170,13 @@ namespace Feedsea.ViewModels
 
             SelectedSource = (INewsSource)arg;
 
-            var articles = await provider.LoadArticles(SelectedSource);
-            Articles = new PaginatedArticlesCollection(articles, LoadMoreArticles);
+            var result = await provider.DownloadArticles(SelectedSource);
+            Articles = new PaginatedArticlesCollection(result.Articles, LoadMoreArticles);
 
-            await LoadArticles();
+            if (!string.IsNullOrWhiteSpace(result.Continuation))
+                continuationString = result.Continuation;
+
+            lastLoad = DateTime.Now;
 
             IsBusy = false;
         }
@@ -181,7 +184,7 @@ namespace Feedsea.ViewModels
         private async Task<IEnumerable<ArticleData>> LoadMoreArticles()
         {
             IsBusy = true;
-            var result = await provider.DownloadMoreArticles(continuationString, Articles, SelectedSource);
+            var result = await provider.DownloadMoreArticles(continuationString, SelectedSource);
             IsBusy = false;
             continuationString = result.Continuation;
             return result.Articles;
@@ -207,10 +210,10 @@ namespace Feedsea.ViewModels
 
         private async Task ToggleArticleSaved(ArticleData article)
         {
-            //if (article.IsFavorite)
-            //    await authProvider.RemoveFromSaved(article);
-            //else
-            //    await authProvider.SaveArticleForLater(article);
+            if (article.IsFavorite)
+                await provider.UnfavoriteArticle(article);
+            else
+                await provider.FavoriteArticle(article);
         }
 
         private async Task ToggleArticleRead(ArticleData article)

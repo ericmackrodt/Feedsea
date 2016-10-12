@@ -20,5 +20,6 @@ namespace Feedsea.Common.Api.Feedly
         public const string LoginDefaultRedirectUrl = "http://localhost";
         public const string BaseServiceUrl = "https://cloud.feedly.com/v3/";
         //public const string BaseServiceUrl = "https://sandbox.feedly.com/v3/";
+        public const int NumberArticlesDownload = 20;
     }
 }

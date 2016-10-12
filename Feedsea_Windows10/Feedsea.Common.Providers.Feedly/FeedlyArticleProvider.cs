@@ -13,14 +13,12 @@ namespace Feedsea.Common.Providers.Feedly
         private string continuationString;
 
         private readonly IFeedlySettings settings;
-        private readonly IProviderStorage storage;
         private readonly IFeedlyClient client;
 
-        public FeedlyArticleProvider(IFeedlyClient feedlyClient, IFeedlySettings providerSettings, IProviderStorage providerStorage)
+        public FeedlyArticleProvider(IFeedlyClient feedlyClient, IFeedlySettings providerSettings)
         {
             client = feedlyClient;
             settings = providerSettings;
-            storage = providerStorage;
         }
         
         private string GetStreamID(INewsSource source)
@@ -52,26 +50,32 @@ namespace Feedsea.Common.Providers.Feedly
 
             var articles = contents.ToArticleCollection();
 
-            await storage.SaveArticles(articles);
+            //await storage.SaveArticles(articles);
 
             return stream.Ids.Select(id =>
                 storedArticles.FirstOrDefault(a => a.UniqueID == id) ??
                 contents.FirstOrDefault(c => c.Id == id).ToArticle()).OrderByDescending(o => o.Date);
         }
 
-        public Task<IEnumerable<ArticleData>> LoadArticles(INewsSource source)
-        {
-            return storage.LoadArticles(source);
-        }
-
         public async Task<ContinuedArticles> DownloadArticles(INewsSource source)
         {
-            var stream = await GetIds(source);
+            continuationString = null;
+            var ident = GetStreamID(source);
 
-            var storedArticles = await storage.LoadArticles(stream.Ids);
+            var ranked = settings.ArticlesFromOldestToNewest ? Ranked.Oldest : Ranked.Newest;
+            var unreadOnly = !settings.ShowRead;
 
-            var nonStored = await GetNonStoredArticles(stream, storedArticles);
-            return new ContinuedArticles(nonStored, stream.Continuation);
+            var stream = await client.Streams.GetContent(ident.Replace(ApiConstants.FormatKey_UserId, settings.UserID), null, ApiConstants.NumberArticlesDownload, ranked: ranked, unreadOnly: unreadOnly);
+
+            var articles = stream.Items.ToArticleCollection();
+
+            return new ContinuedArticles(articles, stream.Continuation);
+            //var stream = await GetIds(source);
+
+            //var storedArticles = await storage.LoadArticles(stream.Ids);
+
+            //var nonStored = await GetNonStoredArticles(stream, storedArticles);
+            //return new ContinuedArticles(nonStored, stream.Continuation);
         }
 
         public async Task<ContinuedArticles> DownloadArticles(IEnumerable<ArticleData> currentArticles, INewsSource source)
@@ -101,9 +105,17 @@ namespace Feedsea.Common.Providers.Feedly
             throw new NotImplementedException();
         }
 
-        public Task<ContinuedArticles> DownloadMoreArticles(string continuation, INewsSource source)
+        public async Task<ContinuedArticles> DownloadMoreArticles(string continuation, INewsSource source)
         {
-            throw new NotImplementedException();
+            var ranked = settings.ArticlesFromOldestToNewest ? Ranked.Oldest : Ranked.Newest;
+            var unreadOnly = !settings.ShowRead;
+            var ident = GetStreamID(source);
+
+            var stream = await client.Streams.GetContent(ident.Replace(ApiConstants.FormatKey_UserId, settings.UserID), continuation, ApiConstants.NumberArticlesDownload, ranked: ranked, unreadOnly: unreadOnly);
+
+            var articles = stream.Items.ToArticleCollection();
+
+            return new ContinuedArticles(articles, stream.Continuation);
         }
 
         public Task<ContinuedArticles> DownloadMoreArticles(string continuation, IEnumerable<ArticleData> currentArticles, INewsSource source)
@@ -114,48 +126,71 @@ namespace Feedsea.Common.Providers.Feedly
 
         public async Task<ContinuedArticles> DownloadMoreArticles(string continuation, ArticleData lastArticle, INewsSource source)
         {
-            var savedArticles = await storage.LoadMoreArticles(source, lastArticle);
+            //var savedArticles = await storage.LoadMoreArticles(source, lastArticle);
 
-            var stream = await GetIds(source, continuation);
+            //var stream = await GetIds(source, continuation);
 
-            continuationString = stream.Continuation;
+            //continuationString = stream.Continuation;
 
-            var nonStored = await GetNonStoredArticles(stream, savedArticles);
-            return new ContinuedArticles(nonStored, stream.Continuation);
+            //var nonStored = await GetNonStoredArticles(stream, savedArticles);
+            //return new ContinuedArticles(nonStored, stream.Continuation);
+            return null;
         }
 
         public async Task MarkAllArticlesRead(INewsSource source = null)
         {
-            var i = await storage.MarkAllRead(source);
+            //var i = await storage.MarkAllRead(source);
 
-            var url = ApiConstants.GlobalCategory_All;
+            //var url = ApiConstants.GlobalCategory_All;
 
-            if (source != null)
-                url = source.UrlID;
+            //if (source != null)
+            //    url = source.UrlID;
 
-            var toMarkAsRead = new string[] { url.Replace(ApiConstants.FormatKey_UserId, settings.UserID) };
-            IMarkerInput input = null;
+            //var toMarkAsRead = new string[] { url.Replace(ApiConstants.FormatKey_UserId, settings.UserID) };
+            //IMarkerInput input = null;
 
-            if (source is SubscriptionData)
-                input = new MarkerInputFeed(toMarkAsRead);
-            else
-                input = new MarkerInputCategories(toMarkAsRead);
+            //if (source is SubscriptionData)
+            //    input = new MarkerInputFeed(toMarkAsRead);
+            //else
+            //    input = new MarkerInputCategories(toMarkAsRead);
 
-            await client.Markers.MarkRead(input);
+            //await client.Markers.MarkRead(input);
         }
 
         public async Task MarkArticleRead(ArticleData article)
         {
-            await client.Markers.MarkRead(new MarkerInputEntries(new string[] { article.UniqueID }));
-            article.IsRead = true;
-            await storage.UpdateArticle(article);
+            //await client.Markers.MarkRead(new MarkerInputEntries(new string[] { article.UniqueID }));
+            //article.IsRead = true;
+            //await storage.UpdateArticle(article);
         }
 
         public async Task UnmarkArticleRead(ArticleData article)
         {
-            await client.Markers.KeepUnread(new MarkerInputEntries(new string[] { article.UniqueID }));
-            article.IsRead = false;
-            await storage.UpdateArticle(article);
+            //await client.Markers.KeepUnread(new MarkerInputEntries(new string[] { article.UniqueID }));
+            //article.IsRead = false;
+            //await storage.UpdateArticle(article);
+        }
+
+        public async Task FavoriteArticle(ArticleData article)
+        {
+            //await client.Markers.SaveEntry(new TagEntryInput()
+            //{
+            //    EntryId = article.UniqueID,
+            //    UserId = settings.UserID
+            //});
+            //article.IsFavorite = true;
+            //await storage.UpdateArticle(article);
+        }
+
+        public async Task UnfavoriteArticle(ArticleData article)
+        {
+            //await client.Markers.UnsaveEntry(new TagEntryInput()
+            //{
+            //    EntryId = article.UniqueID,
+            //    UserId = settings.UserID
+            //});
+            //article.IsFavorite = false;
+            //await storage.UpdateArticle(article);
         }
     }
 }

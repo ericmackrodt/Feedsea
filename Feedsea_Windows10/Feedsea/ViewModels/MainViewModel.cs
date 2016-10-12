@@ -137,16 +137,16 @@ namespace Feedsea.ViewModels
             var sources = await sourceProvider.LoadNewsSources();
             Sources = new ObservableCollection<INewsSource>(sources);
 
-            //SelectedSource = null;
+                //SelectedSource = null;
 
-            //INewsSource source = null;
+                //INewsSource source = null;
 
-            //if (byId)
-            //    source = GetSourceById((string)arg);
-            //else
-            //    source = GetSourceByName((string)arg);
+                //if (byId)
+                //    source = GetSourceById((string)arg);
+                //else
+                //    source = GetSourceByName((string)arg);
 
-            //var result = await _provider.Refresh(source);
+                //var result = await _provider.Refresh(source);
 
             var result = await sourceProvider.DownloadNewsSources(Sources);
 
